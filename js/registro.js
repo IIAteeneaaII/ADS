@@ -42,8 +42,8 @@ document.getElementById("togglePassword1").addEventListener("click", function ()
 
   document.getElementById("formRegistro").addEventListener("submit", function (event) {
     event.preventDefault();
-     /*
-    Alertas en caso de que las quisieramos cambiar los errores
+    
+    //Alertas en caso de que las quisieramos cambiar los errores
 
     const nombre = document.getElementById("nombre").value.trim();
     const correo = document.getElementById("correo").value.trim();
@@ -66,7 +66,6 @@ document.getElementById("togglePassword1").addEventListener("click", function ()
         Swal.fire("Términos no aceptados", "Debes aceptar los términos y condiciones.", "info");
         return;
     }
-    */
 
 
     // Aqui iria la lógica de registro real
