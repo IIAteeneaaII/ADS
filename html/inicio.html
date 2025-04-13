@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../css/inicio.css" rel="stylesheet" />
+  <title>Pantalla Principal</title>
+</head>
+<body>
+    <!-- Botón menú hamburguesa -->
+
+  
+  <!-- Overlay oscuro -->
+  <div id="overlay" class="overlay"></div>
+  
+  <!-- Menú lateral -->
+  <div class="sidebar translate-left" id="menuLateral">
+    <div class="text-center p-3">
+      <button onclick="cerrarMenu()" class="btn btn-light mb-3">&larr;</button>
+      <div>
+        <img src="../img/logofinit.png" alt="avatar" class="img-fluid mb-2" style="max-width: 200px;">
+      </div>
+      <h4 class="fw-bold">Menú</h4>
+  
+      <div class="d-grid gap-2 mt-3">
+        <button class="btn btn-light">Actualizar perfil</button>
+        <button class="btn btn-light">Preferencias</button>
+        <button class="btn btn-light">Notificaciones</button>
+        <button class="btn btn-light">Guía de usuario</button>
+        <button class="btn btn-light">¿Quiénes somos?</button>
+        <button class="btn btn-light">Términos y privacidad</button>
+      </div>
+  
+      <div class="d-grid gap-2 mt-4">
+        <button class="btn btn-dark">Cerrar sesión</button>
+        <button class="btn btn-dark">Eliminar cuenta</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt-5 pt-2">
+    <!-- Barra superior -->
+    <div class="d-flex justify-content-between align-items-center icon-bar mb-2">
+      <span id="btnMenu">☰</span>
+      <span>📅</span>
+      <span>☀️</span>
+    </div>
+
+    <!-- Saludo al usuario -->
+    <div class="mb-3">
+      <h5 class="fw-bold">Hola, <span id="nombreUsuario">Usuario</span> 👋</h5>
+    </div>
+
+    <!-- Calendario dinámico -->
+    <div class="row text-center mb-3" id="calendarioSemanal"></div>
+
+    <!-- Encabezado de hábitos -->
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>Hábitos</h5>
+      <button class="btn btn-create">Crear +</button>
+    </div>
+
+    <!-- Mensaje si no hay hábitos -->
+    <div class="habit-card mt-4">
+      <p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón “Crear +” para crear tu primer hábito.</p>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/inicio.js"></script>
+
+</body>
+</html>
