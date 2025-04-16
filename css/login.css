@@ -15,19 +15,16 @@ body {
 
 header {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 10rem;
 }
 
-header img {
-    width: 100px;
-}
 
 main {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 80vh;
+    min-height: 55vh;
 }
 
 .container {
@@ -63,25 +60,31 @@ h2 {
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
+    
 }
+.btn-primary:enabled{
+    background-color: var(--second--color-strong);
 
+}
 .btn-primary:hover {
     background-color: var(--main--color--strong);
 }
 
 .btn-secondary {
-    background-color: var(--main--color--strong);
+    background-color: var(--second--color-low);
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
+    color: black
 }
 
 .btn-secondary:hover {
     background-color: var(--main--color--strong); 
 }
 
+
 input::placeholder {
-    color: blue;
+    /* color: blue; */
     opacity: 1;
 }  
 a {
@@ -104,7 +107,6 @@ a:hover {
     top: 2.8rem;
     cursor: pointer;
 }
-
 
 .position-relative {
     position: relative;

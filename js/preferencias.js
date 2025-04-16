@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 icon: 'warning',
                 title: 'Máximo 3 seleccionados',
                 text: 'Solo puedes seleccionar hasta 3 intereses.',
+                customClass: {
+                    confirmButton: 'btn-secondary',
+                },
                 confirmButtonText: 'Entendido'
             });
         }
@@ -30,6 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 icon: 'error',
                 title: 'Selecciona 3 gustos',
                 text: `Solo haz seleccionado ${selected.length}.`,
+                customClass: {
+                    confirmButton: 'btn-secondary',
+                },
                 confirmButtonText: 'Ok'
             });
         } else {
@@ -38,9 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 icon: 'success',
                 title: '¡Perfecto!',
                 text: 'Has seleccionado tus 3 intereses.',
+                customClass: {
+                    confirmButton: 'btn-secondary'
+                },
                 confirmButtonText: 'Continuar'
             }).then(() => {
-                
+                document.getElementById("nextBtn").classList.add("btn-secondary");
             });
         }
     });

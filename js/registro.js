@@ -105,7 +105,7 @@ document.getElementById("togglePassword1").addEventListener("click", function ()
         confirmButtonText: "Aceptar",
         customClass: {
             confirmButton: 'btn-secondary',
-          },
+        },
           buttonsStyling: false // ¡Importante para usar tus propias clases!
     }).then(() => {
         // Redirigir o limpiar el formulario si se desea

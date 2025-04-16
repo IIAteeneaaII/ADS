@@ -2,54 +2,54 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iniciar Sesión Fin It</title>
-  <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../css/login.css" rel="stylesheet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Iniciar Sesión Fin It</title>
+<link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../css/login.css" rel="stylesheet" />
 </head>
 
 <body>
-  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+<div class="container-md">
     <div class="login-box w-100">
-      <header class="text-center mb-4">
-        <img src="../img/logofinit.png" class="img-fluid logo" alt="Logo FinIt" />
-      </header>
+    <header class="text-center my-6">
+        <img src="../img/logofinit.png" class="img-fluid" alt="Logo FinIt" />
+    </header>
 
-      <main>
+    <main>
         <h2 class="text-center mb-4">Iniciar sesión</h2>
         <form id="formLogin" autocomplete="off">
-          <div class="mb-3">
+        <div class="mb-3">
             <label for="boleta" class="form-label">Correo electrónico:</label>
-            <input type="email" class="form-control" id="boleta" name="boleta" placeholder="tucorreo@gmail.com" required />
-          </div>
+            <input type="email" class="form-control" id="boleta" name="boleta" placeholder="tucorreo@gmail.com" autocomplete="off" required />
+        </div>
 
-          <div class="mb-3">
+        <div class="mb-3">
             <label for="contrasena" class="form-label">Contraseña:</label>
             <div class="d-flex align-items-center">
-              <input type="password" class="form-control me-2" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" required />
-              <span class="text-muted fs-5" id="togglePassword" style="cursor: pointer">👁️</span>
+            <input type="password" class="form-control me-2" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" autocomplete="new-password" required />
+            <span class="text-muted fs-5" id="togglePassword" style="cursor: pointer">👁️</span>
             </div>
-          </div>
+        </div>
 
-          <div class="d-grid gap-2">
+        <div class="d-grid gap-2">
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-          </div>
+        </div>
         </form>
 
         <div class="text-end mt-3">
-          <a href="./olvidarcontrasena.html">Olvidé mi contraseña</a>
+        <a href="./olvidarcontrasena.html">Olvidé mi contraseña</a>
         </div>
         <div class="text-end mt-2">
-          <span>¿No tienes cuenta? <a href="./registro.html">Regístrate</a></span>
+        <span>¿No tienes cuenta? <a href="./registro.html">Regístrate</a></span>
         </div>
-      </main>
+    </main>
     </div>
-  </div>
+</div>
 
-  <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/index.js"></script>
-  
+<script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+<script src="../js/index.js"></script>
+
 </body>
 
 </html>

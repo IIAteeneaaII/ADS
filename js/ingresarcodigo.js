@@ -20,6 +20,9 @@ document.getElementById("formCodigo").addEventListener("submit", function (event
         icon: "success",
         title: "Contraseña cambiada",
         text: "Tu nueva contraseña ha sido registrada. Inicia sesión.",
+        customClass: {
+            confirmButton: 'btn-primary'
+        },
         confirmButtonText: "Aceptar"
     }).then(() => {
         window.location.href = "index.html"; // volver al login
@@ -52,6 +55,9 @@ document.getElementById("reenviarCodigo").addEventListener("click", function () 
         icon: 'success',
         title: 'Código reenviado',
         text: 'Hemos reenviado el código de verificación a tu correo.',
+        customClass: {
+            confirmButton: 'btn-secondary'
+        },
         confirmButtonText: 'Aceptar'
     });
 });

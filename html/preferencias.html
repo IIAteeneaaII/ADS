@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Selecciona tus intereses</title>
-    <link href="../css/login.css" rel="stylesheet">
-    <link href="../css/preferencias.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/preferencias.js"></script>
-    
+    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/preferencias.css" rel="stylesheet">
 </head>
-
 <body>
-    <div class="container">
+    <div class="container py-4">
+        <h1>Preferencias</h1>
         <p>Para personalizar tus recomendaciones de manera óptima, ¡cuéntanos un poco sobre tus gustos e intereses!</p>
-        <div class="separator"></div>
+        
+        <div class="separator my-3"></div>
+        
         <div class="grid">
             <div class="option" onclick="toggleSelection(this)">
-                <img src="../img/preferencias/peliculas.png" alt="Peliculas" />
+                <img src="../img/preferencias/peliculas.png" alt="Películas" />
                 <span>Películas</span>
             </div>
             <div class="option" onclick="toggleSelection(this)">
@@ -42,11 +43,11 @@
                 <span>Lectura</span>
             </div>
         </div>
-        <div class="counter" id="counter">Seleccionado 0/3</div>
-        <button class="button" id="nextBtn" disabled>Siguiente</button>
+
+        <div class="text-center mt-4">
+            <div class="counter mb-3" id="counter">Seleccionado 0/3</div>
+            <button class="button btn btn-primary px-4" id="nextBtn" disabled>Siguiente</button>
+        </div>
     </div>
-
-
 </body>
-
 </html>

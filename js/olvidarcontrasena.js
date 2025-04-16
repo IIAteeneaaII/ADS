@@ -13,9 +13,13 @@ document.getElementById("formContrasena").addEventListener("submit", function (e
         icon: "success",
         title: "Código enviado",
         text: "Se ha enviado un código a tu correo para recuperar la cuenta.",
+        customClass: {
+            confirmButton: 'btn-primary'
+        },
         confirmButtonText: "Aceptar"
     }).then(() => {
         // Redirige a la siguiente pantalla para ingresar el código
+        document.getElementById("solicitarcodigo").classList.add("btn-primary");
         window.location.href = "ingresarcodigo.html"; 
     });
 });
