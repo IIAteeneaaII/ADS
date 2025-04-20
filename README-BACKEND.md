@@ -43,6 +43,8 @@ Para ejecutar esta aplicación en tu máquina local necesitas tener instalados l
 Para iniciar el servidor en modo desarrollo:
 
   ```bash
+  Genera el prisma client: npx prisma generate
+  Aplica la migracion: npx prisma migrate dev --name init
   npm run dev
   ```
 
@@ -57,7 +59,9 @@ Para iniciar el servidor en modo desarrollo:
 ```json
 {
   "email": "usuario@example.com",
-  "password": "contraseña123"
+  "password": "contraseña123",
+  "userName": "userName1234"
+
 }
 ```
 
