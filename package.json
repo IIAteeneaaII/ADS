@@ -1,0 +1,25 @@
+{
+  "name": "ads",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "sass": "sass src/sass/app.scss public/css/styles.css --watch",
+    "js": "echo 'Aquí iría el script para JS (vite, webpack, rollup, etc)'",
+    "dev": "concurrently \"npm run sass\" \"npm run js\""
+  },
+  "keywords": [],
+  "author": "TheAntonie",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "sass": "^1.86.3",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.3"
+  }
+}
