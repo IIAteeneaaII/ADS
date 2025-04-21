@@ -18,8 +18,8 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
-    "sass": "^1.86.3",
-    "concurrently": "^8.2.2",
-    "nodemon": "^3.0.3"
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "sass": "^1.86.3"
   }
 }
