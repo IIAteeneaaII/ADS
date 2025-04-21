@@ -27,3 +27,48 @@ exports.login = async (req, res) => {
 
   res.json({ token });
 };
+
+exports.recoverPassword = async (req, res) => {
+  const { email } = req.body;
+
+  const user = userRepo.findByEmail(email);
+  if (!user) return res.status(404).json({ message: 'Email not found' });
+
+  const token = uuidv4();
+  await redis.setEx(`reset-token:${token}`, 3600, email);
+  console.log('Enlace para reset: http://localhost:3000/reset-password?token=${token}');
+
+  res.status(200).json({ message: 'Recovery link sent' });
+};
+
+exports.validateResetToken = async (req, res) => {
+  const { token } = req.query;
+
+  const email = await redis.get(`reset-token:${token}`);
+  if (!email) {
+    return res.status(400).json({ message: 'Invalid or expired token' });
+  }
+
+  res.status(200).json({ message: 'Token is valid', email });
+};
+
+exports.resetPassword = async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  const email = await redis.get(`reset-token:${token}`);
+  if (!email) {
+    return res.status(400).json({ message: 'Invalid or expired token' });
+  }
+
+  const user = userRepo.findByEmail(email);
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+  user.password = hashedPassword;
+
+  await redis.del(`reset-token:${token}`);
+
+  res.status(200).json({ message: 'Password updated successfully' });
+};
