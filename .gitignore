@@ -25,3 +25,5 @@ logs/
 pids
 *.pid
 *.seed
+
+generated/
