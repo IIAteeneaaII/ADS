@@ -1,0 +1,27 @@
+@forward 'mixins';
+@forward 'variables';
+@use 'variables' as v;
+// @forward 'normalize';
+
+html {
+    box-sizing: border-box;
+    // font-size: 62.5%;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+a{
+    text-decoration: none;
+}
+img{
+    width: 100%;
+}
+
+h1,h2,h3{
+    font-family: v.$title;
+}
+
+p, a{
+    font-family: v.$text;
+}

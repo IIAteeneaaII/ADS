@@ -1,3 +1,136 @@
+@charset "UTF-8";
+body, html {
+  overflow-x: hidden;
+}
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+h1, h2, h3 {
+  font-family: "Red Hat Display", serif;
+}
+
+p, a {
+  font-family: "Segoe UI", serif;
+}
+
+body {
+  background-color: #e5f1fd;
+}
+
+header {
+  text-align: center;
+  margin-top: 10rem;
+}
+header img {
+  max-width: 150px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 55vh;
+}
+main h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 350px;
+  width: 100%;
+  background-color: transparent;
+  padding: 1rem;
+}
+
+.container-md {
+  max-width: 400px;
+}
+
+.form-control {
+  background-color: #e5f1fd;
+  border-radius: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+}
+
+/* Cuando el input está enfocado */
+.form-control:focus {
+  background-color: #C4C4C4 !important;
+  border-color: #C4C4C4;
+  box-shadow: none;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: #C4C4C4;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+
+.btn-primary:hover {
+  background-color: #C4C4C4;
+}
+
+.btn-secondary {
+  background-color: #C4C4C4;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+
+.btn-secondary:hover {
+  background-color: #C4C4C4;
+}
+
+input::placeholder {
+  opacity: 1;
+}
+
+a {
+  color: #C4C4C4;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.text-end {
+  text-align: center !important;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 1rem;
+  top: 2.8rem;
+  cursor: pointer;
+}
+
+.position-relative {
+  position: relative;
+}
 
 /*# sourceMappingURL=styles.css.map */

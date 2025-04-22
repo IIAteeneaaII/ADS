@@ -1,0 +1,106 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+body {
+    background-color: v.$mainColor;
+}
+
+header {
+    text-align: center;
+    margin-top: 10rem;
+    img {
+        max-width: 150px;
+    }
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 55vh;
+    
+    h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: bold;
+    }
+}
+
+.container {
+    max-width: 350px;
+    width: 100%;
+    background-color: transparent;
+    padding: 1rem;
+}
+
+.container-md {
+    max-width: 400px;
+}
+
+.form-control {
+    background-color:v.$mainColor;
+    border-radius: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+
+}
+/* Cuando el input está enfocado */
+.form-control:focus {
+    background-color: v.$secondaryColor !important;
+    border-color: v.$secondaryColor;
+    box-shadow: none;
+    outline: none;
+}
+
+.btn-primary {
+    background-color: v.$secondaryColor;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem;
+}
+
+.btn-primary:hover {
+    background-color: v.$secondaryColor;
+}
+
+.btn-secondary {
+    background-color: v.$secondaryColor;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem;
+}
+
+.btn-secondary:hover {
+    background-color:v.$secondaryColor; 
+}
+
+input::placeholder {
+    // color: blue;
+    opacity: 1;
+}  
+a {
+    color: v.$secondaryColor;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.text-end {
+    text-align: center !important;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 1rem;
+    top: 2.8rem;
+    cursor: pointer;
+}
+
+.position-relative {
+    position: relative;
+}
