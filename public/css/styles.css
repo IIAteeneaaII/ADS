@@ -35,6 +35,30 @@ body {
   background-color: #e5f1fd;
 }
 
+.separator {
+  border-top: 1px solid #8294A6;
+  background-color: #8294A6;
+  margin: 1rem 0 1rem;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.top-bar .back-arrow {
+  font-size: 2rem;
+  text-decoration: none;
+  color: black;
+  margin-right: 1rem;
+}
+.top-bar h1 {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
 header {
   text-align: center;
   margin-top: 10rem;
@@ -317,11 +341,6 @@ a ::placeholder {
   color: black;
 }
 
-.separator {
-  border-top: 1px solid #8294A6;
-  margin: 8px 0 16px;
-}
-
 .grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -397,6 +416,74 @@ a ::placeholder {
 
 .main-content {
   margin-top: 80px;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  background-color: #D0DAE6;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  gap: 0.5rem;
+}
+
+.option {
+  background-color: transparent;
+  padding: 0.6rem 1rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: black;
+  min-width: 100px;
+  transition: background-color 0.3s ease;
+}
+.option span {
+  line-height: 1.2;
+  display: block;
+}
+.option.active {
+  background-color: #8294A6;
+  color: white;
+}
+.option:hover:not(.active) {
+  background-color: #8294A6;
+  color: white;
+}
+
+.tab-content {
+  background-color: #e5f1fd;
+  margin-top: 1.5rem;
+}
+.tab-content .tab-pane {
+  padding: 1rem;
+  display: block;
+}
+.tab-content .tab-pane .active {
+  display: none;
+}
+.tab-content .d-none {
+  display: none !important;
+}
+
+form {
+  background-color: #e5f1fd;
+}
+form .form-label {
+  font-weight: 600;
+}
+form .form-control {
+  background-color: #e5f1fd;
+  border: 1px solid #8294A6;
+  border-radius: 0.5rem;
+}
+form .form-text.text-danger {
+  font-size: 0.8rem;
+}
+
+.progreso, .informacion {
+  border: 1px solid #8294A6;
 }
 
 /*# sourceMappingURL=styles.css.map */

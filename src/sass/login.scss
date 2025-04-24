@@ -1,11 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-
-body {
-    background-color: v.$mainColor;
-}
-
 header {
     text-align: center;
     margin-top: 10rem;

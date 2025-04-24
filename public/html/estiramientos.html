@@ -5,35 +5,109 @@
     <title>Gestionar Hábitos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../css/gestionarhabitos.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="../css/styles.css" rel="stylesheet">
+    <script src="../js/estiramientos.js"></script>
 </head>
 <body>
     <div class="container py-4">
 
-        <a href="pagina-anterior.html" class="back-arrow">&lsaquo;</a>
+        <div class="top-bar">
+            <a href="pagina-anterior.html" class="back-arrow">&lsaquo;</a>
+            <h1 class="mx-auto">Estiramientos Matutinos</h1>
+        </div>
 
-        <h1>Gestionar Hábitos</h1>
-        <p>Selecciona qué tipo de hábito quieres crear:</p>
-        
-        <div class="separator my-3"></div>
-        
-        <div class="grid">
-            <div class="option" onclick="location.href='movimientocorporal.html'">
-                <img src="../img/gestorhabitos/movimiento.png" alt="movimiento_corporal" />
-                <span>Movimiento Corporal</span>
+        <div class="separator my-2"></div>
+
+        <div class="grid" id="tabs">
+            <div class="option active" data-tab="gestionar">
+                <span>Gestionar<br>hábito</span>
             </div>
-            <div class="option" onclick="location.href='bienestar.html'">
-                <img src="../img/gestorhabitos/bienestar.png" alt="Bienestar" />
-                <span>Bienestar</span>
+            <div class="option" data-tab="progreso">
+                <span>Registrar<br>progreso</span>
             </div>
-            <div class="option" onclick="location.href='mental.html'">
-                <img src="../img/gestorhabitos/mentales.png" alt="Mentales" />
-                <span>Mentales</span>
+            <div class="option" data-tab="info">
+                <span>Información</span>
+            </div>
+        </div>
+
+        <div class="tab-content mt-4">
+            <div class="tab-pane active" id="gestionar">
+                <form>
+                    <div class="mb-3">
+                        <label for="tiempo" class="form-label">Tiempo a realizar*</label>
+                        <input type="text" class="form-control" id="tiempo" placeholder="Duración de la sesión">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Inicio del hábito*</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                            <input type="text" class="form-control" value="Miércoles 15 de Abril de 2025" readonly>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Fin del hábito*</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                            <input type="text" class="form-control" value="Miércoles 30 de Julio de 2025" readonly>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Seleccione la frecuencia*:</label>
+                        <div class="btn-group d-flex flex-wrap" role="group">
+                            <button type="button" class="btn-dias">Lun</button>
+                            <button type="button" class="btn-dias">Mar</button>
+                            <button type="button" class="btn-dias">Mié</button>
+                            <button type="button" class="btn-dias">Jue</button>
+                            <button type="button" class="btn-dias">Vie</button>
+                            <button type="button" class="btn-dias">Sáb</button>
+                            <button type="button" class="btn-dias">Dom</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Selecciona las notificaciones a recibir al día*:</label>
+                        <div class="btn-group d-flex flex-wrap" role="group">
+                            <button type="button" class="dias_notificaciones">En la mañana</button>
+                            <button type="button" class="dias_notificaciones">En la tarde</button>
+                            <button type="button" class="dias_notificaciones">En la noche</button>
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary rounded-pill">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="tab-pane d-none " id="progreso">
+                <div class="mb-3 progreso">
+                    <h2>¿Cumpliste con el objetivo del día?</h2>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn-progreso">SI</button>
+                        <button type="button" class="btn-progreso">NO</button>
+                    </div>
+                    <p>Leer hoy fue una gran desición</p>
+                    <div class="option-1" >
+                        <img src="../img/gestorhabitos/estiramiento.png" alt="movimiento_corporal" />
+                    </div>
+                    <div class="btn-group d-flex flex-wrap" role="group">
+                        <button type="button" class="btn-progreso">Modificar</button>
+                        <button type="button" class="btn-progreso">Guardar</button>
+                    </div>
+                </div>
+                <div class="mb-3 progreso">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic, voluptates.</p>
+                </div>
+            </div>
+
+            <div class="tab-pane d-none informacion" id="info">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit, at. Accusamus debitis perferendis aliquam commodi facere autem reprehenderit doloremque ratione perspiciatis earum, alias at tempore reiciendis, deserunt vitae odio magni voluptatem molestiae placeat. Corrupti ad nostrum quibusdam accusamus nemo nobis, dolorem alias, sunt neque enim possimus nam! Illo optio minus omnis voluptates, iure, consequuntur accusantium aspernatur temporibus, explicabo est laudantium veniam? Voluptatibus animi molestias sit consectetur distinctio cupiditate iure alias pariatur, eveniet iste qui saepe laborum fuga repellendus rerum fugiat voluptatem expedita suscipit aperiam possimus! Facilis pariatur maiores impedit, cumque voluptatum quidem iusto earum alias minima repellat, perspiciatis reprehenderit numquam!</p>
             </div>
         </div>
     </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../js/preferencias.js"></script>
 </html>
