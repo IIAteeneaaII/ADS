@@ -160,6 +160,21 @@ Este endpoint requiere autenticación mediante un token JWT.
 }
 ```
 
+Lo que puede aceptar frequency:
+
+```json
+
+{
+  "type": "daily"
+}
+
+{
+  "type": "weekly",
+  "days": ["monday", "wednesday", "friday"]
+}
+
+
+```
 
 ## Contributors
 
