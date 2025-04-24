@@ -133,4 +133,270 @@ a:hover {
   position: relative;
 }
 
+.container {
+  max-width: 350px;
+  width: 100%;
+  background-color: transparent;
+  padding: 1rem;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.form-control {
+  background-color: #e9ecef;
+  border-radius: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+}
+
+/* Cuando el input está enfocado */
+.form-control:focus {
+  background-color: #C4C4C4 !important;
+  border-color: #C4C4C4;
+  box-shadow: none;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: #8294A6;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+.btn-primary:hover {
+  background-color: #C4C4C4;
+}
+.btn-primary:focus {
+  background-color: #8294A6;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #8294A6;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+
+.btn-secondary:hover {
+  background-color: #8294A6;
+}
+
+input::placeholder {
+  opacity: 1;
+}
+
+a {
+  color: var(--main--color--strong);
+  text-decoration: none;
+  font-weight: 500;
+}
+a ::placeholder {
+  text-decoration: underline;
+}
+
+.text-end {
+  text-align: center !important;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.calendar-day {
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.calendar-dot {
+  width: 24px;
+  height: 24px;
+  background-color: var(--second--color-low);
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+.calendar-dot.active {
+  background-color: var(--main--color--strong);
+  border: 2px solid var(--main--color--black);
+}
+
+.icon-bar span {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.habit-card {
+  margin-top: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.btn-create {
+  background-color: var(--second--color-strong);
+  border-radius: 20px;
+  padding: 6px 14px;
+  border: none;
+}
+
+.btn-create:hover {
+  background-color: var(--main--color--strong);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 75%;
+  max-width: 300px;
+  height: 100%;
+  background-color: #d6e4f0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 1052;
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+  transform: translateX(-100%);
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1050;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+.container {
+  margin-top: 45px;
+  max-width: 350px;
+  width: 100%;
+  background-color: transparent;
+  padding: 1rem;
+}
+
+.container-1 {
+  margin-top: -50px;
+  max-width: 350px;
+  width: 100%;
+  background-color: transparent;
+  padding: 1rem;
+}
+
+.container p {
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.container h1 {
+  font-family: "Segoe UI", sans-serif;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.container-1 h1 {
+  font-family: "Segoe UI", sans-serif;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.separator {
+  border-top: 1px solid #8294A6;
+  margin: 8px 0 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.option {
+  background-color: #8294A6;
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.option-1 {
+  background-color: #e5f1fd;
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+  gap: 12px;
+}
+
+.option-1 img {
+  width: 40px;
+  height: 40px;
+}
+
+.option, .option-1 span {
+  font-size: 1rem;
+  color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
+}
+
+.option, .option-1:hover {
+  background-color: #8294A6;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: #C4C4C4;
+  cursor: pointer;
+}
+
+.option img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+.back-arrow {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.back-arrow:hover {
+  color: #C4C4C4;
+  transform: scale(1.1);
+}
+
+.main-content {
+  margin-top: 80px;
+}
+
 /*# sourceMappingURL=styles.css.map */

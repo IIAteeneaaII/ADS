@@ -1,0 +1,117 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.container {
+    margin-top: 45px;
+    max-width: 350px;
+    width: 100%;
+    background-color: transparent;
+    padding: 1rem;
+}
+
+.container-1 {
+    margin-top: -50px;
+    max-width: 350px;
+    width: 100%;
+    background-color: transparent;
+    padding: 1rem;
+}
+
+.container p {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+.container h1{
+    font-family: 'Segoe UI', sans-serif;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.container-1 h1{
+    font-family: 'Segoe UI', sans-serif;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: black;
+}
+.separator {
+    border-top: 1px solid #8294A6;
+    margin: 8px 0 16px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.option {
+    background-color: #8294A6;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+.option-1 {
+    background-color: #e5f1fd;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    gap: 12px;
+}
+.option-1 img {
+    width: 40px;
+    height: 40px;
+}
+
+.option, .option-1 span {
+    font-size: 1rem;
+    color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
+}
+
+.option, .option-1:hover {
+    background-color: #8294A6;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #C4C4C4;
+    cursor: pointer;
+}
+
+.option img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 8px;
+}
+
+.back-arrow {
+    font-size: 2rem; 
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.back-arrow:hover {
+    color: #C4C4C4;
+    transform: scale(1.1);
+}
+
+
+.main-content {
+    margin-top: 80px; 
+}
