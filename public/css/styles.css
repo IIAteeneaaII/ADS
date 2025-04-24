@@ -399,4 +399,87 @@ a ::placeholder {
   margin-top: 80px;
 }
 
+body {
+  background-color: #e5f1fd;
+}
+
+.btn-primary {
+  background-color: #8294A6;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+
+.btn-primary:hover {
+  background-color: #C4C4C4;
+}
+
+.btn-secondary {
+  background-color: #8294A6;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+
+.btn-secondary:hover {
+  background-color: #C4C4C4;
+}
+
+body {
+  background-color: #e5f1fd;
+}
+
+.btn-primary {
+  background-color: #8294A6;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+
+.btn-primary:hover {
+  background-color: #C4C4C4;
+}
+
+.btn-secondary {
+  background-color: #8294A6;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+
+.btn-secondary:hover {
+  background-color: #C4C4C4;
+}
+
+.form-check-label {
+  font-family: "Segoe UI", serif;
+  font-size: 12px;
+}
+
+body {
+  background-color: #e5f1fd;
+}
+
+.btn-primary {
+  background-color: #8294A6;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+
+.btn-primary:hover {
+  background-color: #C4C4C4;
+}
+
+.btn-secondary {
+  background-color: #8294A6;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+
+.btn-secondary:hover {
+  background-color: #C4C4C4;
+}
+
 /*# sourceMappingURL=styles.css.map */
