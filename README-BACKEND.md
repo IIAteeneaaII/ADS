@@ -133,4 +133,33 @@ Para iniciar el servidor en modo desarrollo:
   ```
 
 
+### POST /habits/custom
+
+Crea un nuevo hábito personalizado para el usuario autenticado.
+
+#### Autenticación
+
+Este endpoint requiere autenticación mediante un token JWT.
+
+** Header: Authorization: Bearer <token> **
+
+### 📥 Request Body
+
+```json
+{
+  "name": "Leer 30 minutos",
+  "description": "Leer un libro cada noche antes de dormir",
+  "frequency": {
+    "type": "daily"
+  },
+  "reminderTime": {
+    "hour": 21,
+    "minute": 0
+  },
+  "startDate": "2025-04-25T00:00:00.000Z"
+}
+```
+
+
 ## Contributors
+
