@@ -521,8 +521,74 @@ form .form-text.text-danger {
   font-size: 0.8rem;
 }
 
-.progreso, .informacion {
+.progreso,
+.informacion {
   border: 1px solid #8294A6;
+}
+
+.input-fecha {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.input-fecha .calendario {
+  max-width: 200px;
+  flex-shrink: 0;
+}
+.input-fecha .fecha-formateada {
+  font-weight: 500;
+  color: black;
+  background-color: #D0DAE6;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.pikaday {
+  background-color: #e5f1fd;
+  border: 1px solid #8294A6;
+  font-family: inherit;
+}
+.pikaday .pika-day.selected,
+.pikaday .pika-day:hover {
+  background-color: #8294A6;
+  color: white;
+}
+.pikaday .pika-month,
+.pikaday .pika-weekdays {
+  background-color: #D0DAE6;
+  color: black;
+}
+.pikaday .pika-weekday {
+  font-weight: 600;
+}
+.pikaday .pika-day.today {
+  border-color: #8294A6;
+}
+
+.btn-dias,
+.dias_notificaciones {
+  background-color: #D0DAE6;
+  border: 2px solid #1f2421;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  margin: 0.2rem;
+  font-weight: 600;
+  color: #1f2421;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 80px;
+  text-align: center;
+}
+.btn-dias.selected,
+.dias_notificaciones.selected {
+  background-color: #8294A6;
+  color: #f8f9fa;
+  border-color: #8294A6;
+}
+.btn-dias:hover:not(.selected),
+.dias_notificaciones:hover:not(.selected) {
+  background-color: #C4C4C4;
 }
 
 body {

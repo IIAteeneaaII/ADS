@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/plugins/pikaday.es.js"></script>
     <link href="../css/styles.css" rel="stylesheet">
     <script src="../js/estiramientos.js"></script>
 </head>
@@ -40,20 +43,19 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Inicio del hábito*</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
-                            <input type="text" class="form-control" value="Miércoles 15 de Abril de 2025" readonly>
+                        <label class="form-label" for="fecha-inicio">Inicio del hábito*</label>
+                        <div class="input-fecha">
+                            <input type="text" id="fecha-inicio" class="form-control calendario">
                         </div>
                     </div>
-
+                    
                     <div class="mb-3">
-                        <label class="form-label">Fin del hábito*</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
-                            <input type="text" class="form-control" value="Miércoles 30 de Julio de 2025" readonly>
+                        <label class="form-label" for="fecha-fin">Fin del hábito*</label>
+                        <div class="input-fecha">
+                            <input type="text" id="fecha-fin" class="form-control calendario">
                         </div>
                     </div>
+                    
 
                     <div class="mb-3">
                         <label class="form-label">Seleccione la frecuencia*:</label>
@@ -78,7 +80,8 @@
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary rounded-pill">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                        <button type="submit" class="btn btn-secondary">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -86,15 +89,15 @@
             <div class="tab-pane d-none " id="progreso">
                 <div class="mb-3 progreso">
                     <h2>¿Cumpliste con el objetivo del día?</h2>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn-progreso">SI</button>
-                        <button type="button" class="btn-progreso">NO</button>
+                    <div class="ResProgreso ">
+                        <button type="button" class="btn-progreso" id="cumplio">SI</button>
+                        <button type="button" class="btn-progreso" id="no cumplio">NO</button>
                     </div>
                     <p>Leer hoy fue una gran desición</p>
-                    <div class="option-1" >
-                        <img src="../img/gestorhabitos/estiramiento.png" alt="movimiento_corporal" />
+                    <div class="img-fluid" >
+                        <img src="../img/gestorhabitos/estiramiento.png" />
                     </div>
-                    <div class="btn-group d-flex flex-wrap" role="group">
+                    <div class="btn-group d-flex flex-wrap">
                         <button type="button" class="btn-progreso">Modificar</button>
                         <button type="button" class="btn-progreso">Guardar</button>
                     </div>
