@@ -16,6 +16,12 @@ a{
 }
 img{
     width: 100%;
+    height: auto;
+}
+.container_logo{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 h1,h2,h3{
@@ -27,6 +33,9 @@ p, a{
 }
 body {
     background-color: v.$mainColor;
+}
+footer{
+    margin-top: 2rem;
 }
 .separator {
     border-top: 1px solid #8294A6;

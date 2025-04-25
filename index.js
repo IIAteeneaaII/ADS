@@ -1,26 +1,25 @@
-// Usar require en lugar de import
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Cargar las variables de entorno desde el archivo .env
+// Cargar variables de entorno
 dotenv.config();
 
 const app = express();
 
-// Configuración del motor de plantillas EJS
+// Configurar EJS como motor de plantillas
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views')); // Define la carpeta donde están las plantillas EJS
+app.set('views', path.join(__dirname, 'views'));
 
-// Servir archivos estáticos
-app.use(express.static("public"));
+// Servir archivos estáticos correctamente
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Ruta principal
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Iniciar Sesión Fin It' }); // Pasa variables a la plantilla EJS
+    res.render('pages/index', { title: 'Iniciar Sesión Fin It' });
 });
 
-// Iniciar el servidor
+// Iniciar servidor
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);

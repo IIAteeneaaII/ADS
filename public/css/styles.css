@@ -21,6 +21,13 @@ a {
 
 img {
   width: 100%;
+  height: auto;
+}
+
+.container_logo {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2, h3 {
@@ -33,6 +40,10 @@ p, a {
 
 body {
   background-color: #e5f1fd;
+}
+
+footer {
+  margin-top: 2rem;
 }
 
 .separator {
@@ -61,10 +72,10 @@ body {
 
 header {
   text-align: center;
-  margin-top: 10rem;
+  margin-top: 2rem;
 }
 header img {
-  max-width: 150px;
+  max-width: 140px;
 }
 
 main {
@@ -72,7 +83,6 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 55vh;
 }
 main h2 {
   text-align: center;
@@ -591,10 +601,6 @@ form .form-text.text-danger {
   background-color: #C4C4C4;
 }
 
-body {
-  background-color: #e5f1fd;
-}
-
 .btn-primary {
   background-color: #8294A6;
   border: none;
@@ -621,18 +627,13 @@ body {
   text-align: center;
 }
 
-body {
-  background-color: #e5f1fd;
-}
-
 .btn-primary {
   background-color: #8294A6;
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
 }
-
-.btn-primary:hover {
+.btn-primary :hover {
   background-color: #C4C4C4;
 }
 
@@ -650,10 +651,6 @@ body {
 .form-check-label {
   font-family: "Segoe UI", serif;
   font-size: 12px;
-}
-
-body {
-  background-color: #e5f1fd;
 }
 
 .btn-primary {
