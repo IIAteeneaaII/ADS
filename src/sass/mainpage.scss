@@ -9,9 +9,10 @@
 }
 
 h2 {
+    font-family: v.$text;
     text-align: center;
     margin-bottom: 2rem;
-    font-weight: bold;
+    font-size: 20px;
 }
 
 .form-control {
@@ -149,4 +150,36 @@ a {
 
 .overlay.active {
     display: block;
+}
+
+.top-bar {
+    background-color: v.$mainColor-strong;
+    padding: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.5rem;
+  }
+  .top-bar .icons i {
+    margin-left: 10px;
+    font-size: 1.2rem;
+  }
+  .time-buttons{
+    text-align: center;
+  }
+  .time-buttons .btn {
+    margin: 0 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  .create-button {
+    text-align: center;
+  }
+  .habitos_titulo{
+    padding-top: 1rem;
+  }
+  .btn-dark {
+    background-color: v.$black;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem;
 }
