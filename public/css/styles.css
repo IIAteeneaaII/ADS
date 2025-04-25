@@ -551,6 +551,10 @@ body {
   background-color: #C4C4C4;
 }
 
+.botones-eliminar {
+  text-align: center;
+}
+
 body {
   background-color: #e5f1fd;
 }
