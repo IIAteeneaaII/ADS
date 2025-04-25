@@ -2,20 +2,15 @@
 @use 'base/mixins' as m;
 
 
-body {
-    background-color: v.$mainColor;
-}
 .btn-primary {
     background-color: v.$mainColor-strong;
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
-}
-
-.btn-primary:hover {
+    :hover {
     background-color: v.$secondaryColor;
+    }
 }
-
 .btn-secondary {
     background-color: v.$mainColor-strong;
     border: none;
