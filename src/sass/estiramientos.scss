@@ -26,10 +26,12 @@
         line-height: 1.2;
         display: block;
     }
+
     &.active {
         background-color: v.$mainColor-strong;
         color: white;
     }
+
     &:hover:not(.active) {
         background-color: v.$mainColor-strong;
         color: white;
@@ -43,7 +45,8 @@
     .tab-pane {
         padding: 1rem;
         display: block;
-        .active{
+
+        .active {
             display: none;
         }
     }
@@ -55,6 +58,7 @@
 
 form {
     background-color: v.$mainColor;
+
     .form-label {
         font-weight: 600;
     }
@@ -70,6 +74,79 @@ form {
     }
 
 }
-.progreso,.informacion{
+
+.progreso,
+.informacion {
     border: 1px solid v.$mainColor-strong;
+}
+
+.input-fecha {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .calendario {
+        max-width: 200px;
+        flex-shrink: 0;
+    }
+
+    .fecha-formateada {
+        font-weight: 500;
+        color: black;
+        background-color: v.$mainColor-low;
+        border-radius: 0.5rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+.pikaday {
+    background-color: v.$mainColor;
+    border: 1px solid v.$mainColor-strong;
+    font-family: inherit;
+
+    .pika-day.selected,
+    .pika-day:hover {
+        background-color: v.$mainColor-strong;
+        color: white;
+    }
+
+    .pika-month,
+    .pika-weekdays {
+        background-color: v.$mainColor-low;
+        color: black;
+    }
+
+    .pika-weekday {
+        font-weight: 600;
+    }
+
+    .pika-day.today {
+        border-color: v.$mainColor-strong;
+    }
+}
+
+.btn-dias,
+.dias_notificaciones {
+    background-color: v.$mainColor-low;
+    border: 2px solid v.$black;
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    margin: 0.2rem;
+    font-weight: 600;
+    color: v.$black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+    text-align: center;
+
+    &.selected {
+        background-color: v.$mainColor-strong;
+        color: v.$white;
+        border-color: v.$mainColor-strong;
+    }
+
+    &:hover:not(.selected) {
+        background-color: v.$secondaryColor;
+    }
 }
