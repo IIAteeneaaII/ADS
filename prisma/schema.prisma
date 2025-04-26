@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int          @id @default(autoincrement())
+  userName       String
+  email      String       @unique
+  password   String
+  createdAt  DateTime     @default(now())
+  habits     UserHabit[]
+}
+
+model HabitTemplate {
+  id                Int                    @id @default(autoincrement())
+  name              String
+  description       String
+  category          String
+  defaultFrequency  Json
+  hasCustomFields   Boolean
+  fields            HabitTemplateField[]
+  userHabits        UserHabit[]
+}
+
+model HabitTemplateField {
+  id           Int           @id @default(autoincrement())
+  template     HabitTemplate @relation(fields: [templateId], references: [id])
+  templateId   Int
+  name         String
+  fieldType    String         // "text", "number", "boolean", etc.
+  unit         String?
+  fieldValues  UserHabitFieldValue[]
+}
+
+model UserHabit {
+  id             Int                      @id @default(autoincrement())
+  user           User                     @relation(fields: [userId], references: [id])
+  userId         Int
+  habitTemplate  HabitTemplate?           @relation(fields: [habitTemplateId], references: [id])
+  habitTemplateId Int?
+  name           String
+  description    String?
+  frequency      Json
+  reminderTime   Json
+  startDate      DateTime
+  isActive       Boolean                  @default(true)
+  customValues   UserHabitFieldValue[]
+  logs           HabitTrackingLog[]
+}
+
+model UserHabitFieldValue {
+  id              Int                  @id @default(autoincrement())
+  userHabit       UserHabit            @relation(fields: [userHabitId], references: [id])
+  userHabitId     Int
+  templateField   HabitTemplateField   @relation(fields: [templateFieldId], references: [id])
+  templateFieldId Int
+  value           String
+}
+
+model HabitTrackingLog {
+  id            Int        @id @default(autoincrement())
+  userHabit     UserHabit  @relation(fields: [userHabitId], references: [id])
+  userHabitId   Int
+  date          DateTime
+  status        String     // "completed", "skipped", "missed"
+  notes         String?
+  fieldValues   Json       // valores del día (por ejemplo: {"distance": 5})
+}
