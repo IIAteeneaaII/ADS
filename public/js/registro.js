@@ -58,7 +58,7 @@ if (nombre === "" || correo === "" || contrasena === "" || confirmarContrasena =
         icon: "warning",
         title: "Campos vacíos",
         text: "Por favor completa todos los campos.",
-        confirmButtonText: "OK",
+        confirmButtonText: "Aceptar",
         customClass: {
             confirmButton: 'btn-secondary',
         },
@@ -74,7 +74,7 @@ if (!passwordRegex.test(contrasena)) {
         icon: "error",
         title: "Contraseña inválida",
         text: "La contraseña debe tener al menos 8 caracteres, incluyendo letras y números.",
-        confirmButtonText: "OK",
+        confirmButtonText: "Aceptar",
         customClass: {
             confirmButton: 'btn-secondary',
         },
