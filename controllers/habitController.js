@@ -29,3 +29,16 @@ exports.createCustomHabit = async (req, res) => {
     res.status(500).json({ message: 'Server error creating custom habit' });
   }
 };
+
+exports.getHabitsForDate = async (req, res) => {
+  const userId = req.user.id;
+  const date = new Date(req.query.date);
+
+  try {
+    const habits = await habitRepo.getUserHabitsWithLog(userId, date);
+    res.json(habits);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error getting habits' });
+  }
+};
