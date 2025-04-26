@@ -1,0 +1,54 @@
+<main>
+<div class="form-container">
+    <h2 class="text-center mb-4">Registrarse</h2>
+    <form id="formRegistro" autocomplete="off">
+    <!-- Usuario -->
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Usuario:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required />
+    </div>
+
+    <!-- Correo -->
+    <div class="mb-3">
+        <label for="correo" class="form-label">Correo electrónico:</label>
+        <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingresa tu correo" required />
+    </div>
+
+    <!-- Contraseña -->
+    <div class="mb-3">
+        <label for="contrasena" class="form-label">Contraseña:</label>
+        <div class="d-flex align-items-center">
+        <input type="password" class="form-control me-2" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" required />
+        <span class="text-muted fs-5" id="togglePassword1" style="cursor: pointer">👁️</span>
+        </div>
+    </div>
+
+    <!-- Confirmar contraseña -->
+    <div class="mb-3">
+        <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
+        <div class="d-flex align-items-center">
+        <input type="password" class="form-control me-2" id="confirmarContrasena" name="confirmarContrasena" placeholder="Confirma tu contraseña" required />
+        <span class="text-muted fs-5" id="togglePassword2" style="cursor: pointer">👁️</span>
+        </div>
+    </div>
+
+    <!-- Términos -->
+    <div class="form-check mb-3">
+        <input class="check" type="checkbox" id="terminosCheck" required />
+        <label class="form-check-label" for="terminosCheck">
+        Aceptar <a href="./terminosycondiciones.html">términos y condiciones</a>
+        </label>
+    </div>
+
+    <!-- Botones -->
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+        <button type="button" class="btn btn-secondary">Cancelar</button>
+    </div>
+    </form>
+
+    <p class="text-end mt-3">
+    ¿Ya tienes cuenta? <a href="#" id="btnMostrarLogin">Inicia sesión</a>
+    </p>
+</div>
+</main>

@@ -1,13 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.container {
-    max-width: 350px;
-    width: 100%;
-    background-color: transparent;
-    padding: 1rem;
-}
-
 .container p {
     font-size: 0.8rem;
     margin-bottom: 1rem;
