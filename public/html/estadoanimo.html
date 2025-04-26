@@ -16,22 +16,22 @@
     <h1>¿Cómo te sientes ahora?</h1>
     
 
-    <div class="emotion-option" onclick="seleccionarEmocion(this)">
+    <div class="emotion-option" onclick="seleccionarEmocion(this)" id="feliz">
         <div class="emotion-icon bg-warning text-dark"><i class="fas fa-smile"></i></div>
         <div class="emotion-label bg-warning text-dark">Feliz</div>
     </div>
 
-    <div class="emotion-option" onclick="seleccionarEmocion(this)">
+    <div class="emotion-option" onclick="seleccionarEmocion(this)" id="triste">
         <div class="emotion-icon bg-primary text-white"><i class="fas fa-sad-tear"></i></div>
         <div class="emotion-label bg-primary text-white">Triste</div>
     </div>
 
-    <div class="emotion-option" onclick="seleccionarEmocion(this)">
+    <div class="emotion-option" onclick="seleccionarEmocion(this)" id="neutral">
         <div class="emotion-icon bg-white text-dark border"><i class="fas fa-meh"></i></div>
         <div class="emotion-label bg-white text-dark border">Neutral</div>
     </div>
 
-    <div class="emotion-option" onclick="seleccionarEmocion(this)">
+    <div class="emotion-option" onclick="seleccionarEmocion(this)" id="enojado">
         <div class="emotion-icon bg-danger text-white"><i class="fas fa-angry"></i></div>
         <div class="emotion-label bg-danger text-white">Enojado</div>
     </div>
@@ -41,9 +41,10 @@
 
   </div>
 
-  <!-- Bootstrap JS -->
   <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
   <script src="../js/estadoanimo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 </body>

@@ -59,7 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
         title: "Campos vacíos",
         text: "Por favor completa todos los campos.",
         confirmButtonText: "OK",
-        customClass: { confirmButton: 'btn-secondary' },
+        customClass: {
+            confirmButton: 'btn-secondary',
+        },
         buttonsStyling: false
       });
       return;
@@ -72,7 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
         title: "Contraseña inválida",
         text: "La contraseña debe tener al menos 8 caracteres, incluyendo letras y números.",
         confirmButtonText: "OK",
-        customClass: { confirmButton: 'btn-secondary' },
+        customClass: {
+            confirmButton: 'btn-secondary',
+        },
         buttonsStyling: false
       });
       return;

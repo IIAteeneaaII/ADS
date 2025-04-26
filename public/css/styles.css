@@ -317,7 +317,7 @@ a ::placeholder {
   display: block;
 }
 
-.top-bar {
+.top-bar-inicio {
   background-color: #8294A6;
   padding: 0.75rem;
   display: flex;
@@ -326,7 +326,7 @@ a ::placeholder {
   border-radius: 0.5rem;
 }
 
-.top-bar .icons i {
+.top-bar-inicio .icons i {
   margin-left: 10px;
   font-size: 1.2rem;
 }
