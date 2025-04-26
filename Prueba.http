@@ -1,0 +1,46 @@
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "userName":"prueba",
+  "email": "PRUEBA@gmail.com",
+  "password": "contras234"
+}
+
+
+###
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "userName":"prueba",
+  "email": "PRUEBA@gmail.com",
+  "password": "contras234"
+}
+
+###
+
+POST http://localhost:3000/api/habit/custom
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJQUlVFQkFAZ21haWwuY29tIiwidXNlck5hbWUiOiJwcnVlYmEiLCJpYXQiOjE3NDU2OTA0NTQsImV4cCI6MTc0NTY5NDA1NH0.hcUGTmy0yAcMi5cxgj4zcMOqSC6NAWA-O-jyJ62bdUE
+
+{
+  "name": "habito del sabado",
+  "description": "desc",
+  "frequency": {
+    "type": "weekly",
+    "days": ["saturday"]
+  },
+  "reminderTime": {
+    "hour": 7,
+    "minute": 30
+  },
+  "startDate": "2026-04-26T00:00:00.000Z"
+}
+
+
+###
+
+GET http://localhost:3000/api/inicio/principalScr
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJQUlVFQkFAZ21haWwuY29tIiwidXNlck5hbWUiOiJwcnVlYmEiLCJpYXQiOjE3NDU2OTA0NTQsImV4cCI6MTc0NTY5NDA1NH0.hcUGTmy0yAcMi5cxgj4zcMOqSC6NAWA-O-jyJ62bdUE

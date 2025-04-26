@@ -7,7 +7,8 @@ exports.createUserHabit = async (data) => {
   });
 };
 
-exports.getUserHabitsWithLog = async (userId, date) => {
+exports.getUserHabitsWithLog = async (userId, date, dayName) => {
+  console.log({ userId, date, dayName });
   return await prisma.userHabit.findMany({
     where: {
       userId: userId,
@@ -15,21 +16,24 @@ exports.getUserHabitsWithLog = async (userId, date) => {
       startDate: {
         lte: date,
       },
-      logs: {
-        some: {
-          date: date,
+      AND: [
+        {
+          frequency: {
+            path: ['type'],
+            equals: 'weekly',
+          },
         },
-      },
-    },
-    include: {
-      logs: {
-        where: {
-          date: date,
+        {
+          frequency: {
+            path: ['days'],
+            array_contains: dayName,
+          },
         },
-      },
+      ],
     },
   });
 };
+
 
 exports.getDailyHabitCompletionPercentage = async (userId, date) => {
   const totalHabits = await prisma.userHabit.count({
