@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Hábitos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="../js/preferencias.js"></script> -->
+    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-4">
+
+        <div class="top-bar">
+            <a href="inicio.html" class="back-arrow">&lsaquo;</a>
+            <h1 class="mx-auto">Gestionar Hábitos</h1>
+        </div>
+
+        <p>Selecciona qué tipo de hábito quieres crear:</p>
+        
+        <div class="separator my-3"></div>
+        
+        <div class="grid habitos">
+            <div class="option" onclick="location.href='movimientocorporal.html'">
+                <img src="../img/gestorhabitos/movimiento.png" alt="movimiento_corporal" />
+                <span>Movimiento Corporal</span>
+            </div>
+            <div class="option" onclick="location.href='bienestar.html'">
+                <img src="../img/gestorhabitos/bienestar.png" alt="Bienestar" />
+                <span>Bienestar</span>
+            </div>
+            <div class="option" onclick="location.href='mental.html'">
+                <img src="../img/gestorhabitos/mentales.png" alt="Mentales" />
+                <span>Mentales</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

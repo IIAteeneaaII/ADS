@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Selecciona tus intereses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/preferencias.js"></script>
+    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet">
+    <!-- <link href="../css/preferencias.css" rel="stylesheet"> -->
+</head>
+<body>
+    <div class="page_preferencias">
+        <div class="container_pr py-4">
+            <h1>Preferencias</h1>
+            <p>Para personalizar tus recomendaciones de manera óptima, ¡cuéntanos un poco sobre tus gustos e intereses!</p>
+            
+            <div class="separator my-3"></div>
+            
+            <div class="grid_pref">
+                <div class="optionpr" onclick="toggleSelection(this)">
+                    <div class="img_pref">
+                        <img src="../img/preferencias/peliculas.png" alt="Películas" />
+                    </div>
+                    <span>Películas</span>
+                </div>
+                <div class="optionpr" onclick="toggleSelection(this)">
+                    <div class="img_pref">
+                        <img src="../img/preferencias/fotografia.png" alt="Fotografía" />
+                    </div>
+                    <span>Fotografía</span>
+                </div>
+                <div class="optionpr" onclick="toggleSelection(this)">
+                    <div class="img_pref">
+                        <img src="../img/preferencias/naturaleza.png" alt="Naturaleza" />
+                    </div>
+                    <span>Naturaleza</span>
+                </div>
+                <div class="optionpr" onclick="toggleSelection(this)">
+                    <div class="img_pref">
+                        <img src="../img/preferencias/musica.png" alt="Música" />
+                    </div>  
+                    <span>Música</span>
+                </div>
+                <div class="optionpr" onclick="toggleSelection(this)">
+                    <div class="img_pref">
+                        <img src="../img/preferencias/videojuegos.png" alt="Videojuegos" />
+                    </div>
+                    <span>Videojuegos</span>
+                </div>
+                <div class="optionpr" onclick="toggleSelection(this)">
+                    <div class="img_pref">
+                        <img src="../img/preferencias/lectura.png" alt="Lectura" />
+                    </div> 
+                    <span>Lectura</span>
+                </div>
+            </div>
+    
+            <div class="text-center mt-4">
+                <div class="counter mb-3" id="counter">Seleccionado 0/3</div>
+                <button class="button btn-primary px-4" id="nextBtn" disabled>Siguiente</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
