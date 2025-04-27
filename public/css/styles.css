@@ -519,6 +519,7 @@ form .form-text.text-danger {
 .progreso,
 .informacion {
   border: 1px solid #8294A6;
+  text-align: center;
 }
 
 .input-fecha {
@@ -584,6 +585,18 @@ form .form-text.text-danger {
 .btn-dias:hover:not(.selected),
 .dias_notificaciones:hover:not(.selected) {
   background-color: #C4C4C4;
+}
+
+.resProgresobtn {
+  padding: 1rem;
+}
+
+.btn-progreso {
+  margin: 0.3rem;
+}
+
+.progreso h2 {
+  padding: 1rem;
 }
 
 .botones-eliminar {

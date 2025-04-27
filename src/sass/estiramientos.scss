@@ -85,6 +85,7 @@ form {
 .progreso,
 .informacion {
     border: 1px solid v.$mainColor-strong;
+    text-align: center;
 }
 
 .input-fecha {
@@ -156,4 +157,20 @@ form {
     &:hover:not(.selected) {
         background-color: v.$secondaryColor;
     }
+}
+
+.resProgresobtn{
+    padding: 1rem;
+}
+
+.btn-progreso{
+    margin: 0.30rem;
+}
+
+.progreso{
+
+    h2{
+        padding: 1rem;
+    }
+
 }
