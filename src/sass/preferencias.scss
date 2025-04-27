@@ -1,29 +1,44 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.container p {
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container_pr{
+    max-width: 350px;
+    width: 100%;
+    background-color: transparent;
+    padding: 1rem;
+    p {
     font-size: 0.8rem;
     margin-bottom: 1rem;
-}
-.container h1{
+    }
+    h1{
     font-family: 'Segoe UI', sans-serif;
     margin-bottom: 1rem;
     font-size: 1.5rem;
     color: black;
+    }
 }
 .separator {
     border-top: 1px solid #8294A6;
     margin: 8px 0 16px;
 }
 
-.grid {
+.grid_preferencias{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     margin-bottom: 16px;
 }
 
-.option {
+.option_pr{
     background-color: #8294A6;
     padding: 12px;
     border-radius: 10px;
@@ -32,20 +47,20 @@
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
 
-.option:hover {
+    &:hover {
     background-color: #8294A6;
-}
+    }
 
-.option img {
+    img {
     width: 40px;
     height: 40px;
     margin-bottom: 8px;
-}
+    }
 
-.option.selected {
+    .selected {
     background-color: #C4C4C4;
+    }
 }
 
 .counter {
@@ -61,18 +76,17 @@
     border-radius: 10px;
     font-size: 14px;
     cursor: pointer;
-}
-
-.button:disabled {
+    &:disabled {
     cursor: not-allowed;
     background-color: #8294A6;
-}
-.button:hover {
+    }
+    &:button:hover {
     cursor: pointer;
     transform: scale(1.05);
     background-color: #8294A6;
-}
-.button::after{
-    background-color: #cbd5e1 !important;
-    color: #475569;
+    }
+    &:after{
+        background-color: #cbd5e1 !important;
+        color: #475569;
+    }
 }
