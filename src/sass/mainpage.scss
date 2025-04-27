@@ -31,30 +31,6 @@ h2 {
     outline: none;
 }
 
-.btn-primary {
-    background-color: v.$mainColor-strong;
-    border: none;
-    border-radius: 1rem;
-    padding: 0.75rem;
-    &:hover{
-        background-color: v.$secondaryColor;    
-    }
-    &:focus{
-        background-color: v.$mainColor-strong;
-        border: none;
-    }
-}
-.btn-secondary {
-    background-color: v.$mainColor-strong;
-    border: none;
-    border-radius: 1rem;
-    padding: 0.75rem;
-}
-
-.btn-secondary:hover {
-    background-color: v.$mainColor-strong;
-}
-
 input::placeholder {
     // color: blue;
     opacity: 1;

@@ -70,6 +70,31 @@ footer {
   margin: 0;
 }
 
+.btn-primary {
+  background-color: #8294A6;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+.btn-primary:hover {
+  background-color: #C4C4C4;
+}
+
+.btn-secondary {
+  background-color: rgba(130, 148, 166, 0.3098039216);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+}
+.btn-secondary:hover {
+  color: #1f2421;
+  background-color: #e9ecef;
+}
+.btn-secondary:focus {
+  background-color: #8294A6;
+  border: none;
+}
+
 header {
   text-align: center;
   margin-top: 2rem;
@@ -114,28 +139,6 @@ main h2 {
   border-color: #C4C4C4;
   box-shadow: none;
   outline: none;
-}
-
-.btn-primary {
-  background-color: #C4C4C4;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
-}
-
-.btn-primary:hover {
-  background-color: #C4C4C4;
-}
-
-.btn-secondary {
-  background-color: #C4C4C4;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
-}
-
-.btn-secondary:hover {
-  background-color: #C4C4C4;
 }
 
 input::placeholder {
@@ -194,31 +197,6 @@ h2 {
   border-color: #C4C4C4;
   box-shadow: none;
   outline: none;
-}
-
-.btn-primary {
-  background-color: #8294A6;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
-}
-.btn-primary:hover {
-  background-color: #C4C4C4;
-}
-.btn-primary:focus {
-  background-color: #8294A6;
-  border: none;
-}
-
-.btn-secondary {
-  background-color: #8294A6;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
-}
-
-.btn-secondary:hover {
-  background-color: #8294A6;
 }
 
 input::placeholder {
@@ -608,78 +586,13 @@ form .form-text.text-danger {
   background-color: #C4C4C4;
 }
 
-.btn-primary {
-  background-color: #8294A6;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
-}
-
-.btn-primary:hover {
-  background-color: #C4C4C4;
-}
-
-.btn-secondary {
-  background-color: #8294A6;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
-}
-
-.btn-secondary:hover {
-  background-color: #C4C4C4;
-}
-
 .botones-eliminar {
   text-align: center;
-}
-
-.btn-primary {
-  background-color: #8294A6;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
-}
-.btn-primary :hover {
-  background-color: #C4C4C4;
-}
-
-.btn-secondary {
-  background-color: #8294A6;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
-}
-
-.btn-secondary:hover {
-  background-color: #C4C4C4;
 }
 
 .form-check-label {
   font-family: "Segoe UI", serif;
   font-size: 12px;
-}
-
-.btn-primary {
-  background-color: #8294A6;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
-}
-
-.btn-primary:hover {
-  background-color: #C4C4C4;
-}
-
-.btn-secondary {
-  background-color: #8294A6;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
-}
-
-.btn-secondary:hover {
-  background-color: #C4C4C4;
 }
 
 .emotion-option {
