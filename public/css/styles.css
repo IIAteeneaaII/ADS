@@ -712,4 +712,79 @@ form .form-text.text-danger {
   margin-top: 2rem;
 }
 
+.progress-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.progress-indicator .step {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #8294A6;
+  color: #1f2421;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin: 0 5px;
+}
+.progress-indicator .step.active {
+  background-color: #1f2421;
+  color: #fff;
+}
+.progress-indicator .arrow {
+  color: #8294A6;
+  font-size: 20px;
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 1px solid #D0DAE6;
+  padding-bottom: 15px;
+  margin-top: 0;
+}
+
+.habits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.habits-grid .habit-item {
+  padding: 10px;
+  border: 1px solid #D0DAE6;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.habits-grid .habit-item:hover {
+  background-color: white;
+}
+.habits-grid .habit-item .habit-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+.habits-grid .habit-item .habit-icon {
+  margin-bottom: 5px;
+}
+.habits-grid .habit-item .habit-icon img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: 40px;
+}
+.habits-grid .habit-item .habit-label {
+  font-size: 12px;
+}
+
 /*# sourceMappingURL=styles.css.map */
