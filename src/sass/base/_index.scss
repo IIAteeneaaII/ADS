@@ -1,0 +1,93 @@
+@forward 'mixins';
+@forward 'variables';
+@use 'variables' as v;
+// @forward 'normalize';
+
+html {
+    box-sizing: border-box;
+    // font-size: 62.5%;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+a{
+    text-decoration: none;
+}
+img{
+    width: 100%;
+    height: auto;
+}
+.container_logo{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+h1,h2,h3{
+    font-family: v.$title;
+}
+
+p, a{
+    font-family: v.$text;
+}
+body {
+    background-color: v.$mainColor;
+}
+footer{
+    margin-top: 2rem;
+}
+.separator {
+    border-top: 1px solid v.$mainColor-strong;
+    background-color: v.$mainColor-strong;
+    margin: 1rem 0 1rem;
+}
+.top-bar { // TOP BAR PARA TODOS
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .back-arrow {
+        font-size: 2rem;
+        text-decoration: none;
+        color: black;
+        margin-right: 1rem;
+    }
+
+    h1 {
+        flex-grow: 1;
+        text-align: center;
+        font-size: 1.5rem;
+        margin: 0;
+    }
+}
+
+.btn-primary {
+    background-color: v.$mainColor-strong;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem;
+    &:hover {
+        color: v.$black;
+        background-color: v.$secondaryColor;
+    }
+    &:focus{
+        background-color: v.$secondaryColor;
+        border: none;
+    }
+}
+.btn-secondary {
+    background-color: v.$secondaryColor-strong;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem;
+    &:hover {
+        color: v.$black;
+        background-color:v.$gray-low; 
+    }
+    &:focus{
+        color: v.$black;
+        background-color: v.$gray-low;
+        border: none;
+    }
+}

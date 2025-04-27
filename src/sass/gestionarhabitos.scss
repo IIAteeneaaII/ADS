@@ -1,0 +1,119 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.container {
+    margin-top: 45px;
+    max-width: 350px;
+    width: 100%;
+    background-color: transparent;
+    padding: 1rem;
+}
+
+
+.container p {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+.container h1{
+    font-family: 'Segoe UI', sans-serif;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.habitos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido */
+    gap: 1rem; /* Espacio entre las opciones */
+    .option{
+        border: 0.2rem solid v.$mainColor-strong;
+    }
+}
+.habitos img{
+    width: 20%;
+}
+
+.grid{
+    background-color: transparent  !important;
+}
+.option {
+    background-color: #8294A6;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.plus-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+  }
+.option-1 {
+    background-color: #e5f1fd;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    gap: 12px;
+    position: relative;
+}
+.option-1 img {
+    width: 40px;
+    height: 40px;
+}
+.option,.option-1 span {
+    font-size: 1rem;
+    color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
+}
+
+.option, .option-1:hover {
+    background-color: #8294A6;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #C4C4C4;
+    cursor: pointer;
+}
+
+
+.back-arrow {
+    font-size: 2rem; 
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.back-arrow:hover {
+    color: #C4C4C4;
+    transform: scale(1.1);
+}
+
+
+.main-content {
+    margin-top: 80px; 
+}

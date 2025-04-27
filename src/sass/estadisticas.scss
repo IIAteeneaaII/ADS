@@ -1,0 +1,91 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .step {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: v.$mainColor-strong;
+        color: v.$black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        margin: 0 5px;
+
+        &.active {
+            background-color: v.$black;
+            color: #fff;
+        }
+    }
+
+    .arrow {
+        color: v.$mainColor-strong;
+        font-size: 20px;
+    }
+}
+
+.section-title {
+    font-size: 18px;
+    margin-bottom: 15px; // Mantener margen inferior si se desea espacio debajo de la línea
+    text-align: center;
+    border-bottom: 1px solid v.$mainColor-low; // Agregar la línea inferior
+    padding-bottom: 15px; // Agregar espacio debajo del texto y encima de la línea
+    margin-top: 0; // Asegurarse de que no haya margen superior que lo empuje hacia abajo innecesariamente
+}
+
+.habits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // 3 columnas, de igual ancho
+    gap: 15px; // Espacio entre los elementos del grid
+    margin-bottom: 20px;
+
+    .habit-item {
+        // El div .habit-item ahora sirve como contenedor de los elementos del grid.
+        // Los estilos como borde, radio del borde, relleno, fondo, hover
+        // deben permanecer aquí o moverse a .habit-link si se prefiere.
+        // Mantendremos el borde, relleno, fondo y hover en .habit-item
+        // ya que hace que toda el área sea visualmente interactiva.
+        padding: 10px; // Espaciado interno dentro del borde
+        border: 1px solid v.$mainColor-low;
+        border-radius: 8px;
+        cursor: pointer; // El cursor indica que es clickeable
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: lighten(v.$white, 5%);
+        }
+
+        // Estilos para el enlace dentro de habit-item
+        .habit-link {
+            display: flex; // Usar flexbox para el diseño dentro del enlace
+            flex-direction: column; // Apilar el ícono y la etiqueta verticalmente
+            align-items: center; // Centrar el contenido horizontalmente
+            text-align: center; // Centrar el texto debajo del ícono
+            text-decoration: none; // Eliminar el subrayado predeterminado
+            color: inherit; // Heredar el color del texto del padre o del cuerpo
+            width: 100%;
+            height: 100%;
+        }
+
+        .habit-icon {
+             margin-bottom: 5px;
+            img {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                width: 40px; 
+            }
+        }
+
+        .habit-label {
+            font-size: 12px;
+        }
+    }
+}

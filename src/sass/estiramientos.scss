@@ -1,0 +1,182 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.grid {
+    display: flex;
+    justify-content: center;
+    background-color: v.$mainColor-low;
+    border-radius: 0.8rem;
+    padding: 0.3rem;
+    gap: 0.3rem;
+    margin: 0;
+}
+
+.option {
+    background-color: transparent;
+    padding: 1rem 1rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: black;
+    min-width: auto;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    span {
+        line-height: 1.2;
+        display: flex;
+        flex-direction: column; 
+        span{
+            display: block;
+        }
+    }
+
+    &.active {
+        background-color: v.$mainColor-strong;
+        color: v.$white;
+    }
+
+    &:hover:not(.active) {
+        background-color: v.$mainColor-strong;
+        color: v.$white;
+    }
+}
+
+.tab-content {
+    background-color: v.$mainColor;
+    margin-top: 1.5rem;
+
+    .tab-pane {
+        padding: 1rem;
+        display: block;
+
+        .active {
+            display: none;
+        }
+    }
+
+    .d-none {
+        display: none !important;
+    }
+}
+
+form {
+    background-color: v.$mainColor;
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .form-control {
+        background-color: v.$mainColor;
+        border: 1px solid v.$mainColor-strong;
+        border-radius: 0.5rem;
+    }
+
+    .form-text.text-danger {
+        font-size: 0.8rem;
+    }
+
+}
+.btn_gestion {
+    display: flex;
+    // flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    gap: 1.5rem;
+}
+.progreso,
+.informacion {
+    border: 1px solid v.$mainColor-strong;
+    text-align: center;
+}
+
+.input-fecha {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .calendario {
+        max-width: 200px;
+        flex-shrink: 0;
+    }
+
+    .fecha-formateada {
+        font-weight: 500;
+        color: black;
+        background-color: v.$mainColor-low;
+        border-radius: 0.5rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+.pikaday {
+    background-color: v.$mainColor;
+    border: 1px solid v.$mainColor-strong;
+    font-family: inherit;
+
+    .pika-day.selected,
+    .pika-day:hover {
+        background-color: v.$mainColor-strong;
+        color: white;
+    }
+
+    .pika-month,
+    .pika-weekdays {
+        background-color: v.$mainColor-low;
+        color: black;
+    }
+
+    .pika-weekday {
+        font-weight: 600;
+    }
+
+    .pika-day.today {
+        border-color: v.$mainColor-strong;
+    }
+}
+
+.btn-dias,
+.dias_notificaciones {
+    background-color: v.$mainColor-low;
+    border: 2px solid v.$black;
+    border-radius: 0.5rem;
+    padding: 0.18rem;
+    margin: 0.1rem;
+    font-weight: 500;
+    color: v.$black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+
+    &.selected {
+        background-color: v.$mainColor-strong;
+        color: v.$white;
+        border-color: v.$mainColor-strong;
+    }
+
+    &:hover:not(.selected) {
+        background-color: v.$secondaryColor;
+    }
+}
+
+.resProgresobtn{
+    padding: 1rem;
+}
+
+.btn-progreso{
+    margin: 0.30rem;
+}
+
+.progreso{
+
+    h2{
+        padding: 1rem;
+    }
+
+}
