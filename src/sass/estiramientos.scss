@@ -81,7 +81,14 @@ form {
     }
 
 }
-
+.btn_gestion {
+    display: flex;
+    // flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    gap: 1.5rem;
+}
 .progreso,
 .informacion {
     border: 1px solid v.$mainColor-strong;
@@ -139,13 +146,12 @@ form {
     background-color: v.$mainColor-low;
     border: 2px solid v.$black;
     border-radius: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    margin: 0.2rem;
-    font-weight: 600;
+    padding: 0.18rem;
+    margin: 0.1rem;
+    font-weight: 500;
     color: v.$black;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-width: 80px;
     text-align: center;
 
     &.selected {

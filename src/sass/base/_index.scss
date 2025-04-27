@@ -68,8 +68,12 @@ footer{
     border-radius: 1rem;
     padding: 0.75rem;
     &:hover {
-        // color: v.$black;
+        color: v.$black;
         background-color: v.$secondaryColor;
+    }
+    &:focus{
+        background-color: v.$secondaryColor;
+        border: none;
     }
 }
 .btn-secondary {
@@ -82,7 +86,8 @@ footer{
         background-color:v.$gray-low; 
     }
     &:focus{
-        background-color: v.$mainColor-strong;
+        color: v.$black;
+        background-color: v.$gray-low;
         border: none;
     }
 }

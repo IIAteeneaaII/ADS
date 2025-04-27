@@ -83,6 +83,60 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             button.classList.toggle('selected');
         });
-});
+    });
+    // Botón Guardar
+    const guardarBtn = document.getElementById('guardar');
+    guardarBtn?.addEventListener('click', () => {
+        Swal.fire({
+            icon: 'success',
+            title: '¡Guardado!',
+            text: 'Los datos han sido guardados correctamente.',
+            customClass: {
+                confirmButton: 'btn-primary'
+            },
+            confirmButtonText: 'Aceptar'
+        });
+    });
 
+    // Botón Editar
+    const editarBtn = document.getElementById('editar');
+    editarBtn?.addEventListener('click', () => {
+        Swal.fire({
+            icon: 'info',
+            title: 'Modo edición',
+            text: 'Puedes editar tu hábito ahora.',
+            customClass: {
+                confirmButton: 'btn-secondary'
+            },
+            confirmButtonText: 'Aceptar'
+        });
+    });
+
+    // Botón Cumplió
+    const cumplioBtn = document.getElementById('cumplio');
+    cumplioBtn?.addEventListener('click', () => {
+        Swal.fire({
+            icon: 'success',
+            title: '¡Bien hecho!',
+            text: 'Has cumplido con tu objetivo del día.',
+            customClass: {
+                confirmButton: 'btn-primary'
+            },
+            confirmButtonText: 'Aceptar'
+        });
+    });
+
+    // Botón No cumplió
+    const noCumplioBtn = document.getElementById('nocumplio');
+    noCumplioBtn?.addEventListener('click', () => {
+        Swal.fire({
+            icon: 'warning',
+            title: '¡Ánimo!',
+            text: 'Mañana será un mejor día.',
+            customClass: {
+                confirmButton: 'btn-secondary'
+            },
+            confirmButtonText: 'Aceptar'
+        });
+    });
 });

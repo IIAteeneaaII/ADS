@@ -29,21 +29,22 @@
     color: black;
 }
 
-.container-1 h1{
-    font-family: 'Segoe UI', sans-serif;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    color: black;
+.habitos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido */
+    gap: 1rem; /* Espacio entre las opciones */
+    .option{
+        border: 0.2rem solid v.$mainColor-strong;
+    }
+}
+.habitos img{
+    width: 20%;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 16px;
-    text-align: center;
+.grid{
+    background-color: transparent  !important;
 }
-
 .option {
     background-color: #8294A6;
     padding: 12px;
@@ -54,24 +55,8 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-.option-1 {
-    background-color: #e5f1fd;
-    padding: 12px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 15px;
-    gap: 12px;
-}
-.option-1 img {
-    width: 40px;
-    height: 40px;
-}
 
-.option, .option-1 span {
+.option, span {
     font-size: 1rem;
     color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
 }
@@ -86,11 +71,6 @@
     cursor: pointer;
 }
 
-.option img {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 8px;
-}
 
 .back-arrow {
     font-size: 2rem; 

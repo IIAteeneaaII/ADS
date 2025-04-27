@@ -77,7 +77,12 @@ footer {
   padding: 0.75rem;
 }
 .btn-primary:hover {
+  color: #1f2421;
   background-color: #C4C4C4;
+}
+.btn-primary:focus {
+  background-color: #C4C4C4;
+  border: none;
 }
 
 .btn-secondary {
@@ -91,7 +96,8 @@ footer {
   background-color: #e9ecef;
 }
 .btn-secondary:focus {
-  background-color: #8294A6;
+  color: #1f2421;
+  background-color: #e9ecef;
   border: none;
 }
 
@@ -361,19 +367,22 @@ a ::placeholder {
   color: black;
 }
 
-.container-1 h1 {
-  font-family: "Segoe UI", sans-serif;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: black;
+.habitos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra el contenido */
+  gap: 1rem; /* Espacio entre las opciones */
+}
+.habitos .option {
+  border: 0.2rem solid #8294A6;
+}
+
+.habitos img {
+  width: 20%;
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-bottom: 16px;
-  text-align: center;
+  background-color: transparent !important;
 }
 
 .option {
@@ -387,25 +396,7 @@ a ::placeholder {
   transition: background-color 0.3s ease;
 }
 
-.option-1 {
-  background-color: #e5f1fd;
-  padding: 12px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 15px;
-  gap: 12px;
-}
-
-.option-1 img {
-  width: 40px;
-  height: 40px;
-}
-
-.option, .option-1 span {
+.option, span {
   font-size: 1rem;
   color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
 }
@@ -418,12 +409,6 @@ a ::placeholder {
 .option:hover {
   background-color: #C4C4C4;
   cursor: pointer;
-}
-
-.option img {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 8px;
 }
 
 .back-arrow {
@@ -594,6 +579,14 @@ form .form-text.text-danger {
   font-size: 0.8rem;
 }
 
+.btn_gestion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  gap: 1.5rem;
+}
+
 .progreso,
 .informacion {
   border: 1px solid #8294A6;
@@ -645,13 +638,12 @@ form .form-text.text-danger {
   background-color: #D0DAE6;
   border: 2px solid #1f2421;
   border-radius: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  margin: 0.2rem;
-  font-weight: 600;
+  padding: 0.18rem;
+  margin: 0.1rem;
+  font-weight: 500;
   color: #1f2421;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 80px;
   text-align: center;
 }
 .btn-dias.selected,
