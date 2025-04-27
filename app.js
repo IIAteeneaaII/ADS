@@ -16,16 +16,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Ruta principal
 app.get('/', (req, res) => {
-    res.render('pages/index', { title: 'Iniciar Sesión Fin It' });
-});
-// Rutas para vistas parciales dinámicas (usadas con fetch)
-app.get('/partials/main', (req, res) => {
-    res.render('partials/main');
+    res.render('index', { title: 'Iniciar Sesión Fin It' });
 });
 
-app.get('/partials/registro', (req, res) => {
-    res.render('partials/registro');
-});
 
 // Iniciar servidor
 const port = process.env.PORT || 3000;

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js",
+    "server": "nodemon app.js",
     "sass": "sass src/sass/app.scss public/css/styles.css --watch",
     "js": "echo 'Aquí iría el script para JS (vite, webpack, rollup, etc)'",
     "dev": "concurrently \"npm run sass\" \"npm run js\""
