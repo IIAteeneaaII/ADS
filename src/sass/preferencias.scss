@@ -1,7 +1,7 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-body {
+.page_preferencias {
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,36 +10,34 @@ body {
     height: 100vh;
 }
 
-.container_pr{
+.container_pr {
     max-width: 350px;
     width: 100%;
     background-color: transparent;
     padding: 1rem;
+
     p {
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
     }
-    h1{
-    font-family: 'Segoe UI', sans-serif;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    color: black;
+
+    h1 {
+        font-family: 'Segoe UI', sans-serif;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        color: black;
     }
-}
-.separator {
-    border-top: 1px solid #8294A6;
-    margin: 8px 0 16px;
 }
 
-.grid_preferencias{
+.grid_pref {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 1.1rem;
     margin-bottom: 16px;
 }
 
-.option_pr{
-    background-color: #8294A6;
+.optionpr {
+    background-color: v.$mainColor-strong;
     padding: 12px;
     border-radius: 10px;
     display: flex;
@@ -48,45 +46,42 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
 
-    &:hover {
-    background-color: #8294A6;
-    }
 
-    img {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 8px;
+    img{
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
     }
-
-    .selected {
-    background-color: #C4C4C4;
-    }
+}
+.optionpr.selected {
+    background-color: v.$secondaryColor-strong;  // Establece un color más destacado
 }
 
 .counter {
-    font-size: 12px;
+    font-size: 1rem;
     margin-bottom: 12px;
 }
 
-.button {
+.page_preferencias .button {
     background-color: #cbd5e1;
-    color: #475569;
+    color: v.$white;
     padding: 8px 16px;
     border: none;
     border-radius: 10px;
     font-size: 14px;
     cursor: pointer;
+
     &:disabled {
-    cursor: not-allowed;
-    background-color: #8294A6;
+        cursor: not-allowed;
+        background-color: #8294A6;
+        color: v.$black;
     }
-    &:button:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-    background-color: #8294A6;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+        background-color: #8294A6 ;
+
     }
-    &:after{
-        background-color: #cbd5e1 !important;
-        color: #475569;
-    }
+
 }

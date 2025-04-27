@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextBtn = document.getElementById('nextBtn');
 
     window.toggleSelection = function (el) {
-        const selected = document.querySelectorAll('.option.selected');
+        const selected = document.querySelectorAll('.optionpr.selected');
+        
+        // Verifica si la clase ya está presente y actúa según el caso
         if (el.classList.contains('selected')) {
             el.classList.remove('selected');
         } else if (selected.length < maxSelections) {
@@ -21,25 +23,28 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
-        const newCount = document.querySelectorAll('.option.selected').length;
+        // Actualiza el contador y habilita el botón de "Siguiente" si es necesario
+        const newCount = document.querySelectorAll('.optionpr.selected').length;
+        console.log(`Nuevo contador: ${newCount}/3`); // Para depuración
         counter.textContent = `Seleccionado ${newCount}/3`;
         nextBtn.disabled = newCount === 0;
     };
 
     nextBtn.addEventListener('click', function () {
-        const selected = document.querySelectorAll('.option.selected');
+        const selected = document.querySelectorAll('.optionpr.selected');
+        console.log(`Seleccionados al hacer clic en "Siguiente": ${selected.length}`); // Para depuración
+
         if (selected.length !== maxSelections) {
             Swal.fire({
                 icon: 'error',
                 title: 'Selecciona 3 gustos',
-                text: `Solo haz seleccionado ${selected.length}.`,
+                text: `Solo has seleccionado ${selected.length}.`,
                 customClass: {
                     confirmButton: 'btn-secondary',
                 },
                 confirmButtonText: 'Ok'
             });
         } else {
-            // Aquí va tu lógica si se seleccionaron exactamente 3
             Swal.fire({
                 icon: 'success',
                 title: '¡Perfecto!',
