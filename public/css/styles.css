@@ -376,6 +376,9 @@ a ::placeholder {
 .grid {
   background-color: transparent !important;
 }
+.grid .habitos {
+  flex-direction: column;
+}
 
 .option {
   background-color: #8294A6;

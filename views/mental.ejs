@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mental</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/preferencias.js"></script>
+    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+    <!--<link href="../css/gestionarhabitos.css" rel="stylesheet">-->
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-4">
+
+        <a href="/gestionarHabitos" class="back-arrow">&lsaquo;</a>
+
+        <h1>Gestionar hábitos mentales</h1>
+        
+        <div class="separator my-3"></div>
+        
+        <div class="grid habitos">
+            <div class="option-1">
+                <img src="../img/gestorhabitos/ordenar.png" alt="Mentales" />
+                <span>Ordenar espacio personal</span>
+                <button onclick="event.stopPropagation(); location.href='mental1.html';" class="plus-button">+</button>
+            </div>
+            <div class="option-1">
+                <img src="../img/gestorhabitos/leer.png" alt="Mentales" />
+                <span>Lectura</span>
+                <button onclick="event.stopPropagation(); location.href='mental2.html';" class="plus-button">+</button>
+            </div>
+            <div class="option-1">
+                <img src="../img/gestorhabitos/meditacion.png" alt="Mentales" />
+                <span>Meditación</span>
+                <button onclick="event.stopPropagation(); location.href='mental3.html';" class="plus-button">+</button>
+            </div>
+            <div class="option-1">
+                <img src="../img/gestorhabitos/escuchar-musica.png" alt="Mentales" />
+                <span>Escuchar música relajante</span>
+                <button onclick="event.stopPropagation(); location.href='mental4.html';" class="plus-button">+</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

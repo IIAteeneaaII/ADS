@@ -29,6 +29,52 @@ app.get('/Inicio', (req, res) => {
     res.render('inicio');
 });
 
+
+app.get('/EstadoDeAnimo', (req, res) => {
+    res.render('estadodeAnimo');
+});
+app.get('/GuiadeUsuario', (req, res) => {
+    res.render('guiadeUsuario');
+});
+
+app.get('/TerminosyCondiciones', (req, res) => {
+    res.render('terminosyCondiciones');
+});
+
+app.get('/Notificaciones', (req, res) => {
+    res.render('notificaciones');
+});
+
+app.get('/GestionarHabitos', (req, res) => {
+    res.render('gestionarHabitos');
+});
+
+app.get('/MovimientoCorporal', (req, res) => {
+    res.render('movimientoCorporal');
+});
+
+app.get('/Mental', (req, res) => {
+    res.render('mental');
+});
+
+app.get('/Bienestar', (req, res) => {
+    res.render('bienestar');
+});
+
+app.get('/Estiramientos', (req, res) => {
+    res.render('estiramientos');
+});
+
+
+app.get('/Estadisticas', (req, res) => {
+    res.render('estadisticas');
+});
+
+app.get('/Estadisticas2', (req, res) => {
+    res.render('estadisticas2');
+});
+
+
 app.use('/api/auth', authRoutes);
 app.use('/api/habit', authMiddleware, habitRoutes);
 

@@ -37,6 +37,9 @@
 
 .grid{
     background-color: transparent  !important;
+    .habitos{
+        flex-direction: column;
+    }
 }
 .option {
     background-color: #8294A6;
@@ -47,6 +50,7 @@
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    
 }
 
 .plus-button {

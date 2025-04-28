@@ -24,14 +24,14 @@
                     <button class="btn btn-secondary">Actualizar perfil</button>
                     <button class="btn btn-secondary">Preferencias</button>
                     <button class="btn btn-secondary">Configurar horario de notificaciones</button>
-                    <button class="btn btn-secondary">Guía de usuario</button>
+                    <button class="btn btn-secondary" onclick="location.href='/guiadeUsuario';">Guía de usuario</button>
                     <button class="btn btn-secondary">¿Quiénes somos?</button>
                     <button class="btn btn-secondary">Términos y privacidad</button>
                 </div>
 
                 <div class="d-grid gap-2 mt-4">
                     <button class="btn btn-dark">Cerrar sesión</button>
-                    <button class="btn btn-dark" onclick="location.href='eliminarcuenta.html';">Eliminar cuenta</button>
+                    <button class="btn btn-dark" onclick="location.href='/eliminarCuenta';">Eliminar cuenta</button>
                 </div>
             </div>
         </div>
@@ -42,9 +42,9 @@
             </div>
             <div class="icons">
                 <i class="fa-solid fa-chart-simple" style="cursor: pointer;"
-                    onclick="location.href='estadisticas.html';"></i>
-                <i class="fa-solid fa-bell" style="cursor: pointer;" onclick="location.href='notificaciones.html';"></i>
-                <i class="fas fa-star" style="cursor: pointer;" onclick="location.href='racha.html';"></i>
+                    onclick="location.href='/estadisticas';"></i>
+                <i class="fa-solid fa-bell" style="cursor: pointer;" onclick="location.href='/notificaciones';"></i>
+                <i class="fas fa-star" style="cursor: pointer;" onclick="location.href='/racha';"></i>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
                 <div class="day-badge my-1" id="numeroDia">7</div>
                 <div>
                     <p>¿Cómo te sientes el día de hoy?</p>
-                    <button class="btn btn-primary rounded-pill px-4" onclick="location.href='estadoanimo.html';">
+                    <button class="btn btn-primary rounded-pill px-4" onclick="location.href='/estadodeAnimo';">
                         <i class="fa-solid fa-face-meh-blank emoji" id="emoji-inicio"></i>
                     </button>
                 </div>
@@ -79,7 +79,7 @@
         </div>
 
         <div class="create-button">
-            <button class="btn btn-primary rounded-pill px-4">
+            <button class="btn btn-primary rounded-pill px-4" onclick="location.href='/gestionarHabitos'">
                 <i class="fas fa-plus me-2"></i>Crear nuevo hábito
             </button>
         </div>
