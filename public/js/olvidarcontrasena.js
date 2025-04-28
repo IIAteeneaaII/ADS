@@ -1,7 +1,7 @@
 document.getElementById("formContrasena").addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const correo = document.getElementById("correo");
+    const correo = document.getElementById("correo").value.trim();
 
     if (correo === "") {
         Swal.fire("Campo vacío", "Por favor ingresa tu correo.", "warning");

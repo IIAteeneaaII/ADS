@@ -15,6 +15,19 @@ document.getElementById("formCodigo").addEventListener("submit", function (event
         return;
     }
 
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!passwordRegex.test(contrasena)) {
+        Swal.fire("Contraseña inválida", "Debe tener al menos 8 caracteres, incluyendo letras y números.", "error");
+        return;
+    }
+
+    const codigoRegex = /^\d{8}$/;
+    if (!codigoRegex.test(codigo)) {
+        Swal.fire("Código inválido", "El código debe tener exactamente 8 dígitos numéricos.", "error");
+        return;
+    }
+
+
     // Mostrar éxito
     Swal.fire({
         icon: "success",
@@ -61,5 +74,3 @@ document.getElementById("reenviarCodigo").addEventListener("click", function () 
         confirmButtonText: 'Aceptar'
     });
 });
-
-
