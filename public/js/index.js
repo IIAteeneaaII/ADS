@@ -75,26 +75,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Cargar registro dinámicamente
-  const btnRegistro = document.getElementById("MostrarRegistro");
-  if (btnRegistro) {
-    btnRegistro.addEventListener("click", () => cargarVista('registro'));
-  }
 });
 
-function cargarVista(nombreVista) {
-  fetch(`/partials/${nombreVista}`)
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('contenido-dinamico').innerHTML = html;
-
-      if (nombreVista === 'registro') {
-        // Mostrar login otra vez si el usuario hace clic en "¿Ya tienes cuenta?"
-        const btnVolverLogin = document.getElementById('btnMostrarLogin');
-        if (btnVolverLogin) {
-          btnVolverLogin.addEventListener('click', () => cargarVista('main'));
-        }
-      }
-    })
-    .catch(error => console.error('Error al cargar la vista:', error));
-}

@@ -25,6 +25,7 @@ img {
 }
 
 .container_logo {
+  margin-top: 5rem;
   align-items: center;
   display: flex;
   flex-direction: column;

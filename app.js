@@ -16,7 +16,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Ruta principal
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Iniciar Sesión Fin It' });
+    res.render('index');
+});
+app.get('/registro', (req, res) => {
+    res.render('registro');
 });
 
 
