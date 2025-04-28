@@ -1,0 +1,87 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.p{
+    text-align: left;
+}
+body, html {
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.botones-eliminar {
+  text-align: center;
+}/*# sourceMappingURL=eliminarcuenta.css.map */
+
+.container-md {
+    text-align: center; /* Centra los botones */
+}
+
+.btn-primary, .btn-secondary {
+    border-radius:8px; /* Esto redondea las esquinas */
+    padding: 10px 20px; /* Espaciado dentro de los botones */
+    font-size: 14px; /* Tamaño de texto */
+    margin: 10px; /* Espacio entre los botones */
+}
+
+
+body, html {
+    overflow-x: hidden;
+  }
+  
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .container {
+    margin-top: 45px;
+    max-width: 350px;
+    width: 100%;
+    background-color: transparent;
+    padding: 1rem;
+  }
+  
+  .container p {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .container h1 {
+    font-family: "Segoe UI", sans-serif;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: black;
+  }
+  
+  .container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .back-arrow {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .back-arrow:hover {
+    color: #C4C4C4;
+    transform: scale(1.1);
+  }
+  
+  .main-content {
+    margin-top: 80px;
+  }
+  
+  .container-md {
+    margin-top: 28px;
+  }
+  
+  /*# sourceMappingURL=styles.css.map */
+  
