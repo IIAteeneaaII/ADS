@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 customClass: {
                     confirmButton: 'btn-secondary',
                 },
-                confirmButtonText: 'Ok'
+                confirmButtonText: 'Aceptar'
             });
         } else {
             Swal.fire({
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonText: 'Continuar'
             }).then(() => {
                 document.getElementById("nextBtn").classList.add("btn-secondary");
-                window.location.href = "inicio.html"; // ir al inicio
+                window.location.href = "/inicio"; // ir al inicio
             });
         }
     });

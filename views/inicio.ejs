@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Inicio</title>
+</head>
+
+<body>
+    <!-- Overlay oscuro -->
+    <div id="overlay" class="overlay"></div>
+    <div class="container mt-5 pt-2">
+        <!-- Menú lateral -->
+        <div class="sidebar translate-left" id="menuLateral">
+            <div class="text-center p-3">
+                <a onclick="cerrarMenu()" class="back-arrow">&lsaquo;</a>
+                <h4 class="fw-bold">Menú</h4>
+
+                <div class="d-grid gap-2 mt-3">
+                    <button class="btn btn-secondary">Actualizar perfil</button>
+                    <button class="btn btn-secondary">Preferencias</button>
+                    <button class="btn btn-secondary">Configurar horario de notificaciones</button>
+                    <button class="btn btn-secondary">Guía de usuario</button>
+                    <button class="btn btn-secondary">¿Quiénes somos?</button>
+                    <button class="btn btn-secondary">Términos y privacidad</button>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button class="btn btn-dark">Cerrar sesión</button>
+                    <button class="btn btn-dark" onclick="location.href='eliminarcuenta.html';">Eliminar cuenta</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="top-bar-inicio">
+            <div>
+                <i class="fas fa-bars" style="cursor: pointer;" id="btnMenu"></i>
+            </div>
+            <div class="icons">
+                <i class="fa-solid fa-chart-simple" style="cursor: pointer;"
+                    onclick="location.href='estadisticas.html';"></i>
+                <i class="fa-solid fa-bell" style="cursor: pointer;" onclick="location.href='notificaciones.html';"></i>
+                <i class="fas fa-star" style="cursor: pointer;" onclick="location.href='racha.html';"></i>
+            </div>
+        </div>
+
+        <div class="container-md pt-2">
+            <h1>Hola, <span id="nombreUsuario">Usuario</span> <i class="fa-solid fa-hand-peace"></i></h1>
+            <div class="text-center mt-3">
+                <div class="fw-bold" id="diaSemana">Sábado</div>
+                <div class="day-badge my-1" id="numeroDia">7</div>
+                <div>
+                    <p>¿Cómo te sientes el día de hoy?</p>
+                    <button class="btn btn-primary rounded-pill px-4" onclick="location.href='estadoanimo.html';">
+                        <i class="fa-solid fa-face-meh-blank emoji" id="emoji-inicio"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="habitos_titulo">
+                <h2>Tus hábitos</h2>
+            </div>
+
+        </div>
+        <div class="time-buttons my-2">
+            <button class="btn btn-secondary btn-sm">Día</button>
+            <button class="btn btn-secondary btn-sm">Tarde</button>
+            <button class="btn btn-secondary btn-sm">Noche</button>
+            <button class="btn btn-secondary btn-sm">Todo el día</button>
+        </div>
+
+        <!-- Mensaje si no hay hábitos -->
+        <div class="habit-card mt-4" id="seccion-de-habitos">
+            <p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón “Crear +” para crear tu primer
+                hábito.</p>
+        </div>
+
+        <div class="create-button">
+            <button class="btn btn-primary rounded-pill px-4">
+                <i class="fas fa-plus me-2"></i>Crear nuevo hábito
+            </button>
+        </div>
+
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/inicio.js"></script>
+
+</body>
+
+</html>

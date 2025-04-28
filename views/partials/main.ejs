@@ -1,0 +1,28 @@
+<main>
+    <h2 class="text-center mb-4">Iniciar sesión</h2>
+    <form id="formLogin" autocomplete="off">
+    <div class="mb-3">
+        <label for="correo" class="form-label">Correo electrónico:</label>
+        <input type="email" class="form-control" id="correo" name="correo" placeholder="tucorreo@gmail.com" />
+    </div>
+
+    <div class="mb-3">
+        <label for="contrasena" class="form-label">Contraseña:</label>
+        <div class="d-flex align-items-center">
+        <input type="password" class="form-control me-2" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña"  />
+        <span class="text-muted fs-5" id="togglePassword" style="cursor: pointer">👁️</span>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+    </div>
+    </form>
+
+    <div class="text-end mt-3">
+    <a href="./olvidarcontrasena.html">Olvidé mi contraseña</a>
+    </div>
+    <div class="text-end mt-2">
+    <span>¿No tienes cuenta? <a href="#" id="MostrarRegistro">Regístrate</a></span>
+    </div>
+</main>

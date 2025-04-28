@@ -347,14 +347,6 @@ a ::placeholder {
   padding: 1rem;
 }
 
-.container-1 {
-  margin-top: -50px;
-  max-width: 350px;
-  width: 100%;
-  background-color: transparent;
-  padding: 1rem;
-}
-
 .container p {
   font-size: 0.8rem;
   margin-bottom: 1rem;
@@ -396,7 +388,44 @@ a ::placeholder {
   transition: background-color 0.3s ease;
 }
 
-.option, span {
+.plus-button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.option-1 {
+  background-color: #e5f1fd;
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+  gap: 12px;
+  position: relative;
+}
+
+.option-1 img {
+  width: 40px;
+  height: 40px;
+}
+
+.option, .option-1 span {
   font-size: 1rem;
   color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
 }

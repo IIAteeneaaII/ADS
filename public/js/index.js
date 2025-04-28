@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       try {
-        const response = await fetch('http://localhost:3000/api/auth/login', {
+        const response = await fetch('/api/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
               confirmButton: 'btn btn-primary'
             }
           }).then(() => {
-            window.location.href = "preferencias.html";
+            window.location.href = "/preferencias";
           });
 
         } else {

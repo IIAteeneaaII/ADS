@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/img/fin_negro.png" type="image/png"/>
+    <title><%= title %></title> <!-- Título dinámico -->
+    <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <script src="/js/index.js"></script>
+    <script src="/js/registro.js"></script>
+
+</head>
+
+<body>
+
+    <div class="login-box w-100">
+        <header class="text-center mb-8">
+            <%- include('../partials/header'); %>
+        </header>
+        <main id="contenido-dinamico">
+            <%- include('../partials/main'); %> <!-- Aquí se reemplazará -->
+        </main>
+        <footer>
+            <%- include('../partials/footer'); %>
+        </footer>
+    </div>
+    
+</body>
+
+</html>
