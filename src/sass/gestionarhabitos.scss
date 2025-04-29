@@ -35,9 +35,12 @@
     width: 20%;
 }
 
-.grid{
-    background-color: transparent  !important;
+.grid {
+    display: flex;             
+    flex-direction: column;
+    background-color: transparent !important;
 }
+
 .option {
     background-color: #8294A6;
     padding: 12px;
@@ -47,25 +50,41 @@
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    
 }
-
+.caja{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 15px;
+    position: relative;
+}
 .plus-button {
     position: absolute;
-    top: 50%;
+    top: 55%;
     right: 10px;
     transform: translateY(-50%);
-    background-color: #4CAF50;
-    color: white;
-    border: none;
+    background-color: transparent;
+    color: black;
+    border: 2px solid black;
     border-radius: 50%;
     width: 32px;
     height: 32px;
     font-size: 18px;
-    line-height: 32px;
+    line-height: 28px;
     text-align: center;
     cursor: pointer;
     padding: 0;
-  }
+    flex-shrink: 0;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.plus-button:active {
+  background-color: #000000;  
+  color: white;        
+  border-color: #000000;  
+}
+
 .option-1 {
     background-color: #e5f1fd;
     padding: 12px;
@@ -78,6 +97,7 @@
     margin-top: 15px;
     gap: 12px;
     position: relative;
+    width: 260px;
 }
 .option-1 img {
     width: 40px;
@@ -85,7 +105,7 @@
 }
 .option,.option-1 span {
     font-size: 1rem;
-    color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
+    color: rgb(0, 0, 0);
 }
 
 .option, .option-1:hover {
