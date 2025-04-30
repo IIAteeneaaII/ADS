@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 function authMiddleware(req, res, next) {
   const token = req.cookies.token;
-  if (!token) return res.redirect('/Inicio');
+  if (!token) return res.redirect('/');
 
   try {
     const decoded = jwt.verify(token, 'supersecret');
@@ -12,7 +12,7 @@ function authMiddleware(req, res, next) {
   } catch (err) {
     console.error('JWT Error:', err);
     res.clearCookie('token');
-    res.redirect('/Inicio');
+    res.redirect('/');
   }
 }
 
