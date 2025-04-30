@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       try {
-        const response = await fetch('/api/auth/login', {
+        const response = await fetch('http://localhost:3000/api/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const data = await response.json();
 
         if (response.ok) {
-          localStorage.setItem('token', data.token);
 
           Swal.fire({
             icon: 'success',

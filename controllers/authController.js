@@ -7,7 +7,7 @@ exports.register = async (req, res) => {
 
   try {
     const exists = await userRepo.findByEmail(email);
-    if (exists) return res.status(400).json({ msg: 'User already exists' });
+    if (exists) return res.redirect('/Registro?error=El usuario ya existe');
 
     const hashedPassword = await bcrypt.hash(password, 10);
     await userRepo.createUser({
@@ -16,22 +16,27 @@ exports.register = async (req, res) => {
       userName,
     });
 
-    res.status(201).json({ msg: 'User registered successfully' });
+    res.redirect('/')
   } catch (err) {
     console.error(err);
-    res.status(500).json({ msg: 'Server error' });
+    res.redirect('/Registro?error=Hubo un error en el servidor. Intenta más tarde');
   }
 };
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+  console.log(email, password)
 
   try {
     const user = await userRepo.findByEmail(email);
-    if (!user) return res.status(400).json({ msg: 'Invalid credentials' });
+    if (!user) {
+      return res.redirect('/?error=Correo o contraseña incorrectos');
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
+    if (!isMatch) {
+      return res.redirect('/?error=Correo o contraseña incorrectos');
+    }
 
     const token = jwt.sign(
       { id: user.id, email: user.email, userName: user.userName },
@@ -39,10 +44,16 @@ exports.login = async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    res.json({ token });
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: false,
+      maxAge: 60 * 60 * 1000,
+    });
+
+    res.redirect('/Inicio');
   } catch (err) {
     console.error(err);
-    res.status(500).json({ msg: 'Server error' });
+    res.redirect('/?error=Hubo un error en el servidor. Intenta más tarde');
   }
 };
 

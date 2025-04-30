@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass src/sass/app.scss public/css/styles.css --watch",
-    "server": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run sass\" \"npm run server\""
   },
   "keywords": [],
@@ -14,6 +14,7 @@
   "dependencies": {
     "@prisma/client": "^6.6.0",
     "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",

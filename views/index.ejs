@@ -2,58 +2,68 @@
 <html lang="es">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Iniciar Sesión Fin It</title>
-<link href="./bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-<link href="./css/styles.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión Fin It</title>
+  <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/css/styles.css" rel="stylesheet" />
 </head>
 
 <body>
-<div class="container-md">
+  <div class="container-md">
     <div class="login-box w-100">
-    <header class="text-center mb-8">
+      <header class="text-center mb-8">
         <div class="container_logo">
-            <img src="/img/fin_negro.png" class="img" alt="Logo Fin" />
-            <img src="/img/negro.png" class="img" alt="Fin It" />
+          <img src="/img/fin_negro.png" class="img" alt="Logo Fin" />
+          <img src="/img/negro.png" class="img" alt="Fin It" />
         </div>
-    </header>
+      </header>
 
-    <main>
+      <main>
         <h2 class="text-center mb-4">Iniciar sesión</h2>
-        <form id="formLogin" autocomplete="off">
-        <div class="mb-3">
+        <form id="formLogin" action="/api/auth/login" method="POST" autocomplete="off">
+          <div class="mb-3">
             <label for="correo" class="form-label">Correo electrónico:</label>
-            <input type="email" class="form-control" id="correo" name="correo" placeholder="tucorreo@gmail.com" />
-        </div>
+            <input type="email" class="form-control" id="correo" name="email" placeholder="tucorreo@gmail.com" />
+          </div>
 
-        <div class="mb-3">
+          <div class="mb-3">
             <label for="contrasena" class="form-label">Contraseña:</label>
             <div class="d-flex align-items-center">
-            <input type="password" class="form-control me-2" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña"  />
-            <span class="text-muted fs-5" id="togglePassword" style="cursor: pointer">👁️</span>
+              <input type="password" class="form-control me-2" id="contrasena" name="password"
+                placeholder="Ingresa tu contraseña" />
+              <span class="text-muted fs-5" id="togglePassword" style="cursor: pointer">👁️</span>
             </div>
-        </div>
+          </div>
 
-        <div class="d-grid gap-2">
+          <div class="d-grid gap-2">
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-        </div>
+          </div>
         </form>
 
         <div class="text-end mt-3">
-        <a href="/olvidarcontrasena">Olvidé mi contraseña</a>
+          <a href="/olvidarcontrasena">Olvidé mi contraseña</a>
         </div>
         <div class="text-end mt-2">
-        <span>¿No tienes cuenta? <a href="/registro">Regístrate</a></span>
+          <span>¿No tienes cuenta? <a href="/registro">Regístrate</a></span>
         </div>
-    </main>
+      </main>
     </div>
-</div>
+  </div>
 
-<script src="./bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="./js/index.js"></script>
+  <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+  <% if (typeof error !== 'undefined') { %>
+  <script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: '<%= error %>',
+      confirmButtonText: 'Aceptar'
+    });
+  </script>
+  <% } %>
 </body>
 
 </html>
