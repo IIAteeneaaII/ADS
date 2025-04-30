@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { register, login } = require('../controllers/authController');
+const { register, login, deleteAccount } = require('../controllers/authController');
 
-const { validateRegister, validateLogin } = require('../middlewares/validateAuth');
+const { validateRegister, validateLogin, validateDeleteAcc} = require('../middlewares/validateAuth');
 
 router.post('/register', validateRegister, register);
 router.post('/login', validateLogin, login);
-
-// Ruta para recuperar la contraseña
-// router.post('/recover-password', recoverPassword);  // Nueva ruta para la recuperación de contraseña
+router.post('/deleteAcc', validateDeleteAcc, deleteAccount);
 
 module.exports = router;
