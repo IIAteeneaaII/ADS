@@ -392,22 +392,37 @@ a ::placeholder {
   transition: background-color 0.3s ease;
 }
 
+.caja {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 15px;
+  position: relative;
+}
+
 .plus-button {
   position: absolute;
-  top: 50%;
+  top: 55%;
   right: 10px;
   transform: translateY(-50%);
-  background-color: #4CAF50;
-  color: white;
-  border: none;
+  background-color: transparent;
+  color: black;
+  border: 2px solid black;
   border-radius: 50%;
   width: 32px;
   height: 32px;
   font-size: 18px;
-  line-height: 32px;
+  line-height: 28px;
   text-align: center;
   cursor: pointer;
   padding: 0;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.plus-button:active {
+  background-color: #000000;
+  color: white;
+  border-color: #000000;
 }
 
 .option-1 {
@@ -872,143 +887,10 @@ ul li ul li {
     font-size: 14px;
   }
 }
-.container-md {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 28px;
-  gap: 10px;
-}
-
 .btn-primary, .btn-secondary {
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 8px;
-}
-
-.p {
-  text-align: left;
-}
-
-body, html {
-  overflow-x: hidden;
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-.botones-eliminar {
-  text-align: center;
-}
-
-.btn-primary, .btn-secondary {
-  border-radius: 8px; /* Esto redondea las esquinas */
-  padding: 10px 20px; /* Espaciado dentro de los botones */
-  font-size: 14px; /* Tamaño de texto */
-  margin: 10px; /* Espacio entre los botones */
-}
-
-body, html {
-  overflow-x: hidden;
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-.container {
-  margin-top: 45px;
-  max-width: 350px;
-  width: 100%;
-  background-color: transparent;
-  padding: 1rem;
-}
-
-.container p {
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-}
-
-.container h1 {
-  font-family: "Segoe UI", sans-serif;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: black;
-}
-
-.container a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.back-arrow {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #000;
-  text-decoration: none;
-  margin-bottom: 1rem;
-  transition: transform 0.2s ease;
-}
-
-.back-arrow:hover {
-  color: #C4C4C4;
-  transform: scale(1.1);
-}
-
-.main-content {
-  margin-top: 80px;
-}
-
-.container-md {
-  margin-top: 28px;
-}
-
-.container {
-  margin-top: 45px;
-  max-width: 350px;
-  width: 100%;
-  background-color: transparent;
-  padding: 1rem;
-}
-
-.container p {
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-}
-
-.container h1 {
-  font-family: "Segoe UI", sans-serif;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: black;
-}
-
-.container a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.back-arrow {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #000;
-  text-decoration: none;
-  margin-bottom: 1rem;
-  transition: transform 0.2s ease;
-}
-
-.back-arrow:hover {
-  color: #C4C4C4;
-  transform: scale(1.1);
-}
-
-.main-content {
-  margin-top: 80px;
-}
-
-.container-md {
-  margin-top: 28px;
 }
 
 /*# sourceMappingURL=styles.css.map */
