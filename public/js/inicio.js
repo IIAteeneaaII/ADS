@@ -33,14 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.warn("No se encontraron los elementos con IDs 'diaSemana' o 'numeroDia'");
   }
+
   const botonTodoElDia = document.querySelector('.time-buttons button:nth-child(4)');
   if (botonTodoElDia) {
     botonTodoElDia.click();
   }
-
 });
 
-const botonTodoElDia = document.querySelector('.time-buttons button:nth-child(4)'); 
+const botonTodoElDia = document.querySelector('.time-buttons button:nth-child(4)');
 const seccionHabitos = document.getElementById('seccion-de-habitos');
 
 botonTodoElDia.addEventListener('click', async () => {
@@ -63,7 +63,7 @@ botonTodoElDia.addEventListener('click', async () => {
         habitCard.style.backgroundColor = '#a3b8cc';
         habitCard.style.borderRadius = '12px';
         habitCard.style.color = '#000';
-      
+
         habitCard.innerHTML = `
           <span class="fw-bold ms-2">${habito.name}</span>
           <span style="
@@ -74,10 +74,9 @@ botonTodoElDia.addEventListener('click', async () => {
             margin-right: 10px;
           ">${habito.reminderTime.hour}:${habito.reminderTime.minute.toString().padStart(2, '0')}</span>
         `;
-      
+
         seccionHabitos.appendChild(habitCard);
       });
-      
     }
   } catch (error) {
     console.error('Error cargando hábitos:', error);
@@ -85,3 +84,17 @@ botonTodoElDia.addEventListener('click', async () => {
   }
 });
 
+//  Logout: borrar cookies y token, redirigir al login
+document.getElementById('confirmarLogout').addEventListener('click', () => {
+  // Borra todas las cookies accesibles desde JavaScript
+  document.cookie.split(";").forEach(cookie => {
+    const name = cookie.split("=")[0].trim();
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+  });
+
+  // Elimina el token JWT del almacenamiento local
+  localStorage.removeItem('token');
+
+  // Redirige al login
+  window.location.href = '/';
+});
