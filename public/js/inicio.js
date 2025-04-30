@@ -84,7 +84,7 @@ botonTodoElDia.addEventListener('click', async () => {
   }
 });
 
-// 🔐 Logout: borrar cookies y token, redirigir al login
+//  Logout: borrar cookies y token, redirigir al login
 document.getElementById('confirmarLogout').addEventListener('click', () => {
   // Borra todas las cookies accesibles desde JavaScript
   document.cookie.split(";").forEach(cookie => {
