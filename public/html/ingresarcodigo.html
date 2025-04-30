@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../css/styles.css" rel="stylesheet" />
-  <title>Recupera tu cuenta</title>
+  <title>Recuperar contraseña</title>
 </head>
 <body>
   <div class="container mt-5 pt-2">
@@ -16,7 +16,7 @@
 
       <main>
         <div class="form-container">
-          <h2 class="text-center mb-4">Recupera tu cuenta</h2>
+          <h2 class="text-center mb-4">Recuperar contraseña</h2>
           <form id="formCodigo" autocomplete="off">
             <div class="mb-3">
               <label for="codigo" class="form-label">Código de verificación:</label>
@@ -25,17 +25,17 @@
 
             <div class="mb-3">
               <label for="nuevaContrasena" class="form-label">Contraseña nueva:</label>
-              <div class="d-flex align-items-center">
-                <input type="password" class="form-control me-2" id="nuevaContrasena" placeholder="Ingresa tu contraseña" required />
-                <span class="text-muted fs-5" id="togglePassword3" style="cursor: pointer;">👁️</span>
+              <div class="position-relative d-flex align-items-center">
+                <input type="password" class="form-control pe-2" id="nuevaContrasena" placeholder="Ingresa tu contraseña" required />
+                <img src="../img/iconos/eye-fill.svg" class="text-muted fs-5" id="togglePassword3" style="cursor: pointer; position: absolute; right: 1rem; cursor: pointer; width: 1.2rem;"/>
               </div>
             </div>
 
             <div class="mb-3">
               <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
-              <div class="d-flex align-items-center">
-                <input type="password" class="form-control" id="confirmarContrasena" placeholder="Confirma tu contraseña" required />
-                <span class="text-muted fs-5" id="togglePassword4" style="cursor: pointer;">👁️</span>
+              <div class="position-relative d-flex align-items-center">
+                <input type="password" class="form-control pe-2" id="confirmarContrasena" placeholder="Confirmar contraseña" required />
+                <img src="../img/iconos/eye-fill.svg" class="text-muted fs-5" id="togglePassword4" style="cursor: pointer; position: absolute; right: 1rem; cursor: pointer; width: 1.2rem;"/>
               </div>
             </div>
 

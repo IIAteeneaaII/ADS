@@ -51,15 +51,22 @@ document.getElementById("togglePassword3").addEventListener("click", function ()
     const input = document.getElementById("nuevaContrasena");
     const type = input.getAttribute("type") === "password" ? "text" : "password";
     input.setAttribute("type", type);
-    this.textContent = type === "password" ? "👁️" : "🙈";
+    // Cambia la imagen del ícono
+    this.setAttribute("src", type === "password" 
+        ? "../img/iconos/eye-fill.svg" 
+        : "../img/iconos/eye-slash-fill.svg");
 });
+
 
 // Mostrar/Ocultar confirmar contraseña
 document.getElementById("togglePassword4").addEventListener("click", function () {
     const input = document.getElementById("confirmarContrasena");
     const type = input.getAttribute("type") === "password" ? "text" : "password";
     input.setAttribute("type", type);
-    this.textContent = type === "password" ? "👁️" : "🙈";
+    // Cambia la imagen del ícono
+    this.setAttribute("src", type === "password" 
+        ? "../img/iconos/eye-fill.svg" 
+        : "../img/iconos/eye-slash-fill.svg");
 });
 
 document.getElementById("reenviarCodigo").addEventListener("click", function () {
