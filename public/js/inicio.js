@@ -85,6 +85,3 @@ botonTodoElDia.addEventListener('click', async () => {
   }
 });
 
-document.getElementById('confirmarLogout').addEventListener('click', () => {
-  // Implementar la lógica para borrar las cookies
-});

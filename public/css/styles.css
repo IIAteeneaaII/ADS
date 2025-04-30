@@ -86,6 +86,7 @@ footer {
 }
 
 .btn-secondary {
+  color: #1f2421;
   background-color: rgba(130, 148, 166, 0.3098039216);
   border: none;
   border-radius: 1rem;
@@ -899,9 +900,6 @@ body, html {
 
 .botones-eliminar {
   text-align: center;
-} 
-.container-md {
-  text-align: center; /* Centra los botones */
 }
 
 .btn-primary, .btn-secondary {
@@ -965,7 +963,6 @@ body, html {
 .container-md {
   margin-top: 28px;
 }
-
 
 .container {
   margin-top: 45px;

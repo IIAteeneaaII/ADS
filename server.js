@@ -34,7 +34,8 @@ app.get('/Preferencias', authMiddleware, (req, res) => {
 });
 
 app.get('/Inicio', authMiddleware, (req, res) => {
-    res.render('inicio');
+    const { userName } = req.user;
+    res.render('inicio',{userName});
 });
 
 app.get('/EstadoDeAnimo', authMiddleware, (req, res) => {
@@ -72,6 +73,17 @@ app.get('/Estiramientos', authMiddleware, (req, res) => {
     res.render('estiramientos');
 });
 
+app.get('/HorasDeDormir', authMiddleware, (req, res) => {
+    res.render('horasdeDormir');
+});
+
+app.get('/OrdenarEspacio', authMiddleware, (req, res) => {
+    res.render('ordenarEspacio');
+});
+
+app.get('/Alimentacion', authMiddleware, (req, res) => {
+    res.render('alimentacion');
+});
 
 app.get('/Estadisticas',authMiddleware, (req, res) => {
     res.render('estadisticas');

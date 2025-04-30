@@ -10,13 +10,13 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/api/auth/login
+GET http://localhost:3000/inicio
 Content-Type: application/json
 
 {
   "userName":"prueba",
-  "email": "PRUEBA@gmail.com",
-  "password": "contras234"
+  "email": "ejemplo@gmail.com",
+  "password": "user123456"
 }
 
 ###

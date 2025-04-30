@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ordenar espacio personal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/plugins/pikaday.es.js"></script>
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="../js/estiramientos.js"></script>
+</head>
+<body>
+    <div class="container py-4">
+
+        <div class="top-bar">
+            <a href="/mental" class="back-arrow">&lsaquo;</a>
+            <h1 class="mx-auto">Ordenar espacio personal</h1>
+        </div>
+
+        <div class="separator my-2"></div>
+
+        <div class="grid" id="tabs">
+            <div class="option active" data-tab="gestionar">
+                <div class="text">
+                    <span>Gestionar</span>
+                    <span>hábito</span>
+                </div>
+            </div>
+            <div class="option" data-tab="progreso">
+                <span>Registrar</span>
+                <span>progreso</span>
+            </div>
+            <div class="option" data-tab="info">
+                <span>Información</span>
+            </div>
+        </div>
+
+        <div class="tab-content mt-4">
+            <div class="tab-pane active" id="gestionar">
+                <form>
+                    <div class="mb-3">
+                        <label for="tiempo" class="form-label">Tiempo a realizar*</label>
+                        <input type="text" class="form-control" id="tiempo" placeholder="Duración de la sesión">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="fecha-inicio">Inicio del hábito*</label>
+                        <div class="input-fecha">
+                            <input type="text" id="fecha-inicio" class="form-control calendario">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="fecha-fin">Fin del hábito*</label>
+                        <div class="input-fecha">
+                            <input type="text" id="fecha-fin" class="form-control calendario">
+                        </div>
+                    </div>
+                    
+
+                    <div class="mb-3">
+                        <label class="form-label">Seleccione la frecuencia*:</label>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn-dias">Lun</button>
+                            <button type="button" class="btn-dias">Mar</button>
+                            <button type="button" class="btn-dias">Mié</button>
+                            <button type="button" class="btn-dias">Jue</button>
+                            <button type="button" class="btn-dias">Vie</button>
+                            <button type="button" class="btn-dias">Sáb</button>
+                            <button type="button" class="btn-dias">Dom</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Selecciona las notificaciones a recibir al día*:</label>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="dias_notificaciones">En la mañana</button>
+                            <button type="button" class="dias_notificaciones">En la tarde</button>
+                            <button type="button" class="dias_notificaciones">En la noche</button>
+                        </div>
+                    </div>
+
+                    <div class="btn_gestion">
+                        <button type="button" id="editar" class="btn-primary">Editar</button>
+                        <button type="button" id="guardar" class="btn-secondary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="tab-pane d-none" id="progreso">
+                <div class="mb-3 progreso">
+                    <h2>¿Cumpliste con el objetivo del día?</h2>
+                    <div class="resProgreso ">
+                        <button type="button" class="btn-progreso btn-primary" id="cumplio">SI</button>
+                        <button type="button" class="btn-progreso btn-secondary" id="nocumplio">NO</button>
+                    </div>
+                    <br><p>Ordenar despeja la mente</p>
+                    <div class="resProgresobtn d-flex flex-wrap justify-content-center">
+                        <button type="button" class="btn-progreso btn-primary">Modificar</button>
+                        <button type="button" class="btn-progreso btn-secondary">Guardar</button>
+                    </div>
+                </div>
+                <div class="mb-3 progreso">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic, voluptates.</p>
+                </div>
+            </div>
+
+            <div class="tab-pane d-none informacion" id="info">
+                <p><b>¿Por qué importa este hábito?</b></p>
+                <p> Un entorno ordenado mejora tu claridad mental, reduce el estrés y te ayuda a sentirte más en control. Tu espacio refleja tu estado interno: al cuidarlo, también te cuidas a ti.</p>
+                <p>¿Cómo impacta en tu salud mental?</p>
+                <p>-Menos distracciones = más enfoque</p>
+                <p>-Menos desorden = menos ansiedad</p>
+                <p>-Más orden = más sensación de bienestar</p>
+                <p>Consejo util: Dedica unos minutos diarios a mantener orden en el lugar donde pasás más tiempo. El hábito constante tiene más poder que una limpieza esporádica.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
