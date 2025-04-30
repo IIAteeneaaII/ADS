@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../css/styles.css" rel="stylesheet" />
+    <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Inicio</title>
 </head>
@@ -30,7 +30,8 @@
                 </div>
 
                 <div class="d-grid gap-2 mt-4">
-                    <button class="btn btn-dark">Cerrar sesión</button>
+                    <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#logoutModal">Cerrar
+                        sesión</button>
                     <button class="btn btn-dark" onclick="location.href='/eliminarCuenta';">Eliminar cuenta</button>
                 </div>
             </div>
@@ -87,10 +88,30 @@
 
 
     </div>
+    <!-- Modal con formulario -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form action="/logout" method="POST" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">¿Deseas cerrar sesión?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    Tu sesión actual se cerrará. ¿Estás seguro?
+                    <!-- Campo oculto si necesitas enviar datos -->
+                    <input type="hidden" name="accion" value="logout">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger" name="confirmarLogout">Cerrar sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Bootstrap JS -->
-    <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/inicio.js"></script>
+    <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/inicio.js"></script>
 
 </body>
 
