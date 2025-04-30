@@ -2,9 +2,14 @@ const express = require('express');
 const authRoutes = require('./routes/authRoutes');
 const habitRoutes = require('./routes/habitRoute');
 const { authMiddleware } = require('./middlewares/authMiddleware');
+const cookieParser = require('cookie-parser');
 
 const app = express();
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
@@ -12,10 +17,12 @@ app.set('views', './views');
 app.use(express.static('./public'));
 
 app.get('/', (req, res) => {
-    res.render('index');
+    const { error } = req.query;
+    res.render('index', { error });
 });
 app.get('/Registro', (req, res) => {
-    res.render('registro');
+    const { error } = req.query;
+    res.render('registro', { error });
 });
 app.get('/OlvidarContrasena', (req, res) => {
     res.render('olvidarContrasena');
@@ -25,15 +32,14 @@ app.get('/Preferencias', (req, res) => {
     res.render('preferencias');
 });
 
-app.get('/Inicio', (req, res) => {
+app.get('/Inicio', authMiddleware, (req, res) => {
     res.render('inicio');
 });
 
-
-app.get('/EstadoDeAnimo', (req, res) => {
+app.get('/EstadoDeAnimo', authMiddleware, (req, res) => {
     res.render('estadodeAnimo');
 });
-app.get('/GuiadeUsuario', (req, res) => {
+app.get('/GuiadeUsuario', authMiddleware, (req, res) => {
     res.render('guiadeUsuario');
 });
 
@@ -41,39 +47,38 @@ app.get('/TerminosyCondiciones', (req, res) => {
     res.render('terminosyCondiciones');
 });
 
-app.get('/Notificaciones', (req, res) => {
+app.get('/Notificaciones', authMiddleware, (req, res) => {
     res.render('notificaciones');
 });
 
-app.get('/GestionarHabitos', (req, res) => {
+app.get('/GestionarHabitos', authMiddleware, (req, res) => {
     res.render('gestionarHabitos');
 });
 
-app.get('/MovimientoCorporal', (req, res) => {
+app.get('/MovimientoCorporal', authMiddleware, (req, res) => {
     res.render('movimientoCorporal');
 });
 
-app.get('/Mental', (req, res) => {
+app.get('/Mental', authMiddleware, (req, res) => {
     res.render('mental');
 });
 
-app.get('/Bienestar', (req, res) => {
+app.get('/Bienestar', authMiddleware, (req, res) => {
     res.render('bienestar');
 });
 
-app.get('/Estiramientos', (req, res) => {
+app.get('/Estiramientos', authMiddleware, (req, res) => {
     res.render('estiramientos');
 });
 
 
-app.get('/Estadisticas', (req, res) => {
+app.get('/Estadisticas',authMiddleware, (req, res) => {
     res.render('estadisticas');
 });
 
-app.get('/Estadisticas2', (req, res) => {
+app.get('/Estadisticas2', authMiddleware,(req, res) => {
     res.render('estadisticas2');
 });
-
 
 app.use('/api/auth', authRoutes);
 app.use('/api/habit', authMiddleware, habitRoutes);

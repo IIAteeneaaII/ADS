@@ -5,22 +5,24 @@ const domainRegex = new RegExp(`@(${allowedDomains.join('|').replace(/\./g, '\\.
 
 const validateRegister = [
   body('email')
-    .isEmail().withMessage('Invalid email format')
-    .matches(domainRegex).withMessage(`Email domain must be one of: ${allowedDomains.join(', ')}`),
+    .isEmail().withMessage('El correo electrónico no es válido')
+    .matches(domainRegex).withMessage(`El correo debe ser de: ${allowedDomains.join(', ')}`),
 
   body('password')
-    .isAlphanumeric().withMessage('Password must contain only letters and numbers')
-    .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
-    .isLength({ max: 12 }).withMessage('Password must not be more than 12 characters long'),
+    .isAlphanumeric().withMessage('La contraseña solo debe contener letras y números')
+    .isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres')
+    .isLength({ max: 12 }).withMessage('La contraseña no debe exceder los 12 caracteres'),
 
   body('userName')
-    .notEmpty().withMessage('Username is required')
-    .isLength({ min: 3 }).withMessage('Username must be at least 3 characters long'),
+    .notEmpty().withMessage('El nombre de usuario es obligatorio')
+    .isLength({ min: 3 }).withMessage('El nombre de usuario debe tener al menos 3 caracteres'),
 
   (req, res, next) => {
+    console.log('body: ', req.body)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      const mensajes = errors.array().map(err => err.msg).join('-');
+      return res.redirect(`/Registro?error=${encodeURIComponent(mensajes)}`);
     }
     next();
   }
@@ -28,15 +30,17 @@ const validateRegister = [
 
 const validateLogin = [
   body('email')
-    .notEmpty().withMessage('Email is required'),
+    .notEmpty().withMessage('El correo es obligatorio'),
 
   body('password')
-    .notEmpty().withMessage('Password is required'),
+    .notEmpty().withMessage('La contraseña es obligatoria'),
 
   (req, res, next) => {
+    console.log('body: ', req.body)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      const mensajes = errors.array().map(err => err.msg).join(' - ');
+      return res.redirect(`/?error=${encodeURIComponent(mensajes)}`);
     }
     next();
   }
