@@ -7,7 +7,7 @@ exports.register = async (req, res) => {
 
   try {
     const exists = await userRepo.findByEmail(email);
-    if (exists) return res.redirect('/Registro?error=El usuario ya existe');
+    if (exists) return res.status(400).json({ msg: 'User already exists' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
     await userRepo.createUser({
@@ -16,27 +16,22 @@ exports.register = async (req, res) => {
       userName,
     });
 
-    res.redirect('/')
+    res.status(201).json({ msg: 'User registered successfully' });
   } catch (err) {
     console.error(err);
-    res.redirect('/Registro?error=Hubo un error en el servidor. Intenta más tarde');
+    res.status(500).json({ msg: 'Server error' });
   }
 };
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password)
 
   try {
     const user = await userRepo.findByEmail(email);
-    if (!user) {
-      return res.redirect('/?error=Correo o contraseña incorrectos');
-    }
+    if (!user) return res.status(400).json({ msg: 'Invalid credentials' });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.redirect('/?error=Correo o contraseña incorrectos');
-    }
+    if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
 
     const token = jwt.sign(
       { id: user.id, email: user.email, userName: user.userName },
@@ -44,18 +39,32 @@ exports.login = async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: false,
-      maxAge: 60 * 60 * 1000,
-    });
-
-    res.redirect('/Preferencias');
+    res.json({ token });
   } catch (err) {
     console.error(err);
-    res.redirect('/?error=Hubo un error en el servidor. Intenta más tarde');
+    res.status(500).json({ msg: 'Server error' });
   }
 };
+
+exports.deleteAccount = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await userRepo.findByEmail(email);
+    if (!user) return res.status(404).json({ msg: 'User not found' });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ msg: 'Invalid credentials' });
+
+    await userRepo.deleteUserByEmail(email);
+
+    res.status(200).json({ msg: 'Account deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Server error' });
+  }
+};
+
 
 exports.recoverPassword = async (req, res) => {
   const { email } = req.body;
