@@ -375,6 +375,8 @@ a ::placeholder {
 }
 
 .grid {
+  display: flex;
+  flex-direction: column;
   background-color: transparent !important;
 }
 
@@ -389,22 +391,38 @@ a ::placeholder {
   transition: background-color 0.3s ease;
 }
 
+.caja {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 15px;
+  position: relative;
+}
+
 .plus-button {
   position: absolute;
-  top: 50%;
+  top: 55%;
   right: 10px;
   transform: translateY(-50%);
-  background-color: #4CAF50;
-  color: white;
-  border: none;
+  background-color: transparent;
+  color: black;
+  border: 2px solid black;
   border-radius: 50%;
   width: 32px;
   height: 32px;
   font-size: 18px;
-  line-height: 32px;
+  line-height: 28px;
   text-align: center;
   cursor: pointer;
   padding: 0;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.plus-button:active {
+  background-color: #000000;
+  color: white;
+  border-color: #000000;
 }
 
 .option-1 {
@@ -419,6 +437,7 @@ a ::placeholder {
   margin-top: 15px;
   gap: 12px;
   position: relative;
+  width: 260px;
 }
 
 .option-1 img {
@@ -428,7 +447,7 @@ a ::placeholder {
 
 .option, .option-1 span {
   font-size: 1rem;
-  color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
+  color: rgb(0, 0, 0);
 }
 
 .option, .option-1:hover {
@@ -815,6 +834,15 @@ form .form-text.text-danger {
 }
 .habits-grid .habit-item .habit-label {
   font-size: 12px;
+}
+
+.custom-select-icon {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='black' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.204 5h9.592L8 10.481 3.204 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem; /* espacio para la flecha */
 }
 
 /*# sourceMappingURL=styles.css.map */
