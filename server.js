@@ -29,7 +29,7 @@ app.get('/OlvidarContrasena', (req, res) => {
     res.render('olvidarContrasena');
 });
 
-app.get('/Preferencias', (req, res) => {
+app.get('/Preferencias', authMiddleware, (req, res) => {
     res.render('preferencias');
 });
 

@@ -50,7 +50,7 @@ exports.login = async (req, res) => {
       maxAge: 60 * 60 * 1000,
     });
 
-    res.redirect('/Inicio');
+    res.redirect('/Preferencias');
   } catch (err) {
     console.error(err);
     res.redirect('/?error=Hubo un error en el servidor. Intenta más tarde');

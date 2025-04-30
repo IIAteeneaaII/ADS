@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
               confirmButton: 'btn btn-primary'
             }
           }).then(() => {
-            window.location.href = "/preferencias";
           });
 
         } else {
