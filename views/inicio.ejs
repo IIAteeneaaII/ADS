@@ -111,6 +111,11 @@
   <!-- Bootstrap JS + lógica -->
   <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
   <script src="/js/inicio.js"></script>
+  <script>
+    document.getElementById('confirmarLogout').addEventListener('click', () => {
+      window.location.href = '/api/auth/logout';
+    });
+  </script>
 </body>
 
 </html>
