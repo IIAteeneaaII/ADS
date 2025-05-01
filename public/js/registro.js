@@ -19,42 +19,6 @@ document.getElementById("formRegistro").addEventListener("submit", async functio
     return;
   }
 
-  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-  if (!passwordRegex.test(contrasena)) {
-    Swal.fire({
-      icon: "error",
-      title: "Contraseña inválida",
-      text: "La contraseña debe tener al menos 8 caracteres, incluyendo letras y números.",
-      confirmButtonText: "OK",
-      customClass: { confirmButton: 'btn-secondary' },
-      buttonsStyling: false
-    });
-    return;
-  }
-
-  if (contrasena !== confirmarContrasena) {
-    Swal.fire({
-      icon: "error",
-      title: "Error de contraseña",
-      text: "Las contraseñas no coinciden.",
-      confirmButtonText: "OK",
-      customClass: { confirmButton: 'btn-secondary' },
-      buttonsStyling: false
-    });
-    return;
-  }
-
-  if (!terminosCheck) {
-    Swal.fire({
-      icon: "info",
-      title: "Términos no aceptados",
-      text: "Debes aceptar los términos y condiciones.",
-      confirmButtonText: "OK",
-      customClass: { confirmButton: 'btn-secondary' },
-      buttonsStyling: false
-    });
-    return;
-  }
 
   try {
     const response = await fetch("/api/auth/register", {

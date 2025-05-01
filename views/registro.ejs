@@ -27,7 +27,7 @@
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre de usuario:</label>
                             <input type="text" class="form-control" id="userName" name="userName"
-                                placeholder="Ingresa tu userName" />
+                                placeholder="Ingresa tu usuario" />
                         </div>
 
                         <!-- Correo -->
@@ -95,32 +95,25 @@
         <% } %>
 
         <script>
-            document.getElementById('formRegistro').addEventListener('submit', function (e) {
-              const password = document.getElementById('password').value;
-              const confirmPassword = document.getElementById('confirmarContrasena').value;
-              const terminos = document.getElementById('terminosCheck').checked;
+            // Leer la cookie flashMessage
+            const getCookie = (name) => {
+              const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+              return match ? decodeURIComponent(match[2]) : null;
+            };
           
-              if (password !== confirmPassword) {
-                e.preventDefault();
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Error',
-                  text: 'Las contraseñas no coinciden.',
-                  confirmButtonText: 'Aceptar'
-                });
-                return;
-              }
+            const flashMessage = getCookie('flashMessage');
           
-              if (!terminos) {
-                e.preventDefault();
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Error',
-                  text: 'Debes aceptar los términos y condiciones.',
-                  confirmButtonText: 'Aceptar'
-                });
-              }
-            });
+            if (flashMessage) {
+              Swal.fire({
+                icon: 'success',
+                title: flashMessage,
+                showConfirmButton: false,
+                timer: 2000
+              });
+          
+              // Borrar la cookie después de usarla
+              document.cookie = "flashMessage=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
           </script>
 
 </body>
