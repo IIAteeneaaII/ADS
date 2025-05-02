@@ -32,11 +32,15 @@ main {
     max-width: 400px;
 }
 
-.form-control {
-    background-color:v.$mainColor;
+.form-label{
+    color: v.$text-primary-color;
+}
+
+#formLogin .form-control {
+    background-color: rgba(217, 217, 217, 0.33); // 0.33 representa el 33% de opacidad;
     border-radius: 1rem;
     padding: 0.75rem;
-    border: 1px solid #ced4da;
+    border: 1px solid #D9D9D9;
 
 }
 /* Cuando el input está enfocado */
@@ -47,14 +51,17 @@ main {
     outline: none;
 }
 
-input::placeholder {
-    // color: blue;
+#formLogin input::placeholder {
+    color: v.$text-primary-color; // Cambia el color del placeholder al color principal fuerte
     opacity: 1;
 }  
 a {
-    color: v.$secondaryColor;
     text-decoration: none;
     font-weight: 500;
+}
+
+.text-end a , .text-end span{
+    color: v.$text-primary-color; // Cambia el color del enlace al color principal fuerte
 }
 
 a:hover {
@@ -67,11 +74,6 @@ a:hover {
 
 .eye-icon {
     position: absolute;
-    right: 1rem;
-    top: 2.8rem;
-    cursor: pointer;
-}
-
-.position-relative {
-    position: relative;
+    right: 0.5rem;
+    width: 1.3rem;
 }

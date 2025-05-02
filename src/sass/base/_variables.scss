@@ -11,10 +11,12 @@
 $mainColor: #1A2B3D;              // Color de fondo principal (cuerpo) Fondo oscuro de toda la pantalla.
 $mainColor-strong: #009394;       // Color principal fuerte (botones principales, encabezados)
 $mainColor-low: #D0DAE6;          // Color principal suave (fondos secundarios)
-$secondaryColor: #FFFFFF;         // Color secundario (bordes, botones secundarios, elementos neutros)
+$secondaryColor: #00E0C7;         // Color secundario (Detalles destacados o acentos.)
 $secondaryColor-strong: #006270; // Color secundario con opacidad (hover, overlays)
 
 $white: #f8f9fa;                  // Blanco (fondo claro)
+$gray-low: #e9ecef;               // Gris claro (bordes, fondos secundarios)
+$gray: #adb5bd;                   // Gris medio (texto deshabilitado)
 $black: #1f2421;                  // Negro (texto principal)
 
 // ----------------------------------------
@@ -26,7 +28,7 @@ $title: "Red Hat Display", serif; // Fuente para títulos
 $text: "Segoe UI", serif;         // Fuente para texto principal
 $special: "Handlee", cursive;     // Fuente especial (decorativa)
 
-$text-primary-color: #FFFFFF;
+$text-primary-color: #FFFFFF; //Textos principales, contrastan bien.
 
 // ----------------------------------------
 // Media Queries

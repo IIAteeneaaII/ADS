@@ -1,12 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Toggle de contraseña en login
   const togglePassword = document.getElementById("togglePassword");
+
   if (togglePassword) {
     togglePassword.addEventListener("click", function () {
       const passwordInput = document.getElementById("contrasena");
       const type = passwordInput.type === "password" ? "text" : "password";
       passwordInput.type = type;
-      this.textContent = type === "password" ? "👁️" : "🙈";
+      // Cambia la imagen del ícono
+      this.setAttribute("src", type === "password" 
+        ? "../img/iconos/eye-fill.svg" 
+        : "../img/iconos/eye-slash-fill.svg");
     });
   }
 
