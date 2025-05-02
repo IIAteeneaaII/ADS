@@ -1,25 +1,55 @@
-//Colors
-$white: #f8f9fa;
-$gray-low: #e9ecef;
-$gray: #adb5bd;
-$black: #1f2421;
+// ========================================
+// VARIABLES GLOBALES
+// ========================================
 
-$mainColor: #e5f1fd;
+// ----------------------------------------
+// Colores
+// ----------------------------------------
+// Paleta de colores utilizada en el proyecto.
+// Define colores principales, secundarios y tonos neutros.
+
+$mainColor: #1A2B3D;              // Color de fondo principal (cuerpo) Fondo oscuro de toda la pantalla.
+$mainColor-strong: #009394;       // Color principal fuerte (botones principales, encabezados)
+$mainColor-low: #D0DAE6;          // Color principal suave (fondos secundarios)
+$secondaryColor: #FFFFFF;         // Color secundario (bordes, botones secundarios, elementos neutros)
+$secondaryColor-strong: #006270; // Color secundario con opacidad (hover, overlays)
+
+$white: #f8f9fa;                  // Blanco (fondo claro)
+$gray-low: #e9ecef;               // Gris claro (bordes, fondos secundarios)
+$gray: #adb5bd;                   // Gris medio (texto deshabilitado)
+$black: #1f2421;                  // Negro (texto principal)
+
+// ----------------------------------------
+// Tipografías
+// ----------------------------------------
+// Fuentes utilizadas en el proyecto.
+
+$title: "Red Hat Display", serif; // Fuente para títulos
+$text: "Segoe UI", serif;         // Fuente para texto principal
+$special: "Handlee", cursive;     // Fuente especial (decorativa)
+
+$text-primary-color: #FFFFFF;
+
+// ----------------------------------------
+// Media Queries
+// ----------------------------------------
+// Puntos de quiebre para diseño responsivo.
+
+$phone: 468px;                    // Teléfonos pequeños
+$tablet: 768px;                   // Tablets
+$tablet-desktop: 900px;           // Tablets grandes / Escritorios pequeños
+$desktop: 1080px;                 // Escritorios estándar
+$desktop-max: 1200px;             // Escritorios grandes
+
+// ----------------------------------------
+// Espaciado
+// ----------------------------------------
+// Variables para márgenes y separaciones.
+
+$separacion: 4rem;                // Separación estándar entre secciones
+
+/* $mainColor: #e5f1fd;
 $mainColor-strong: #8294A6;
 $mainColor-low: #D0DAE6;
 $secondaryColor: #C4C4C4;
-$secondaryColor-strong: #8294A64F;
-
-//Fonts
-$title: "Red Hat Display", serif;
-$text: "Segoe UI", serif;
-$special: "Handlee", cursive;
-
-//Media querys
-$phone: 468px;
-$tablet: 768px;
-$tablet-desktop:900px;
-$desktop: 1080px;
-$desktop-max: 1200px;
-
-$separacion: 4rem;
+$secondaryColor-strong: #8294A64F;*/

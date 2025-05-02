@@ -27,10 +27,12 @@ img{
 
 h1,h2,h3{
     font-family: v.$title;
+    color: v.$text-primary-color;
 }
 
 p, a{
     font-family: v.$text;
+    color: v.$text-primary-color;
 }
 body {
     background-color: v.$mainColor;
@@ -51,7 +53,7 @@ footer{
     .back-arrow {
         font-size: 2rem;
         text-decoration: none;
-        color: black;
+        color: v.$secondaryColor;
         margin-right: 1rem;
     }
 

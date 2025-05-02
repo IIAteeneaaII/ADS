@@ -1,4 +1,9 @@
 @charset "UTF-8";
+/* $mainColor: #e5f1fd;
+$mainColor-strong: #8294A6;
+$mainColor-low: #D0DAE6;
+$secondaryColor: #C4C4C4;
+$secondaryColor-strong: #8294A64F;*/
 body, html {
   overflow-x: hidden;
 }
@@ -33,14 +38,16 @@ img {
 
 h1, h2, h3 {
   font-family: "Red Hat Display", serif;
+  color: #FFFFFF;
 }
 
 p, a {
   font-family: "Segoe UI", serif;
+  color: #FFFFFF;
 }
 
 body {
-  background-color: #e5f1fd;
+  background-color: #1A2B3D;
 }
 
 footer {
@@ -48,8 +55,8 @@ footer {
 }
 
 .separator {
-  border-top: 1px solid #8294A6;
-  background-color: #8294A6;
+  border-top: 1px solid #009394;
+  background-color: #009394;
   margin: 1rem 0 1rem;
 }
 
@@ -61,7 +68,7 @@ footer {
 .top-bar .back-arrow {
   font-size: 2rem;
   text-decoration: none;
-  color: black;
+  color: #FFFFFF;
   margin-right: 1rem;
 }
 .top-bar h1 {
@@ -72,22 +79,22 @@ footer {
 }
 
 .btn-primary {
-  background-color: #8294A6;
+  background-color: #009394;
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
 }
 .btn-primary:hover {
   color: #1f2421;
-  background-color: #C4C4C4;
+  background-color: #FFFFFF;
 }
 .btn-primary:focus {
-  background-color: #C4C4C4;
+  background-color: #FFFFFF;
   border: none;
 }
 
 .btn-secondary {
-  background-color: rgba(130, 148, 166, 0.3098039216);
+  background-color: #006270;
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
@@ -134,7 +141,7 @@ main h2 {
 }
 
 .form-control {
-  background-color: #e5f1fd;
+  background-color: #1A2B3D;
   border-radius: 1rem;
   padding: 0.75rem;
   border: 1px solid #ced4da;
@@ -142,8 +149,8 @@ main h2 {
 
 /* Cuando el input está enfocado */
 .form-control:focus {
-  background-color: #C4C4C4 !important;
-  border-color: #C4C4C4;
+  background-color: #FFFFFF !important;
+  border-color: #FFFFFF;
   box-shadow: none;
   outline: none;
 }
@@ -153,7 +160,7 @@ input::placeholder {
 }
 
 a {
-  color: #C4C4C4;
+  color: #FFFFFF;
   text-decoration: none;
   font-weight: 500;
 }
@@ -200,8 +207,8 @@ h2 {
 
 /* Cuando el input está enfocado */
 .form-control:focus {
-  background-color: #C4C4C4 !important;
-  border-color: #C4C4C4;
+  background-color: #FFFFFF !important;
+  border-color: #FFFFFF;
   box-shadow: none;
   outline: none;
 }
@@ -303,7 +310,7 @@ a ::placeholder {
 }
 
 .top-bar-inicio {
-  background-color: #8294A6;
+  background-color: #009394;
   padding: 0.75rem;
   display: flex;
   justify-content: space-between;
@@ -367,7 +374,7 @@ a ::placeholder {
   gap: 1rem; /* Espacio entre las opciones */
 }
 .habitos .option {
-  border: 0.2rem solid #8294A6;
+  border: 0.2rem solid #009394;
 }
 
 .habitos img {
@@ -512,7 +519,7 @@ a ::placeholder {
 }
 
 .optionpr {
-  background-color: #8294A6;
+  background-color: #009394;
   padding: 12px;
   border-radius: 10px;
   display: flex;
@@ -528,7 +535,7 @@ a ::placeholder {
 }
 
 .optionpr.selected {
-  background-color: rgba(130, 148, 166, 0.3098039216);
+  background-color: #006270;
 }
 
 .counter {
@@ -590,16 +597,16 @@ a ::placeholder {
   display: block;
 }
 .option.active {
-  background-color: #8294A6;
+  background-color: #009394;
   color: #f8f9fa;
 }
 .option:hover:not(.active) {
-  background-color: #8294A6;
+  background-color: #009394;
   color: #f8f9fa;
 }
 
 .tab-content {
-  background-color: #e5f1fd;
+  background-color: #1A2B3D;
   margin-top: 1.5rem;
 }
 .tab-content .tab-pane {
@@ -614,14 +621,14 @@ a ::placeholder {
 }
 
 form {
-  background-color: #e5f1fd;
+  background-color: #1A2B3D;
 }
 form .form-label {
   font-weight: 600;
 }
 form .form-control {
-  background-color: #e5f1fd;
-  border: 1px solid #8294A6;
+  background-color: #1A2B3D;
+  border: 1px solid #009394;
   border-radius: 0.5rem;
 }
 form .form-text.text-danger {
@@ -638,7 +645,7 @@ form .form-text.text-danger {
 
 .progreso,
 .informacion {
-  border: 1px solid #8294A6;
+  border: 1px solid #009394;
   text-align: center;
 }
 
@@ -661,13 +668,13 @@ form .form-text.text-danger {
 }
 
 .pikaday {
-  background-color: #e5f1fd;
-  border: 1px solid #8294A6;
+  background-color: #1A2B3D;
+  border: 1px solid #009394;
   font-family: inherit;
 }
 .pikaday .pika-day.selected,
 .pikaday .pika-day:hover {
-  background-color: #8294A6;
+  background-color: #009394;
   color: white;
 }
 .pikaday .pika-month,
@@ -679,7 +686,7 @@ form .form-text.text-danger {
   font-weight: 600;
 }
 .pikaday .pika-day.today {
-  border-color: #8294A6;
+  border-color: #009394;
 }
 
 .btn-dias,
@@ -697,13 +704,13 @@ form .form-text.text-danger {
 }
 .btn-dias.selected,
 .dias_notificaciones.selected {
-  background-color: #8294A6;
+  background-color: #009394;
   color: #f8f9fa;
-  border-color: #8294A6;
+  border-color: #009394;
 }
 .btn-dias:hover:not(.selected),
 .dias_notificaciones:hover:not(.selected) {
-  background-color: #C4C4C4;
+  background-color: #FFFFFF;
 }
 
 .resProgresobtn {
@@ -771,7 +778,7 @@ form .form-text.text-danger {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #8294A6;
+  background-color: #009394;
   color: #1f2421;
   display: flex;
   justify-content: center;
@@ -784,7 +791,7 @@ form .form-text.text-danger {
   color: #fff;
 }
 .progress-indicator .arrow {
-  color: #8294A6;
+  color: #009394;
   font-size: 20px;
 }
 
