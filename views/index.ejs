@@ -55,41 +55,8 @@
 
   <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/flashMessage.js"></script>
 
-  <% if (typeof error !== 'undefined') { %>
-  <script>
-    Swal.fire({
-      icon: 'error',
-      title: 'Error',
-      text: '<%= error %>',
-      confirmButtonText: 'Aceptar'
-    });
-  </script>
-  <% } %>
-
-  <script>
-    const getCookie = (name) => {
-      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-      return match ? decodeURIComponent(match[2]) : null;
-    };
-  
-    const flashMessage = getCookie('flashMessage');
-    const flashType = getCookie('flashType') || 'success';
-  
-    if (flashMessage) {
-      Swal.fire({
-        icon: flashType,
-        title: flashType === 'error' ? 'Error' : 'Éxito',
-        text: flashMessage,
-        confirmButtonText: 'Aceptar'
-      });
-  
-      // Borrar cookies para que no se repita el mensaje
-      document.cookie = "flashMessage=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "flashType=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    }
-  </script>
-  
 </body>
 
 </html>

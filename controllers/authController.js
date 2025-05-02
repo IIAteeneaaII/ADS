@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userRepo = require('../repositories/userRepositoryPrisma');
+const { setFlashMessage } = require('../utils/flashMessage');
 
 exports.register = async (req, res) => {
   const { email, password, userName } = req.body;
@@ -8,8 +9,7 @@ exports.register = async (req, res) => {
   try {
     const exists = await userRepo.findByEmail(email);
     if (exists){
-      res.cookie('flashMessage', 'El usuario ya existe', { maxAge: 2000 });
-      res.cookie('flashType', 'error', { maxAge: 2000 });
+      setFlashMessage(res, 'El usuario ya existe', 'error');
       return res.redirect('/Registro');
     }
 
@@ -20,12 +20,12 @@ exports.register = async (req, res) => {
       userName,
     });
 
-    res.cookie('flashMessage', '¡Registro exitoso! Ya puedes iniciar sesión.', { httpOnly: false });
-res.cookie('flashType', 'success', { httpOnly: false });
-res.redirect('/');
+    setFlashMessage(res, '¡Registro exitoso! Ya puedes iniciar sesión.', 'success');
+    res.redirect('/');
   } catch (err) {
     console.error(err);
-    res.redirect('/Registro?error=Hubo un error en el servidor. Intenta más tarde');
+    setFlashMessage(res, 'Hubo un error en el servidor. Intenta más tarde', 'error');
+    res.redirect('/Registro');
   }
 };
 
@@ -36,12 +36,14 @@ exports.login = async (req, res) => {
   try {
     const user = await userRepo.findByEmail(email);
     if (!user) {
-      return res.redirect('/?error=Correo o contraseña incorrectos');
+      setFlashMessage(res, 'Correo o contraseña incorrectos', 'error');
+      res.redirect('/');
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.redirect('/?error=Correo o contraseña incorrectos');
+      setFlashMessage(res, 'Correo o contraseña incorrectos', 'error');
+      res.redirect('/');
     }
 
     const token = jwt.sign(
@@ -55,11 +57,12 @@ exports.login = async (req, res) => {
       secure: false,
       maxAge: 60 * 60 * 1000,
     });
-
+    setFlashMessage(res, '¡Inicio de sesión éxitoso.', 'success');
     res.redirect('/Preferencias');
   } catch (err) {
     console.error(err);
-    res.redirect('/?error=Hubo un error en el servidor. Intenta más tarde');
+    setFlashMessage(res, 'Hubo un error en el servidor. Intenta más tarde', 'error');
+    res.redirect('/');
   }
 };
 
