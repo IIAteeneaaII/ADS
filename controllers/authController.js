@@ -7,7 +7,11 @@ exports.register = async (req, res) => {
 
   try {
     const exists = await userRepo.findByEmail(email);
-    if (exists) return res.redirect('/Registro?error=El usuario ya existe');
+    if (exists){
+      res.cookie('flashMessage', 'El usuario ya existe', { maxAge: 2000 });
+      res.cookie('flashType', 'error', { maxAge: 2000 });
+      return res.redirect('/Registro');
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     await userRepo.createUser({
@@ -16,7 +20,9 @@ exports.register = async (req, res) => {
       userName,
     });
 
-    res.redirect('/')
+    res.cookie('flashMessage', '¡Registro exitoso! Ya puedes iniciar sesión.', { httpOnly: false });
+res.cookie('flashType', 'success', { httpOnly: false });
+res.redirect('/');
   } catch (err) {
     console.error(err);
     res.redirect('/Registro?error=Hubo un error en el servidor. Intenta más tarde');

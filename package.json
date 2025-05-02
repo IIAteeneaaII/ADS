@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass src/sass/app.scss public/css/styles.css --watch",
-    "server": "node server.js",
+    "server": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run sass\" \"npm run server\""
   },
