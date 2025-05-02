@@ -23,14 +23,14 @@ Content-Type: application/json
 
 POST http://localhost:3000/api/habit/custom
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlamVtcGxvQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicGVwaXRvMTIzIiwiaWF0IjoxNzQ2MDMzODc5LCJleHAiOjE3NDYwMzc0Nzl9.U2MOblYMwygCikPAiBalxOTbCb2pfaOPcW958vUVsSo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlamVtcGxvQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicGVwaXRvMTIzIiwiaWF0IjoxNzQ2MTY1MTcxLCJleHAiOjE3NDYxNjg3NzF9.oY8jPjm36mzAHA0uCvt3RkL_78PKHcBn_RT46fmGXJc
 
 {
-  "name": "Estiramientos",
+  "name": "Estiramientos5",
   "description": "desc",
   "frequency": {
     "type": "weekly",
-    "days": ["wednesday"]
+    "days": ["thursday"]
   },
   "reminderTime": {
     "hour": 8,

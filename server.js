@@ -93,6 +93,10 @@ app.get('/Estadisticas2', authMiddleware,(req, res) => {
     res.render('estadisticas2');
 });
 
+app.get('/EliminarCuenta', authMiddleware,(req, res) => {
+    res.render('eliminarCuenta');
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/habit', authMiddleware, habitRoutes);
 app.use('/api/inicio', authMiddleware, principalScrRoutes);

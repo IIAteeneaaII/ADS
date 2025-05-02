@@ -1,63 +1,64 @@
-document.getElementById("formRegistro").addEventListener("submit", async function (event) {
-  event.preventDefault();
 
-  const nombre = document.getElementById("nombre").value.trim();
-  const correo = document.getElementById("correo").value.trim();
-  const contrasena = document.getElementById("contrasena").value;
-  const confirmarContrasena = document.getElementById("confirmarContrasena").value;
-  const terminosCheck = document.getElementById("terminosCheck").checked;
+  const validator = new JustValidate('#formRegistro');
 
-  if (nombre === "" || correo === "" || contrasena === "" || confirmarContrasena === "") {
-    Swal.fire({
-      icon: "warning",
-      title: "Campos vacíos",
-      text: "Por favor completa todos los campos.",
-      confirmButtonText: "OK",
-      customClass: { confirmButton: 'btn-secondary' },
-      buttonsStyling: false
-    });
-    return;
-  }
-
-
-  try {
-    const response = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+  validator
+    .addField('#userName', [
+      {
+        rule: 'required',
+        errorMessage: 'El nombre de usuario es requerido',
       },
-      body: JSON.stringify({
-        userName: nombre,
-        email: correo,
-        password: contrasena
-      }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.errors?.[0]?.msg || "Error en el registro");
-    }
-
-    Swal.fire({
-      icon: "success",
-      title: "¡Registro exitoso!",
-      text: "Tu cuenta ha sido creada correctamente.",
-      confirmButtonText: "Aceptar",
-      customClass: { confirmButton: 'btn-secondary' },
-      buttonsStyling: false
-    }).then(() => {
-      window.location.href = "/"; 
-    });
-
-  } catch (error) {
-    Swal.fire({
-      icon: "error",
-      title: "Error",
-      text: error.message,
-      confirmButtonText: "OK",
-      customClass: { confirmButton: 'btn-secondary' },
-      buttonsStyling: false
-    });
-  }
-});
+      {
+        rule: 'minLength',
+        value: 3,
+        errorMessage: 'Debe tener al menos 3 caracteres',
+      },
+      {
+        rule: 'maxLength',
+        value: 20,
+        errorMessage: 'No puede tener más de 20 caracteres',
+      },
+    ])
+    .addField('#email', [
+      {
+        rule: 'required',
+        errorMessage: 'El correo es obligatorio',
+      },
+      {
+        rule: 'email',
+        errorMessage: 'Ingresa un correo válido',
+      },
+    ])
+    .addField('#password', [
+      {
+        rule: 'required',
+        errorMessage: 'La contraseña es obligatoria',
+      },
+      {
+        rule: 'password',
+        errorMessage:
+          'Debe contener al menos una mayúscula, una minúscula, un número',
+      },
+      {
+        rule: 'minLength',
+        value: 8,
+        errorMessage: 'Debe tener al menos 8 caracteres',
+      },
+    ])
+    .addField('#confirmarContrasena', [
+      {
+        rule: 'required',
+        errorMessage: 'Debes confirmar tu contraseña',
+      },
+      {
+        validator: (value, fields) => {
+          return value === fields['#password'].elem.value;
+        },
+        errorMessage: 'Las contraseñas no coinciden',
+      },
+    ])
+    .addField('#terminosCheck', [
+      {
+        rule: 'required',
+        errorMessage: 'Debes aceptar los términos y condiciones',
+      },
+    ]);

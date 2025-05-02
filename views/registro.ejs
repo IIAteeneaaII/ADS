@@ -40,20 +40,18 @@
                         <!-- Contraseña -->
                         <div class="mb-3">
                             <label for="contrasena" class="form-label">Contraseña:</label>
-                            <div class="d-flex align-items-center">
+                            <div class="d-block">
                                 <input type="password" class="form-control me-2" id="password" name="password"
                                     placeholder="Ingresa tu contraseña" />
-                                <span class="text-muted fs-5" id="togglePassword1" style="cursor: pointer">👁️</span>
                             </div>
                         </div>
 
                         <!-- Confirmar contraseña -->
                         <div class="mb-3">
                             <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
-                            <div class="d-flex align-items-center">
+                            <div class="d-block">
                                 <input type="password" class="form-control me-2" id="confirmarContrasena"
                                     name="confirmarContrasena" placeholder="Confirma tu contraseña" />
-                                <span class="text-muted fs-5" id="togglePassword2" style="cursor: pointer">👁️</span>
                             </div>
                         </div>
 
@@ -82,7 +80,8 @@
     </div>
     <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+    <script src="/js/registro.js"></script>
     <% if (typeof error !=='undefined' ) { %>
         <script>
             Swal.fire({

@@ -5,11 +5,13 @@ header {
     text-align: center;
     margin-top: 2rem;
     img {
-        max-width: 140px;
+        // max-width: 140px;
     }
 }
 
 main {
+    color: v.$white;
+    // background-color: v.$secondaryColor;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +54,7 @@ input::placeholder {
     opacity: 1;
 }  
 a {
-    color: v.$secondaryColor;
+    color: v.$white;
     text-decoration: none;
     font-weight: 500;
 }
@@ -75,3 +77,4 @@ a:hover {
 .position-relative {
     position: relative;
 }
+
