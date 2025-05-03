@@ -40,13 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const botonTodoElDia = document.querySelector('.time-buttons button:nth-child(4)');
 const seccionHabitos = document.getElementById('seccion-de-habitos');
 
-botonTodoElDia.addEventListener('click', async () => {
+async function cargarHabitos() {
   seccionHabitos.innerHTML = '';
 
   try {
+    //habitos del usuario del dia
     const response = await fetch('http://localhost:3000/api/inicio/principalScr', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -54,35 +54,98 @@ botonTodoElDia.addEventListener('click', async () => {
     });
     const habitos = await response.json();
 
+    //seguimiento del habito de el dia (se completo o no)(falta implementar)
+
+    // HTML
     if (habitos.length === 0) {
       seccionHabitos.innerHTML = '<p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón “Crear +” para crear tu primer hábito.</p>';
     } else {
       habitos.forEach(habito => {
+        const habitContainer = document.createElement('div');
+        habitContainer.className = 'd-flex align-items-center mb-3';
+      
+        const habitIcon = document.createElement('img');
+        habitIcon.src = habito.icon;
+        habitIcon.alt = 'icono';
+        habitIcon.style.width = '40px';
+        habitIcon.style.height = '40px';
+        habitIcon.style.marginRight = '10px';
+      
         const habitCard = document.createElement('div');
-        habitCard.className = 'habit-card mb-3 d-flex justify-content-between align-items-center p-3';
+        habitCard.className = 'd-flex justify-content-between align-items-center p-3 flex-grow-1';
         habitCard.style.backgroundColor = '#a3b8cc';
         habitCard.style.borderRadius = '12px';
         habitCard.style.color = '#000';
-
-        habitCard.innerHTML = `
-          <span class="fw-bold ms-2">${habito.name}</span>
-          <span style="
-            background-color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 500;
-            margin-right: 10px;
-          ">${habito.reminderTime.hour}:${habito.reminderTime.minute.toString().padStart(2, '0')}</span>
+        habitCard.style.position = 'relative';
+      
+        let isChecked = false;
+      
+        const checkCircle = document.createElement('div');
+        checkCircle.className = 'check-circle';
+        checkCircle.style.width = '24px';
+        checkCircle.style.height = '24px';
+        checkCircle.style.borderRadius = '50%';
+        checkCircle.style.border = '2px solid #000';
+        checkCircle.style.backgroundColor = 'white';
+        checkCircle.style.cursor = 'pointer';
+        checkCircle.style.display = 'none';
+        checkCircle.style.transition = 'background-color 0.3s';
+      
+        const cardContent = `
+          <div class="d-flex align-items-center">
+            <span class="fw-bold">${habito.name}</span>
+          </div>
+          <div class="d-flex align-items-center">
+            <span style="
+              background-color: white;
+              padding: 4px 12px;
+              border-radius: 20px;
+              font-weight: 500;
+              margin-right: 12px;
+            ">${habito.fieldValues.value} ${habito.fieldValues.unit}</span>
+          </div>
         `;
-
-        seccionHabitos.appendChild(habitCard);
+      
+        habitCard.innerHTML = cardContent;
+        habitCard.querySelector('.d-flex.align-items-center:last-child').appendChild(checkCircle);
+      
+        habitCard.addEventListener('click', (e) => {
+          if (e.target.classList.contains('check-circle')) return;
+      
+          if (checkCircle.style.display === 'none') {
+            checkCircle.style.display = 'block';
+          } else {
+            checkCircle.style.display = 'none';
+          }
+        });
+      
+        checkCircle.addEventListener('click', function (e) {
+          e.stopPropagation();
+      
+          isChecked = !isChecked;
+      
+          if (isChecked) {
+            this.style.backgroundColor = 'green';
+            console.log('Hábito completado'); //enviar a base true
+          } else {
+            this.style.backgroundColor = 'white';
+            console.log('Hábito desmarcado'); //enviar a base false
+          }
+        });
+      
+        habitContainer.appendChild(habitIcon);
+        habitContainer.appendChild(habitCard);
+        seccionHabitos.appendChild(habitContainer);
       });
     }
   } catch (error) {
     console.error('Error cargando hábitos:', error);
     seccionHabitos.innerHTML = '<p>Error al cargar los hábitos.</p>';
   }
-});
+}
+
+// Llamar a la función de carga de hábitos cuando la página se carga
+window.addEventListener('load', cargarHabitos);
 
 //  Logout: borrar cookies y token, redirigir al login
 document.getElementById('confirmarLogout').addEventListener('click', () => {

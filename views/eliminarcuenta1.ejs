@@ -10,7 +10,7 @@
 <body>
     <div class="container py-4">
 
-        <a href="eliminarcuenta.html" class="back-arrow">&lsaquo;</a>
+        <a href="/eliminarcuenta" class="back-arrow">&lsaquo;</a>
 
         <h1>Eliminar Cuenta</h1>
         <p>Lamentamos que estés considerando dejar Fin It.</p>
@@ -19,63 +19,62 @@
         <p>¿Podrías contarnos por qué te vas?</p>
         <p>Tu opinión es muy valiosa para nosotros.</p>
         
-        
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="op1">
-            <label class="form-check-label" for="op1">Me preocupa la privacidad.</label>
+        <div class="container-md">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="op1">
+                <label class="form-check-label" for="op1">Me preocupa la privacidad.</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="op2">
+                <label class="form-check-label" for="op2">No tengo tiempo/me desconcentra.</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="op3">
+                <label class="form-check-label" for="op3">Tengo problemas para empezar.</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="op4">
+                <label class="form-check-label" for="op4">Otro motivo.</label>
+            </div>
+
+            <div class="separator my-3"></div>
+
+            <div class="container-md botones-eliminar">
+                <button type="button" class="btn btn-primary" onclick="location.href='/eliminarcuenta2';">Continuar</button>
+                <button type="button" class="btn btn-secondary" onclick="location.href='/eliminarcuenta';">Cancelar</button>
+            </div>
         </div>
-    
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="op2">
-            <label class="form-check-label" for="op2">No tengo tiempo/me desconcentra.</label>
-        </div>
-    
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="op3">
-            <label class="form-check-label" for="op3">Tengo problemas para empezar.</label>
-        </div>
-    
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="op4">
-            <label class="form-check-label" for="op4">Otro motivo.</label>
-        </div>
-        <div class="separator my-3"></div>
-        <div class="container-md botones-eliminar">
-            <button type="button" class="btn btn-primary" onclick="location.href='eliminarcuenta2.html';">Continuar</button>
-            <button type="button" class="btn btn-secondary" onclick="location.href='eliminarcuenta.html';">Cancelar</button>
-        </div>
-            
     </div>
     
     <script>
-        // Cuando la página carga
         window.onload = function() {
             document.getElementById('op1').addEventListener('change', function() {
                 if (this.checked) {
-                    window.location.href = 'privacidad.html'; // aquí pones la página a donde quieras ir
+                    window.location.href = '/privacidad';
                 }
             });
-    
+
             document.getElementById('op2').addEventListener('change', function() {
                 if (this.checked) {
-                    window.location.href = 'faltadetiempo.html';
+                    window.location.href = '/faltadetiempo';
                 }
             });
-    
+
             document.getElementById('op3').addEventListener('change', function() {
                 if (this.checked) {
-                    window.location.href = 'usofinit.html';
+                    window.location.href = '/usofinit';
                 }
             });
-    
+
             document.getElementById('op4').addEventListener('change', function() {
                 if (this.checked) {
-                    window.location.href = 'eliminarcuenta2.html';
+                    window.location.href = '/eliminarcuenta2';
                 }
             });
         };
     </script>
-    
-
 </body>
 </html>

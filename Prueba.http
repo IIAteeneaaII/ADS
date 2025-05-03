@@ -15,28 +15,26 @@ Content-Type: application/json
 
 {
   "userName":"prueba",
-  "email": "ejemplo@gmail.com",
-  "password": "user123456"
+  "email": "PRUEBA2@gmail.com",
+  "password": "contras234"
 }
 
 ###
 
 POST http://localhost:3000/api/habit/custom
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlamVtcGxvQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicGVwaXRvMTIzIiwiaWF0IjoxNzQ2MTY1MTcxLCJleHAiOjE3NDYxNjg3NzF9.oY8jPjm36mzAHA0uCvt3RkL_78PKHcBn_RT46fmGXJc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJQUlVFQkEyQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicHJ1ZWJhMiIsImlhdCI6MTc0NjMwMTE4NCwiZXhwIjoxNzQ2MzA0Nzg0fQ.Y5vLDGVFuhmzXLI5u6LEZ6jwyI4Dmd8UbE9la4vrsLI
 
 {
-  "name": "Estiramientos5",
+  "name": "Correr",
   "description": "desc",
   "frequency": {
     "type": "weekly",
-    "days": ["thursday"]
+    "days": ["saturday"]
   },
-  "reminderTime": {
-    "hour": 8,
-    "minute": 22
-  },
-  "startDate": "2025-04-26T00:00:00.000Z"
+  "icon": "../img/gestorhabitos/correr.png",
+  "startDate": "2025-04-26T00:00:00.000Z",
+  "fieldValues": {"unit": "min", "value": "50"}
 }
 
 
