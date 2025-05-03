@@ -7,8 +7,9 @@ exports.createCustomHabit = async (req, res) => {
     name,
     description,
     frequency,
-    reminderTime,
-    startDate
+    startDate,
+    fieldValues, // ej {"unit": "min", "value": "30"}
+    icon
   } = req.body;
 
   try {
@@ -17,10 +18,12 @@ exports.createCustomHabit = async (req, res) => {
       name,
       description,
       frequency,
-      reminderTime,
+      icon,
+      reminder: true,
       startDate: new Date(startDate),
       isActive: true,
-      habitTemplateId: null
+      habitTemplateId: null,
+      fieldValues
     });
 
     res.status(201).json({ message: 'Custom habit created', habit: newHabit });
@@ -29,6 +32,7 @@ exports.createCustomHabit = async (req, res) => {
     res.status(500).json({ message: 'Server error creating custom habit' });
   }
 };
+
 
 exports.getHabitsForDate = async (req, res) => {
   const userId = req.user.id;
