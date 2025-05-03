@@ -45,7 +45,27 @@ exports.getDailyHabitCompletionPercentage = async (userId, date) => {
       },
     },
   });
+exports.findByToken = async (token) => {
+  return await prisma.user.findFirst({
+    where: {
+      resetToken: token,
+      resetTokenExpiry: {
+        gte: new Date(),
+      },
+    },
+  });
+};
 
+exports.updatePassword = async (userId, hashedPassword) => {
+  return await prisma.user.update({
+    where: { id: userId },
+    data: {
+      password: hashedPassword,
+      resetToken: null,
+      resetTokenExpiry: null,
+    },
+  });
+};
   const completedHabits = await prisma.habitTrackingLog.count({
     where: {
       userHabit: {
