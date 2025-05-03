@@ -117,3 +117,8 @@ exports.resetPassword = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.logout = async (req, res) => {
+  res.clearCookie('token');
+  res.redirect('/');
+};
