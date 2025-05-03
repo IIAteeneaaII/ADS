@@ -6,32 +6,30 @@
   <title>Eliminar cuenta</title>
   <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../css/styles.css" rel="stylesheet">
-  
 </head>
 <body>
     <div class="container py-4">
 
-        <a href="eliminarcuenta1.html" class="back-arrow">&lsaquo;</a>
+        <a href="/eliminarcuenta1" class="back-arrow">&lsaquo;</a>
 
         <h1>Eliminar Cuenta</h1>
         <p>Por tu seguridad, vuelve a ingresar la contraseña para continuar.</p>
         
-        
         <div class="container-md">
             <div class="d-flex align-items-center">
-                <input type="password" class="form-control me-2" id="contrasena" name="contrasena" placeholder="Contraseña"  />
+                <input type="password" class="form-control me-2" id="contrasena" name="contrasena" placeholder="Contraseña" />
                 <span class="text-muted fs-5" id="togglePassword" style="cursor: pointer">👁️</span>
             </div>
             <div class="separator my-3"></div>
             <div class="container-md botones-eliminar">
-                <button type="button" class="btn btn-primary" onclick="location.href='eliminarcuenta1.html';">Continuar</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/eliminarcuenta1';">Continuar</button>
                 <button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancelar</button>
             </div>
-            
         </div>
     </div>
+
     <!-- Bootstrap JS -->
-    <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/eliminarcuenta2.js"></script>
+    <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/eliminarcuenta2.js"></script>
 </body>
 </html>
