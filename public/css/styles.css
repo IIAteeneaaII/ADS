@@ -570,6 +570,19 @@ a ::placeholder {
   margin: 0;
 }
 
+.grid-opciones {
+  display: grid;
+  grid-auto-flow: column;
+  background-color: #006270;
+  border-radius: 1rem;
+}
+
+.titulo-habito, .titulo-info {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
 .option {
   background-color: transparent;
   padding: 1rem 1rem;
@@ -720,6 +733,19 @@ form .form-text.text-danger {
 
 .progreso h2 {
   padding: 1rem;
+}
+
+.texto-principal {
+  color: #f8f9fa !important;
+}
+
+.texto-alternativo {
+  color: #1f2421 !important;
+}
+
+.iconos-habitos {
+  color: #f8f9fa;
+  margin-right: 10px;
 }
 
 .botones-eliminar {
