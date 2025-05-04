@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Estiramientos Matutinos</title>
+    <title>Correr</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="../css/styles.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/estiramientos.js"></script>
+    <script src="../js/correr.js"></script>
 </head>
 <body>
     <div class="container py-4">
@@ -22,17 +22,18 @@
 
         <div class="separator my-2"></div>
         <div class="titulo-habito" id="tabs">
-            <img src="../img/gestorhabitos/estiramiento.png" alt="Correr">
+            <img src="../img/gestorhabitos/correr.png" alt="Correr">
             
             <div class="contenido-texto">
-                <h1 class="texto-principal">Estiramientos Matutinos</h1>
+                <h1 class="texto-principal">Correr</h1>
             </div>
             
             <div class="iconos">
-                <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="window.location.href='gestionarestiramientos.html'"></i>
-                <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('Estiramientos Matutinos')" style="cursor: pointer;"></i>
+                <i class="fas fa-edit iconos-habitos" onclick="window.location.href='gestionarcorrer.html'" style="cursor: pointer;"></i>
+                <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('Correr')" style="cursor: pointer;"></i>
             </div>
         </div>
+        
 
         <div>
             <h2>Graficas</h2>
@@ -59,6 +60,7 @@
                 <canvas id="graficaMes"></canvas>
             </div>
         </div>
+
         <div class="grid calendario">
             <div class="text-center">
                 <h2 class="texto-principal">Calendario</h2>
@@ -74,13 +76,14 @@
                 <h5 class="texto-principal">Informacion</h5>
             </div>
             <div class="informacion texto-principal">
-                <p>Sobre los estiramientos...</p>
-                <p>Son una práctica saludable que puede mejorar tu bienestar físico y mental. Estos ejercicios pueden ayudarte a:</p>
-                <p>-La flexibilidad</p>
-                <p>-Reducir la rigidez muscular</p>
-                <p>-Aumentar la circulación sanguínea</p>
-                <p>-Reducir el estrés</p>
-                <p>Al incorporar este simple ejercicio a tu rutina diaria, puedes despertar tu cuerpo y prepararte mentalmente para enfrentar cualquier desafío que se te presente.</p>
+                <p>Sobre correr...</p>
+                <p>Es una actividad física altamente beneficiosa para la salud general y el bienestar emocional. Incorporar este hábito en tu rutina puede ayudarte a:</p>
+                <p>-Mejorar la salud cardiovascular</p>
+                <p>-Aumentar la resistencia y energía diaria</p>
+                <p>-Reducir el estrés y la ansiedad</p>
+                <p>-Favorecer el control del peso corporal</p>
+                <p>-Mejorar la calidad del sueño</p>
+                <p>Correr con regularidad no solo fortalece tu cuerpo, sino que también libera endorfinas, lo que te ayuda a sentirte más feliz, enfocado y motivado en tu día a día.</p>
             </div>
         </div>
     </div>

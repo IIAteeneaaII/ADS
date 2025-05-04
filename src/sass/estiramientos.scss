@@ -19,7 +19,23 @@
     border-radius: 1rem;
 }
 
-.titulo-habito,.titulo-info{
+.titulo-habito{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: center;
+    img {
+        width: 100px;
+        height: auto;
+    }
+    .contenido-texto {
+        flex: 1;
+        padding: 0 15px;
+    }
+}
+.titulo-info{
     display: flex;
     align-items: center;
     text-align: center;
@@ -229,6 +245,14 @@ form {
 .iconos-habitos{
     color: v.$white;
     margin-right: 10px;
+    margin-left: 10px;
+    font-size: 1.5rem;
+}
+.iconos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
 }
 
 
@@ -238,6 +262,10 @@ form {
     gap: 5px;
     justify-content: center;
     max-width: 100%;
+}
+
+.calendario{
+    padding-top: 1.5rem;
 }
 
 .dia-habito {
