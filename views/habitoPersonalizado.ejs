@@ -43,51 +43,50 @@
                   <label for="description" class="form-label">Descripción</label>
                   <textarea class="form-control" id="description" name="description" placeholder="Ej. Leer un libro cada noche antes de dormir" rows="3"></textarea>
                 </div>
-              
+
+                <div class="mb-3">
+                  <label class="form-label">Minutos a realizar el hábito</label>
+                  <div class="d-flex align-items-center">
+                    <input type="number" class="form-control me-2" name="fieldValues[value]" value="1" min="1" required>
+                    <span>min</span>
+                    <input type="hidden" name="fieldValues[unit]" value="min">
+                  </div>
+                </div>
+
+
                 <div class="mb-3">
                   <label for="startDate" class="form-label">Fecha de inicio*</label>
                   <input type="text" class="form-control calendario" id="startDate" name="startDate" required>
                 </div>
               
+
                 <div class="mb-3">
-                  <label class="form-label">Frecuencia*</label>
-                  <select class="form-select" id="frequency-type" name="frequency[type]" required>
-                    <option value="daily">Diaria</option>
-                    <option value="weekly">Semanal</option>
-                  </select>
-                </div>
-              
-                <div id="weekly-days" class="mb-3 d-none">
-                  <label class="form-label">Días de la semana</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="monday" id="monday">
-                    <label class="form-check-label" for="monday">Lunes</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="tuesday" id="tuesday">
-                    <label class="form-check-label" for="tuesday">Martes</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="wednesday" id="wednesday">
-                    <label class="form-check-label" for="wednesday">Miércoles</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="thursday" id="thursday">
-                    <label class="form-check-label" for="thursday">Jueves</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="friday" id="friday">
-                    <label class="form-check-label" for="friday">Viernes</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="saturday" id="saturday">
-                    <label class="form-check-label" for="saturday">Sábado</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="sunday" id="sunday">
-                    <label class="form-check-label" for="sunday">Domingo</label>
+                  <input type="hidden" name="frequency[type]" value="weekly">
+                  <label class="form-label">Días de la semana*</label>
+                  <div class="d-flex flex-wrap gap-2">
+                    <input type="checkbox" class="btn-check" name="frequency[days][]" value="monday" id="monday" autocomplete="off">
+                    <label class="btn btn-outline-secondary rounded-pill" for="monday">Lun</label>
+                
+                    <input type="checkbox" class="btn-check" name="frequency[days][]" value="tuesday" id="tuesday" autocomplete="off">
+                    <label class="btn btn-outline-secondary rounded-pill" for="tuesday">Mar</label>
+                
+                    <input type="checkbox" class="btn-check" name="frequency[days][]" value="wednesday" id="wednesday" autocomplete="off">
+                    <label class="btn btn-outline-secondary rounded-pill" for="wednesday">Mié</label>
+                
+                    <input type="checkbox" class="btn-check" name="frequency[days][]" value="thursday" id="thursday" autocomplete="off">
+                    <label class="btn btn-outline-secondary rounded-pill" for="thursday">Jue</label>
+                
+                    <input type="checkbox" class="btn-check" name="frequency[days][]" value="friday" id="friday" autocomplete="off">
+                    <label class="btn btn-outline-secondary rounded-pill" for="friday">Vie</label>
+                
+                    <input type="checkbox" class="btn-check" name="frequency[days][]" value="saturday" id="saturday" autocomplete="off">
+                    <label class="btn btn-outline-secondary rounded-pill" for="saturday">Sáb</label>
+                
+                    <input type="checkbox" class="btn-check" name="frequency[days][]" value="sunday" id="sunday" autocomplete="off">
+                    <label class="btn btn-outline-secondary rounded-pill" for="sunday">Dom</label>
                   </div>
                 </div>
+                
               
                 <div class="mb-3">
                   <label class="form-label" for="reminderTime">Hora de recordatorio*</label>

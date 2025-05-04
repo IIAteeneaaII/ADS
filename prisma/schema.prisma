@@ -57,7 +57,6 @@ model UserHabit {
   description    String?
   icon           String
   frequency      Json
-  reminderTime   Json
   reminder       Boolean                  @default(true)
   fieldValues    Json                     //x a realizar ej {"unit": "min", "value": "30"}
   startDate      DateTime

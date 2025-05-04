@@ -3,9 +3,18 @@ const { setFlashMessage } = require('../utils/flashMessage');
 
 exports.createCustomHabit = async (req, res) => {
   const userId = req.user.id;
-  const { name, description, frequency, reminderTime, startDate } = req.body;
+  const {
+    name,
+    description,
+    frequency,
+    startDate,
+    fieldValues, // ej {"unit": "min", "value": "30"}
+    icon,
+    reminder
+  } = req.body;
 
-  if (!userId || !name || !frequency || !reminderTime || !startDate) {
+
+  if (!userId || !name || !frequency || !startDate || !fieldValues || !reminder) {
     return res.status(400).json({ message: 'Faltan campos obligatorios' });
   }
 
@@ -24,7 +33,7 @@ exports.createCustomHabit = async (req, res) => {
       description,
       frequency,
       icon,
-      reminder: true,
+      reminder,
       startDate: new Date(startDate),
       isActive: true,
       habitTemplateId: null,

@@ -4,11 +4,7 @@ const prisma = new PrismaClient();
 exports.createUserHabit = async (data) => {
   // console.log(data)
   return await prisma.userHabit.create({
-    data: {
-      ...data,
-      icon: '',
-      fieldValues: {}
-    }
+    data
   });
 };
 
