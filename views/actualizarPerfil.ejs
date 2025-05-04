@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../css/styles.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Actualizar Perfil</title>
+</head>
+<body>
+    <div class="container py-4">
+      <!-- Título principal -->
+      <div class="top-bar"> 
+        <a href="/inicio" class="back-arrow">&lsaquo;</a>
+        <h1 class="mx-auto">Actualizar perfil</h1>
+      </div>
+      <div class="separator my-2"></div>
+
+      <!-- Sección del perfil -->
+      <div class="text-center">
+        <!-- Imagen del perfil -->
+        <div class="mb-3">
+          <img src="../img/fotoPerfil.png" alt="Avatar" class="avatar rounded-circle border">
+          <h2><br>Mi perfil</h2>
+        </div>
+      </div>
+
+      <div class="mb-3 perfil">
+        <label for="nombreUsuario">Tu nombre</label>
+        <div class="position-relative d-flex align-items-center">
+          <span id="nombreUsuario">Usuario</span>
+          <input type="text" id="inputNombreUsuario" class="form-control d-none me-2" style="width: auto;">
+          <i class="fas fa-edit icon-right" id="iconEditar" style="cursor: pointer;"></i>
+        </div>
+      </div>
+      
+
+      <script src="../js/actualizarPerfil.js"></script>
+      <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </div>
+  </body>
+</html>
