@@ -7,9 +7,16 @@ document.getElementById("togglePassword").addEventListener("click", function () 
 
 // Función para obtener una cookie por nombre
 function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
+
+
+  console.log("Todas las cookies:", document.cookie);
+  const cookies = document.cookie.split(';');
+  for (let cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split('=').map(c => c.trim());
+    if (cookieName === name) {
+      return decodeURIComponent(cookieValue);
+    }
+  }
   return null;
 }
 
