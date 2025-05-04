@@ -33,11 +33,7 @@
         </div>
 
         <div class="grid-opciones">
-            <div class="option active texto-principal" data-tab="u-24-horas">
-                <span>Últimas</span>
-                <span>24 horas</span>
-            </div>
-            <div class="option texto-principal" data-tab="u-semana">
+            <div class="option active texto-principal" data-tab="u-semana">
                 <span>Última</span>
                 <span>semana</span>
             </div>
@@ -48,17 +44,21 @@
         </div>
 
         <div class="grid grafica" id="grafica">
-            <div class="tab-pane active" id="u-24-horas">
-                <h2 class="texto-principal">Últimas 24 horas</h2>
-                <canvas id="grafica24"></canvas>
-            </div>
-            <div class="tab-pane d-none" id="u-semana">
+            <div class="tab-pane active" id="u-semana">
                 <h2 class="texto-principal">Última semana</h2>
                 <canvas id="graficaSemana"></canvas>
             </div>
             <div class="tab-pane d-none" id="u-mes">
                 <h2 class="texto-principal">Último mes</h2>
                 <canvas id="graficaMes"></canvas>
+            </div>
+        </div>
+
+        <div class="grid calendario">
+            <div class="text-center">
+                <h2 class="texto-principal">Calendario</h2>
+                <h2 id="tituloMes" class="mb-3 texto-principal"></h2>
+                <div id="calendarioHabito" class="calendario-grid mx-auto"></div>
             </div>
         </div>
         

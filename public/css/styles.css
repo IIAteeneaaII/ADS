@@ -615,6 +615,12 @@ a ::placeholder {
   color: #f8f9fa;
 }
 
+.text-advertencia {
+  text-size-adjust: small;
+  display: none;
+  color: rgb(252, 83, 83);
+}
+
 .tab-content {
   background-color: #1A2B3D;
   margin-top: 1.5rem;
@@ -647,6 +653,7 @@ form .form-text.text-danger {
 
 .btn_gestion {
   display: flex;
+  /*flex-direction: row;*/
   align-items: center;
   justify-content: center;
   margin: 1rem;
@@ -699,8 +706,22 @@ form .form-text.text-danger {
   border-color: #009394;
 }
 
-.btn-dias,
 .dias_notificaciones {
+  background: none;
+  color: #1f2421;
+  border: none;
+  cursor: pointer;
+}
+.dias_notificaciones i {
+  font-size: 24px;
+  color: gray;
+  transition: color 0.3s ease;
+}
+.dias_notificaciones.selected i {
+  color: #00E0C7;
+}
+
+.btn-dias {
   background-color: #D0DAE6;
   border: 2px solid #1f2421;
   border-radius: 0.5rem;
@@ -712,14 +733,12 @@ form .form-text.text-danger {
   transition: all 0.3s ease;
   text-align: center;
 }
-.btn-dias.selected,
-.dias_notificaciones.selected {
+.btn-dias.selected {
   background-color: #009394;
   color: #f8f9fa;
   border-color: #009394;
 }
-.btn-dias:hover:not(.selected),
-.dias_notificaciones:hover:not(.selected) {
+.btn-dias:hover:not(.selected) {
   background-color: #00E0C7;
 }
 
@@ -746,6 +765,37 @@ form .form-text.text-danger {
 .iconos-habitos {
   color: #f8f9fa;
   margin-right: 10px;
+}
+
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 40px);
+  gap: 5px;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.dia-habito {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+}
+
+.dia-cumplido {
+  background-color: green;
+}
+
+.dia-incumplido {
+  background-color: red;
+}
+
+.dia-vacio {
+  background: none;
+  visibility: hidden;
 }
 
 .botones-eliminar {

@@ -235,5 +235,60 @@ function confirmarEliminacion(nombreHabito) {
     if (canvasSemana) new Chart(canvasSemana, configSemana);
     if (canvasMes) new Chart(canvasMes, configMes);
   });
+
   
-  
+  document.addEventListener('DOMContentLoaded', function () {
+    const diasHabito = [
+        { fecha: '2025-05-01', cumplido: true },
+        { fecha: '2025-05-02', cumplido: false },
+        { fecha: '2025-05-04', cumplido: true },
+        { fecha: '2025-05-07', cumplido: false },
+        // Agrega más fechas si quieres
+    ];
+
+    const contenedor = document.getElementById('calendarioHabito');
+    const tituloMes = document.getElementById('tituloMes');
+
+    const hoy = new Date();
+    const year = hoy.getFullYear();
+    const month = hoy.getMonth(); // 0 = Enero
+
+    const nombresMeses = [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    ];
+
+    tituloMes.textContent = `${nombresMeses[month]} ${year}`;
+
+    const primerDiaMes = new Date(year, month, 1).getDay(); // 0 = Domingo
+    const diasEnMes = new Date(year, month + 1, 0).getDate();
+
+    // Ajustar para que el calendario inicie en lunes (opcional)
+    const offset = primerDiaMes === 0 ? 6 : primerDiaMes - 1;
+
+    // Días vacíos antes del 1
+    for (let i = 0; i < offset; i++) {
+        const diaVacio = document.createElement('div');
+        diaVacio.classList.add('dia-habito', 'dia-vacio');
+        contenedor.appendChild(diaVacio);
+    }
+
+    // Días del mes
+    for (let dia = 1; dia <= diasEnMes; dia++) {
+        const fechaStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
+        const registro = diasHabito.find(d => d.fecha === fechaStr);
+
+        const circulo = document.createElement('div');
+        circulo.classList.add('dia-habito');
+
+        if (registro) {
+            circulo.classList.add(registro.cumplido ? 'dia-cumplido' : 'dia-incumplido');
+        } else {
+            circulo.style.opacity = 0.3;
+            circulo.style.backgroundColor = '#999';
+        }
+
+        circulo.textContent = dia;
+        contenedor.appendChild(circulo);
+    }
+});
