@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     nextBtn.addEventListener('click', function () {
         const selected = document.querySelectorAll('.optionpr.selected');
-        console.log(`Seleccionados al hacer clic en "Siguiente": ${selected.length}`); // Para depuración
+        // console.log(`Seleccionados al hacer clic en "Siguiente": ${selected.length}`); // Para depuración
 
         if (selected.length !== maxSelections) {
             Swal.fire({

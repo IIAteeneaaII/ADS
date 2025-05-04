@@ -35,6 +35,7 @@ h1, h2, h3 {
 
 p, a {
   font-family: "Segoe UI", serif;
+  color: #f8f9fa;
 }
 
 body {
@@ -508,7 +509,8 @@ a ::placeholder {
 }
 
 .page_preferencias {
-  margin: 0;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -523,14 +525,23 @@ a ::placeholder {
   padding: 1rem;
 }
 .container_pr p {
+  text-align: center;
   font-size: 0.8rem;
   margin-bottom: 1rem;
 }
 .container_pr h1 {
-  font-family: "Segoe UI", sans-serif;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: black;
+  font-family: "Red Hat Display", serif;
+  color: #f8f9fa;
+}
+.container_pr .omitir {
+  text-align: right;
+}
+.container_pr .omitir a {
+  text-decoration: underline;
+  color: #f8f9fa;
+}
+.container_pr .omitir a:hover {
+  color: #00e0c7;
 }
 
 .grid_pref {
@@ -542,7 +553,8 @@ a ::placeholder {
 
 .optionpr {
   background-color: #006270;
-  padding: 12px;
+  color: #f8f9fa;
+  padding: 1rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -551,22 +563,25 @@ a ::placeholder {
   transition: background-color 0.3s ease;
 }
 .optionpr img {
+  margin-bottom: 1rem;
   width: 40px;
   height: 40px;
   object-fit: contain;
 }
 
 .optionpr.selected {
-  background-color: rgba(130, 148, 166, 0.3098039216);
+  color: #1f2421;
+  background-color: #00e0c7;
 }
 
 .counter {
+  color: #f8f9fa;
   font-size: 1rem;
   margin-bottom: 12px;
 }
 
 .page_preferencias .button {
-  background-color: #cbd5e1;
+  background-color: #006270;
   color: #f8f9fa;
   padding: 8px 16px;
   border: none;
@@ -576,13 +591,13 @@ a ::placeholder {
 }
 .page_preferencias .button:disabled {
   cursor: not-allowed;
-  background-color: #8294A6;
-  color: #1f2421;
+  background-color: #006270;
+  color: #f8f9fa;
 }
 .page_preferencias .button:hover {
   cursor: pointer;
   transform: scale(1.05);
-  background-color: #8294A6;
+  background-color: #009394;
 }
 
 .grid {
