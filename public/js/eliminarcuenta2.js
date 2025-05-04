@@ -70,7 +70,7 @@ document.getElementById("btnEliminar").addEventListener("click", async () => {
 
     if (response.ok) {
       alert("Cuenta eliminada correctamente.");
-      window.location.href = "/login"; // Redirige al login o a una página de despedida
+      window.location.href = "/index"; // Redirige al login
     } else {
       const error = await response.json();
       alert(`Error: ${error.message || "No se pudo eliminar la cuenta."}`);
