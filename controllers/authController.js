@@ -69,6 +69,25 @@ exports.login = async (req, res) => {
   }
 };
 
+exports.deleteAccount = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await userRepo.findByEmail(email);
+    if (!user) return res.status(404).json({ msg: 'User not found' });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ msg: 'Invalid credentials' });
+
+    await userRepo.deleteUserByEmail(email);
+
+    res.status(200).json({ msg: 'Account deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Server error' });
+  }
+};
+
 exports.recoverPassword = async (req, res) => {
   const { email } = req.body;
 

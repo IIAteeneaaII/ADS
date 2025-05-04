@@ -33,3 +33,9 @@ exports.updatePassword = async (email, hashedPassword) => {
 exports.getAll = async () => {
   return await prisma.user.findMany();
 };
+
+exports.deleteUserByEmail = async (email) => {
+  return await prisma.user.delete({
+    where: { email },
+  });
+};
