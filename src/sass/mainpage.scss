@@ -15,22 +15,6 @@ h2 {
     font-size: 20px;
 }
 
-.form-control {
-    background-color: v.$gray-low;
-    border-radius: 1rem;
-    padding: 0.75rem;
-    border: 1px solid #ced4da;
-
-}
-
-/* Cuando el input está enfocado */
-.form-control:focus {
-    background-color: v.$secondaryColor !important;
-    border-color: v.$secondaryColor;
-    box-shadow: none;
-    outline: none;
-}
-
 input::placeholder {
     // color: blue;
     opacity: 1;

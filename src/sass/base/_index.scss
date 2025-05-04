@@ -63,32 +63,45 @@ footer{
 }
 
 .btn-primary {
-    background-color: v.$mainColor-strong;
+    background-color: v.$secondaryColor;
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
     &:hover {
         color: v.$black;
-        background-color: v.$secondaryColor;
+        background-color: v.$mainColor-low;
     }
     &:focus{
-        background-color: v.$secondaryColor;
+        background-color: v.$mainColor-low;
         border: none;
     }
 }
 .btn-secondary {
-    color: v.$black;
-    background-color: v.$secondaryColor-strong;
+    
+    background-color: v.$mainColor-strong;
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
+    color: v.$white;
     &:hover {
-        color: v.$black;
-        background-color:v.$gray-low; 
+        background-color:v.$secondaryColor-strong; 
     }
     &:focus{
-        color: v.$black;
-        background-color: v.$gray-low;
+        background-color: v.$secondaryColor-strong;
         border: none;
     }
 }
+.just-validate-error-label {
+    color: v.$mainColor-low !important;
+    margin-top: 0.5rem;
+}
+.just-validate-error-field {
+    
+    display: block;
+}
+
+input {
+    color: v.$white;
+    background-color: v.$white;
+}
+

@@ -1,4 +1,3 @@
-@charset "UTF-8";
 body, html {
   overflow-x: hidden;
 }
@@ -71,35 +70,47 @@ footer {
 }
 
 .btn-primary {
-  background-color: #006270;
+  background-color: #009394;
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
 }
 .btn-primary:hover {
   color: #1f2421;
-  background-color: #009394;
+  background-color: #00e0c7;
 }
 .btn-primary:focus {
-  background-color: #009394;
+  background-color: #00e0c7;
   border: none;
 }
 
 .btn-secondary {
-  color: #1f2421;
-  background-color: rgba(130, 148, 166, 0.3098039216);
+  background-color: #006270;
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
+  color: #f8f9fa;
 }
 .btn-secondary:hover {
-  color: #1f2421;
-  background-color: #e9ecef;
+  background-color: rgba(130, 148, 166, 0.3098039216);
 }
 .btn-secondary:focus {
-  color: #1f2421;
-  background-color: #e9ecef;
+  background-color: rgba(130, 148, 166, 0.3098039216);
   border: none;
+}
+
+.just-validate-error-label {
+  color: #00e0c7 !important;
+  margin-top: 0.5rem;
+}
+
+.just-validate-error-field {
+  display: block;
+}
+
+input {
+  color: #f8f9fa;
+  background-color: #f8f9fa;
 }
 
 header {
@@ -134,8 +145,9 @@ main h2 {
 }
 .hero-img img {
   width: 100%;
-  height: 30rem;
-  object-fit: cover;
+  height: 50rem;
+  object-fit: none;
+  object-position: 50% 4%;
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
   display: block;
@@ -167,17 +179,17 @@ main h2 {
 
 .form-control {
   background-color: #1A2B3D;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 0.75rem;
-  border: 1px solid #ced4da;
+  border: 1px solid #009394;
+  color: #f8f9fa;
 }
-
-/* Cuando el input está enfocado */
 .form-control:focus {
-  background-color: #009394 !important;
+  background-color: #1A2B3D !important;
   border-color: #009394;
   box-shadow: none;
   outline: none;
+  color: #00e0c7;
 }
 
 input::placeholder {
@@ -192,6 +204,7 @@ a {
 
 a:hover {
   text-decoration: underline;
+  color: #009394;
 }
 
 .text-end {
@@ -221,21 +234,6 @@ h2 {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 20px;
-}
-
-.form-control {
-  background-color: #e9ecef;
-  border-radius: 1rem;
-  padding: 0.75rem;
-  border: 1px solid #ced4da;
-}
-
-/* Cuando el input está enfocado */
-.form-control:focus {
-  background-color: #009394 !important;
-  border-color: #009394;
-  box-shadow: none;
-  outline: none;
 }
 
 input::placeholder {
@@ -649,11 +647,6 @@ form {
 }
 form .form-label {
   font-weight: 600;
-}
-form .form-control {
-  background-color: #1A2B3D;
-  border: 1px solid #006270;
-  border-radius: 0.5rem;
 }
 form .form-text.text-danger {
   font-size: 0.8rem;

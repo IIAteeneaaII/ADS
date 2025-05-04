@@ -65,21 +65,12 @@
 
 form {
     background-color: v.$mainColor;
-
     .form-label {
         font-weight: 600;
     }
-
-    .form-control {
-        background-color: v.$mainColor;
-        border: 1px solid v.$mainColor-strong;
-        border-radius: 0.5rem;
-    }
-
     .form-text.text-danger {
         font-size: 0.8rem;
     }
-
 }
 .btn_gestion {
     display: flex;
