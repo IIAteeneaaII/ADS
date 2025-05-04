@@ -875,4 +875,18 @@ form .form-text.text-danger {
   padding-right: 2.5rem; /* espacio para la flecha */
 }
 
+.avatar {
+  width: 120px;
+  height: 120px;
+  margin-top: 1rem;
+}
+
+.perfil {
+  color: #FFFFFF;
+}
+
+.icon-right {
+  margin-left: auto; /* Empuja el ícono al extremo derecho */
+}
+
 /*# sourceMappingURL=styles.css.map */

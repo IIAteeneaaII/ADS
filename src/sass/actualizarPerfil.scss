@@ -1,0 +1,16 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    margin-top: 1rem; 
+}
+  
+.perfil{
+    color: v.$text-primary-color;
+}
+
+.icon-right {
+    margin-left: auto; /* Empuja el ícono al extremo derecho */
+}
