@@ -101,6 +101,26 @@ app.get('/EliminarCuenta', authMiddleware,(req, res) => {
     res.render('eliminarCuenta');
 });
 
+app.get('/EliminarCuenta1', authMiddleware,(req, res) => {
+    res.render('eliminarCuenta1');
+});
+
+app.get('/EliminarCuenta2', authMiddleware,(req, res) => {
+    res.render('eliminarCuenta2');
+});
+
+app.get('/Privacidad', authMiddleware,(req, res) => {
+    res.render('privacidad');
+});
+
+app.get('/FaltaDeTiempo', authMiddleware,(req, res) => {
+    res.render('faltadetiempo');
+});
+
+app.get('/UsoFinit', authMiddleware,(req, res) => {
+    res.render('usofinit');
+});
+
 app.get('/personalizado', authMiddleware, (req, res) => {
   res.render('habitoPersonalizado');
 });
