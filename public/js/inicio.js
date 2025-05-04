@@ -1,59 +1,4 @@
-// Función para alternar visibilidad de contraseña
-document.getElementById("togglePassword").addEventListener("click", function () {
-  const passwordInput = document.getElementById("contrasena");
-  const type = passwordInput.type === "password" ? "text" : "password";
-  passwordInput.type = type;
-  this.textContent = type === "password" ? "👁️" : "🙈";
-});
-
-// Función para eliminar cuenta
-document.getElementById("btnEliminar").addEventListener("click", async () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("contrasena").value;
-
-  if (!email || !password) {
-    alert("Por favor, ingresa tu correo electrónico y contraseña.");
-    return;
-  }
-
-  // Validación básica de formato de email
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    alert("Por favor, ingresa un correo electrónico válido.");
-    return;
-  }
-
-  try {
-    const response = await fetch("/api/auth/deleteAcc", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: 'include', // Importante para incluir cookies HttpOnly
-      body: JSON.stringify({ email, password })
-    });
-
-    if (response.ok) {
-      alert("Cuenta eliminada correctamente.");
-      
-      // Borrar todas las cookies accesibles
-      document.cookie.split(";").forEach(cookie => {
-        const name = cookie.split("=")[0].trim();
-        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
-      });
-
-      // Redirigir al login
-      window.location.href = "/login";
-    } else {
-      const error = await response.json();
-      alert(`Error: ${error.message || "No se pudo eliminar la cuenta. Verifica tus datos."}`);
-    }
-  } catch (err) {
-    console.error("Error al hacer la solicitud:", err);
-    alert("Ocurrió un error inesperado al conectar con el servidor.");
-  }
-});
-
-// Resto de tu código JavaScript existente (simulación de nombre, menú lateral, etc.)
+// Simulación de nombre del usuario
 const nombre = "Juan";
 document.getElementById('nombreUsuario').textContent = nombre;
 
@@ -101,13 +46,19 @@ async function cargarHabitos() {
   seccionHabitos.innerHTML = '';
 
   try {
+    //habitos del usuario del dia
     const response = await fetch('http://localhost:3000/api/inicio/principalScr', {
-      credentials: 'include' // Usa cookies en lugar de localStorage
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
     });
     const habitos = await response.json();
 
+    //seguimiento del habito de el dia (se completo o no)(falta implementar)
+
+    // HTML
     if (habitos.length === 0) {
-      seccionHabitos.innerHTML = '<p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón "Crear +" para crear tu primer hábito.</p>';
+      seccionHabitos.innerHTML = '<p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón “Crear +” para crear tu primer hábito.</p>';
     } else {
       habitos.forEach(habito => {
         const habitContainer = document.createElement('div');
@@ -175,10 +126,10 @@ async function cargarHabitos() {
       
           if (isChecked) {
             this.style.backgroundColor = 'green';
-            console.log('Hábito completado');
+            console.log('Hábito completado'); //enviar a base true
           } else {
             this.style.backgroundColor = 'white';
-            console.log('Hábito desmarcado');
+            console.log('Hábito desmarcado'); //enviar a base false
           }
         });
       
@@ -193,15 +144,20 @@ async function cargarHabitos() {
   }
 }
 
+// Llamar a la función de carga de hábitos cuando la página se carga
 window.addEventListener('load', cargarHabitos);
 
-// Logout: borrar cookies y token, redirigir al login
+//  Logout: borrar cookies y token, redirigir al login
 document.getElementById('confirmarLogout').addEventListener('click', () => {
+  // Borra todas las cookies accesibles desde JavaScript
   document.cookie.split(";").forEach(cookie => {
     const name = cookie.split("=")[0].trim();
     document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
   });
 
+  // Elimina el token JWT del almacenamiento local
   localStorage.removeItem('token');
+
+  // Redirige al login
   window.location.href = '/';
 });
