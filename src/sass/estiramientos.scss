@@ -59,6 +59,12 @@
     }
 }
 
+.text-advertencia{
+    text-size-adjust: small;
+    display: none;
+    color: rgb(252, 83, 83);
+}
+
 .tab-content {
     background-color: v.$mainColor;
     margin-top: 1.5rem;
@@ -97,7 +103,7 @@ form {
 }
 .btn_gestion {
     display: flex;
-    // flex-direction: row;
+    /*flex-direction: row;*/
     align-items: center;
     justify-content: center;
     margin: 1rem;
@@ -155,8 +161,25 @@ form {
     }
 }
 
-.btn-dias,
 .dias_notificaciones {
+    background: none;
+    color: v.$black;
+    border: none;
+    cursor: pointer;
+  
+    i {
+      font-size: 24px;
+      color: gray;
+      transition: color 0.3s ease;
+    }
+  
+    &.selected i {
+        color: v.$secondaryColor;
+    }
+  }
+  
+  
+.btn-dias{
     background-color: v.$mainColor-low;
     border: 2px solid v.$black;
     border-radius: 0.5rem;
@@ -207,3 +230,5 @@ form {
     color: v.$white;
     margin-right: 10px;
 }
+
+

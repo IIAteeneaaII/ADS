@@ -7,6 +7,7 @@
     <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pikaday/plugins/pikaday.es.js"></script>
     <link href="../css/styles.css" rel="stylesheet">
@@ -24,8 +25,11 @@
             <div class="tab-pane active" id="gestionar">
                 <form>
                     <div class="mb-3 texto-principal">
-                        <label for="tiempo" class="form-label">Tiempo a realizar*</label>
-                        <input type="text" class="form-control" id="tiempo" placeholder="Duración de la sesión">
+                        <label for="tiempo" class="form-label">Tiempo a realizar al día (en minutos)*</label>
+                        <input type="number" class="form-control" id="tiempo" placeholder="Duración de la sesión" min="1" max="60" step="1">
+                        <div id="mensaje-error" class="text-advertencia small">
+                            El tiempo debe estar entre 1 y 60 minutos.
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -57,11 +61,11 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Selecciona las notificaciones a recibir al día*:</label>
+                        <label class="form-label">Recibir notificaciones*:</label>
                         <div class="btn-group" role="group">
-                            <button type="button" class="dias_notificaciones">En la mañana</button>
-                            <button type="button" class="dias_notificaciones">En la tarde</button>
-                            <button type="button" class="dias_notificaciones">En la noche</button>
+                            <button type="button" class="dias_notificaciones">
+                                <i class="fa-solid fa-bell"></i>
+                              </button>
                         </div>
                     </div>
 

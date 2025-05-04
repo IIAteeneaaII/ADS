@@ -14,6 +14,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const inputTiempo = document.getElementById('tiempo');
+    const mensajeError = document.getElementById('mensaje-error');
+    
+    inputTiempo.addEventListener('input', function () {
+        // Elimina caracteres no numéricos
+        this.value = this.value.replace(/\D/g, '');
+    
+        let valor = parseInt(this.value, 10);
+    
+        // Mostrar u ocultar el mensaje según el valor
+        if (this.value === '' || isNaN(valor) || valor > 60) {
+            mensajeError.style.display = 'block';
+        } else {
+            mensajeError.style.display = 'none';
+        }
+    
+        // Si es mayor a 60, recorta a 60
+        if (valor > 60) {
+            this.value = 60;
+        }
+    });
+    
+
     // -------- FECHAS --------
     const formatearFecha = (fecha) => {
         const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
