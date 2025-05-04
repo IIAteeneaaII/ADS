@@ -101,6 +101,10 @@ app.get('/EliminarCuenta', authMiddleware,(req, res) => {
     res.render('eliminarCuenta');
 });
 
+app.get('/personalizado', authMiddleware, (req, res) => {
+  res.render('habitoPersonalizado');
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/habit', authMiddleware, habitRoutes);
 app.use('/api/inicio', authMiddleware, principalScrRoutes);

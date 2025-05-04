@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registra tu propio habito</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/plugins/pikaday.es.js"></script>
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="../js/estiramientos.js"></script>
+</head>
+<body>
+    <div class="container py-4">
+
+        <div class="top-bar">
+            <a href="/gestionarHabitos" class="back-arrow">&lsaquo;</a>
+            <h1 class="mx-auto">Habito personalizado</h1>
+        </div>
+
+        <div class="separator my-2"></div>
+
+        <div class="grid" id="tabs">
+            <div class="option active" data-tab="gestionar">
+                <div class="text">
+                    <span>Gestionar</span>
+                    <span>hábito</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content mt-4">
+            <div class="tab-pane active" id="gestionar">
+              <form id="form-habito" method="POST" action="/api/habit/personalizado">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Nombre del hábito*</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Ej. Leer 30 minutos" required>
+                </div>
+              
+                <div class="mb-3">
+                  <label for="description" class="form-label">Descripción</label>
+                  <textarea class="form-control" id="description" name="description" placeholder="Ej. Leer un libro cada noche antes de dormir" rows="3"></textarea>
+                </div>
+              
+                <div class="mb-3">
+                  <label for="startDate" class="form-label">Fecha de inicio*</label>
+                  <input type="text" class="form-control calendario" id="startDate" name="startDate" required>
+                </div>
+              
+                <div class="mb-3">
+                  <label class="form-label">Frecuencia*</label>
+                  <select class="form-select" id="frequency-type" name="frequency[type]" required>
+                    <option value="daily">Diaria</option>
+                    <option value="weekly">Semanal</option>
+                  </select>
+                </div>
+              
+                <div id="weekly-days" class="mb-3 d-none">
+                  <label class="form-label">Días de la semana</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="monday" id="monday">
+                    <label class="form-check-label" for="monday">Lunes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="tuesday" id="tuesday">
+                    <label class="form-check-label" for="tuesday">Martes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="wednesday" id="wednesday">
+                    <label class="form-check-label" for="wednesday">Miércoles</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="thursday" id="thursday">
+                    <label class="form-check-label" for="thursday">Jueves</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="friday" id="friday">
+                    <label class="form-check-label" for="friday">Viernes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="saturday" id="saturday">
+                    <label class="form-check-label" for="saturday">Sábado</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="frequency[days][]" value="sunday" id="sunday">
+                    <label class="form-check-label" for="sunday">Domingo</label>
+                  </div>
+                </div>
+              
+                <div class="mb-3">
+                  <label class="form-label" for="reminderTime">Hora de recordatorio*</label>
+                  <input type="time" class="form-control" name="reminderTime" id="reminderTime" required>
+                </div>
+              
+                <button type="submit" class="btn btn-primary">Guardar hábito</button>
+              </form>
+              
+            </div>
+
+            <div class="tab-pane d-none" id="progreso">
+                <div class="mb-3 progreso">
+                    <h2>¿Cumpliste con el objetivo del día?</h2>
+                    <div class="resProgreso ">
+                        <button type="button" class="btn-progreso btn-primary" id="cumplio">SI</button>
+                        <button type="button" class="btn-progreso btn-secondary" id="nocumplio">NO</button>
+                    </div>
+                    <p>Leer hoy fue una gran desición</p>
+                    <div class="img-fluid" >
+                        <img src="../img/gestorhabitos/estiramiento.png" />
+                    </div>
+                    <div class="resProgresobtn d-flex flex-wrap justify-content-center">
+                        <button type="button" class="btn-progreso btn-primary">Modificar</button>
+                        <button type="button" class="btn-progreso btn-secondary">Guardar</button>
+                    </div>
+                </div>
+                <div class="mb-3 progreso">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic, voluptates.</p>
+                </div>
+            </div>
+
+            <div class="tab-pane d-none informacion" id="info">
+                <p>Sobre los estiramientos...</p>
+                <p>Son una práctica saludable que puede mejorar tu bienestar físico y mental. Estos ejercicios pueden ayudarte a:</p>
+                <p>-La flexibilidad</p>
+                <p>-Reducir la rigidez muscular</p>
+                <p>-Aumentar la circulación sanguínea</p>
+                <p>-Reducir el estrés</p>
+                <p>Al incorporar este simple ejercicio a tu rutina diaria, puedes despertar tu cuerpo y prepararte mentalmente para enfrentar cualquier desafío que se te presente.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+  new Pikaday({
+    field: document.getElementById('startDate'),
+    format: 'YYYY-MM-DD',
+    i18n: {
+      previousMonth: 'Mes anterior',
+      nextMonth: 'Mes siguiente',
+      months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+      weekdays: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+      weekdaysShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']
+    },
+    toString(date) {
+      return date.toISOString().split('T')[0];
+    }
+  });
+
+  document.getElementById('frequency-type').addEventListener('change', function () {
+    const isWeekly = this.value === 'weekly';
+    document.getElementById('weekly-days').classList.toggle('d-none', !isWeekly);
+  });
+</script>

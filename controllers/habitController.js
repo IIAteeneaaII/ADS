@@ -1,16 +1,21 @@
 const habitRepo = require('../repositories/habitRepositoryPrisma');
+const { setFlashMessage } = require('../utils/flashMessage');
 
 exports.createCustomHabit = async (req, res) => {
   const userId = req.user.id;
+  const { name, description, frequency, reminderTime, startDate } = req.body;
 
-  const {
-    name,
-    description,
-    frequency,
-    startDate,
-    fieldValues, // ej {"unit": "min", "value": "30"}
-    icon
-  } = req.body;
+  if (!userId || !name || !frequency || !reminderTime || !startDate) {
+    return res.status(400).json({ message: 'Faltan campos obligatorios' });
+  }
+
+  if (frequency.type === 'weekly' && (!Array.isArray(frequency.days) || frequency.days.length === 0)) {
+    return res.status(400).json({ message: 'Se requieren los días para frecuencia semanal' });
+  }
+
+  if (frequency.type === 'daily' && frequency.days) {
+    return res.status(400).json({ message: 'La frecuencia diaria no debe tener días específicos' });
+  }
 
   try {
     const newHabit = await habitRepo.createUserHabit({
@@ -26,12 +31,16 @@ exports.createCustomHabit = async (req, res) => {
       fieldValues
     });
 
-    res.status(201).json({ message: 'Custom habit created', habit: newHabit });
+    setFlashMessage(res, 'Se ha creado tu habito personalizado', 'success');
+
+    res.redirect('/inicio')
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server error creating custom habit' });
+    setFlashMessage(res, 'Hubo un error en el servidor. Intenta más tarde', 'error');
+    res.redirect('/')
   }
 };
+
 
 exports.getHabitsForDate = async (req, res) => {
   const userId = req.user.id;
