@@ -1,0 +1,58 @@
+
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="login-box w-100">
+            <header class="text-center">
+                <div class="container_logo">
+                    <img src="/img/fin_negro.png" class="img" alt="Logo Fin" />
+                    <img src="/img/negro.png" class="img" alt="Fin It" />
+                </div>
+            </header>
+
+            <main>
+                <div class="form-container">
+                    <h2 class="text-center mb-4">Registrarse</h2>
+                    <form id="formRegistro" autocomplete="off" action="/api/auth/register" method="POST">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre de usuario:</label>
+                            <input type="text" class="form-control" id="userName" name="userName"
+                                placeholder="Ingresa tu usuario" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="correo" class="form-label">Correo electrónico:</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Ingresa tu correo" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="contrasena" class="form-label">Contraseña:</label>
+                            <input type="password" class="form-control me-2" id="password" name="password"
+                                placeholder="Ingresa tu contraseña" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
+                            <input type="password" class="form-control me-2" id="confirmarContrasena"
+                                name="confirmarContrasena" placeholder="Confirma tu contraseña" />
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="check" type="checkbox" id="terminosCheck" />
+                            <label class="form-check-label" for="terminosCheck">
+                                Aceptar <a href="/terminosyCondiciones">términos y condiciones</a>
+                            </label>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn-primary">Registrarse</button>
+                            <button type="button" class="btn-secondary">Cancelar</button>
+                        </div>
+                    </form>
+                    <p class="text-end mt-3">
+                        ¿Ya tienes cuenta? <a href="/">Inicia sesión</a>
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <% extraScripts = `
+  <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+  <script src="/js/registro.js"></script>
+` %>

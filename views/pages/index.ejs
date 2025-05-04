@@ -1,0 +1,46 @@
+
+    <div class="login_wrapper">
+        <div class="hero-img">
+            <img src="/img/finit1.png" class="img" alt="Fin It" />
+        </div>
+
+        <div class="container-md login-card">
+            <div class="login-box w-100">
+                <div class="wrapp">
+                    <main>
+                        <h2 class="text-center mb-4">Iniciar sesión</h2>
+                        <form id="formLogin" action="/api/auth/login" method="POST" autocomplete="off">
+                            <div class="mb-3">
+                                <label for="correo" class="form-label">Correo electrónico:</label>
+                                <input type="email" class="form-control" id="correo" name="email"
+                                    placeholder="tucorreo@gmail.com" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="contrasena" class="form-label">Contraseña:</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="password" class="form-control me-2" id="contrasena" name="password"
+                                        placeholder="Ingresa tu contraseña" />
+                                    <span class="text-muted fs-5" id="togglePassword" style="cursor: pointer">👁️</span>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                            </div>
+                        </form>
+
+                        <div class="text-end mt-3">
+                            <a href="/olvidarcontrasena">Olvidé mi contraseña</a>
+                        </div>
+                        <div class="text-end mt-2">
+                            <span>¿No tienes cuenta? <a href="/registro">Regístrate</a></span>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <% extraScripts = `
+  <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+  <script src="/js/index.js"></script>
+` %>

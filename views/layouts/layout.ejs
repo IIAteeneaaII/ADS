@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <%= title %>
+    </title>
+
+    <!-- Estilos -->
+    <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+
+    <!-- Extra styles por vista -->
+    <% if (typeof extraStyles !=='undefined' ) { %>
+        <%- extraStyles %>
+            <% } %>
+</head>
+
+<body>
+
+    <!-- Contenido principal -->
+    <%- body %>
+
+        <!-- Scripts comunes -->
+        <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="/js/flashMessage.js"></script>
+
+        <!-- Extra scripts por vista -->
+        <% if (typeof extraScripts !=='undefined' ) { %>
+            <%- extraScripts %>
+                <% } %>
+</body>
+
+</html>
