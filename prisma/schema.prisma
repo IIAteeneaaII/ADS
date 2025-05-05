@@ -58,7 +58,7 @@ model UserHabit {
   icon           String
   frequency      Json
   reminder       Boolean                  @default(true)
-  fieldValues    Json                     //x a realizar ej {"unit": "min", "value": "30"}
+  fieldValues    Json?                     //x a realizar ej {"unit": "min", "value": "30"}
   startDate      DateTime
   isActive       Boolean                  @default(true)
   customValues   UserHabitFieldValue[]
