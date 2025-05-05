@@ -13,18 +13,22 @@
       <!-- Título principal -->
       <div class="top-bar"> 
         <a href="inicio.html" class="back-arrow">&lsaquo;</a>
-        <h1 class="mx-auto">Actualizar perfil</h1>
+        <h1 class="mx-auto actualizar">Actualizar perfil</h1>
       </div>
       <div class="separator my-2"></div>
 
       <!-- Sección del perfil -->
-      <div class="text-center">
-        <!-- Imagen del perfil -->
-        <div class="mb-3">
-          <img src="../img/fotoPerfil.png" alt="Avatar" class="avatar rounded-circle border">
-          <h2><br>Mi perfil</h2>
+      <!-- AÑADE text-center o usa un contenedor con d-flex justify-content-center -->
+      <div class="mb-3 text-center">
+        <div class="perfil-foto-container">
+          <img src="../img/fotoPerfil.png" alt="Foto de perfil" class="perfil-foto">
+          <label for="fotoInput" class="icono-camara">
+            <i class="fas fa-camera fa-sm"></i>
+          </label>
+          <input type="file" id="fotoInput" accept="image/*" class="d-none">
         </div>
       </div>
+      <h2><br>Mi perfil</h2>   
 
       <div class="mb-3 perfil">
         <label for="nombreUsuario">Tu nombre</label>
