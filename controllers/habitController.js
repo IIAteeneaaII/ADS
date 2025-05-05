@@ -8,24 +8,10 @@ exports.createCustomHabit = async (req, res) => {
     description,
     frequency,
     startDate,
-    fieldValues, // ej {"unit": "min", "value": "30"}
-    icon,
-    reminder
+    icon = "yes",
+    reminder = true
   } = req.body;
-
-
-  if (!userId || !name || !frequency || !startDate || !fieldValues || !reminder) {
-    return res.status(400).json({ message: 'Faltan campos obligatorios' });
-  }
-
-  if (frequency.type === 'weekly' && (!Array.isArray(frequency.days) || frequency.days.length === 0)) {
-    return res.status(400).json({ message: 'Se requieren los días para frecuencia semanal' });
-  }
-
-  if (frequency.type === 'daily' && frequency.days) {
-    return res.status(400).json({ message: 'La frecuencia diaria no debe tener días específicos' });
-  }
-
+  console.log(frequency)
   try {
     const newHabit = await habitRepo.createUserHabit({
       userId,
@@ -33,11 +19,10 @@ exports.createCustomHabit = async (req, res) => {
       description,
       frequency,
       icon,
-      reminder,
+      reminder: reminder === "yes",
       startDate: new Date(startDate),
       isActive: true,
-      habitTemplateId: null,
-      fieldValues
+      habitTemplateId: null
     });
 
     setFlashMessage(res, 'Se ha creado tu habito personalizado', 'success');

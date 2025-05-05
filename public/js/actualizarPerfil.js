@@ -35,3 +35,20 @@ icono.addEventListener("click", () => {
         });
     }
 });
+
+document.getElementById('fotoInput').addEventListener('change', function (event) {
+  const file = event.target.files[0];
+  if (file) {
+      const avatar = document.querySelector('.perfil-foto');
+      avatar.src = URL.createObjectURL(file);
+
+      Swal.fire({
+          icon: 'success',
+          title: 'Foto actualizada',
+          text: 'Tu foto de perfil se ha actualizado correctamente.',
+          confirmButtonText: 'Aceptar',
+          customClass: { confirmButton: 'btn btn-primary' },
+          buttonsStyling: false
+      });
+  }
+});

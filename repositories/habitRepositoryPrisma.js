@@ -10,13 +10,10 @@ exports.createUserHabit = async (data) => {
 
 exports.getUserHabitsWithLog = async (userId, date, dayName) => {
   console.log({ userId, date, dayName });
-  return await prisma.userHabit.findMany({
+  const habits = await prisma.userHabit.findMany({
     where: {
       userId: userId,
       isActive: true,
-      startDate: {
-        lte: date,
-      },
       AND: [
         {
           frequency: {
@@ -33,6 +30,9 @@ exports.getUserHabitsWithLog = async (userId, date, dayName) => {
       ],
     },
   });
+  console.log(habits)
+
+  return habits
 };
 
 
