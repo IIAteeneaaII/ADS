@@ -1,0 +1,44 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+h1.actualizar {
+    font-family: v.$title;
+    color: v.$text-primary-color;
+}
+
+.perfil-foto-container {
+  position: relative;
+  display: inline-block;
+}
+
+.perfil-foto {
+  width: 150px; /* ajusta según tu diseño */
+  height: 150px;
+  border-radius: 50%;
+  margin-top: 1rem; 
+  object-fit: cover;
+}
+
+.icono-camara {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+.icono-camara:hover {
+  background-color: #e0e0e0;
+}
+  
+.perfil{
+    color: v.$text-primary-color;
+}
+
+.icon-right {
+    margin-left: auto; /* Empuja el ícono al extremo derecho */
+}
