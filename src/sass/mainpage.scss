@@ -8,11 +8,11 @@
     padding: 1rem;
 }
 
-h2 {
-    font-family: v.$text;
-    text-align: center;
+h1, h2 {
+    color: v.$white;
+    // text-align: center;
     margin-bottom: 2rem;
-    font-size: 20px;
+    font-size: 1.5rem;
 }
 
 input::placeholder {
@@ -21,17 +21,27 @@ input::placeholder {
 }
 
 a {
-    color: var(--main--color--strong);
+
     text-decoration: none;
     font-weight: 500;
-    ::placeholder {
-    text-decoration: underline;
+
+    &:placeholder {
+        text-decoration: underline;
     }
 }
+
+.fecha{
+    color: v.$mainColor-low;
+    
+}
+.day_state, .state{
+    display: flex;
+    flex-direction: row;
+}
+
 .text-end {
     text-align: center !important;
 }
-
 
 .position-relative {
     position: relative;
@@ -45,14 +55,12 @@ a {
 .calendar-dot {
     width: 24px;
     height: 24px;
-    background-color: var(--second--color-low);
     border-radius: 50%;
     margin: 0 auto;
     margin-top: 5px;
 }
 
 .calendar-dot.active {
-    background-color: var(--main--color--strong);
     border: 2px solid var(--main--color--black);
 }
 
@@ -68,14 +76,13 @@ a {
 }
 
 .btn-create {
-    background-color: var(--second--color-strong);
     border-radius: 20px;
     padding: 6px 14px;
     border: none;
 }
 
 .btn-create:hover {
-    background-color: var(--main--color--strong);
+
 }
 
 .sidebar {
@@ -119,25 +126,35 @@ a {
     justify-content: space-between;
     align-items: center;
     border-radius: 0.5rem;
-  }
-  .top-bar-inicio .icons i {
+}
+
+.top-bar-inicio .icons i {
     margin-left: 10px;
     font-size: 1.2rem;
-  }
-  .time-buttons{
+}
+.iconos{
+    color: v.$white;
+    cursor: pointer;
+}
+.time-buttons {
     text-align: center;
-  }
-  .time-buttons .btn {
+}
+
+.time-buttons .btn {
     margin: 0 0.25rem;
     margin-bottom: 0.25rem;
-  }
-  .create-button {
+}
+
+.create-button {
     text-align: center;
-  }
-  .habitos_titulo{
+}
+
+.habitos_titulo {
+    color: v.$white;
     padding-top: 1rem;
-  }
-  .btn-dark {
+}
+
+.btn-dark {
     background-color: v.$black;
     border: none;
     border-radius: 1rem;

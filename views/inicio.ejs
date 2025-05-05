@@ -41,31 +41,39 @@
     <!-- Barra superior -->
     <div class="top-bar-inicio">
       <div>
-        <i class="fas fa-bars" style="cursor: pointer;" id="btnMenu"></i>
+        <i class="fas fa-bars iconos" style="cursor: pointer;" id="btnMenu"></i>
       </div>
       <div class="icons">
-        <i class="fa-solid fa-chart-simple" style="cursor: pointer;" onclick="location.href='/estadisticas';"></i>
-        <i class="fa-solid fa-bell" style="cursor: pointer;" onclick="location.href='/notificaciones';"></i>
-        <i class="fas fa-star" style="cursor: pointer;" onclick="location.href='/racha';"></i>
+        <!-- <i class="fa-solid fa-chart-line" style="cursor: pointer; color: #fff;" onclick="location.href='/estadisticas';" title="Estadísticas"></i> -->
+        <i class="fa-regular fa-bell iconos" onclick="location.href='/notificaciones';" title="Notificaciones"></i>
+        <i class="fa-solid fa-bolt iconos" onclick="location.href='/racha';" title="Racha"></i>
+
+
       </div>
     </div>
 
     <!-- Contenido principal -->
     <div class="container-md pt-2">
-      <h1>Hola, <span id="nombreUsuario">Usuario</span> <i class="fa-solid fa-hand-peace"></i></h1>
-      <div class="text-center mt-3">
-        <div class="fw-bold" id="diaSemana">Sábado</div>
-        <div class="day-badge my-1" id="numeroDia">7</div>
-        <div>
+      <!-- <i class="fa-solid fa-hand-peace"></i> -->
+      <h1>Hola, <span id="nombreUsuario">Usuario</span> </h1>
+
+      <div class="text-center day_state">
+        <div class="day_number">
+          <div class="fw-bold fecha" id="diaSemana">Sábado</div>
+          <div class="day-badge my-1 fecha" id="numeroDia">7</div>
+        </div>
+        <div class="text-center state">
           <p>¿Cómo te sientes el día de hoy?</p>
-          <button class="btn btn-primary rounded-pill px-4" onclick="location.href='/estadodeAnimo';">
+          <button class="btn btn-secondary" onclick="location.href='/estadodeAnimo';">
             <i class="fa-solid fa-face-meh-blank emoji" id="emoji-inicio"></i>
           </button>
         </div>
       </div>
-
+      <div class="text-center">
+        <button class="btn btn-primary" onclick="location.href='/gestionarHabitos';">Gestionar mis hábitos</button>
+      </div>
       <div class="habitos_titulo">
-        <h2>Tus hábitos</h2>
+        <h2>Habitos de hoy</h2>
       </div>
     </div>
 
@@ -73,7 +81,8 @@
 
     <!-- Sección de hábitos -->
     <div class="habit-card mt-4" id="seccion-de-habitos">
-      <p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón “Crear +” para crear tu primer hábito.</p>
+      <p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón “Crear +” para crear tu primer
+        hábito.</p>
     </div>
 
     <div class="create-button">

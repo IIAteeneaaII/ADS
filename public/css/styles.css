@@ -230,11 +230,10 @@ a:hover {
   padding: 1rem;
 }
 
-h2 {
-  font-family: "Segoe UI", serif;
-  text-align: center;
+h1, h2 {
+  color: #f8f9fa;
   margin-bottom: 2rem;
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 
 input::placeholder {
@@ -242,12 +241,20 @@ input::placeholder {
 }
 
 a {
-  color: var(--main--color--strong);
   text-decoration: none;
   font-weight: 500;
 }
-a ::placeholder {
+a:placeholder {
   text-decoration: underline;
+}
+
+.fecha {
+  color: #00e0c7;
+}
+
+.day_state, .state {
+  display: flex;
+  flex-direction: row;
 }
 
 .text-end {
@@ -266,14 +273,12 @@ a ::placeholder {
 .calendar-dot {
   width: 24px;
   height: 24px;
-  background-color: var(--second--color-low);
   border-radius: 50%;
   margin: 0 auto;
   margin-top: 5px;
 }
 
 .calendar-dot.active {
-  background-color: var(--main--color--strong);
   border: 2px solid var(--main--color--black);
 }
 
@@ -289,14 +294,9 @@ a ::placeholder {
 }
 
 .btn-create {
-  background-color: var(--second--color-strong);
   border-radius: 20px;
   padding: 6px 14px;
   border: none;
-}
-
-.btn-create:hover {
-  background-color: var(--main--color--strong);
 }
 
 .sidebar {
@@ -347,6 +347,11 @@ a ::placeholder {
   font-size: 1.2rem;
 }
 
+.iconos {
+  color: #f8f9fa;
+  cursor: pointer;
+}
+
 .time-buttons {
   text-align: center;
 }
@@ -361,6 +366,7 @@ a ::placeholder {
 }
 
 .habitos_titulo {
+  color: #f8f9fa;
   padding-top: 1rem;
 }
 
@@ -382,13 +388,6 @@ a ::placeholder {
 .container p {
   font-size: 0.8rem;
   margin-bottom: 1rem;
-}
-
-.container h1 {
-  font-family: "Segoe UI", sans-serif;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: black;
 }
 
 .habitos {
@@ -514,7 +513,6 @@ a ::placeholder {
   padding: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100vh;
 }
 
