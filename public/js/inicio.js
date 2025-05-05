@@ -91,6 +91,8 @@ async function cargarHabitos() {
         checkCircle.style.display = 'none';
         checkCircle.style.transition = 'background-color 0.3s';
       
+
+        // ${habito.fieldValues.value} ${habito.fieldValues.unit}
         const cardContent = `
           <div class="d-flex align-items-center">
             <span class="fw-bold">${habito.name}</span>
@@ -102,7 +104,7 @@ async function cargarHabitos() {
               border-radius: 20px;
               font-weight: 500;
               margin-right: 12px;
-            ">${habito.fieldValues.value} ${habito.fieldValues.unit}</span>
+            "></span>
           </div>
         `;
       
