@@ -70,6 +70,7 @@ footer{
     padding: 0.75rem;
     &:hover {
         color: v.$black;
+        transform: scale(1.02); 
         background-color: v.$mainColor-low;
     }
     &:focus{
@@ -78,13 +79,13 @@ footer{
     }
 }
 .btn-secondary {
-    
     background-color: v.$mainColor-strong;
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
     color: v.$white;
     &:hover {
+        transform: scale(1.02); 
         background-color:v.$secondaryColor-strong; 
     }
     &:focus{
@@ -92,6 +93,23 @@ footer{
         border: none;
     }
 }
+.btn-tertiary{
+    background-color: v.$mainColor-strong;
+    border: none;
+    border-radius:5rem;
+    padding: 1rem;
+    color: v.$white;
+    &:hover {
+        transform: scale(1.02); 
+        background-color: v.$white;
+        color: v.$secondaryColor;
+    }
+    &:focus{
+        // background-color: v.$secondaryColor-strong;
+        border: none;
+    }
+}
+
 .just-validate-error-label {
     color: v.$mainColor-low !important;
     margin-top: 0.5rem;

@@ -6,12 +6,14 @@
     width: 100%;
     background-color: transparent;
     padding: 1rem;
+    h1{
+        padding: 0.5rem;
+        text-align: center;
+    }
 }
 
 h1, h2 {
     color: v.$white;
-    // text-align: center;
-    margin-bottom: 2rem;
     font-size: 1.5rem;
 }
 
@@ -30,11 +32,26 @@ a {
     }
 }
 
-.fecha{
-    color: v.$mainColor-low;
+.fecha, .fecha_num{
+    color: v.$mainColor-strong;
+}
+.fecha_num{
+    color: v.$white;
+    background-color: v.$mainColor-strong;
+    border: none;
+    border-radius: 1rem;
+}
+.day_state{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1rem;
+}
+.day_number{
     
 }
-.day_state, .state{
+.state{
+    padding-left: 6rem;
     display: flex;
     flex-direction: row;
 }
@@ -135,6 +152,9 @@ a {
 .iconos{
     color: v.$white;
     cursor: pointer;
+    &:hover{
+        transform: scale(1.3); 
+    }
 }
 .time-buttons {
     text-align: center;
@@ -150,6 +170,7 @@ a {
 }
 
 .habitos_titulo {
+    text-align: center;
     color: v.$white;
     padding-top: 1rem;
 }
