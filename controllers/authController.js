@@ -141,3 +141,37 @@ exports.logout = async (req, res) => {
   res.clearCookie('token');
   res.redirect('/');
 };
+
+exports.updateProfile = async (req, res) => {
+  console.log('--- updateProfile START ---');
+  console.log('req.user:', req.user);
+  console.log('req.body:', req.body);
+  console.log('req.file:', req.file);
+
+  const userId = req.user?.id;
+  const { userName } = req.body;
+  const profilePic = req.file?.path;
+
+  if (!userId) {
+    console.error('❌ No se encontró el usuario autenticado');
+    return res.status(401).json({ message: 'No autenticado' });
+  }
+
+  try {
+    const updatedUser = await userRepo.updateUserProfile(userId, {
+      userName,
+      ...(profilePic && { profilePic })
+    });
+
+    return res.status(200).json({
+      message: 'Perfil actualizado correctamente',
+      user: updatedUser
+    });
+  } catch (err) {
+    console.error('❌ Error en updateUserProfile:', err);
+    return res.status(500).json({
+      message: 'No se pudo actualizar el perfil',
+      error: err.message
+    });
+  }
+};
