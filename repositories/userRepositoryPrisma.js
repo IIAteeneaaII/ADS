@@ -39,3 +39,15 @@ exports.deleteUserByEmail = async (email) => {
     where: { email },
   });
 };
+
+exports.updateUserProfile = async (userId, data) => {
+  try {
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data
+    });
+    return updatedUser;
+  } catch (error) {
+    throw new Error('Error updating profile: ' + error.message);
+  }
+};
