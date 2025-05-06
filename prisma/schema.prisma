@@ -24,6 +24,7 @@ model User {
   afternoonHour  Int       @default(13)
   nightHour      Int       @default(21)
   habits         UserHabit[]
+  profilePic     String? 
 }
 
 model HabitTemplate {
