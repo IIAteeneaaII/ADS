@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/css/styles.css" rel="stylesheet" />
+  <title>Recupera tu cuenta</title>
+</head>
+<body>
+  <div class="container mt-5 pt-2">
+    <div class="login-box w-100">
+      <header class="text-center my-4">
+        <img src="/img/logofinit.png" class="img-fluid" alt="Logo" />
+      </header>
+
+      <main>
+        <div class="form-container">
+          <h2 class="text-center mb-4">Recupera tu cuenta</h2>
+
+          <form id="formCodigo" autocomplete="off" method="POST" action="/reset-password">
+            <!-- Campo oculto con el token desde la URL -->
+            <input type="hidden" name="token" value="<%= token %>" />
+
+            <div class="mb-3">
+              <label for="codigo" class="form-label">Código de verificación:</label>
+              <input type="text" class="form-control" id="codigo" name="codigo" placeholder="########" required />
+            </div>
+
+            <div class="mb-3">
+              <label for="nuevaContrasena" class="form-label">Contraseña nueva:</label>
+              <div class="d-flex align-items-center">
+                <input type="password" class="form-control me-2" id="nuevaContrasena" name="nuevaContrasena" placeholder="Ingresa tu contraseña" required />
+                <span class="text-muted fs-5" id="togglePassword3" style="cursor: pointer;">👁️</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
+              <div class="d-flex align-items-center">
+                <input type="password" class="form-control" id="confirmarContrasena" name="confirmarContrasena" placeholder="Confirma tu contraseña" required />
+                <span class="text-muted fs-5" id="togglePassword4" style="cursor: pointer;">👁️</span>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
+              <a href="/" class="btn btn-secondary">Cancelar</a>
+            </div>
+          </form>
+
+          <div class="text-end mt-3">
+            <p>¿No recibiste el código?</p>
+            <button type="button" class="btn btn-secondary" id="reenviarCodigo">Reenviar código</button>
+          </div>          
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/ingresarcodigo.js"></script>
+
+<script>
+  // Obtener el token desde la URL
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('token');
+
+  // Si existe el token, lo colocamos en el campo del formulario
+  if (token) {
+    document.getElementById('codigo').value = token;
+  }
+</script>
+</body>
+</html>
