@@ -14,6 +14,9 @@ exports.getUserHabitsWithLog = async (userId, date, dayName) => {
     where: {
       userId: userId,
       isActive: true,
+      startDate: {
+        lte: date,
+      },
       AND: [
         {
           frequency: {
