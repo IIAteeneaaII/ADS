@@ -2,11 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestionar Hábitos</title>
+    <title>Agregar un nuevo hábito</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <script src="../js/preferencias.js"></script> -->
     <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/styles.css" rel="stylesheet">
 </head>
@@ -15,14 +14,12 @@
 
         <div class="top-bar">
             <a href="/inicio" class="back-arrow">&lsaquo;</a>
-            <h1 class="mx-auto">Gestionar Hábitos</h1>
+            <h1 class="mx-auto">Agregar un nuevo hábito</h1>
         </div>
-
-        <p>Selecciona qué tipo de hábito quieres crear:</p>
         
         <div class="separator my-3"></div>
-        
-        <div class="grid habitos">
+        <p>Primero selecciona la categoría y posteriormente el hábito a escoger</p>
+        <div class="grid_habitos habitos">
             <div class="option" onclick="location.href='/movimientoCorporal'">
                 <img src="../img/gestorhabitos/movimiento.png" alt="movimiento_corporal" />
                 <span>Movimiento Corporal</span>
@@ -35,6 +32,8 @@
                 <img src="../img/gestorhabitos/mentales.png" alt="Mentales" />
                 <span>Mentales</span>
             </div>
+        </div>
+        <div class="text-center">
             <button onclick="location.href='/personalizado'" class="btn btn-primary rounded-pill px-4" style="margin-top: 10px;">
                 Habito personalizado
             </button>

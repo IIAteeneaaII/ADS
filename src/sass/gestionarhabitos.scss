@@ -29,11 +29,10 @@
     width: 20%;
 }
 
-.grid{
+.grid_habitos{
     background-color: transparent  !important;
-    .habitos{
-        flex-direction: column;
-    }
+    display: flex;
+    flex-direction: row;
 }
 .option {
     background-color: #8294A6;
