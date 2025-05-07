@@ -32,10 +32,10 @@
   
     <div class="tab-content mt-4">
       <div class="tab-pane active" id="gestionar">
-        <form id="form-habito">
+        <form id="form-habito" novalidate>
           <div class="mb-3">
             <label for="name" class="form-label">Nombre del hábito*</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Ej. Leer 30 minutos" required>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Ej. Leer 30 minutos">
           </div>
   
           <div class="mb-3">
@@ -46,7 +46,7 @@
           <div class="mb-3">
             <label class="form-label">Minutos a realizar el hábito</label>
             <div class="d-flex align-items-center">
-              <input type="number" class="form-control me-2" name="fieldValues[value]" value="1" min="1" required>
+              <input type="number" class="form-control me-2" name="fieldValues[value]" value="1" min="1">
               <span>min</span>
               <input type="hidden" name="fieldValues[unit]" value="min">
             </div>
@@ -191,7 +191,7 @@
 
       const result = await response.json();
       console.log('Hábito guardado:', result);
-      window.location.href = "/inicio";
+      window.location.href = "/gestionarHabitos";
     } catch (error) {
       console.error('Error al enviar el hábito:', error);
       alert('Ocurrió un error al guardar el hábito.');

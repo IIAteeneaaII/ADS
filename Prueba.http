@@ -26,17 +26,17 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJQUlVFQkEzQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicHJ1ZWJhMyIsImlhdCI6MTc0NjMzNDkwNywiZXhwIjoxNzQ2MzM4NTA3fQ.JdFRdHf1GZ2l0xtLOjNcucOoySWOBIbuz2ZbC3B9r5g
 
 {
-  "userId": 1,
-  "name": "Correr4",
-  "description": "desc",
-  "frequency": {
-    "type": "weekly",
-    "days": ["saturday"]
-  },
-  "icon": "../img/gestorhabitos/correr.png",
-  "startDate": "2025-04-26T00:00:00.000Z",
-  "fieldValues": {"unit": "min", "value": "30"},
-  "reminder": true
+    id: 1,
+    userId: 1,
+    habitTemplateId: null,
+    name: 'Estudiar',
+    description: 'Estudiar',
+    icon: '../img/gestorhabitos/personalizado.png',
+    frequency: { days: [Array], type: 'weekly' },
+    reminder: true,
+    fieldValues: { unit: 'min', value: '1' },
+    startDate: 2025-05-05T00:00:00.000Z,
+    isActive: true
 }
 
 

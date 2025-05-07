@@ -159,10 +159,7 @@ document.getElementById('confirmarLogout').addEventListener('click', () => {
     const name = cookie.split("=")[0].trim();
     document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
   });
-
   // Elimina el token JWT del almacenamiento local
   localStorage.removeItem('token');
-
-  // Redirige al login
   window.location.href = '/';
 });

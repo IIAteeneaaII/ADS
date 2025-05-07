@@ -24,11 +24,11 @@
 
         <div class="d-grid gap-2 mt-3">
           <button class="btn btn-secondary" onclick="location.href='/actualizarPerfil';">Actualizar perfil</button>
-          <button class="btn btn-secondary">Preferencias</button>
-          <button class="btn btn-secondary">Configurar horario de notificaciones</button>
+          <button class="btn btn-secondary" onclick="location.href='/Preferencias';">Preferencias</button>
+          <button class="btn btn-secondary" onclick="location.href='/ConfigurarNotificaciones';">Configurar horario de notificaciones</button>
           <button class="btn btn-secondary" onclick="location.href='/guiadeUsuario';">Guía de usuario</button>
-          <button class="btn btn-secondary">¿Quiénes somos?</button>
-          <button class="btn btn-secondary">Términos y privacidad</button>
+          <button class="btn btn-secondary" onclick="location.href='/quienesSomos';">¿Quiénes somos?</button>
+          <button class="btn btn-secondary" onclick="location.href='/privacidad';">Términos y privacidad</button>
         </div>
 
         <div class="d-grid gap-2 mt-4">
@@ -117,7 +117,7 @@
   <script src="/js/inicio.js"></script>
   <script>
     document.getElementById('confirmarLogout').addEventListener('click', () => {
-      window.location.href = '/api/auth/logout';
+      window.location.href = '/';
     });
   </script>
 </body>
