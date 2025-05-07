@@ -832,9 +832,20 @@ form .form-text.text-danger {
   text-align: center;
 }
 
+.texto-eliminar {
+  font-family: "Segoe UI", serif;
+  color: #f8f9fa;
+}
+
 .form-check-label {
   font-family: "Segoe UI", serif;
   font-size: 12px;
+  color: #f8f9fa;
+}
+
+.form-check a:hover {
+  text-decoration: underline;
+  color: #0056b3; /* Cambia el color al pasar el mouse */
 }
 
 .emotion-option {
@@ -957,7 +968,7 @@ form .form-text.text-danger {
 
 h1.actualizar {
   font-family: "Red Hat Display", serif;
-  color: #FFFFFF;
+  color: #f8f9fa;
 }
 
 .perfil-foto-container {

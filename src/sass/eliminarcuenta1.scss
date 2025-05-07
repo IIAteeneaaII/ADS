@@ -5,4 +5,10 @@
 .form-check-label{
     font-family: v.$text;
     font-size: 12px;
+    color: v.$white;
+}
+
+.form-check a:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Cambia el color al pasar el mouse */
 }
