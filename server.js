@@ -28,6 +28,11 @@ app.get('/Registro', (req, res) => {
 app.get('/OlvidarContrasena', (req, res) => {
     res.render('olvidarContrasena');
 });
+
+app.get('/calendario_emociones', (req, res) => {
+    res.render('calendario_emociones');
+});
+
 app.get('/reset-password', (req, res) => {
     const token = req.query.token;
     res.render('ingresarcodigo', { token });
