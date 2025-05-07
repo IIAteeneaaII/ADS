@@ -28,6 +28,11 @@ app.get('/Registro', (req, res) => {
 app.get('/OlvidarContrasena', (req, res) => {
     res.render('olvidarContrasena');
 });
+
+app.get('/calendario_emociones', (req, res) => {
+    res.render('calendario_emociones');
+});
+
 app.get('/reset-password', (req, res) => {
     const token = req.query.token;
     res.render('ingresarcodigo', { token });
@@ -134,6 +139,10 @@ app.get('/personalizado', authMiddleware, (req, res) => {
 
 app.get('/actualizarPerfil', authMiddleware, (req, res) => {
     res.render('actualizarPerfil', { user: req.user });
+  });
+  
+app.get('/quienesSomos', (req, res) => {
+    res.render('quienesSomos');  //
   });
   
 
