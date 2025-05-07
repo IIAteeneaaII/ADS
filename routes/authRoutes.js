@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { register, login, recoverPassword, validateResetToken, resetPassword, deleteAccount } = require('../controllers/authController');
+const { register, login, recoverPassword, validateResetToken, resetPassword, deleteAccount, updateProfile  } = require('../controllers/authController');
 const { upload } = require('../utils/cloudinary');
 const { authMiddleware } = require('../middlewares/authMiddleware'); 
 const { validateRegister, validateLogin, validateDeleteAcc } = require('../middlewares/validateAuth');

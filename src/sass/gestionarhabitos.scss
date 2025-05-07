@@ -3,17 +3,14 @@
 
 
 .container {
-    margin-top: 45px;
     max-width: 350px;
     width: 100%;
     background-color: transparent;
     padding: 1rem;
-}
-
-
-.container p {
+    p {
     font-size: 0.8rem;
     margin-bottom: 1rem;
+    }
 }
 
 .habitos{
@@ -24,9 +21,9 @@
     .option{
         border: 0.2rem solid v.$mainColor-strong;
     }
-}
-.habitos img{
-    width: 20%;
+    img{
+        width: 50%;
+    }
 }
 
 .grid_habitos{
@@ -123,7 +120,6 @@
     color: #C4C4C4;
     transform: scale(1.1);
 }
-
 
 .main-content {
     margin-top: 80px; 
