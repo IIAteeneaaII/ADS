@@ -3,15 +3,16 @@ const { setFlashMessage } = require('../utils/flashMessage');
 
 exports.createCustomHabit = async (req, res) => {
   const userId = req.user.id;
+
   const {
     name,
     description,
     frequency,
     startDate,
-    icon = "yes",
-    reminder = true
+    fieldValues, // ej {"unit": "min", "value": "30"}
+    icon
   } = req.body;
-  console.log(frequency)
+
   try {
     const newHabit = await habitRepo.createUserHabit({
       userId,
@@ -19,19 +20,17 @@ exports.createCustomHabit = async (req, res) => {
       description,
       frequency,
       icon,
-      reminder: reminder === "yes",
+      reminder: true,
       startDate: new Date(startDate),
       isActive: true,
-      habitTemplateId: null
+      habitTemplateId: null,
+      fieldValues
     });
 
-    setFlashMessage(res, 'Se ha creado tu habito personalizado', 'success');
-
-    res.redirect('/inicio')
+    res.status(201).json({ message: 'Custom habit created', habit: newHabit });
   } catch (error) {
     console.error(error);
-    setFlashMessage(res, 'Hubo un error en el servidor. Intenta más tarde', 'error');
-    res.redirect('/')
+    res.status(500).json({ message: 'Server error creating custom habit' });
   }
 };
 

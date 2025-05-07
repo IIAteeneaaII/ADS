@@ -104,7 +104,10 @@ async function cargarHabitos() {
               border-radius: 20px;
               font-weight: 500;
               margin-right: 12px;
-            "></span>
+              ">
+          ${habito.fieldValues?.value ?? ''} ${habito.fieldValues?.unit ?? ''}
+</span>
+
           </div>
         `;
       
