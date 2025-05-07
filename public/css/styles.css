@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body, html {
   overflow-x: hidden;
 }
@@ -796,10 +797,20 @@ form .form-text.text-danger {
   text-align: center;
 }
 
+.texto-eliminar {
+  font-family: "Segoe UI", serif;
+  color: #f8f9fa;
+}
+
 .form-check-label {
   font-family: "Segoe UI", serif;
   font-size: 12px;
-  text-align: left;
+  color: #f8f9fa;
+}
+
+.form-check a:hover {
+  text-decoration: underline;
+  color: #0056b3; /* Cambia el color al pasar el mouse */
 }
 
 .emotion-option {
@@ -965,6 +976,48 @@ ul li ul li {
 .btn-primary, .btn-secondary {
   padding: 10px 20px;
   font-size: 16px;
+}
+
+h1.actualizar {
+  font-family: "Red Hat Display", serif;
+  color: #f8f9fa;
+}
+
+.perfil-foto-container {
+  position: relative;
+  display: inline-block;
+}
+
+.perfil-foto {
+  width: 150px; /* ajusta según tu diseño */
+  height: 150px;
+  border-radius: 50%;
+  margin-top: 1rem;
+  object-fit: cover;
+}
+
+.icono-camara {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+.icono-camara:hover {
+  background-color: #e0e0e0;
+}
+
+.perfil {
+  color: #f8f9fa;
+}
+
+.icon-right {
+  margin-left: auto; /* Empuja el ícono al extremo derecho */
 }
 
 /*# sourceMappingURL=styles.css.map */
