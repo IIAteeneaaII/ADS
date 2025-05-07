@@ -136,6 +136,10 @@ app.get('/actualizarPerfil', authMiddleware, (req, res) => {
     res.render('actualizarPerfil', { user: req.user });
   });
   
+app.get('/quienesSomos', (req, res) => {
+    res.render('quienesSomos');  //
+  });
+  
 
 app.use('/api/auth', authRoutes);
 app.use('/api/habit', authMiddleware, habitRoutes);
