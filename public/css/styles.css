@@ -635,47 +635,40 @@ a:placeholder {
   background-color: #009394;
 }
 
-.grid {
-  background-color: transparent !important;
-  display: flex;
-  justify-content: center;
-  background-color: #00e0c7;
-  border-radius: 0.8rem;
-  padding: 0.3rem;
-  gap: 0.3rem;
-  margin: 0;
+.grid-opciones {
+  display: grid;
+  grid-auto-flow: column;
+  background-color: rgba(130, 148, 166, 0.3098039216);
+  border-radius: 1rem;
 }
 
-.option {
-  background-color: transparent;
-  padding: 1rem 1rem;
-  border-radius: 0.8rem;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: black;
-  min-width: auto;
-  transition: background-color 0.3s ease;
+.titulo-habito {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
   text-align: center;
 }
-.option span {
-  line-height: 1.2;
+.titulo-habito img {
+  width: 100px;
+  height: auto;
+}
+.titulo-habito .contenido-texto {
+  flex: 1;
+  padding: 0 15px;
+}
+
+.titulo-info {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
-.option span span {
-  display: block;
-}
-.option.active {
-  background-color: #006270;
-  color: #f8f9fa;
-}
-.option:hover:not(.active) {
-  background-color: #006270;
-  color: #f8f9fa;
+
+.text-advertencia {
+  text-size-adjust: small;
+  display: none;
+  color: rgb(252, 83, 83);
 }
 
 .tab-content {
@@ -693,18 +686,9 @@ a:placeholder {
   display: none !important;
 }
 
-form {
-  background-color: #1A2B3D;
-}
-form .form-label {
-  font-weight: 600;
-}
-form .form-text.text-danger {
-  font-size: 0.8rem;
-}
-
 .btn_gestion {
   display: flex;
+  /*flex-direction: row;*/
   align-items: center;
   justify-content: center;
   margin: 1rem;
@@ -757,8 +741,22 @@ form .form-text.text-danger {
   border-color: #006270;
 }
 
-.btn-dias,
 .dias_notificaciones {
+  background: none;
+  color: #1f2421;
+  border: none;
+  cursor: pointer;
+}
+.dias_notificaciones i {
+  font-size: 24px;
+  color: gray;
+  transition: color 0.3s ease;
+}
+.dias_notificaciones.selected i {
+  color: #009394;
+}
+
+.btn-dias {
   background-color: #00e0c7;
   border: 2px solid #1f2421;
   border-radius: 0.5rem;
@@ -770,14 +768,12 @@ form .form-text.text-danger {
   transition: all 0.3s ease;
   text-align: center;
 }
-.btn-dias.selected,
-.dias_notificaciones.selected {
+.btn-dias.selected {
   background-color: #006270;
   color: #f8f9fa;
   border-color: #006270;
 }
-.btn-dias:hover:not(.selected),
-.dias_notificaciones:hover:not(.selected) {
+.btn-dias:hover:not(.selected) {
   background-color: #009394;
 }
 
@@ -789,8 +785,50 @@ form .form-text.text-danger {
   margin: 0.3rem;
 }
 
-.progreso h2 {
-  padding: 1rem;
+.texto-principal {
+  color: #f8f9fa !important;
+}
+
+.texto-alternativo {
+  color: #1f2421 !important;
+}
+
+.iconos-habitos {
+  color: #f8f9fa;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 1.5rem;
+}
+
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 40px);
+  gap: 5px;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.dia-habito {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+}
+
+.dia-cumplido {
+  background-color: green;
+}
+
+.dia-incumplido {
+  background-color: red;
+}
+
+.dia-vacio {
+  background: none;
+  visibility: hidden;
 }
 
 .botones-eliminar {
