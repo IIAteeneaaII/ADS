@@ -36,7 +36,7 @@ document.getElementById("formCodigo").addEventListener("submit", async function 
                 text: "Tu nueva contraseña ha sido registrada. Inicia sesión.",
                 confirmButtonText: "Aceptar"
             }).then(() => {
-                window.location.href = "index.html"; // Redirige al login
+                window.location.href = "/"; // Redirige al login
             });
         } else {
             Swal.fire("Error", data.message || "No se pudo cambiar la contraseña.", "error");
