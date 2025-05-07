@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../css/styles.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+  <!--<script src="../js/calendario_emociones.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>Registro de Emociones</title>
+</head>
+<body>
+    <div class="container mt-5 pt-2">
+        <div class="top-bar">
+            <a href="javascript:history.back()" class="back-arrow">&lsaquo;</a>
+            <h1 class="mx-auto">Calendario de emociones</h1>
+            </a>
+        </div>
+
+        <div class="calendario-container">
+            <div class="mes-nav">
+            <button  class="btn-prev-mes" conclick="cambiarMes(-1)">‹</button>
+            <h2 id="nombreMes"></h2>
+            <button class="btn-next-mes" onclick="cambiarMes(1)">›</button>
+            </div>
+            <div class="grid-calendario" id="diasCalendario"></div>
+        </div>
+    </div>
+ <script src="../js/calendario_emociones.js"></script>
+</body>
+</html>

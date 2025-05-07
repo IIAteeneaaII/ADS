@@ -165,10 +165,10 @@ main h2 {
 }
 .hero-img img {
   text-align: center;
-  width: 40%;
+  width: 29%;
   height: 25rem;
   object-fit: cover;
-  object-position: 50% 5%;
+  object-position: 50% -16%;
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
 }
@@ -435,9 +435,6 @@ a:placeholder {
   justify-content: center; /* Centra el contenido */
   gap: 1rem; /* Espacio entre las opciones */
 }
-.habitos .option {
-  border: 0.2rem solid #006270;
-}
 .habitos img {
   width: 50%;
 }
@@ -449,7 +446,8 @@ a:placeholder {
 }
 
 .option {
-  background-color: #8294A6;
+  border: 0.2rem solid #009394;
+  background-color: #009394;
   padding: 12px;
   border-radius: 10px;
   display: flex;
@@ -460,9 +458,7 @@ a:placeholder {
 }
 
 .caja {
-  display: flex;
   align-items: center;
-  justify-content: flex-start;
   margin-top: 15px;
   position: relative;
 }
@@ -470,11 +466,11 @@ a:placeholder {
 .plus-button {
   position: absolute;
   top: 55%;
-  right: 10px;
+  right: -50px;
   transform: translateY(-50%);
   background-color: transparent;
-  color: black;
-  border: 2px solid black;
+  color: #e9ecef;
+  border: 2px solid #e9ecef;
   border-radius: 50%;
   width: 32px;
   height: 32px;
@@ -487,13 +483,17 @@ a:placeholder {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .plus-button:active {
-  background-color: #000000;
+  background-color: #00e0c7;
   color: white;
-  border-color: #000000;
+  border-color: #00e0c7;
+}
+.plus-button:hover {
+  border-color: #00e0c7;
+  color: #00e0c7;
 }
 
 .option-1 {
-  background-color: #e5f1fd;
+  background-color: #009394;
   padding: 12px;
   border-radius: 10px;
   display: flex;
@@ -516,7 +516,7 @@ a:placeholder {
   color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
 }
 
-.option, .option-1:hover {
+.option-1:hover {
   background-color: #8294A6;
   cursor: pointer;
 }
@@ -542,6 +542,15 @@ a:placeholder {
 
 .main-content {
   margin-top: 80px;
+}
+
+.btn_personalizados {
+  padding-top: 3rem;
+}
+
+.ir_Alhabito {
+  padding-left: 10rem;
+  background-color: #00e0c7;
 }
 
 .page_preferencias {
@@ -851,6 +860,18 @@ a:placeholder {
   color: #0056b3; /* Cambia el color al pasar el mouse */
 }
 
+.emocion-container {
+  background: transparent;
+  color: black;
+  border-radius: 20px;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 15px rgba(130, 148, 166, 0.3098039216);
+  text-align: center;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .emotion-option {
   display: flex;
   align-items: center;
@@ -883,6 +904,91 @@ a:placeholder {
 
 .btn-save {
   margin-top: 2rem;
+}
+
+.calendario-container {
+  background: #00e0c7;
+  color: black;
+  border-radius: 20px;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.grid-calendario {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.dia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6px;
+  border-radius: 10px;
+  background-color: transparent;
+  font-size: 0.9rem;
+  min-height: 60px;
+}
+
+.dia:hover {
+  background-color: rgba(130, 148, 166, 0.3098039216);
+  cursor: pointer;
+}
+
+.dia.con-emocion {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.dia-vacio {
+  visibility: hidden;
+}
+
+.sin-emocion {
+  color: #aaa;
+}
+
+.emoji {
+  font-size: 1.2rem;
+  min-height: 1.5rem;
+  display: block;
+}
+
+.numero-dia {
+  margin-top: 4px;
+}
+
+.mes-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.btn-prev-mes,
+.btn-next-mes {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: rgba(0, 97, 112, 0.3725490196);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dia-hoy {
+  /*border: 2px solid v.$secondaryColor-strong;
+  background-color: v.$gray-low;*/
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(26, 43, 61, 0.5);
+  transition: all 0.3s ease;
 }
 
 .progress-indicator {
@@ -1056,6 +1162,21 @@ h1.actualizar {
 
 .icon-right {
   margin-left: auto; /* Empuja el ícono al extremo derecho */
+}
+
+.form_habitos {
+  color: #f8f9fa;
+}
+.form_habitos .btn-outline-secondary {
+  color: #f8f9fa;
+  border-color: #00e0c7;
+  background-color: #009394;
+}
+.form_habitos .btn-outline-secondary:hover, .form_habitos .btn-outline-secondary:focus, .form_habitos .btn-outline-secondary:active {
+  color: #000;
+  border-color: #009394;
+  background-color: #00e0c7;
+  transform: scale(1.1);
 }
 
 /*# sourceMappingURL=styles.css.map */

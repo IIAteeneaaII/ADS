@@ -10,26 +10,23 @@
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pikaday/plugins/pikaday.es.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="../css/styles.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/estiramientos.js"></script>
+    <script src="/js/estiramientos.js"></script>
 </head>
 <body>
     <div class="container py-4">
         <div class="top-bar">
-            <a href="pagina-anterior.html" class="back-arrow">&lsaquo;</a>
+            <a href="/gestionarHabitos" class="back-arrow">&lsaquo;</a>
+            <h1 class="texto-principal">Estiramientos Matutinos</h1>
         </div>
 
         <div class="separator my-2"></div>
         <div class="titulo-habito" id="tabs">
-            <img src="../img/gestorhabitos/estiramiento.png" alt="Correr">
-            
-            <div class="contenido-texto">
-                <h1 class="texto-principal">Estiramientos Matutinos</h1>
-            </div>
+            <img src="/img/gestorhabitos/estiramiento.png" alt="Correr">
             
             <div class="iconos">
-                <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="window.location.href='gestionarestiramientos.ejs'"></i>
+                <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='/gestionarestiramientos';"></i>
                 <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('Estiramientos Matutinos')" style="cursor: pointer;"></i>
             </div>
         </div>

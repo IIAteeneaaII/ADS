@@ -1,6 +1,6 @@
 const HABITOS = {
     movimiento: [
-        { img: '/img/gestorhabitos/estiramiento.png', nombre: 'Estiramientos matutinos', link: '/estiramientos' },
+        { img: '/img/gestorhabitos/estiramiento.png', nombre: 'Estiramientos matutinos', link: '/gestionarestiramientos' },
         { img: '/img/gestorhabitos/correr.png', nombre: 'Correr', link: '/Correr' },
         { img: '/img/gestorhabitos/bici.png', nombre: 'Andar en bicicleta', link: '/AndarEnBicicleta' },
         { img: '/img/gestorhabitos/saltar-la-cuerda.png', nombre: 'Saltar la cuerda', link: '/SaltarLaCuerda' }
@@ -21,16 +21,33 @@ const HABITOS = {
 
 function mostrarHabitos(categoria) {
     const contenedor = document.getElementById('habitos-container');
-    contenedor.innerHTML = ''; // Limpia hábitos anteriores
+    contenedor.innerHTML = '';
 
     HABITOS[categoria].forEach(habito => {
-        const div = document.createElement('div');
-        div.className = 'option-1';
-        div.innerHTML = `
+        // Contenedor general que envuelve la tarjeta + botón
+        const wrapper = document.createElement('div');
+        wrapper.className = 'caja';
+
+        // La tarjeta del hábito
+        const option = document.createElement('div');
+        option.className = 'option-1';
+        option.innerHTML = `
             <img src="${habito.img}" alt="${habito.nombre}" />
             <span>${habito.nombre}</span>
-            <button onclick="event.stopPropagation(); location.href='${habito.link}'" class="plus-button">+</button>
         `;
-        contenedor.appendChild(div);
+
+        // El botón fuera del div.option-1
+        const boton = document.createElement('button');
+        boton.className = 'plus-button';
+        boton.textContent = '+';
+        boton.onclick = (e) => {
+            e.stopPropagation();
+            location.href = habito.link;
+        };
+
+        wrapper.appendChild(option);
+        wrapper.appendChild(boton);
+        contenedor.appendChild(wrapper);
     });
 }
+

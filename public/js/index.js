@@ -17,13 +17,14 @@ validator
       errorMessage: 'La contraseña es obligatoria',
     },
     {
-      rule: 'password',
-      errorMessage: 'Debe contener al menos una mayúscula, una minúscula, un número',
-    },
-    {
       rule: 'minLength',
       value: 8,
       errorMessage: 'Debe tener al menos 8 caracteres',
+    },
+    {
+      rule: 'customRegexp',
+      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+      errorMessage: 'Debe contener al menos una mayúscula, una minúscula y un número', //comprueba que almenos una mayúsucla
     },
   ])
   .onSuccess((event) => {

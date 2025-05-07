@@ -1,0 +1,19 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.form_habitos {
+    color: v.$white;
+
+    .btn-outline-secondary {
+        color: v.$white;
+        border-color: v.$mainColor-low;
+        background-color: v.$secondaryColor;
+        &:hover, &:focus, &:active{
+            color: #000;
+            border-color: v.$secondaryColor;
+            background-color: v.$mainColor-low;
+            transform: scale(1.1);
+        }
+
+    }
+}
