@@ -29,7 +29,9 @@ function mostrarHabitos(categoria) {
         div.innerHTML = `
             <img src="${habito.img}" alt="${habito.nombre}" />
             <span>${habito.nombre}</span>
-            <button onclick="event.stopPropagation(); location.href='${habito.link}'" class="plus-button">+</button>
+            <div style="padding-left: 10rem; background-color:#009394;">
+                <button onclick="event.stopPropagation(); location.href='${habito.link}'" class="plus-button">+</button>
+            </div>
         `;
         contenedor.appendChild(div);
     });

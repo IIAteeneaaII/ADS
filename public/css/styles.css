@@ -435,9 +435,6 @@ a:placeholder {
   justify-content: center; /* Centra el contenido */
   gap: 1rem; /* Espacio entre las opciones */
 }
-.habitos .option {
-  border: 0.2rem solid #006270;
-}
 .habitos img {
   width: 50%;
 }
@@ -449,7 +446,8 @@ a:placeholder {
 }
 
 .option {
-  background-color: #8294A6;
+  border: 0.2rem solid #009394;
+  background-color: #009394;
   padding: 12px;
   border-radius: 10px;
   display: flex;
@@ -493,7 +491,7 @@ a:placeholder {
 }
 
 .option-1 {
-  background-color: #e5f1fd;
+  background-color: #009394;
   padding: 12px;
   border-radius: 10px;
   display: flex;
@@ -516,7 +514,7 @@ a:placeholder {
   color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
 }
 
-.option, .option-1:hover {
+.option-1:hover {
   background-color: #8294A6;
   cursor: pointer;
 }
@@ -1056,6 +1054,21 @@ h1.actualizar {
 
 .icon-right {
   margin-left: auto; /* Empuja el ícono al extremo derecho */
+}
+
+.form_habitos {
+  color: #f8f9fa;
+}
+.form_habitos .btn-outline-secondary {
+  color: #f8f9fa;
+  border-color: #00e0c7;
+  background-color: #009394;
+}
+.form_habitos .btn-outline-secondary:hover, .form_habitos .btn-outline-secondary:focus, .form_habitos .btn-outline-secondary:active {
+  color: #000;
+  border-color: #009394;
+  background-color: #00e0c7;
+  transform: scale(1.1);
 }
 
 /*# sourceMappingURL=styles.css.map */

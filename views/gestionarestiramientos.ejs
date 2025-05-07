@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Gestionar Estiramientos Matutinos</title>
@@ -10,78 +11,161 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pikaday/plugins/pikaday.es.js"></script>
-    <link href="../css/styles.css" rel="stylesheet">
-    <script src="../js/gestionarestiramientos.js"></script>
+    <link href="/css/styles.css" rel="stylesheet">
+    <!-- <script src="/js/gestionarestiramientos.js"></script> -->
 </head>
-<body>
+
+<body class="form_habitos">
     <div class="container py-4">
 
         <div class="top-bar">
-            <a href="estiramientos.ejs" class="back-arrow">&lsaquo;</a>
+            <a href="estiramientos" class="back-arrow">&lsaquo;</a>
             <h1 class="mx-auto texto-principal">Estiramientos Matutinos</h1>
         </div>
 
         <div class="tab-content mt-4">
-            <div class="tab-pane active" id="gestionar">
-                <form>
-                    <div class="mb-3 texto-principal">
-                        <label for="tiempo" class="form-label">Tiempo a realizar al día (en minutos)*</label>
-                        <input type="number" class="form-control texto-principal" id="tiempo" placeholder="Duración de la sesión" min="1" max="60" step="1">
-                        <div id="mensaje-error" class="text-advertencia small">
-                            El tiempo debe estar entre 1 y 60 minutos.
-                        </div>
-                    </div>
+            <form id="form-habito">
+                <!-- <div class="mb-3">
+                    <label for="name" class="form-label">Nombre del hábito*</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                        placeholder="Ej. Leer antes de dormir">
+                </div> -->
 
-                    <div class="mb-3 texto-principal">
-                        <label for="description" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="description" name="description" placeholder="Ej. Leer un libro cada noche antes de dormir" rows="3"></textarea>
-                    </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Descripción*</label>
+                    <textarea class="form-control" id="description" name="description"
+                        placeholder="Ej. Leer cada noche antes de dormir durante varios minutos" rows="3"></textarea>
+                </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="fecha-inicio">Inicio del hábito*</label>
-                        <div class="input-fecha">
-                            <input type="text" id="fecha-inicio" class="form-control calendario texto-principal">
-                        </div>
+                <div class="mb-3">
+                    <label class="form-label">Tiempo a realizar al día (en minutos)*</label>
+                    <div class="d-flex align-items-center">
+                        <input type="number" class="form-control me-2" name="fieldValues[value]" value="1" min="1">
+                        <span>min</span>
+                        <input type="hidden" name="fieldValues[unit]" value="min">
                     </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label" for="fecha-fin">Fin del hábito*</label>
-                        <div class="input-fecha">
-                            <input type="text" id="fecha-fin" class="form-control calendario texto-principal">
-                        </div>
-                    </div>
-                    
+                </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Seleccione la frecuencia*:</label>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn-dias">Lun</button>
-                            <button type="button" class="btn-dias">Mar</button>
-                            <button type="button" class="btn-dias">Mié</button>
-                            <button type="button" class="btn-dias">Jue</button>
-                            <button type="button" class="btn-dias">Vie</button>
-                            <button type="button" class="btn-dias">Sáb</button>
-                            <button type="button" class="btn-dias">Dom</button>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label for="startDate" class="form-label">Fecha de inicio*</label>
+                    <input type="text" class="form-control calendario" id="startDate" name="startDate">
+                </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Recibir notificaciones*:</label>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="dias_notificaciones">
-                                <i class="fa-solid fa-bell"></i>
-                              </button>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <input type="hidden" name="frequency[type]" value="weekly">
+                    <label class="form-label">Días de la semana*</label>
+                    <div class="d-flex flex-wrap gap-2">
+                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="monday" id="monday">
+                        <label class="btn btn-outline-secondary rounded-pill dia_selected" for="monday">Lun</label>
 
-                    <div class="btn_gestion">
-                        <button type="button" id="guardar" class="btn-secondary">Guardar</button>
+                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="tuesday" id="tuesday">
+                        <label class="btn btn-outline-secondary rounded-pill" for="tuesday">Mar</label>
+
+                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="wednesday"
+                            id="wednesday">
+                        <label class="btn btn-outline-secondary rounded-pill" for="wednesday">Mié</label>
+
+                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="thursday"
+                            id="thursday">
+                        <label class="btn btn-outline-secondary rounded-pill" for="thursday">Jue</label>
+
+                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="friday" id="friday">
+                        <label class="btn btn-outline-secondary rounded-pill" for="friday">Vie</label>
+
+                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="saturday"
+                            id="saturday">
+                        <label class="btn btn-outline-secondary rounded-pill" for="saturday">Sáb</label>
+
+                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="sunday" id="sunday">
+                        <label class="btn btn-outline-secondary rounded-pill" for="sunday">Dom</label>
                     </div>
-                </form>
-            </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="reminder">¿Deseas recibir notifiaciones?</label>
+                    <select class="form-control" name="reminder" id="reminder">
+                        <option value="">Selecciona una opción</option>
+                        <option value="yes">Sí</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar hábito</button>
+            </form>
         </div>
-
-        
     </div>
+
+    <script>
+        new Pikaday({
+            field: document.getElementById('startDate'),
+            format: 'YYYY-MM-DD',
+            i18n: {
+                previousMonth: 'Mes anterior',
+                nextMonth: 'Mes siguiente',
+                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+            },
+            toString(date) {
+                return date.toISOString().split('T')[0];
+            },
+            minDate: new Date()
+        });
+
+        document.getElementById('frequency-type').addEventListener('change', function () {
+            const isWeekly = this.value === 'weekly';
+            document.getElementById('weekly-days').classList.toggle('d-none', !isWeekly);
+        });
+    </script>
+    <script>
+        document.getElementById('form-habito').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            const data = {
+                name: 'Estiramientos Matutinos',
+                description: formData.get('description'),
+                frequency: {
+                    type: formData.get('frequency[type]'),
+                    days: formData.getAll('frequency[days][]')
+                },
+                icon: "../img/gestorhabitos/estiramiento.png",
+                startDate: new Date(formData.get('startDate')).toISOString(),
+                fieldValues: {
+                    unit: formData.get('fieldValues[unit]'),
+                    value: formData.get('fieldValues[value]')
+                },
+                reminder: formData.get('reminder') === 'yes'
+            };
+
+            try {
+                const response = await fetch('/api/habit/personalizado', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) throw new Error('Error al guardar el hábito');
+
+                const result = await response.json();
+                console.log('Hábito guardado:', result);
+                window.location.href = "/gestionarHabitos";
+            } catch (error) {
+                console.error('Error al enviar el hábito:', error);
+                alert('Ocurrió un error al guardar el hábito.');
+            }
+        });
+    </script>
+    <script>
+        document.querySelectorAll('.btn-outline-secondary').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('dia_selected');
+            });
+        });
+    </script>
 </body>
+
 </html>
