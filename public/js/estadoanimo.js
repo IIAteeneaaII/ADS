@@ -19,7 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   botonGuardar.addEventListener('click', function() {
     if (emocionSeleccionada) {
-      // Si hay una emoción seleccionada, mostrar SweetAlert
+      const hoy = new Date();
+      const clave = `${hoy.getFullYear()}-${hoy.getMonth() + 1}-${hoy.getDate()}`;
+      localStorage.setItem(clave, emocionSeleccionada);
+      // emoción seleccionada
       Swal.fire({
         icon: 'success',
         title: 'Guardado',
