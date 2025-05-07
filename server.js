@@ -125,6 +125,11 @@ app.get('/personalizado', authMiddleware, (req, res) => {
   res.render('habitoPersonalizado');
 });
 
+app.get('/actualizarPerfil', authMiddleware, (req, res) => {
+    res.render('actualizarPerfil', { user: req.user });
+  });
+  
+
 app.use('/api/auth', authRoutes);
 app.use('/api/habit', authMiddleware, habitRoutes);
 app.use('/api/inicio', authMiddleware, principalScrRoutes);

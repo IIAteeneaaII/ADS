@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { register, login, recoverPassword, validateResetToken, resetPassword, deleteAccount } = require('../controllers/authController');
-
+const { upload } = require('../utils/cloudinary');
+const { authMiddleware } = require('../middlewares/authMiddleware'); 
 const { validateRegister, validateLogin, validateDeleteAcc } = require('../middlewares/validateAuth');
 
 router.post('/register', validateRegister, register);
@@ -11,6 +12,8 @@ router.post('/deleteAcc', validateDeleteAcc, deleteAccount);
 router.post('/recover-password', recoverPassword);
 router.post('/validate-reset-token', validateResetToken);
 router.post('/reset-password', resetPassword);
+router.put('/user/profile', authMiddleware, upload.single('profilePic'), updateProfile);
+  
 
 
 module.exports = router;

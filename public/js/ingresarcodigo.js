@@ -1,7 +1,7 @@
-document.getElementById("formCodigo").addEventListener("submit", function (event) {
+document.getElementById("formCodigo").addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    const codigo = document.getElementById("codigo").value.trim();
+    const codigo = document.getElementById("codigo").value.trim(); // token
     const contrasena = document.getElementById("nuevaContrasena").value;
     const confirmarContrasena = document.getElementById("confirmarContrasena").value;
 
@@ -15,18 +15,36 @@ document.getElementById("formCodigo").addEventListener("submit", function (event
         return;
     }
 
-    // Mostrar éxito
-    Swal.fire({
-        icon: "success",
-        title: "Contraseña cambiada",
-        text: "Tu nueva contraseña ha sido registrada. Inicia sesión.",
-        customClass: {
-            confirmButton: 'btn-primary'
-        },
-        confirmButtonText: "Aceptar"
-    }).then(() => {
-        window.location.href = "index.html"; // volver al login
-    });
+    try {
+        const response = await fetch("/api/auth/reset-password", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                token: codigo,
+                newPassword: contrasena,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            Swal.fire({
+                icon: "success",
+                title: "Contraseña cambiada",
+                text: "Tu nueva contraseña ha sido registrada. Inicia sesión.",
+                confirmButtonText: "Aceptar"
+            }).then(() => {
+                window.location.href = "index.html"; // Redirige al login
+            });
+        } else {
+            Swal.fire("Error", data.message || "No se pudo cambiar la contraseña.", "error");
+        }
+    } catch (error) {
+        console.error("Error al hacer la solicitud:", error);
+        Swal.fire("Error", "Ocurrió un error inesperado.", "error");
+    }
 });
 
 document.querySelector(".btn-secondary").addEventListener("click", function () {
@@ -61,5 +79,3 @@ document.getElementById("reenviarCodigo").addEventListener("click", function () 
         confirmButtonText: 'Aceptar'
     });
 });
-
-
