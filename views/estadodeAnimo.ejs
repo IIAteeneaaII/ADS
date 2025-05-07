@@ -1,54 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Estado de ánimo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../css/styles.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/estadoanimo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>Estado de ánimo</title>
 </head>
-
 <body>
-    <div class="container mt-5 pt-2">
-
-        <a href="/inicio" class="back-arrow">&lsaquo;</a>
-
-        <h1>¿Cómo te sientes ahora?</h1>
-
-
-        <div class="emotion-option" onclick="seleccionarEmocion(this)" id="feliz">
-            <div class="emotion-icon bg-warning text-dark"><i class="fas fa-smile"></i></div>
-            <div class="emotion-label bg-warning text-dark">Feliz</div>
-        </div>
-
-        <div class="emotion-option" onclick="seleccionarEmocion(this)" id="triste">
-            <div class="emotion-icon bg-primary text-white"><i class="fas fa-sad-tear"></i></div>
-            <div class="emotion-label bg-primary text-white">Triste</div>
-        </div>
-
-        <div class="emotion-option" onclick="seleccionarEmocion(this)" id="neutral">
-            <div class="emotion-icon bg-white text-dark border"><i class="fas fa-meh"></i></div>
-            <div class="emotion-label bg-white text-dark border">Neutral</div>
-        </div>
-
-        <div class="emotion-option" onclick="seleccionarEmocion(this)" id="enojado">
-            <div class="emotion-icon bg-danger text-white"><i class="fas fa-angry"></i></div>
-            <div class="emotion-label bg-danger text-white">Enojado</div>
-        </div>
-
-        <button class="btn btn-secondary w-100 btn-save">Guardar</button>
-
-
+  <div class="container mt-5 pt-2">
+    <div class="top-bar">
+      <a href="/inicio" class="back-arrow">&lsaquo;</a>
+      <h1 class="mx-auto">¿Cómo estás?</h1>
+      <a href="calendario_emociones.html" class="back-arrow"><i class="fas fa-calendar-alt" style="font-size: 1.5rem;"></i></a>
     </div>
+    
+    <div class="emocion-container">
+      <div class="emotion-option" onclick="seleccionarEmocion(this)" id="feliz">
+          <div class="emotion-icon bg-warning text-dark">😄</div>
+          <div class="emotion-label bg-warning text-dark">Feliz</div>
+      </div>
 
-    <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/estadoanimo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <div class="emotion-option" onclick="seleccionarEmocion(this)" id="triste">
+          <div class="emotion-icon bg-primary text-white">😢</div>
+          <div class="emotion-label bg-primary text-white">Triste</div>
+      </div>
 
+      <div class="emotion-option" onclick="seleccionarEmocion(this)" id="neutral">
+          <div class="emotion-icon bg-white text-dark border">😐</div>
+          <div class="emotion-label bg-white text-dark border">Neutral</div>
+      </div>
 
+      <div class="emotion-option" onclick="seleccionarEmocion(this)" id="enojado">
+          <div class="emotion-icon bg-danger text-white">😠</div>
+          <div class="emotion-label bg-danger text-white">Enojado</div>
+      </div>
 
+      <button class="btn btn-secondary w-100 btn-save">Guardar</button>
+    </div>
+  </div>
 </body>
-
 </html>
