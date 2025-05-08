@@ -28,5 +28,5 @@ validator
     },
   ])
   .onSuccess((event) => {
-    event.target.submit(); // <- aquí habilitas el envío real
+    event.target.submit();
   });
