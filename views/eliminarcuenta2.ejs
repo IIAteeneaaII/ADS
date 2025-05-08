@@ -93,7 +93,7 @@
             });
             
             // Redirigir al login
-            window.location.href = '/login';
+            window.location.href = '/';
           } else {
             const error = await response.json();
             alert(`Error: ${error.message || "No se pudo eliminar la cuenta. Verifica tus datos."}`);
