@@ -28,5 +28,7 @@ validator
     },
   ])
   .onSuccess((event) => {
-    event.target.submit(); // <- aquí habilitas el envío real
+    const email = document.getElementById('correo').value;
+    localStorage.setItem('email', email); 
+    event.target.submit();
   });
