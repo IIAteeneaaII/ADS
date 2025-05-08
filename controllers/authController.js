@@ -152,16 +152,11 @@ exports.logout = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   console.log('--- updateProfile START ---');
-  console.log('req.user:', req.user);
-  console.log('req.body:', req.body);
-  console.log('req.file:', req.file);
-
   const userId = req.user?.id;
   const { userName } = req.body;
   const profilePic = req.file?.path;
 
   if (!userId) {
-    console.error('❌ No se encontró el usuario autenticado');
     return res.status(401).json({ message: 'No autenticado' });
   }
 
@@ -169,6 +164,25 @@ exports.updateProfile = async (req, res) => {
     const updatedUser = await userRepo.updateUserProfile(userId, {
       userName,
       ...(profilePic && { profilePic })
+    });
+
+    // Generar nuevo token con datos actualizados
+    const newToken = jwt.sign(
+      {
+        id: updatedUser.id,
+        email: updatedUser.email,
+        userName: updatedUser.userName,
+        profilePic: updatedUser.profilePic
+      },
+      'supersecret',
+      { expiresIn: '1h' }
+    );
+
+    // Reemplazar cookie con nuevo token
+    res.cookie('token', newToken, {
+      httpOnly: true,
+      secure: false, // cámbialo a true si estás en HTTPS
+      maxAge: 60 * 60 * 1000,
     });
 
     return res.status(200).json({
