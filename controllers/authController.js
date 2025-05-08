@@ -81,12 +81,20 @@ exports.deleteAccount = async (req, res) => {
 
     await userRepo.deleteUserByEmail(email);
 
-    res.status(200).json({ msg: 'Account deleted successfully' });
+    // Eliminar cookie del token
+    res.clearCookie('token', {
+      httpOnly: true,
+      secure: true,       // usa esto solo si estás en HTTPS
+      sameSite: 'Strict'  // o 'Lax', según tu frontend
+    });
+
+    res.status(200).json({ msg: 'Account deleted successfully and cookie cleared' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: 'Server error' });
   }
 };
+
 
 exports.recoverPassword = async (req, res) => {
   const { email } = req.body;
