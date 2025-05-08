@@ -1,41 +1,44 @@
 const nombreElemento = document.getElementById('nombreUsuario');
 const inputNombre = document.getElementById("inputNombreUsuario");
-const icono = document.getElementById("iconEditar");
+const btnEditar = document.getElementById("btnEditar");
+const btnGuardar = document.getElementById("btnGuardar");
 const fotoInput = document.getElementById("fotoInput");
 const imagenPerfil = document.querySelector(".perfil-foto");
 
 let editando = false;
 let nuevaFoto = null;
 
-icono.addEventListener("click", async () => {
-  if (!editando) {
-    inputNombre.value = nombreElemento.textContent.trim();
-    nombreElemento.classList.add("d-none");
-    inputNombre.classList.remove("d-none");
-    icono.classList.replace("fa-edit", "fa-check");
-    editando = true;
-  } else {
-    const nuevoNombre = inputNombre.value.trim();
-    if (!nuevoNombre) {
-      Swal.fire('Error', 'El nombre de usuario no puede estar vacío.', 'error');
-      return;
-    }
-    await actualizarPerfil(nuevoNombre, nuevaFoto);
-  }
+btnEditar.addEventListener("click", () => {
+  inputNombre.value = nombreElemento.textContent.trim();
+  nombreElemento.classList.add("d-none");
+  inputNombre.classList.remove("d-none");
+
+  btnEditar.classList.add("d-none");
+  btnGuardar.classList.remove("d-none");
+  editando = true;
 });
 
-fotoInput.addEventListener('change', async function (event) {
+btnGuardar.addEventListener("click", async () => {
+  const nuevoNombre = inputNombre.value.trim();
+  if (!nuevoNombre) {
+    Swal.fire('Error', 'El nombre de usuario no puede estar vacío.', 'error');
+    return;
+  }
+
+  await actualizarPerfil(nuevoNombre, nuevaFoto);
+});
+
+fotoInput.addEventListener('change', function (event) {
   const file = event.target.files[0];
   if (file) {
     nuevaFoto = file;
-    imagenPerfil.src = URL.createObjectURL(file);
-    await actualizarPerfil(nombreElemento.textContent.trim(), nuevaFoto);
+    imagenPerfil.src = URL.createObjectURL(file); // vista previa
   }
 });
 
 async function actualizarPerfil(nombre, foto) {
   const formData = new FormData();
-  formData.append("userName", nombre || ''); // evitar null/undefined
+  formData.append("userName", nombre || '');
 
   if (foto) {
     formData.append("profilePic", foto);
@@ -46,15 +49,14 @@ async function actualizarPerfil(nombre, foto) {
       method: 'PUT',
       credentials: 'include',
       headers: {
-        Accept: 'application/json' // ← esto fuerza JSON en la respuesta
+        Accept: 'application/json'
       },
       body: formData
     });
 
-    // verifica tipo de contenido (respuesta esperada)
     const contentType = response.headers.get("content-type") || '';
     if (!contentType.includes("application/json")) {
-      throw new Error("Respuesta no válida del servidor (probablemente HTML)");
+      throw new Error("Respuesta no válida del servidor.");
     }
 
     const result = await response.json();
@@ -67,7 +69,11 @@ async function actualizarPerfil(nombre, foto) {
 
       inputNombre.classList.add("d-none");
       nombreElemento.classList.remove("d-none");
-      icono.classList.replace("fa-check", "fa-edit");
+
+      btnEditar.classList.remove("d-none");
+      btnGuardar.classList.add("d-none");
+
+      nuevaFoto = null;
       editando = false;
 
       Swal.fire({

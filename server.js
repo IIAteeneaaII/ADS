@@ -150,7 +150,7 @@ res.render('gestionarcorrer');  //
 });
 
 app.get('/GestionarBici', authMiddleware,(req, res) => {
-res.render('gestionarbici');  //
+res.render('gestionarbicicleta');  //
 });
 
 app.get('/Correr', authMiddleware,(req, res) => {
@@ -161,6 +161,13 @@ app.get('/Bicicleta', authMiddleware,(req, res) => {
     res.render('bicicleta');  //
   });
 
+app.get('/GestionarEspacio', authMiddleware,(req, res) => {
+    res.render('gestionarordenarespacio');  //
+  });
+
+app.get('/GestionarHorasDormir', authMiddleware, (req, res) => {
+    res.render('gestionarhorasdormir');
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/habit', authMiddleware, habitRoutes);
