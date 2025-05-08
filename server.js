@@ -144,7 +144,23 @@ app.get('/actualizarPerfil', authMiddleware, (req, res) => {
 app.get('/quienesSomos', (req, res) => {
     res.render('quienesSomos');  //
   });
-  
+
+app.get('/GestionarCorrer', authMiddleware,(req, res) => {
+res.render('gestionarcorrer');  //
+});
+
+app.get('/GestionarBici', authMiddleware,(req, res) => {
+res.render('gestionarbici');  //
+});
+
+app.get('/Correr', authMiddleware,(req, res) => {
+    res.render('correr');  //
+  });
+
+app.get('/Bicicleta', authMiddleware,(req, res) => {
+    res.render('bicicleta');  //
+  });
+
 
 app.use('/api/auth', authRoutes);
 app.use('/api/habit', authMiddleware, habitRoutes);
