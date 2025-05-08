@@ -28,7 +28,5 @@ validator
     },
   ])
   .onSuccess((event) => {
-    const email = document.getElementById('correo').value;
-    localStorage.setItem('email', email); 
     event.target.submit();
   });
