@@ -64,6 +64,27 @@
   <!-- <script src="/js/index.js"></script> -->
   <script src="/js/flashMessage.js"></script>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("formLogin");
+      const emailInput = document.getElementById("correo");
+  
+      // Cargar el correo si ya está guardado
+      const savedEmail = localStorage.getItem("savedEmail");
+      if (savedEmail) {
+        emailInput.value = savedEmail;
+      }
+  
+      // Guardar el correo al enviar el formulario
+      form.addEventListener("submit", (e) => {
+        const email = emailInput.value;
+        if (email) {
+          localStorage.setItem("savedEmail", email);
+        }
+      });
+    });
+  </script>
+
 </body>
 
 </html>

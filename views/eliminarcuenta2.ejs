@@ -24,86 +24,91 @@
   </style>
 </head>
 <body>
-    <div class="container py-4">
-        <a href="/eliminarcuenta1" class="back-arrow">&lsaquo;</a>
+  <div class="container py-4">
+    <a href="/eliminarcuenta1" class="back-arrow">&lsaquo;</a>
 
-        <h1 style="color: white;">Eliminar Cuenta</h1>
-        <p style="color: white;">Por tu seguridad, ingresa tu correo electrónico y contraseña para confirmar.</p>
-        
-        <div class="container-md">
-            <!-- Campo para el correo electrónico -->
-            <div class="mb-3">
-                <label for="email" class="form-label" style="color: white;">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="tucorreo@example.com" required>
-            </div>
-            
-            <!-- Campo para la contraseña con toggle -->
-            <div class="mb-3 password-container">
-                <label for="contrasena" class="form-label" style="color: white;">Contraseña</label>
-                <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" required>
-                <span class="password-toggle" id="togglePassword">👁️</span>
-            </div>
-            
-            <div class="separator my-3"></div>
-            <div class="container-md botones-eliminar">
-                <button type="button" class="btn btn-secondary" id="btnEliminar">Eliminar Cuenta</button>
-                <button type="button" class="btn btn-primary" onclick="window.history.back()">Cancelar</button>
-            </div>
-        </div>
+    <h1 style="color: white;">Eliminar Cuenta</h1>
+    <p style="color: white;">Por tu seguridad, ingresa tu contraseña para confirmar.</p>
+    
+    <div class="container-md">
+      <!-- Campo oculto para el correo electrónico -->
+      <input type="hidden" id="email" name="email">
+
+      <!-- Campo para la contraseña con toggle -->
+      <div class="mb-3 password-container">
+        <label for="contrasena" class="form-label" style="color: white;">Contraseña</label>
+        <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+        <span class="password-toggle" id="togglePassword">👁️</span>
+      </div>
+      
+      <div class="separator my-3"></div>
+      <div class="container-md botones-eliminar">
+        <button type="button" class="btn btn-secondary" id="btnEliminar">Eliminar Cuenta</button>
+        <button type="button" class="btn btn-primary" onclick="window.history.back()">Cancelar</button>
+      </div>
     </div>
+  </div>
 
-    <!-- Bootstrap JS -->
-    <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-    <script>
-      // Función para alternar visibilidad de contraseña
-      document.getElementById("togglePassword").addEventListener("click", function () {
-        const passwordInput = document.getElementById("contrasena");
-        const type = passwordInput.type === "password" ? "text" : "password";
-        passwordInput.type = type;
-        this.textContent = type === "password" ? "👁️" : "🙈";
-      });
+  <!-- Bootstrap JS -->
+  <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
 
-      // Función para eliminar cuenta
-      document.getElementById("btnEliminar").addEventListener("click", async () => {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("contrasena").value;
+  <script>
+    // Mostrar/ocultar contraseña
+    document.getElementById("togglePassword").addEventListener("click", function () {
+      const passwordInput = document.getElementById("contrasena");
+      const type = passwordInput.type === "password" ? "text" : "password";
+      passwordInput.type = type;
+      this.textContent = type === "password" ? "👁️" : "🙈";
+    });
 
-        if (!email || !password) {
-          alert("Por favor, completa todos los campos.");
-          return;
-        }
+    // Cargar correo desde localStorage
+    document.addEventListener("DOMContentLoaded", () => {
+      const storedEmail = localStorage.getItem("savedEmail");
+      if (storedEmail) {
+        document.getElementById("email").value = storedEmail;
+      } else {
+        alert("No se encontró un correo guardado. Por favor, inicia sesión nuevamente.");
+        window.location.href = "/login";
+      }
+    });
 
-        try {
-          // 1. Eliminar la cuenta (POST a /api/auth/deleteAcc)
-          const deleteResponse = await fetch("/api/auth/deleteAcc", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: 'include', // Necesario para cookies HttpOnly
-            body: JSON.stringify({ email, password })
+    // Eliminar cuenta
+    document.getElementById("btnEliminar").addEventListener("click", async () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("contrasena").value;
+
+      if (!email || !password) {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
+
+      try {
+        const deleteResponse = await fetch("/api/auth/deleteAcc", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: 'include',
+          body: JSON.stringify({ email, password })
+        });
+
+        if (deleteResponse.ok) {
+          await fetch('/logout', {
+            method: 'GET',
+            credentials: 'include'
           });
 
-          if (deleteResponse.ok) {
-            // 2. Cerrar sesión para eliminar la cookie `token` (GET a /logout)
-            await fetch('/logout', { 
-              method: 'GET',
-              credentials: 'include' // Importante para incluir cookies
-            });
-
-            // 3. Limpiar el token del localStorage (si existe)
-            localStorage.removeItem('token');
-
-            // 4. Redirigir al inicio con mensaje
-            alert("Cuenta eliminada correctamente.");
-            window.location.href = '/';
-          } else {
-            const error = await deleteResponse.json();
-            alert(`Error: ${error.message || "No se pudo eliminar la cuenta. Verifica tus datos."}`);
-          }
-        } catch (err) {
-          console.error("Error al eliminar la cuenta:", err);
-          alert("Ocurrió un error inesperado. Intenta nuevamente.");
+          localStorage.removeItem('token');
+          localStorage.removeItem('savedEmail');
+          alert("Cuenta eliminada correctamente.");
+          window.location.href = '/';
+        } else {
+          const error = await deleteResponse.json();
+          alert(`Error: ${error.message || "No se pudo eliminar la cuenta. Verifica tus datos."}`);
         }
-      });
-    </script>
+      } catch (err) {
+        console.error("Error al eliminar la cuenta:", err);
+        alert("Ocurrió un error inesperado. Intenta nuevamente.");
+      }
+    });
+  </script>
 </body>
 </html>
