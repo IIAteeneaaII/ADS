@@ -439,6 +439,11 @@ a:placeholder {
   width: 50%;
 }
 
+.habitsGestion {
+  background-color: #009394;
+  color: #1f2421;
+}
+
 .grid_habitos {
   background-color: transparent !important;
   display: flex;

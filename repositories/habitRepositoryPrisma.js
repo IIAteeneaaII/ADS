@@ -39,6 +39,16 @@ exports.getUserHabitsWithLog = async (userId, date, dayName) => {
 };
 
 
+exports.getAllUserHabits = async (userId) => {
+  return await prisma.userHabit.findMany({
+    where: {
+      userId: userId,
+      isActive: true,
+    },
+  });
+};
+
+
 exports.getDailyHabitCompletionPercentage = async (userId, date) => {
   const totalHabits = await prisma.userHabit.count({
     where: {

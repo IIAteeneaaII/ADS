@@ -4,17 +4,22 @@ validator
   .addField('#userName', [
     {
       rule: 'required',
-      errorMessage: 'El nombre de usuario es requerido',
+      errorMessage: 'El nombre de usuario es obligatorio',
     },
     {
       rule: 'minLength',
-      value: 3,
-      errorMessage: 'Debe tener al menos 3 caracteres',
+      value: 6,
+      errorMessage: 'Debe tener al menos 6 caracteres',
     },
     {
       rule: 'maxLength',
       value: 20,
       errorMessage: 'No puede tener más de 20 caracteres',
+    },
+    {
+      rule: 'customRegexp', // Comprueba que solo contenga letras y números, sin símbolos
+      value: /^[a-zA-Z0-9]+$/,
+      errorMessage: 'Solo se permiten letras y números (sin símbolos)',
     },
   ])
   .addField('#email', [

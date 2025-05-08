@@ -22,7 +22,10 @@
         width: 50%;
     }
 }
-
+.habitsGestion{
+    background-color: v.$secondaryColor;
+    color: v.$black;
+}
 .grid_habitos{
     background-color: transparent  !important;
     display: flex;
