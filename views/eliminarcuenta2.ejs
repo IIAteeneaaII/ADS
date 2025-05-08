@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -74,33 +74,34 @@
         }
 
         try {
-          const response = await fetch("/api/auth/deleteAcc", {
+          // 1. Eliminar la cuenta (POST a /api/auth/deleteAcc)
+          const deleteResponse = await fetch("/api/auth/deleteAcc", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            credentials: 'include', // Incluye cookies HttpOnly
+            headers: { "Content-Type": "application/json" },
+            credentials: 'include', // Necesario para cookies HttpOnly
             body: JSON.stringify({ email, password })
           });
 
-          if (response.ok) {
-            alert("Cuenta eliminada correctamente.");
-            
-            // Borrar cookies accesibles
-            document.cookie.split(";").forEach(cookie => {
-              const name = cookie.split("=")[0].trim();
-              document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+          if (deleteResponse.ok) {
+            // 2. Cerrar sesión para eliminar la cookie `token` (GET a /logout)
+            await fetch('/logout', { 
+              method: 'GET',
+              credentials: 'include' // Importante para incluir cookies
             });
-            
-            // Redirigir al login
+
+            // 3. Limpiar el token del localStorage (si existe)
+            localStorage.removeItem('token');
+
+            // 4. Redirigir al inicio con mensaje
+            alert("Cuenta eliminada correctamente.");
             window.location.href = '/';
           } else {
-            const error = await response.json();
+            const error = await deleteResponse.json();
             alert(`Error: ${error.message || "No se pudo eliminar la cuenta. Verifica tus datos."}`);
           }
         } catch (err) {
-          console.error("Error al hacer la solicitud:", err);
-          alert("Ocurrió un error inesperado.");
+          console.error("Error al eliminar la cuenta:", err);
+          alert("Ocurrió un error inesperado. Intenta nuevamente.");
         }
       });
     </script>
