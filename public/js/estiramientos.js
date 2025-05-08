@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Lógica para tabs
-    const tabs = document.querySelectorAll('.option');
+    const tabs = document.querySelectorAll('.option-semana-mes');
     const panes = document.querySelectorAll('.tab-pane');
 
     tabs.forEach(tab => {
@@ -292,3 +292,46 @@ function confirmarEliminacion(nombreHabito) {
         contenedor.appendChild(circulo);
     }
 });
+
+function mostrarSeccion(seccion) {
+  const seccionGraficas = document.getElementById('seccion-graficas');
+  const seccionCalendario = document.getElementById('seccion-calendario');
+  const botonGraficas = document.getElementById('btn-graficas');
+  const botonCalendario = document.getElementById('btn-calendario');
+
+  if (seccion === 'graficas') {
+      seccionGraficas.classList.remove('d-none');
+      seccionCalendario.classList.add('d-none');
+      botonGraficas.classList.replace('btn-secondary', 'btn-primary');
+      botonCalendario.classList.replace('btn-primary', 'btn-secondary');
+  } else if (seccion === 'calendario') {
+      seccionGraficas.classList.add('d-none');
+      seccionCalendario.classList.remove('d-none');
+      botonGraficas.classList.replace('btn-primary', 'btn-secondary');
+      botonCalendario.classList.replace('btn-secondary', 'btn-primary');
+  }
+}
+
+
+
+function seleccionarPeriodo(tabId) {
+  const btnSemana = document.getElementById('btn-semana');
+  const btnMes = document.getElementById('btn-mes');
+  const tabSemana = document.getElementById('u-semana');
+  const tabMes = document.getElementById('u-mes');
+
+  if (tabId === 'u-semana') {
+    tabSemana.classList.remove('d-none');
+    tabMes.classList.add('d-none');
+
+    btnSemana.classList.replace('btn-secondary', 'btn-primary');
+    btnMes.classList.replace('btn-primary', 'btn-secondary');
+  } else if (tabId === 'u-mes') {
+    tabSemana.classList.add('d-none');
+    tabMes.classList.remove('d-none');
+
+    btnSemana.classList.replace('btn-primary', 'btn-secondary');
+    btnMes.classList.replace('btn-secondary', 'btn-primary');
+  }
+}
+

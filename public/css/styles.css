@@ -653,7 +653,7 @@ a:placeholder {
   display: grid;
   grid-auto-flow: column;
   background-color: rgba(130, 148, 166, 0.3098039216);
-  border-radius: 1rem;
+  border-radius: 10rem;
 }
 
 .titulo-habito {
@@ -807,6 +807,13 @@ a:placeholder {
   color: #1f2421 !important;
 }
 
+.grupo-iconos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
 .iconos-habitos {
   color: #f8f9fa;
   margin-right: 10px;
@@ -843,6 +850,35 @@ a:placeholder {
 .dia-vacio {
   background: none;
   visibility: hidden;
+}
+
+.clickable-subrayado {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.option-semana-mes {
+  border: 0.2rem solid #009394;
+  background-color: #009394;
+  padding: 1px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover: cambia de color al pasar el cursor */
+.option-semana-mes:hover {
+  background-color: #e0e0e0; /* Color de fondo al pasar el mouse */
+  color: #333;
+}
+
+/* Activa: muestra cuál está seleccionada */
+.option-semana-mes.active {
+  background-color: #007bff; /* Color principal para opción activa */
+  color: white;
 }
 
 .botones-eliminar {
