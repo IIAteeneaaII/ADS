@@ -23,26 +23,14 @@
         <div class="separator"></div>
         <main>
             <div>
-                <div class="grid_habitos habitos">
-                    <div class="option" onclick="mostrarHabitos('movimiento')">
-                        <img src="../img/gestorhabitos/movimiento.png" alt="movimiento_corporal" />
-                        <span>Movimiento Corporal</span>
-                    </div>
-                    <div class="option" onclick="mostrarHabitos('bienestar')">
-                        <img src="../img/gestorhabitos/bienestar.png" alt="Bienestar" />
-                        <span>Bienestar</span>
-                    </div>
-                    <div class="option" onclick="mostrarHabitos('mental')">
-                        <img src="../img/gestorhabitos/mentales.png" alt="Mentales" />
-                        <span>Mentales</span>
-                    </div>
-                </div>
+                <div id="habitsContainer" class="habitsGestion"></div>
                 <div class="text-center">
                     <button class="btn btn-primary" onclick="location.href='/gestionarHabitos';">Agregar un nuevo hábito</button>
                 </div>
             </div>  
         </main>
     </div>
+    <script src="/js/gestionarMisHabitos.js"></script>
 </body>
 
 </html>

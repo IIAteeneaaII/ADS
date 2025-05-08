@@ -51,3 +51,15 @@ exports.getHabitsForDate = async (req, res) => {
     res.status(500).json({ message: 'Error getting habits' });
   }
 };
+
+exports.getAllHabits = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const habits = await habitRepo.getAllUserHabits(userId);
+    res.json(habits);
+  } catch (error) {
+    console.error("Error fetching all habits:", error);
+    res.status(500).json({ message: 'Error getting all habits' });
+  }
+};
