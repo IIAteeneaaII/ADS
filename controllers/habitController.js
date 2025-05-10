@@ -63,3 +63,34 @@ exports.getAllHabits = async (req, res) => {
     res.status(500).json({ message: 'Error getting all habits' });
   }
 };
+
+exports.generateDailyHabitLog = async (req, res) => {
+  const date = new Date();
+
+  const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+  const dayName = days[date.getDay()];
+
+  try {
+    const habits = await habitRepo.getAllUsersHabits(date, dayName);
+    
+    const logs = habits.map(habit => ({
+      userHabitId: habit.id,
+      date: date,
+      status: 'pending',
+      notes: '',
+      fieldValues: habit.fieldValues
+    }));
+    try{
+      await habitRepo.UploadHabits(logs, true);
+      console.log(`${logs.length} logs creados para el día ${dayName}`);
+      res.status(200).json({ message: 'Logs generados correctamente' });
+    }catch(error){
+      console.error("Error al subir los hábitos:", error);
+      res.status(500).json({ message: 'Error subiendo los hábitos' });
+    }
+    
+  } catch (error) {
+    console.error("Error al conseguir los hábitos:", error);
+    res.status(500).json({ message: 'Error cargando los hábitos' });
+  }
+};

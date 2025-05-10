@@ -49,6 +49,37 @@ exports.getAllUserHabits = async (userId) => {
 };
 
 
+exports.getAllUsersHabits = async (date, dayName) => {
+  return await prisma.userHabit.findMany({
+    where: {
+      isActive: true,
+      startDate: { lte: date },
+      AND: [
+        {
+          frequency: {
+            path: ['type'],
+            equals: 'weekly'
+          }
+        },
+        {
+          frequency: {
+            path: ['days'],
+            array_contains: dayName
+          }
+        }
+      ]
+    }
+  });
+};
+
+
+exports.UploadHabits = async (logs, skipDuplicates) => {
+  return prisma.habitTrackingLog.createMany({
+    data: logs,
+    skipDuplicates: skipDuplicates
+  });
+};
+
 exports.getDailyHabitCompletionPercentage = async (userId, date) => {
   const totalHabits = await prisma.userHabit.count({
     where: {

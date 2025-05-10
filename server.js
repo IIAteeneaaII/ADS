@@ -7,6 +7,10 @@ const cookieParser = require('cookie-parser');
 const { loadAllJobs } = require('./utils/jobManager');
 const { getRecentNotifications, countUnreadNotifications, markAllAsRead } = require('./repositories/habitRepositoryPrisma');
 
+//pruebas, no estara en la app
+const cargarHabitosRoutes = require('./routes/cargarhabitos');
+//
+
 const app = express();
 
 app.use(express.json());
@@ -182,6 +186,11 @@ app.get('/GestionarHorasDormir', authMiddleware, (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/habit', authMiddleware, habitRoutes);
 app.use('/api/inicio', authMiddleware, principalScrRoutes);
+
+//pruebas, no estara en la app
+app.use('/api/cargarHabitos', cargarHabitosRoutes);
+//
+
 
 const PORT = 3000;
 app.listen(PORT, async () => {
