@@ -5,7 +5,10 @@ const principalScrRoutes = require('./routes/principalScrRoutes');
 const { authMiddleware } = require('./middlewares/authMiddleware');
 const cookieParser = require('cookie-parser');
 const { loadAllJobs } = require('./utils/jobManager');
+require('./utils/UploadHabitsPerDay');
+
 const { getRecentNotifications, countUnreadNotifications, markAllAsRead } = require('./repositories/habitRepositoryPrisma');
+
 
 //pruebas, no estara en la app
 const cargarHabitosRoutes = require('./routes/cargarhabitos');

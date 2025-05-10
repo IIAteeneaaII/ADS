@@ -96,4 +96,6 @@ model HabitTrackingLog {
   status       String
   notes        String?
   fieldValues  Json
+
+  @@unique([userHabitId, date])
 }

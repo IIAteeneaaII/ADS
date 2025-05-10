@@ -66,6 +66,7 @@ exports.getAllHabits = async (req, res) => {
 
 exports.generateDailyHabitLog = async (req, res) => {
   const date = new Date();
+  date.setHours(1, 0, 0, 0);
 
   const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
   const dayName = days[date.getDay()];
