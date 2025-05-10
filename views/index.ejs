@@ -11,13 +11,15 @@
 </head>
 
 <body>
-  <div class="login_wrapper">
+  <div class="login-wrapper">
     <div class="hero-img">
-      <img src="/img/finit2.png" class="img" alt="Fin It" />
+      <img src="/img/backgroundImg.png" class="img" alt="Fin It" />
     </div>
 
-    <div class="container-md login-card">
+    <div class="login-card position-relative">
+      <img src="/img/tiburon.gif" alt="Tiburón" class="shark-random" />
       <div class="login-box w-100">
+        <h1>FIN IT</h1>
         <div class="wrapp">
           <header class="text-center mb-8">
             <div class="container_logo">
@@ -26,7 +28,7 @@
               <!-- <img src="/img/finit1.png" class="img" alt="Fin It" /> -->
             </div>
           </header>
-    
+
           <main>
             <h2 class="text-center mb-4">Iniciar sesión</h2>
             <form id="formLogin" action="/api/auth/login" method="POST" autocomplete="off" novalidate>
@@ -34,18 +36,18 @@
                 <label for="correo" class="form-label">Correo electrónico:</label>
                 <input type="email" class="form-control" id="correo" name="email" placeholder="correo@gmail.com" />
               </div>
-    
+
               <div class="mb-3">
                 <label for="contrasena" class="form-label">Contraseña:</label>
                 <input type="password" class="form-control" id="contrasena" name="password"
-                    placeholder="Ingresa tu contraseña" />
+                  placeholder="Ingresa tu contraseña" />
               </div>
-    
+
               <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
               </div>
             </form>
-    
+
             <div class="text-end mt-3">
               <a href="/olvidarcontrasena">Olvidé mi contraseña</a>
             </div>
@@ -68,13 +70,13 @@
     document.addEventListener("DOMContentLoaded", () => {
       const form = document.getElementById("formLogin");
       const emailInput = document.getElementById("correo");
-  
+
       // Cargar el correo si ya está guardado
       const savedEmail = localStorage.getItem("savedEmail");
       if (savedEmail) {
         emailInput.value = savedEmail;
       }
-  
+
       // Guardar el correo al enviar el formulario
       form.addEventListener("submit", (e) => {
         const email = emailInput.value;
@@ -84,6 +86,68 @@
       });
     });
   </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const shark = document.querySelector(".shark-random");
+  const card = document.querySelector(".login-card");
+
+  if (!shark || !card) {
+    console.error("No se encontró el tiburón o la tarjeta de login.");
+    return;
+  }
+
+  const maxX = card.clientWidth - shark.clientWidth;
+  const maxY = card.clientHeight - shark.clientHeight;
+
+  let sharkX = Math.random() * maxX; // Posición inicial aleatoria del tiburón en el eje X
+  let sharkY = Math.random() * maxY; // Posición inicial aleatoria en el eje Y
+  let moveX = 1; // Velocidad de movimiento en el eje X
+  let moveY = 1; // Velocidad de movimiento en el eje Y
+  let movingRight = true; // Dirección inicial en el eje X
+  let movingDown = true;  // Dirección inicial en el eje Y
+
+  function moveShark() {
+    // Mover el tiburón en el eje X
+    if (movingRight) {
+      sharkX += moveX; // Mueve hacia la derecha
+      if (sharkX >= maxX) {
+        // Si llega a la pared derecha, voltea la imagen y cambia la dirección
+        movingRight = false;
+        shark.style.transform = "scaleX(-1)"; // Voltea la imagen horizontalmente
+      }
+    } else {
+      sharkX -= moveX; // Mueve hacia la izquierda
+      if (sharkX <= 0) {
+        // Si llega a la pared izquierda, voltea la imagen y cambia la dirección
+        movingRight = true;
+        shark.style.transform = "scaleX(1)"; // Vuelve a la posición original
+      }
+    }
+
+    // Mover el tiburón en el eje Y
+    if (movingDown) {
+      sharkY += moveY; // Mueve hacia abajo
+      if (sharkY >= maxY) {
+        // Si llega a la pared inferior, cambia la dirección vertical
+        movingDown = false;
+      }
+    } else {
+      sharkY -= moveY; // Mueve hacia arriba
+      if (sharkY <= 0) {
+        // Si llega a la pared superior, cambia la dirección vertical
+        movingDown = true;
+      }
+    }
+
+    // Actualiza la posición del tiburón
+    shark.style.left = `${sharkX}px`;
+    shark.style.top = `${sharkY}px`;
+  }
+
+  setInterval(moveShark, 10); // Mueve el tiburón cada 10ms para hacerlo más lento
+});
+
+</script>
 
 </body>
 

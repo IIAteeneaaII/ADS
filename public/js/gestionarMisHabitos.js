@@ -39,9 +39,7 @@ function renderHabits(habits) {
         habitIcon.style.marginRight = '10px';
 
         const habitCard = document.createElement('div');
-        habitCard.className = 'd-flex justify-content-between align-items-center p-3 flex-grow-1';
-        habitCard.style.backgroundColor = '#a3b8cc';
-        habitCard.style.borderRadius = '12px';
+        habitCard.className = 'card_gestionar';
         habitCard.style.color = '#000';
         habitCard.style.cursor = 'pointer';
 

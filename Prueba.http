@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "userName":"prueba3",
-  "email": "PRUEBA3@gmail.com",
+  "email": "PRUEBA4@gmail.com",
   "password": "contras234"
 }
 
@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
   "userName":"prueba3",
-  "email": "PRUEBA3@gmail.com",
+  "email": "PRUEBA4@gmail.com",
   "password": "contras234"
 }
 
@@ -23,7 +23,7 @@ Content-Type: application/json
 
 POST http://localhost:3000/api/habit/personalizado
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJQUlVFQkEzQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicHJ1ZWJhMyIsImlhdCI6MTc0NjY2NjM1NywiZXhwIjoxNzQ2NjY5OTU3fQ.CcMblXWu1NDtbUrCp4lJfS_A1JPSlfGgNWjCdjmu3OU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJQUlVFQkEzQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicHJ1ZWJhMyIsImlhdCI6MTc0NjY3MTgwOSwiZXhwIjoxNzQ2Njc1NDA5fQ.pskNDDs_-F25-1LGnsL8u7p72fTjV8mU57sDawNllfs
 
 {
   "userId": 1,
@@ -47,3 +47,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiO
 ###
 GET http://localhost:3000/api/inicio/all
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJQUlVFQkEzQGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicHJ1ZWJhMyIsImlhdCI6MTc0NjY2NjM1NywiZXhwIjoxNzQ2NjY5OTU3fQ.CcMblXWu1NDtbUrCp4lJfS_A1JPSlfGgNWjCdjmu3OU
+
+###
+GET http://localhost:3000/api/auth/deleteAcc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJQUlVFQkE0QGdtYWlsLmNvbSIsInVzZXJOYW1lIjoicHJ1ZWJhMyIsImlhdCI6MTc0NjY3MjM2MSwiZXhwIjoxNzQ2Njc1OTYxfQ.gw95kwv-MKR-cRHGjHkIfz_5K0Q2sbhYf2nxVmU8p8Y
+Content-Type: application/json
+
+{
+  "email": "PRUEBA4@gmail.com",
+  "password": "contras234"
+}

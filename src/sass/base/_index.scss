@@ -11,9 +11,6 @@ html {
     box-sizing: inherit;
 }
 
-a{
-    text-decoration: none;
-}
 img{
     width: 100%;
     height: auto;
@@ -33,7 +30,7 @@ p, a{
     color: v.$white;
 }
 body {
-    background-color: v.$mainColor;
+    background-color: v.$backgroundColor;
 }
 footer{
     margin-top: 2rem;
@@ -68,6 +65,8 @@ footer{
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
+    color: v.$colorPrimariBtn;
+    font-weight: 500;
     &:hover {
         color: v.$black;
         transform: scale(1.02); 
@@ -83,7 +82,7 @@ footer{
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
-    color: v.$white;
+    color: v.$colorPrimariBtn;
     &:hover {
         transform: scale(1.02); 
         background-color:v.$secondaryColor-strong; 
@@ -119,8 +118,7 @@ footer{
     display: block;
 }
 
-input {
-    color: v.$white;
-    background-color: v.$white;
+a{
+    font-style:italic;
+    text-decoration: underline;
 }
-

@@ -13,24 +13,10 @@
 }
 
 h1, h2 {
-    color: v.$white;
+    color: v.$black;
     font-size: 1.5rem;
 }
 
-input::placeholder {
-    // color: blue;
-    opacity: 1;
-}
-
-a {
-
-    text-decoration: none;
-    font-weight: 500;
-
-    &:placeholder {
-        text-decoration: underline;
-    }
-}
 
 .fecha, .fecha_num{
     color: v.$mainColor-strong;

@@ -23,8 +23,17 @@
     }
 }
 .habitsGestion{
-    background-color: v.$secondaryColor;
+    // background-color: v.$secondaryColor;
     color: v.$black;
+}
+.card_gestionar{
+    background-color: v.$secondaryColor;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem; 
+    flex-grow: 1;
 }
 .grid_habitos{
     background-color: transparent  !important;
