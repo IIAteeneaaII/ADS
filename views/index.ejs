@@ -63,7 +63,7 @@
   <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
-  <!-- <script src="/js/index.js"></script> -->
+  <script src="/js/index.js"></script>
   <script src="/js/flashMessage.js"></script>
 
   <script>
@@ -86,68 +86,6 @@
       });
     });
   </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-  const shark = document.querySelector(".shark-random");
-  const card = document.querySelector(".login-card");
-
-  if (!shark || !card) {
-    console.error("No se encontró el tiburón o la tarjeta de login.");
-    return;
-  }
-
-  const maxX = card.clientWidth - shark.clientWidth;
-  const maxY = card.clientHeight - shark.clientHeight;
-
-  let sharkX = Math.random() * maxX; // Posición inicial aleatoria del tiburón en el eje X
-  let sharkY = Math.random() * maxY; // Posición inicial aleatoria en el eje Y
-  let moveX = 1; // Velocidad de movimiento en el eje X
-  let moveY = 1; // Velocidad de movimiento en el eje Y
-  let movingRight = true; // Dirección inicial en el eje X
-  let movingDown = true;  // Dirección inicial en el eje Y
-
-  function moveShark() {
-    // Mover el tiburón en el eje X
-    if (movingRight) {
-      sharkX += moveX; // Mueve hacia la derecha
-      if (sharkX >= maxX) {
-        // Si llega a la pared derecha, voltea la imagen y cambia la dirección
-        movingRight = false;
-        shark.style.transform = "scaleX(-1)"; // Voltea la imagen horizontalmente
-      }
-    } else {
-      sharkX -= moveX; // Mueve hacia la izquierda
-      if (sharkX <= 0) {
-        // Si llega a la pared izquierda, voltea la imagen y cambia la dirección
-        movingRight = true;
-        shark.style.transform = "scaleX(1)"; // Vuelve a la posición original
-      }
-    }
-
-    // Mover el tiburón en el eje Y
-    if (movingDown) {
-      sharkY += moveY; // Mueve hacia abajo
-      if (sharkY >= maxY) {
-        // Si llega a la pared inferior, cambia la dirección vertical
-        movingDown = false;
-      }
-    } else {
-      sharkY -= moveY; // Mueve hacia arriba
-      if (sharkY <= 0) {
-        // Si llega a la pared superior, cambia la dirección vertical
-        movingDown = true;
-      }
-    }
-
-    // Actualiza la posición del tiburón
-    shark.style.left = `${sharkX}px`;
-    shark.style.top = `${sharkY}px`;
-  }
-
-  setInterval(moveShark, 10); // Mueve el tiburón cada 10ms para hacerlo más lento
-});
-
-</script>
 
 </body>
 

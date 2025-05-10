@@ -15,10 +15,6 @@ html {
   box-sizing: inherit;
 }
 
-a {
-  text-decoration: none;
-}
-
 img {
   width: 100%;
   height: auto;
@@ -31,7 +27,7 @@ img {
 }
 
 h1, h2, h3 {
-  font-family: "Red Hat Display", serif;
+  font-family: "Segoe UI", serif;
 }
 
 p, a {
@@ -40,7 +36,7 @@ p, a {
 }
 
 body {
-  background-color: #1A2B3D;
+  background-color: #ebfcff;
 }
 
 footer {
@@ -48,8 +44,8 @@ footer {
 }
 
 .separator {
-  border-top: 1px solid #006270;
-  background-color: #006270;
+  border-top: 1px solid #1e62af;
+  background-color: #1e62af;
   margin: 1rem 0 1rem;
 }
 
@@ -72,39 +68,41 @@ footer {
 }
 
 .btn-primary {
-  background-color: #009394;
+  background-color: #bfddfe;
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
+  color: #173454;
+  font-weight: 500;
 }
 .btn-primary:hover {
   color: #1f2421;
   transform: scale(1.02);
-  background-color: #00e0c7;
+  background-color: #93c5fd;
 }
 .btn-primary:focus {
-  background-color: #00e0c7;
+  background-color: #93c5fd;
   border: none;
 }
 
 .btn-secondary {
-  background-color: #006270;
+  background-color: #1e62af;
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
-  color: #f8f9fa;
+  color: #173454;
 }
 .btn-secondary:hover {
   transform: scale(1.02);
-  background-color: rgba(130, 148, 166, 0.3098039216);
+  background-color: #2582eb;
 }
 .btn-secondary:focus {
-  background-color: rgba(130, 148, 166, 0.3098039216);
+  background-color: #2582eb;
   border: none;
 }
 
 .btn-tertiary {
-  background-color: #006270;
+  background-color: #1e62af;
   border: none;
   border-radius: 5rem;
   padding: 1rem;
@@ -113,14 +111,14 @@ footer {
 .btn-tertiary:hover {
   transform: scale(1.02);
   background-color: #f8f9fa;
-  color: #009394;
+  color: #bfddfe;
 }
 .btn-tertiary:focus {
   border: none;
 }
 
 .just-validate-error-label {
-  color: #00e0c7 !important;
+  color: #93c5fd !important;
   margin-top: 0.5rem;
 }
 
@@ -128,17 +126,18 @@ footer {
   display: block;
 }
 
-input {
-  color: #f8f9fa;
-  background-color: #f8f9fa;
+a {
+  font-style: italic;
+  text-decoration: underline;
 }
 
 header {
   text-align: center;
   margin-top: 2rem;
 }
+
 main {
-  color: #f8f9fa;
+  color: #1f2421;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,43 +146,52 @@ main {
 main h2 {
   text-align: center;
   margin-bottom: 2rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .login-wrapper {
   display: flex;
-  flex-direction: column;
   align-items: center;
   position: relative;
+  justify-content: center;
+  height: 100dvh;
   width: 100%;
+  overflow: hidden;
 }
 
 .hero-img {
-  text-align: center;
-  margin-top: 0rem;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 .hero-img img {
-  text-align: center;
-  width: 29%;
-  height: 25rem;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: 50% -16%;
+  object-position: bottom;
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
 }
 
 .login-card {
-  background-color: #1A2B3D;
-  padding: 2rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 10px 30px #009394;
   position: relative;
-  margin-top: -50px;
-  z-index: 10;
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 5rem;
+  z-index: 2;
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  width: 90%;
+  max-width: 280px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.login-card h1 {
+  font-size: xx-large;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  color: #93c5fd;
 }
 
 .container {
@@ -193,53 +201,43 @@ main h2 {
   padding: 1rem;
 }
 
-.container-md {
-  max-width: 400px;
-}
-
 .form-control {
-  background-color: #1A2B3D;
   border-radius: 0.5rem;
   padding: 0.75rem;
-  border: 1px solid #009394;
-  color: #f8f9fa;
+  border: 1px solid #bfddfe;
+  color: #1f2421;
 }
 .form-control:focus {
-  background-color: #1A2B3D !important;
-  border-color: #009394;
+  background-color: #ebfcff !important;
+  border-color: #bfddfe;
   box-shadow: none;
   outline: none;
-  color: #00e0c7;
-}
-
-input::placeholder {
-  opacity: 1;
 }
 
 a {
-  color: #f8f9fa;
-  text-decoration: none;
+  color: #1f2421;
+  font-size: small;
   font-weight: 500;
 }
-
 a:hover {
   text-decoration: underline;
-  color: #009394;
+  color: #1e62af;
 }
 
 .text-end {
   text-align: center !important;
 }
 
-.eye-icon {
-  position: absolute;
-  right: 1rem;
-  top: 2.8rem;
-  cursor: pointer;
-}
-
 .position-relative {
   position: relative;
+}
+
+.shark-random {
+  position: absolute;
+  width: 80px;
+  z-index: -1;
+  /* Asegura que el tiburón esté debajo de los elementos del formulario */
+  transition: top 2s linear, left 2s linear, transform 0.5s ease-in-out;
 }
 
 .container {
@@ -254,29 +252,17 @@ a:hover {
 }
 
 h1, h2 {
-  color: #f8f9fa;
+  color: #1f2421;
   font-size: 1.5rem;
 }
 
-input::placeholder {
-  opacity: 1;
-}
-
-a {
-  text-decoration: none;
-  font-weight: 500;
-}
-a:placeholder {
-  text-decoration: underline;
-}
-
 .fecha, .fecha_num {
-  color: #006270;
+  color: #1e62af;
 }
 
 .fecha_num {
   color: #f8f9fa;
-  background-color: #006270;
+  background-color: #1e62af;
   border: none;
   border-radius: 1rem;
 }
@@ -371,7 +357,7 @@ a:placeholder {
 }
 
 .top-bar-inicio {
-  background-color: #006270;
+  background-color: #1e62af;
   padding: 0.75rem;
   display: flex;
   justify-content: space-between;
@@ -440,8 +426,17 @@ a:placeholder {
 }
 
 .habitsGestion {
-  background-color: #009394;
   color: #1f2421;
+}
+
+.card_gestionar {
+  background-color: #bfddfe;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  flex-grow: 1;
 }
 
 .grid_habitos {
@@ -451,8 +446,8 @@ a:placeholder {
 }
 
 .option {
-  border: 0.2rem solid #009394;
-  background-color: #009394;
+  border: 0.2rem solid #bfddfe;
+  background-color: #bfddfe;
   padding: 12px;
   border-radius: 10px;
   display: flex;
@@ -488,17 +483,17 @@ a:placeholder {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .plus-button:active {
-  background-color: #00e0c7;
+  background-color: #93c5fd;
   color: white;
-  border-color: #00e0c7;
+  border-color: #93c5fd;
 }
 .plus-button:hover {
-  border-color: #00e0c7;
-  color: #00e0c7;
+  border-color: #93c5fd;
+  color: #93c5fd;
 }
 
 .option-1 {
-  background-color: #009394;
+  background-color: #bfddfe;
   padding: 12px;
   border-radius: 10px;
   display: flex;
@@ -555,7 +550,7 @@ a:placeholder {
 
 .ir_Alhabito {
   padding-left: 10rem;
-  background-color: #00e0c7;
+  background-color: #93c5fd;
 }
 
 .page_preferencias {
@@ -579,7 +574,7 @@ a:placeholder {
   margin-bottom: 1rem;
 }
 .container_pr h1 {
-  font-family: "Red Hat Display", serif;
+  font-family: "Segoe UI", serif;
   color: #f8f9fa;
 }
 .container_pr .omitir {
@@ -590,7 +585,7 @@ a:placeholder {
   color: #f8f9fa;
 }
 .container_pr .omitir a:hover {
-  color: #00e0c7;
+  color: #93c5fd;
 }
 
 .grid_pref {
@@ -601,7 +596,7 @@ a:placeholder {
 }
 
 .optionpr {
-  background-color: #006270;
+  background-color: #1e62af;
   color: #f8f9fa;
   padding: 1rem;
   border-radius: 10px;
@@ -620,7 +615,7 @@ a:placeholder {
 
 .optionpr.selected {
   color: #1f2421;
-  background-color: #00e0c7;
+  background-color: #93c5fd;
 }
 
 .counter {
@@ -630,7 +625,7 @@ a:placeholder {
 }
 
 .page_preferencias .button {
-  background-color: #006270;
+  background-color: #1e62af;
   color: #f8f9fa;
   padding: 8px 16px;
   border: none;
@@ -640,19 +635,19 @@ a:placeholder {
 }
 .page_preferencias .button:disabled {
   cursor: not-allowed;
-  background-color: #006270;
+  background-color: #1e62af;
   color: #f8f9fa;
 }
 .page_preferencias .button:hover {
   cursor: pointer;
   transform: scale(1.05);
-  background-color: #009394;
+  background-color: #bfddfe;
 }
 
 .grid-opciones {
   display: grid;
   grid-auto-flow: column;
-  background-color: rgba(130, 148, 166, 0.3098039216);
+  background-color: #2582eb;
   border-radius: 10rem;
 }
 
@@ -686,7 +681,7 @@ a:placeholder {
 }
 
 .tab-content {
-  background-color: #1A2B3D;
+  background-color: #ebfcff;
   margin-top: 1.5rem;
 }
 .tab-content .tab-pane {
@@ -711,7 +706,7 @@ a:placeholder {
 
 .progreso,
 .informacion {
-  border: 1px solid #006270;
+  border: 1px solid #1e62af;
   text-align: center;
 }
 
@@ -728,31 +723,31 @@ a:placeholder {
 .input-fecha .fecha-formateada {
   font-weight: 500;
   color: black;
-  background-color: #00e0c7;
+  background-color: #93c5fd;
   border-radius: 0.5rem;
   padding: 0.4rem 0.8rem;
 }
 
 .pikaday {
-  background-color: #1A2B3D;
-  border: 1px solid #006270;
+  background-color: #ebfcff;
+  border: 1px solid #1e62af;
   font-family: inherit;
 }
 .pikaday .pika-day.selected,
 .pikaday .pika-day:hover {
-  background-color: #006270;
+  background-color: #1e62af;
   color: white;
 }
 .pikaday .pika-month,
 .pikaday .pika-weekdays {
-  background-color: #00e0c7;
+  background-color: #93c5fd;
   color: black;
 }
 .pikaday .pika-weekday {
   font-weight: 600;
 }
 .pikaday .pika-day.today {
-  border-color: #006270;
+  border-color: #1e62af;
 }
 
 .dias_notificaciones {
@@ -767,11 +762,11 @@ a:placeholder {
   transition: color 0.3s ease;
 }
 .dias_notificaciones.selected i {
-  color: #009394;
+  color: #bfddfe;
 }
 
 .btn-dias {
-  background-color: #00e0c7;
+  background-color: #93c5fd;
   border: 2px solid #1f2421;
   border-radius: 0.5rem;
   padding: 0.18rem;
@@ -783,12 +778,12 @@ a:placeholder {
   text-align: center;
 }
 .btn-dias.selected {
-  background-color: #006270;
+  background-color: #1e62af;
   color: #f8f9fa;
-  border-color: #006270;
+  border-color: #1e62af;
 }
 .btn-dias:hover:not(.selected) {
-  background-color: #009394;
+  background-color: #bfddfe;
 }
 
 .resProgresobtn {
@@ -906,7 +901,7 @@ a:placeholder {
   color: black;
   border-radius: 20px;
   padding: 1rem 2rem;
-  box-shadow: 0 0 15px rgba(130, 148, 166, 0.3098039216);
+  box-shadow: 0 0 15px #2582eb;
   text-align: center;
   max-width: 100%;
   width: 100%;
@@ -948,7 +943,7 @@ a:placeholder {
 }
 
 .calendario-container {
-  background: #00e0c7;
+  background: #93c5fd;
   color: black;
   border-radius: 20px;
   padding: 1rem 2rem;
@@ -980,7 +975,7 @@ a:placeholder {
 }
 
 .dia:hover {
-  background-color: rgba(130, 148, 166, 0.3098039216);
+  background-color: #2582eb;
   cursor: pointer;
 }
 
@@ -1042,7 +1037,7 @@ a:placeholder {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #006270;
+  background-color: #1e62af;
   color: #1f2421;
   display: flex;
   justify-content: center;
@@ -1055,7 +1050,7 @@ a:placeholder {
   color: #fff;
 }
 .progress-indicator .arrow {
-  color: #006270;
+  color: #1e62af;
   font-size: 20px;
 }
 
@@ -1063,7 +1058,7 @@ a:placeholder {
   font-size: 18px;
   margin-bottom: 15px;
   text-align: center;
-  border-bottom: 1px solid #00e0c7;
+  border-bottom: 1px solid #93c5fd;
   padding-bottom: 15px;
   margin-top: 0;
 }
@@ -1076,7 +1071,7 @@ a:placeholder {
 }
 .habits-grid .habit-item {
   padding: 10px;
-  border: 1px solid #00e0c7;
+  border: 1px solid #93c5fd;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -1164,6 +1159,60 @@ ul li ul li {
 }
 
 h1.actualizar {
-  font-family: "Red Hat Display", serif;
+  font-family: "Segoe UI", serif;
   color: #f8f9fa;
 }
+
+.perfil-foto-container {
+  position: relative;
+  display: inline-block;
+}
+
+.perfil-foto {
+  width: 150px; /* ajusta según tu diseño */
+  height: 150px;
+  border-radius: 50%;
+  margin-top: 1rem;
+  object-fit: cover;
+}
+
+.icono-camara {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+.icono-camara:hover {
+  background-color: #e0e0e0;
+}
+
+.perfil {
+  color: #f8f9fa;
+}
+
+.icon-right {
+  margin-left: auto; /* Empuja el ícono al extremo derecho */
+}
+
+.form_habitos {
+  color: #f8f9fa;
+}
+.form_habitos .btn-outline-secondary {
+  color: #f8f9fa;
+  border-color: #93c5fd;
+  background-color: #bfddfe;
+}
+.form_habitos .btn-outline-secondary:hover, .form_habitos .btn-outline-secondary:focus, .form_habitos .btn-outline-secondary:active {
+  color: #000;
+  border-color: #bfddfe;
+  background-color: #93c5fd;
+  transform: scale(1.1);
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -95,9 +95,10 @@ a {
     color: v.$black;
     font-size: small;
     font-weight: 500;
+
     &:hover {
-    text-decoration: underline;
-    color: v.$mainColor-strong;
+        text-decoration: underline;
+        color: v.$mainColor-strong;
     }
 }
 
@@ -111,11 +112,9 @@ a {
 
 
 .shark-random {
-  position: absolute;
-  width: 80px;
-  z-index: -1; /* Asegura que el tiburón esté debajo de los elementos del formulario */
-  transition: top 2s linear, left 2s linear, transform 0.5s ease-in-out;
+    position: absolute;
+    width: 80px;
+    z-index: -1;
+    /* Asegura que el tiburón esté debajo de los elementos del formulario */
+    transition: top 2s linear, left 2s linear, transform 0.5s ease-in-out;
 }
-
-
-

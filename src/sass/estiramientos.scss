@@ -37,7 +37,7 @@
     color: rgb(252, 83, 83);
 }
 .tab-content {
-    background-color: v.$mainColor;
+    background-color: v.$backgroundColor;
     margin-top: 1.5rem;
 
     .tab-pane {
@@ -90,7 +90,7 @@
 }
 
 .pikaday {
-    background-color: v.$mainColor;
+    background-color: v.$backgroundColor;
     border: 1px solid v.$mainColor-strong;
     font-family: inherit;
 
