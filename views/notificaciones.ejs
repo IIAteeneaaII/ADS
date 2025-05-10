@@ -19,8 +19,28 @@
         <div class="container-md pt-2">
             <h1>Notificaciones</h1>
             <div class="habit-card mt-4" id="seccion-de-notificaciones">
-                <p>Hmm, no hay ninguna notificación por el momento.</p>
+                <% if (notifications.length===0) { %>
+                    <p>Hmm, no hay ninguna notificación por el momento.</p>
+                    <% } else { %>
+                        <% notifications.forEach(notification=> { %>
+                            <div
+                                class="notification-item mb-3 p-3 border rounded <%= notification.isRead ? 'bg-light' : 'bg-white' %>">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <strong>
+                                        <%= notification.title %>
+                                    </strong>
+                                    <small class="text-muted">
+                                        <%= new Date(notification.createdAt).toLocaleString('es-MX') %>
+                                    </small>
+                                </div>
+                                <p class="mb-0 text-secondary">
+                                    <%= notification.message %>
+                                </p>
+                            </div>
+                            <% }) %>
+                                <% } %>
             </div>
+
 
         </div>
     </div>

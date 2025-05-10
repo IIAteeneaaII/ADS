@@ -78,3 +78,41 @@ exports.getDailyHabitCompletionPercentage = async (userId, date) => {
     percentage: parseFloat(percentage.toFixed(2))
   };
 };
+
+
+exports.getRecentNotifications = async (userId) => {
+  return await prisma.notification.findMany({
+    where: {
+      userId: userId,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    take: 10,
+  });
+};
+
+
+exports.countUnreadNotifications = async (userId) => {
+  const unreadCount = await prisma.notification.count({
+    where: {
+      userId: userId,
+      isRead: false,
+    },
+  });
+
+  return unreadCount;
+};
+
+exports.markAllAsRead = async (userId) => {
+  return await prisma.notification.updateMany({
+    where: {
+      userId: userId,
+      isRead: false,
+    },
+    data: {
+      isRead: true,
+      readAt: new Date(),
+    },
+  });
+};

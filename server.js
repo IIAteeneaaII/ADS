@@ -4,6 +4,8 @@ const habitRoutes = require('./routes/habitRoute');
 const principalScrRoutes = require('./routes/principalScrRoutes');
 const { authMiddleware } = require('./middlewares/authMiddleware');
 const cookieParser = require('cookie-parser');
+const { loadAllJobs } = require('./utils/jobManager');
+const { getRecentNotifications, countUnreadNotifications, markAllAsRead } = require('./repositories/habitRepositoryPrisma');
 
 const app = express();
 
@@ -42,9 +44,11 @@ app.get('/Preferencias', authMiddleware, (req, res) => {
     res.render('preferencias');
 });
 
-app.get('/Inicio', authMiddleware, (req, res) => {
+app.get('/Inicio', authMiddleware, async (req, res) => {
+    const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
+
     const { userName } = req.user;
-    res.render('inicio',{userName});
+    res.render('inicio',{userName, unreadNotifications});
 });
 
 app.get('/EstadoDeAnimo', authMiddleware, (req, res) => {
@@ -58,8 +62,14 @@ app.get('/TerminosyCondiciones', (req, res) => {
     res.render('terminosyCondiciones');
 });
 
-app.get('/Notificaciones', authMiddleware, (req, res) => {
-    res.render('notificaciones');
+app.get('/Notificaciones', authMiddleware, async (req, res) => {
+    const notifications = await getRecentNotifications(req.user.id);
+    
+    markAllAsRead(req.user.id);
+
+    res.render('notificaciones', {
+        notifications
+    });
 });
 
 app.get('/GestionarHabitos', authMiddleware, (req, res) => {
@@ -174,4 +184,8 @@ app.use('/api/habit', authMiddleware, habitRoutes);
 app.use('/api/inicio', authMiddleware, principalScrRoutes);
 
 const PORT = 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, async () => {
+    console.log(`Server running on port ${PORT}`)
+
+    await loadAllJobs()
+});

@@ -5,6 +5,7 @@ const userRepo = require('../repositories/userRepositoryPrisma');
 const { setFlashMessage } = require('../utils/flashMessage');
 const redis = require('../redisClient');
 const { sendRecoveryEmail } = require('../emailSender');
+const { createOrUpdateJob } = require('../utils/jobManager');
 
 exports.register = async (req, res) => {
   const { email, password, userName } = req.body;
@@ -17,11 +18,15 @@ exports.register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    await userRepo.createUser({
+    const user = await userRepo.createUser({
       email,
       password: hashedPassword,
       userName,
     });
+
+    createOrUpdateJob(user.id, 'morning', 8);
+    createOrUpdateJob(user.id, 'afternoon', 13);
+    createOrUpdateJob(user.id, 'night', 21);
 
     setFlashMessage(res, '¡Registro exitoso! Ya puedes iniciar sesión.', 'success');
     res.redirect('/');
