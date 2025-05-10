@@ -15,16 +15,16 @@ datasource db {
 }
 
 model User {
-  id             Int       @id @default(autoincrement())
+  id             Int         @id @default(autoincrement())
   userName       String
-  email          String    @unique
+  email          String      @unique
   password       String
-  createdAt      DateTime  @default(now())
-  morningHour    Int       @default(8)
-  afternoonHour  Int       @default(13)
-  nightHour      Int       @default(21)
+  createdAt      DateTime    @default(now())
+  morningHour    Int         @default(8)
+  afternoonHour  Int         @default(13)
+  nightHour      Int         @default(21)
   habits         UserHabit[]
-  profilePic     String? 
+  profilePic     String?
 }
 
 model HabitTemplate {
@@ -39,48 +39,48 @@ model HabitTemplate {
 }
 
 model HabitTemplateField {
-  id           Int           @id @default(autoincrement())
-  template     HabitTemplate @relation(fields: [templateId], references: [id])
-  templateId   Int
-  name         String
-  fieldType    String         // "text", "number", "boolean", etc.
-  unit         String?
-  fieldValues  UserHabitFieldValue[]
+  id              Int                   @id @default(autoincrement())
+  templateId      Int
+  template        HabitTemplate         @relation(fields: [templateId], references: [id])
+  name            String
+  fieldType       String
+  unit            String?
+  fieldValues     UserHabitFieldValue[]
 }
 
 model UserHabit {
-  id             Int                      @id @default(autoincrement())
-  user           User                     @relation(fields: [userId], references: [id])
-  userId         Int
-  habitTemplate  HabitTemplate?           @relation(fields: [habitTemplateId], references: [id])
+  id              Int                   @id @default(autoincrement())
+  userId          Int
+  user            User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   habitTemplateId Int?
-  name           String
-  description    String?
-  icon           String
-  frequency      Json
-  reminder       Boolean                  @default(true)
-  fieldValues    Json?                     //x a realizar ej {"unit": "min", "value": "30"}
-  startDate      DateTime
-  isActive       Boolean                  @default(true)
-  customValues   UserHabitFieldValue[]
-  logs           HabitTrackingLog[]
+  habitTemplate   HabitTemplate?        @relation(fields: [habitTemplateId], references: [id])
+  name            String
+  description     String?
+  icon            String
+  frequency       Json
+  reminder        Boolean               @default(true)
+  fieldValues     Json?
+  startDate       DateTime
+  isActive        Boolean               @default(true)
+  customValues    UserHabitFieldValue[]
+  logs            HabitTrackingLog[]
 }
 
 model UserHabitFieldValue {
-  id              Int                  @id @default(autoincrement())
-  userHabit       UserHabit            @relation(fields: [userHabitId], references: [id])
+  id              Int                   @id @default(autoincrement())
   userHabitId     Int
-  templateField   HabitTemplateField   @relation(fields: [templateFieldId], references: [id])
+  userHabit       UserHabit             @relation(fields: [userHabitId], references: [id], onDelete: Cascade)
   templateFieldId Int
+  templateField   HabitTemplateField    @relation(fields: [templateFieldId], references: [id])
   value           String
 }
 
 model HabitTrackingLog {
-  id            Int        @id @default(autoincrement())
-  userHabit     UserHabit  @relation(fields: [userHabitId], references: [id])
-  userHabitId   Int
-  date          DateTime
-  status        String     // "completed", "skipped", "missed"
-  notes         String?
-  fieldValues   Json       // valores del día (por ejemplo: {"distance": 5})
+  id           Int        @id @default(autoincrement())
+  userHabitId  Int
+  userHabit    UserHabit  @relation(fields: [userHabitId], references: [id], onDelete: Cascade)
+  date         DateTime
+  status       String
+  notes        String?
+  fieldValues  Json
 }
