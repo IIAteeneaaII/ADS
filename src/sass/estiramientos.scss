@@ -1,23 +1,14 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.grid {
-    display: flex;
-    justify-content: center;
-    background-color: v.$mainColor-low;
-    border-radius: 0.8rem;
-    padding: 0.3rem;
-    gap: 0.3rem;
-    margin: 0;
-}
-
 .grid-opciones{
     display: grid;
     grid-auto-flow: column;
     //gap: 1rem; /* Espacio entre botones */
     background-color: v.$secondaryColor-strong;
-    border-radius: 1rem;
+    border-radius: 10rem;
 }
+
 
 .titulo-habito{
     display: flex;
@@ -40,49 +31,13 @@
     align-items: center;
     text-align: center;
 }
-
-.option {
-    background-color: transparent;
-    padding: 1rem 1rem;
-    border-radius: 0.8rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: black;
-    min-width: auto;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    span {
-        line-height: 1.2;
-        display: flex;
-        flex-direction: column; 
-        span{
-            display: block;
-        }
-    }
-
-    &.active {
-        background-color: v.$mainColor-strong;
-        color: v.$white;
-    }
-
-    &:hover:not(.active) {
-        background-color: v.$mainColor-strong;
-        color: v.$white;
-    }
-}
-
 .text-advertencia{
     text-size-adjust: small;
     display: none;
     color: rgb(252, 83, 83);
 }
-
 .tab-content {
-    background-color: v.$mainColor;
+    background-color: v.$backgroundColor;
     margin-top: 1.5rem;
 
     .tab-pane {
@@ -99,24 +54,6 @@
     }
 }
 
-form {
-    background-color: v.$mainColor;
-
-    .form-label {
-        font-weight: 600;
-    }
-
-    .form-control {
-        background-color: v.$mainColor;
-        border: 1px solid v.$mainColor-strong;
-        border-radius: 0.5rem;
-    }
-
-    .form-text.text-danger {
-        font-size: 0.8rem;
-    }
-
-}
 .btn_gestion {
     display: flex;
     /*flex-direction: row;*/
@@ -125,6 +62,7 @@ form {
     margin: 1rem;
     gap: 1.5rem;
 }
+
 .progreso,
 .informacion {
     border: 1px solid v.$mainColor-strong;
@@ -152,7 +90,7 @@ form {
 }
 
 .pikaday {
-    background-color: v.$mainColor;
+    background-color: v.$backgroundColor;
     border: 1px solid v.$mainColor-strong;
     font-family: inherit;
 
@@ -193,9 +131,8 @@ form {
         color: v.$secondaryColor;
     }
   }
-  
-  
-.btn-dias{
+
+  .btn-dias{
     background-color: v.$mainColor-low;
     border: 2px solid v.$black;
     border-radius: 0.5rem;
@@ -226,14 +163,6 @@ form {
     margin: 0.30rem;
 }
 
-.progreso{
-
-    h2{
-        padding: 1rem;
-    }
-
-}
-
 .texto-principal{
     color: v.$white !important;
 }
@@ -242,19 +171,18 @@ form {
     color: v.$black !important;
 }
 
-.iconos-habitos{
-    color: v.$white;
-    margin-right: 10px;
-    margin-left: 10px;
-    font-size: 1.5rem;
-}
-.iconos{
+.grupo-iconos{
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
 }
-
+.iconos-habitos{
+    color: black;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 1.5rem;
+}
 
 .calendario-grid {
     display: grid;
@@ -262,10 +190,6 @@ form {
     gap: 5px;
     justify-content: center;
     max-width: 100%;
-}
-
-.calendario{
-    padding-top: 1.5rem;
 }
 
 .dia-habito {
@@ -291,4 +215,32 @@ form {
     visibility: hidden;
 }
 
+.clickable-subrayado {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.option-semana-mes{
+    border: 0.2rem solid #009394;
+    background-color: #009394;
+    padding: 1px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover: cambia de color al pasar el cursor */
+.option-semana-mes:hover {
+    background-color: #e0e0e0; /* Color de fondo al pasar el mouse */
+    color: #333;
+}
+
+/* Activa: muestra cuál está seleccionada */
+.option-semana-mes.active {
+    background-color: #007bff;  /* Color principal para opción activa */
+    color: white;
+}
   

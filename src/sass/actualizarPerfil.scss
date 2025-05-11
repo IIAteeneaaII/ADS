@@ -3,7 +3,7 @@
 
 h1.actualizar {
     font-family: v.$title;
-    color: v.$white;
+    color: v.$black;
 }
 
 .perfil-foto-container {
@@ -36,7 +36,11 @@ h1.actualizar {
 }
   
 .perfil{
-    color: v.$text-primary-color;
+    color: v.$black;
+}
+
+.nombreColor {
+  color: v.$mainColor-strong; 
 }
 
 .icon-right {

@@ -7,54 +7,56 @@ html {
     box-sizing: border-box;
     // font-size: 62.5%;
 }
-*, *:before, *:after {
+
+*,
+*:before,
+*:after {
     box-sizing: inherit;
 }
 
-a{
-    text-decoration: none;
-}
-img{
+img {
     width: 100%;
     height: auto;
 }
-.container_logo{
-    margin-top: 5rem;
+
+.container_logo {
     align-items: center;
     display: flex;
     flex-direction: column;
 }
 
-h1,h2,h3{
+h1,
+h2,
+h3 {
     font-family: v.$title;
-    color: v.$text-primary-color;
 }
 
-p, a{
+p,
+a {
+    text-decoration: none;
     font-family: v.$text;
 }
+
 body {
-    background-color: v.$mainColor;
+    background-color: v.$backgroundColor;
 }
-footer{
+
+footer {
     margin-top: 2rem;
 }
+
 .separator {
-    border-top: 1px solid v.$mainColor-strong;
-    background-color: v.$mainColor-strong;
-    margin: 1rem 0 1rem;
+    border-top: 2px solid v.$secondaryColor-strong;
+    background-color: v.$secondaryColor-strong;
+    margin: 1rem
 }
-.top-bar { // TOP BAR PARA TODOS
+
+.top-bar {
+    // TOP BAR PARA TODOS
+    text-align: center;
     display: flex;
     align-items: center;
     position: relative;
-
-    .back-arrow {
-        font-size: 2rem;
-        text-decoration: none;
-        color: v.$secondaryColor;
-        margin-right: 1rem;
-    }
 
     h1 {
         flex-grow: 1;
@@ -64,32 +66,84 @@ footer{
     }
 }
 
+.back-arrow {
+    font-size: 1.3rem;
+    text-decoration: none !important;
+    color: v.$black;
+    margin-right: 2rem;
+    margin-bottom: 1.1rem;
+    font-style: normal;
+    cursor: pointer;
+
+    &:hover {
+        color: v.$mainColor-strong;
+        transform: scale(1.1);
+    }
+}
+
 .btn-primary {
-    background-color: v.$mainColor-strong;
+    background-color: v.$colorPrimariBtn;
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
+    color: v.$white;
+    font-weight: 500;
+
     &:hover {
         color: v.$black;
-        background-color: v.$secondaryColor;
+        transform: scale(1.02);
+        background-color: v.$mainColor-low;
     }
-    &:focus{
-        background-color: v.$secondaryColor;
+
+    &:focus {
+        background-color: v.$mainColor-low;
         border: none;
     }
 }
+
 .btn-secondary {
-    background-color: v.$secondaryColor-strong;
+    background-color: v.$secondaryColor;
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
+    color: v.$colorPrimariBtn;
+
     &:hover {
-        color: v.$black;
-        background-color:v.$gray-low; 
+        transform: scale(1.02);
+        background-color: v.$secondaryColor-strong;
     }
-    &:focus{
-        color: v.$black;
-        background-color: v.$gray-low;
+
+    &:focus {
+        background-color: v.$secondaryColor-strong;
         border: none;
     }
+}
+
+.btn-tertiary {
+    background-color: v.$mainColor-strong;
+    border: none;
+    border-radius: 5rem;
+    padding: 1rem;
+    color: v.$white;
+
+    &:hover {
+        transform: scale(1.02);
+        background-color: v.$white;
+        color: v.$secondaryColor;
+    }
+
+    &:focus {
+        // background-color: v.$secondaryColor-strong;
+        border: none;
+    }
+}
+
+.just-validate-error-label {
+    color: v.$mainColor-low !important;
+    margin-top: 0.5rem;
+}
+
+.just-validate-error-field {
+
+    display: block;
 }

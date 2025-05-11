@@ -1,11 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.container a {
-    color: #8294A6;
-    text-decoration: none;
-  }
-
 .guia-contenido {
     max-width: 800px;
     margin: 0 auto;
@@ -50,17 +45,9 @@ ul li ul li {
         font-size: 14px;
     }
 }
-.container-md {
-    display: flex;             
-    justify-content: center;    
-    align-items: center;        
-    margin-top: 28px;          
-    gap: 10px;             
-}
 
 
 .btn-primary, .btn-secondary {
     padding: 10px 20px;
     font-size: 16px;
-    border-radius: 8px;
 }

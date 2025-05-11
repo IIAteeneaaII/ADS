@@ -7,43 +7,32 @@
 // ----------------------------------------
 // Paleta de colores utilizada en el proyecto.
 // Define colores principales, secundarios y tonos neutros.
+$white: #f8f9fa;
+$gray-low: #e9ecef;
+$gray: #adb5bd;
+$black: #1f2421;
 
-$mainColor: #1A2B3D;              // Color de fondo principal (cuerpo) Fondo oscuro de toda la pantalla.
-$mainColor-strong: #009394;       // Color principal fuerte (botones principales, encabezados)
-$mainColor-low: #D0DAE6;          // Color principal suave (fondos secundarios)
-$secondaryColor: #00E0C7;         // Color secundario (Detalles destacados o acentos.)
-$secondaryColor-strong: #006270; // Color secundario con opacidad (hover, overlays)
-
-$white: #f8f9fa;                  // Blanco (fondo claro)
-$gray-low: #e9ecef;               // Gris claro (bordes, fondos secundarios)
-$gray: #adb5bd;                   // Gris medio (texto deshabilitado)
-$black: #1f2421;                  // Negro (texto principal)
+$backgroundColor: #ebfcff;
+$mainColor-strong: #1e62af;
+$mainColor-low: #93c5fd;
+$secondaryColor: #bfddfe;
+$secondaryColor-strong: #2582eb;
+$colorPrimariBtn:#60a9fa;
+$colorSecondaryBtn: #173454;
 
 // ----------------------------------------
 // Tipografías
 // ----------------------------------------
 // Fuentes utilizadas en el proyecto.
+$title: "Segoe UI", serif;
+$text: "Segoe UI", serif;
+$special: "Handlee", cursive;
 
-$title: "Red Hat Display", serif; // Fuente para títulos
-$text: "Segoe UI", serif;         // Fuente para texto principal
-$special: "Handlee", cursive;     // Fuente especial (decorativa)
+//Media querys
+$phone: 468px;
+$tablet: 768px;
+$tablet-desktop:900px;
+$desktop: 1080px;
+$desktop-max: 1200px;
 
-$text-primary-color: #FFFFFF; //Textos principales, contrastan bien.
-
-// ----------------------------------------
-// Media Queries
-// ----------------------------------------
-// Puntos de quiebre para diseño responsivo.
-
-$phone: 468px;                    // Teléfonos pequeños
-$tablet: 768px;                   // Tablets
-$tablet-desktop: 900px;           // Tablets grandes / Escritorios pequeños
-$desktop: 1080px;                 // Escritorios estándar
-$desktop-max: 1200px;             // Escritorios grandes
-
-// ----------------------------------------
-// Espaciado
-// ----------------------------------------
-// Variables para márgenes y separaciones.
-
-$separacion: 4rem;                // Separación estándar entre secciones
+$separacion: 4rem; // Separación estándar entre secciones
