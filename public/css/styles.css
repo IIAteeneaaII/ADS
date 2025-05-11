@@ -11,7 +11,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -26,11 +28,15 @@ img {
   flex-direction: column;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: "Segoe UI", serif;
 }
 
-p, a {
+p,
+a {
+  text-decoration: none;
   font-family: "Segoe UI", serif;
 }
 
@@ -54,8 +60,15 @@ footer {
   align-items: center;
   position: relative;
 }
-.top-bar .back-arrow {
-  font-size: 3rem;
+.top-bar h1 {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.back-arrow {
+  font-size: 1.3rem;
   text-decoration: none !important;
   color: #1f2421;
   margin-right: 2rem;
@@ -63,15 +76,9 @@ footer {
   font-style: normal;
   cursor: pointer;
 }
-.top-bar .back-arrow:hover {
+.back-arrow:hover {
   color: #1e62af;
   transform: scale(1.1);
-}
-.top-bar h1 {
-  flex-grow: 1;
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 0;
 }
 
 .btn-primary {
@@ -215,14 +222,14 @@ main h2 {
   outline: none;
 }
 
-a {
+.link {
   font-style: italic;
   text-decoration: underline;
   color: #1f2421;
   font-size: small;
   font-weight: 500;
 }
-a:hover {
+.link:hover {
   text-decoration: underline;
   color: #1e62af;
 }
@@ -248,8 +255,7 @@ a:hover {
   text-align: center;
 }
 
-h1,
-h2 {
+h1, h2 {
   color: #1f2421;
   font-size: 1.5rem;
 }
@@ -260,8 +266,7 @@ h2 {
   border-radius: 50%;
 }
 
-.fecha,
-.fecha_num {
+.fecha, .fecha_num {
   color: #1e62af;
 }
 
