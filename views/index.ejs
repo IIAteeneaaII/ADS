@@ -2,57 +2,67 @@
 <html lang="es">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Iniciar Sesión Fin It</title>
-<link href="./bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-<link href="./css/styles.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión Fin It</title>
+  <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/css/styles.css" rel="stylesheet" />
+
 </head>
 
 <body>
-<div class="container-md">
-    <div class="login-box w-100">
-    <header class="text-center mb-8">
-        <div class="container_logo">
-            <img src="/img/fin_negro.png" class="img" alt="Logo Fin It" />
-            <img src="/img/negro.png" class="img" alt="Fin It" />
-        </div>
-    </header>
-
-    <main>
-        <h2 class="text-center mb-4">Iniciar sesión</h2>
-        <form id="formLogin" autocomplete="off">
-        <div class="mb-3">
-            <label for="correo" class="form-label">Correo electrónico*:</label>
-            <input type="email" class="form-control" id="correo" name="correo" placeholder="tucorreo@gmail.com" />
-        </div>
-
-        <div class="mb-3">
-            <label for="contrasena" class="form-label">Contraseña*:</label>
-            <div class="position-relative d-flex align-items-center">
-                <input type="password" class="form-control pe-2" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña"  />
-                <img src="../img/iconos/eye-fill.svg" class="text-muted fs-5 eye-icon" id="togglePassword" style="cursor: pointer;"/>
-            </div>
-        </div>
-
-        <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-        </div>
-        </form>
-
-        <div class="text-end mt-3">
-            <a href="./html/olvidarcontrasena.html">Olvidé mi contraseña</a>
-        </div>
-        <div class="text-end mt-2">
-            <span>¿No tienes cuenta? <a href="./html/registro.html">Regístrate</a></span>
-        </div>
-    </main>
+  <div class="login-wrapper">
+    <div class="hero-img">
+      <img src="/img/backgroundImg.png" class="img" alt="Fin It" />
     </div>
-</div>
 
-<script src="./bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="./js/index.js"></script>
+    <div class="login-card position-relative">
+      <img src="/img/tiburon.gif" alt="Tiburón" class="shark-random" />
+      <div class="login-box w-100">
+        <h1>FIN IT</h1>
+        <div class="wrapp">
+          <header class="text-center mb-8">
+            <div class="container_logo">
+              <!-- <img src="/img/fin_negro.png" class="img" alt="Logo Fin" /> -->
+              <!-- <img src="/img/negro.png" class="img" alt="Fin It" /> -->
+              <!-- <img src="/img/finit1.png" class="img" alt="Fin It" /> -->
+            </div>
+          </header>
+
+          <main>
+            <h2 class="text-center mb-4">Iniciar sesión</h2>
+            <form id="formLogin" action="/api/auth/login" method="POST" autocomplete="off" novalidate>
+              <div class="mb-3">
+                <label for="correo" class="form-label">Correo electrónico:</label>
+                <input type="email" class="form-control" id="correo" name="email" placeholder="correo@gmail.com" />
+              </div>
+
+              <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña:</label>
+                <input type="password" class="form-control" id="contrasena" name="password"
+                  placeholder="Ingresa tu contraseña" />
+              </div>
+
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+              </div>
+            </form>
+
+            <div class="text-end mt-3">
+              <a class="link" href="/olvidarcontrasena">Olvidé mi contraseña</a>
+            </div>
+            <div class="text-end mt-2">
+              <span>¿No tienes cuenta? <a class="link" href="/registro">Regístrate</a></span>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/index.js"></script>
 
 </body>
 
