@@ -54,7 +54,7 @@
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s cubic-bezier(0.4, 0, 1, 1);
-
+    border: 2px solid #{lighten(v.$gray, 23%)};
     img {
         margin-bottom: 1rem;
         width: 40px;

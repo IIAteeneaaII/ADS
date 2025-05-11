@@ -626,6 +626,7 @@ h2 {
   align-items: center;
   cursor: pointer;
   transition: background-color 0.3s cubic-bezier(0.4, 0, 1, 1);
+  border: 2px solid rgb(237.9905405405, 239.65, 241.3094594595);
 }
 .optionpr img {
   margin-bottom: 1rem;
@@ -1178,7 +1179,7 @@ ul li ul li {
 
 h1.actualizar {
   font-family: "Segoe UI", serif;
-  color: #f8f9fa;
+  color: #1f2421;
 }
 
 .perfil-foto-container {
@@ -1211,7 +1212,11 @@ h1.actualizar {
 }
 
 .perfil {
-  color: #f8f9fa;
+  color: #1f2421;
+}
+
+.nombreColor {
+  color: #1e62af;
 }
 
 .icon-right {
