@@ -102,6 +102,50 @@ exports.UploadHabits = async (logs, skipDuplicates) => {
   });
 };
 
+exports.UpdateStatus = async ({ userHabitId, date, status }) => {
+  const logExistente = await prisma.habitTrackingLog.findUnique({
+    where: {
+      userHabitId_date: {
+        userHabitId,
+        date
+      }
+    }
+  });
+
+  let log;
+
+  if (logExistente) {
+    log = await prisma.habitTrackingLog.update({
+      where: {
+        userHabitId_date: {
+          userHabitId,
+          date
+        }
+      },
+      data: {
+        status
+      }
+    });
+  } else {
+    const habito = await prisma.userHabit.findUnique({
+    where: {
+        id:userHabitId,
+    }
+  });
+    log = await prisma.habitTrackingLog.create({
+      data: {
+        userHabitId,
+        date,
+        status,
+        fieldValues: habito.fieldValues
+      }
+    });
+  }
+
+  return log;
+};
+
+
 exports.getDailyHabitCompletionPercentage = async (userId, date) => {
   const totalHabits = await prisma.userHabit.count({
     where: {

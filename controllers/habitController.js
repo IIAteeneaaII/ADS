@@ -105,3 +105,28 @@ exports.generateDailyHabitLog = async (req, res) => {
     res.status(500).json({ message: 'Error cargando los hábitos' });
   }
 };
+
+exports.UpdateLog = async (req, res) => {
+  const userId = req.user.id;
+  const { userHabitId, date, status } = req.body;
+
+  if (!userHabitId || !status) {
+    return res.status(400).json({ error: 'Faltan datos obligatorios.' });
+  }
+
+  const today =new Date();
+  today.setHours(1, 0, 0, 0);
+
+  try {
+    const updatedLog = await habitRepo.UpdateStatus({
+      userHabitId,
+      date: today,
+      status
+    });
+
+    return res.status(200).json({ message: 'Estado actualizado', log: updatedLog });
+  } catch (error) {
+    console.error('Error actualizando log:', error);
+    return res.status(500).json({ error: 'Error al actualizar el estado del hábito.' });
+  }
+};
