@@ -1,9 +1,9 @@
 const HABITOS = {
     movimiento: [
         { img: '/img/gestorhabitos/estiramiento.png', nombre: 'Estiramientos matutinos', link: '/gestionarestiramientos' },
-        { img: '/img/gestorhabitos/correr.png', nombre: 'Correr', link: '/Correr' },
-        { img: '/img/gestorhabitos/bici.png', nombre: 'Andar en bicicleta', link: '/AndarEnBicicleta' },
-        { img: '/img/gestorhabitos/saltar-la-cuerda.png', nombre: 'Saltar la cuerda', link: '/SaltarLaCuerda' }
+        { img: '/img/gestorhabitos/correr.png', nombre: 'Correr', link: '/gestionarCorrer' },
+        { img: '/img/gestorhabitos/bici.png', nombre: 'Andar en bicicleta', link: '/GestionarBici' },
+        { img: '/img/gestorhabitos/saltar-la-cuerda.png', nombre: 'Saltar la cuerda', link: '/GestionarSaltarCuerda' }
     ],
     bienestar: [
         { img: '/img/gestorhabitos/dormir.png', nombre: 'Horas de sueño', link: '/sueño' },
