@@ -54,7 +54,6 @@ async function cargarHabitos() {
     });
     const habitos = await response.json();
 
-    //seguimiento del habito de el dia (se completo o no)(falta implementar)
 
     // HTML
     if (habitos.length === 0) {
@@ -78,7 +77,6 @@ async function cargarHabitos() {
         habitCard.style.color = '#000';
         habitCard.style.position = 'relative';
       
-        let isChecked = false;
       
         const checkCircle = document.createElement('div');
         checkCircle.className = 'check-circle';
@@ -91,6 +89,11 @@ async function cargarHabitos() {
         checkCircle.style.display = 'none';
         checkCircle.style.transition = 'background-color 0.3s';
       
+
+
+        let status = habito.logs.status === 'complete' ? 'complete' : 'pending';
+        checkCircle.style.backgroundColor = status === 'complete' ? 'green' : 'white';
+        console.log(habito.logs.status)
 
         // ${habito.fieldValues.value} ${habito.fieldValues.unit}
         const cardContent = `
@@ -111,6 +114,8 @@ async function cargarHabitos() {
           </div>
         `;
       
+
+
         habitCard.innerHTML = cardContent;
         habitCard.querySelector('.d-flex.align-items-center:last-child').appendChild(checkCircle);
       
@@ -123,19 +128,15 @@ async function cargarHabitos() {
             checkCircle.style.display = 'none';
           }
         });
-      
+
         checkCircle.addEventListener('click', function (e) {
-          e.stopPropagation();
-      
-          isChecked = !isChecked;
-      
-          if (isChecked) {
-            this.style.backgroundColor = 'green';
-            console.log('Hábito completado'); //enviar a base true
-          } else {
-            this.style.backgroundColor = 'white';
-            console.log('Hábito desmarcado'); //enviar a base false
-          }
+        e.stopPropagation(); // Evita que se dispare el click del card
+
+        status = status === 'complete' ? 'pending' : 'complete';
+
+        this.style.backgroundColor = status === 'complete' ? 'green' : 'white';
+
+        console.log(`Hábito marcado como: ${status}`);
         });
       
         habitContainer.appendChild(habitIcon);

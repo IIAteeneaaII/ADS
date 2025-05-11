@@ -10,6 +10,7 @@ exports.createUserHabit = async (data) => {
 
 exports.getUserHabitsWithLog = async (userId, date, dayName) => {
   console.log({ userId, date, dayName });
+
   const habits = await prisma.userHabit.findMany({
     where: {
       userId: userId,
@@ -32,11 +33,32 @@ exports.getUserHabitsWithLog = async (userId, date, dayName) => {
         },
       ],
     },
+    include: {
+      logs: {
+        where: {
+          userHabitId: {
+            equals: prisma.userHabit.id,
+          },
+          date: date,
+        },
+        take: 1,
+      },
+    },
   });
-  console.log(habits)
 
-  return habits
+  const habitsWithLog = habits.map(habit => {
+    if (habit.logs && habit.logs.length > 0) {
+      habit.logs = habit.logs[0];
+    }
+    return habit;
+  });
+
+  console.log(habitsWithLog);
+
+  return habitsWithLog;
 };
+
+
 
 
 exports.getAllUserHabits = async (userId) => {
