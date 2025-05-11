@@ -1,11 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.container a {
-    color: #8294A6;
-    text-decoration: none;
-  }
-
 .guia-contenido {
     max-width: 800px;
     margin: 0 auto;

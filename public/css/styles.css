@@ -940,18 +940,27 @@ h1, h2 {
 
 .texto-eliminar {
   font-family: "Segoe UI", serif;
-  color: #f8f9fa;
+  color: #1f2421;
 }
 
 .form-check-label {
   font-family: "Segoe UI", serif;
   font-size: 12px;
-  color: #f8f9fa;
 }
 
 .form-check a:hover {
   text-decoration: underline;
   color: #0056b3; /* Cambia el color al pasar el mouse */
+}
+
+.form-check a {
+  color: #1f2421; /* Color del enlace */
+  text-decoration: underline; /* Sin subrayado */
+}
+
+.contraseña-eliminar {
+  font-family: "Segoe UI", serif;
+  color: #1f2421;
 }
 
 .emocion-container {
@@ -1157,11 +1166,6 @@ h1, h2 {
 
 .guiadeusuario {
   color: rgb(11, 32, 255);
-}
-
-.container a {
-  color: #8294A6;
-  text-decoration: none;
 }
 
 .guia-contenido {

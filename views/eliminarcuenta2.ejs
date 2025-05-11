@@ -25,18 +25,19 @@
 </head>
 <body>
   <div class="container py-4">
-    <a href="/eliminarcuenta1" class="back-arrow">&lsaquo;</a>
-
-    <h1 style="color: white;">Eliminar Cuenta</h1>
-    <p style="color: white;">Por tu seguridad, ingresa tu contraseña para confirmar.</p>
-    
-    <div class="container-md">
+    <div class="top-bar"> 
+      <a href="/eliminarcuenta1" class="back-arrow">&lsaquo;</a>
+      <h1 class="mx-auto actualizar">Eliminar cuenta</h1>
+    </div>
+    <div class="separator"></div>
+    <div class="container-md contrasena-eliminar">
+      <p>Por tu seguridad, ingresa tu contraseña para confirmar.</p>
       <!-- Campo oculto para el correo electrónico -->
       <input type="hidden" id="email" name="email">
 
       <!-- Campo para la contraseña con toggle -->
       <div class="mb-3 password-container">
-        <label for="contrasena" class="form-label" style="color: white;">Contraseña</label>
+        <label for="contrasena" class="form-label">Contraseña:</label>
         <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" required>
         <span class="password-toggle" id="togglePassword">👁️</span>
       </div>
