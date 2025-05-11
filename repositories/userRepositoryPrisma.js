@@ -51,3 +51,30 @@ exports.updateUserProfile = async (userId, data) => {
     throw new Error('Error updating profile: ' + error.message);
   }
 };
+
+exports.createResetCode = async (email, code) => {
+  return await prisma.resetCode.create({
+    data: {
+      email,
+      code,
+      expiresAt: new Date(Date.now() + 10 * 60 * 1000) // expira en 10 minutos
+    }
+  });
+};
+
+exports.findValidResetCode = async (code) => {
+  return await prisma.resetCode.findFirst({
+    where: {
+      code,
+      expiresAt: {
+        gte: new Date(), // Código aún no expirado
+      },
+    },
+  });
+};
+
+exports.deleteResetCodeById = async (id) => {
+  return await prisma.resetCode.delete({
+    where: { id },
+  });
+};
