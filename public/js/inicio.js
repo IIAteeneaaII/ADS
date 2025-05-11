@@ -43,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
 const seccionHabitos = document.getElementById('seccion-de-habitos');
 
 async function cargarHabitos() {
+  const today = new Date();
+  today.setHours(0,0,0,0)
   seccionHabitos.innerHTML = '';
 
   try {
@@ -129,16 +131,40 @@ async function cargarHabitos() {
           }
         });
 
-        checkCircle.addEventListener('click', function (e) {
-        e.stopPropagation(); // Evita que se dispare el click del card
+        checkCircle.addEventListener('click', async function (e) {
+          e.stopPropagation(); // Evita que se dispare el click del card
 
-        status = status === 'complete' ? 'pending' : 'complete';
+          // Cambia estado local
+          status = status === 'complete' ? 'pending' : 'complete';
+          this.style.backgroundColor = status === 'complete' ? 'green' : 'white';
+          console.log(`Hábito marcado como: ${status}`);
 
-        this.style.backgroundColor = status === 'complete' ? 'green' : 'white';
+          try {
+            const res = await fetch('http://localhost:3000/api/inicio/actualizarlogs', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+              },
+              body: JSON.stringify({
+                userHabitId: habito.id,
+                date: today,
+                status: status
+              })
+            });
 
-        console.log(`Hábito marcado como: ${status}`);
+            const result = await res.json();
+
+            if (!res.ok) {
+              throw new Error(result.error || 'Error al actualizar');
+            }
+
+            console.log('Respuesta del servidor:', result.message);
+          } catch (error) {
+            console.error('Error actualizando el estado del hábito:', error);
+          }
         });
-      
+
         habitContainer.appendChild(habitIcon);
         habitContainer.appendChild(habitCard);
         seccionHabitos.appendChild(habitContainer);
