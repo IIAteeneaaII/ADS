@@ -178,8 +178,8 @@ app.get('/Bicicleta', authMiddleware,(req, res) => {
     res.render('bicicleta');  //
   });
 
-app.get('/GestionarEspacio', authMiddleware,(req, res) => {
-    res.render('gestionarordenarespacio');  //
+app.get('/GestionarOrdenarEspacio', authMiddleware,(req, res) => {
+    res.render('gestionarOrdenarEspacio');  //
   });
 
 app.get('/GestionarHorasDormir', authMiddleware, (req, res) => {
@@ -208,6 +208,34 @@ app.get('/Meditacion', authMiddleware, (req, res) => {
 
 app.get('/MusicaRelajante', authMiddleware, (req, res) => {
     res.render('musicaRelajante');
+});
+
+app.get('/GestionarSaltarCuerda', authMiddleware, (req, res) => {
+    res.render('gestionarSaltarCuerda');
+});
+
+app.get('/GestionarDesintoxicacionDigital', authMiddleware, (req, res) => {
+    res.render('gestionarDesintoxicacionDigital');
+});
+
+app.get('/GestionarCuidadoPiel', authMiddleware, (req, res) => {
+    res.render('gestionarCuidadoPiel');
+});
+
+app.get('/GestionarHidratacion', authMiddleware, (req, res) => {
+    res.render('gestionarHidratacion');
+});
+
+app.get('/GestionarLectura', authMiddleware, (req, res) => {
+    res.render('gestionarLectura');
+});
+
+app.get('/GestionarMeditacion', authMiddleware, (req, res) => {
+    res.render('gestionarMeditacion');
+});
+
+app.get('/GestionarMusicaRelajante', authMiddleware, (req, res) => {
+    res.render('gestionarMusicaRelajante');
 });
 
 app.use('/api/auth', authRoutes);
