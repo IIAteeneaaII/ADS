@@ -3,7 +3,6 @@
 
 header {
     text-align: center;
-    margin-top: 2rem;
 }
 
 main {
@@ -92,6 +91,8 @@ main {
 }
 
 a {
+    font-style:italic;
+    text-decoration: underline;
     color: v.$black;
     font-size: small;
     font-weight: 500;

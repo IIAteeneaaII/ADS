@@ -2,44 +2,42 @@
 @use 'base/mixins' as m;
 
 .page_preferencias {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
     padding: 0;
     display: flex;
     justify-content: center;
-    // align-items: center;
-    height: 100vh;
+}
+
+.pref_text {
+    align-items: center;
+    background-color: v.$white;
+    padding: 1rem;
+    width: 100vw; // fuerza a que ocupe todo el ancho de la ventana
+    text-align: center;
 }
 
 .container_pr {
-    max-width: 350px;
     width: 100%;
     background-color: transparent;
-    padding: 1rem;
 
     p {
         text-align: center;
         font-size: 0.8rem;
-        margin-bottom: 1rem;
+        padding-top: 1.5rem;
     }
 
     h1 {
         font-family: v.$title;
-        color: v.$white;
+        color: v.$black;
     }
-    .omitir{
+
+    .omitir {
         text-align: right;
-        a{
-            text-decoration: underline;
-            color: v.$white;
-            &:hover{
-                color: v.$mainColor-low;
-            }
-        }
+        padding-right: 1rem;
     }
 }
 
 .grid_pref {
+    padding: 1rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.1rem;
@@ -47,35 +45,42 @@
 }
 
 .optionpr {
-    background-color: v.$mainColor-strong;
-    color: v.$white;
+    background-color: v.$white;
+    color: v.$colorSecondaryBtn;
     padding: 1rem;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    img{
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 1, 1);
+
+    img {
         margin-bottom: 1rem;
         width: 40px;
         height: 40px;
         object-fit: contain;
     }
+
+    &:hover {
+        transform: scale(1.03);
+    }
 }
-.optionpr.selected {
-    color: v.$black;
-    background-color: v.$mainColor-low;  // Establece un color más destacado
+
+.selected {
+    transform: scale(1.05);
+    background-color: v.$secondaryColor; // Establece un color más destacado
+    box-shadow: 0 0 0 2px v.$mainColor-low;
 }
 
 .counter {
-    color: v.$white;
+    // color: v.$white;
     font-size: 1rem;
     margin-bottom: 12px;
 }
 
 .page_preferencias .button {
-    background-color: v.$mainColor-strong;
+    background-color: v.$colorPrimariBtn;
     color: v.$white;
     padding: 8px 16px;
     border: none;
@@ -85,15 +90,13 @@
 
     &:disabled {
         cursor: not-allowed;
-        background-color: v.$mainColor-strong;
+        background-color: v.$gray;
         color: v.$white;
     }
 
     &:hover {
         cursor: pointer;
         transform: scale(1.05);
-        background-color: v.$secondaryColor ;
-
     }
 
 }
