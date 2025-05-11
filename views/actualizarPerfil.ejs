@@ -26,21 +26,24 @@
           alt="Foto de perfil" 
           class="perfil-foto"
         >
-        <label for="fotoInput" class="icono-camara">
+        <label for="fotoInput" class="icono-camara d-none">
           <i class="fas fa-camera fa-sm"></i>
         </label>
         <input type="file" id="fotoInput" name="profilePic" accept="image/*" class="d-none">
       </div>
     </div>
-    <h2><br>Mi perfil</h2>   
 
-    <div class="mb-3 perfil">
-      <label for="nombreUsuario">Tu nombre</label>
-      <div class="position-relative d-flex align-items-center">
-        <span id="nombreUsuario"><%= user.userName %></span>
-        <input type="text" id="inputNombreUsuario" class="form-control d-none me-2" style="width: auto;">
-        <button id="btnEditar" class="btn btn-sm btn-secondary ms-auto">Editar</button>
-        <button id="btnGuardar" class="btn btn-sm btn-primary ms-2 d-none">Guardar</button>
+    <div class="mb-3 perfil ms-3">
+      <h2><br>Mi perfil</h2>
+      <label for="nombreUsuario">Tu nombre:</label>
+      <div class="position-relative d-flex flex-column">
+        <span id="nombreUsuario" class="nombreColor"><%= user.userName %></span>
+        <input type="text" id="inputNombreUsuario" class="form-control d-none mb-2" style="width: auto;">
+        <small id="nombreError" class="text-danger d-none">El nombre no puede estar vacío</small>
+        <div class="d-flex justify-content-center mt-5">
+          <button id="btnEditar" class="btn btn-sm btn-secondary">Editar perfil</button>
+          <button id="btnGuardar" class="btn btn-sm btn-primary d-none">Guardar</button>
+        </div>
       </div>
     </div>
 

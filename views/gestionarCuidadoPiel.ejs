@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Gestionar Ordenar Espacio Personal</title>
+    <title>Gestionar Cuidado de la Piel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -20,7 +20,7 @@
 
         <div class="top-bar">
             <a href="bicicleta" class="back-arrow">&lsaquo;</a>
-            <h1 class="mx-auto">Ordenar Espacio Personal</h1>
+            <h1 class="mx-auto">Cuidado de la Piel</h1>
         </div>
 
         <div class="tab-content mt-4 texto-alternativo">
@@ -125,13 +125,13 @@
             const formData = new FormData(this);
 
             const data = {
-                name: 'Ordenar Espacio Personal',
+                name: 'Cuidado de la Piel',
                 description: formData.get('description'),
                 frequency: {
                     type: formData.get('frequency[type]'),
                     days: formData.getAll('frequency[days][]')
                 },
-                icon: "../img/gestorhabitos/ordenar.png",
+                icon: "../img/gestorhabitos/piel.png",
                 startDate: new Date(formData.get('startDate')).toISOString(),
                 fieldValues: {
                     unit: formData.get('fieldValues[unit]'),

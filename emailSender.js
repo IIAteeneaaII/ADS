@@ -10,18 +10,16 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-async function sendRecoveryEmail(to, token) {
-  const resetLink = `http://localhost:3000/reset-password?token=${token}`; // cambia localhost si es necesario
-
+async function sendRecoveryEmail(to, code) {
   await transporter.sendMail({
-    from: '"Tu App de Hábitos" <no-reply@tuapp.com>', // Cambia el nombre
+    from: '"Tu App de Hábitos" <no-reply@tuapp.com>',
     to,
-    subject: 'Recuperación de contraseña',
+    subject: 'Código para restablecer tu contraseña',
     html: `
-      <h1>Recuperar contraseña</h1>
-      <p>Haz click en el siguiente enlace para resetear tu contraseña:</p>
-      <a href="${resetLink}">${resetLink}</a>
-      <p>Este enlace expirará en 1 hora.</p>
+      <h1>Recuperación de contraseña</h1>
+      <p>Tu código de verificación es:</p>
+      <h2 style="color: #2e86de;">${code}</h2>
+      <p>Este código expirará en 10 minutos.</p>
     `,
   });
 }

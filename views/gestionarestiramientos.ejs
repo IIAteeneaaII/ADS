@@ -20,10 +20,10 @@
 
         <div class="top-bar">
             <a href="estiramientos" class="back-arrow">&lsaquo;</a>
-            <h1 class="mx-auto texto-principal">Estiramientos Matutinos</h1>
+            <h1 class="mx-auto">Estiramientos Matutinos</h1>
         </div>
 
-        <div class="tab-content mt-4">
+        <div class="tab-content mt-4 texto-alternativo">
             <form id="form-habito">
                 <!-- <div class="mb-3">
                     <label for="name" class="form-label">Nombre del hábito*</label>
@@ -38,11 +38,13 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Tiempo a realizar al día (en minutos)*</label>
+                    <label class="form-label">Coloca tu meta*</label>
                     <div class="d-flex align-items-center">
-                        <input type="number" class="form-control me-2" name="fieldValues[value]" value="1" min="1">
-                        <span>min</span>
-                        <input type="hidden" name="fieldValues[unit]" value="min">
+                        <input type="number" class="form-control me-2" name="fieldValues[value]" value="1" min="1" required>
+
+                        <select class="corm-control form-select me-2" name="fieldValues[unit]" required>
+                            <option value="min">minutos</option>
+                        </select>
                     </div>
                 </div>
 

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Gestionar Ordenar Espacio Personal</title>
+    <title>Gestionar Meditación</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -20,7 +20,7 @@
 
         <div class="top-bar">
             <a href="bicicleta" class="back-arrow">&lsaquo;</a>
-            <h1 class="mx-auto">Ordenar Espacio Personal</h1>
+            <h1 class="mx-auto">Meditación</h1>
         </div>
 
         <div class="tab-content mt-4 texto-alternativo">
@@ -43,6 +43,7 @@
                         <input type="number" class="form-control me-2" name="fieldValues[value]" value="1" min="1" required>
 
                         <select class="form-control form-select me-2" name="fieldValues[unit]" required>
+                            <option value="seg">segundos</option>
                             <option value="min">minutos</option>
                         </select>
                     </div>
@@ -125,13 +126,13 @@
             const formData = new FormData(this);
 
             const data = {
-                name: 'Ordenar Espacio Personal',
+                name: 'Meditación',
                 description: formData.get('description'),
                 frequency: {
                     type: formData.get('frequency[type]'),
                     days: formData.getAll('frequency[days][]')
                 },
-                icon: "../img/gestorhabitos/ordenar.png",
+                icon: "../img/gestorhabitos/meditacion.png",
                 startDate: new Date(formData.get('startDate')).toISOString(),
                 fieldValues: {
                     unit: formData.get('fieldValues[unit]'),
