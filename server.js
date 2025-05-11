@@ -38,6 +38,10 @@ app.get('/OlvidarContrasena', (req, res) => {
     res.render('olvidarContrasena');
 });
 
+app.get('/ingresarcodigo', (req, res) => {
+    res.render('ingresarcodigo');
+});
+
 app.get('/calendario_emociones', (req, res) => {
     res.render('calendario_emociones');
 });

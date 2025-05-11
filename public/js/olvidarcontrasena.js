@@ -36,7 +36,7 @@ document.getElementById("formContrasena").addEventListener("submit", function (e
             confirmButtonText: "Aceptar"
         }).then(() => {
             // Redirige a la página donde se ingresa el código de recuperación
-            window.location.href = "/OlvidarContrasena";
+            window.location.href = "/ingresarcodigo";
         });
     })
     .catch(err => {

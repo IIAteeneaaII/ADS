@@ -22,8 +22,9 @@ document.getElementById("formCodigo").addEventListener("submit", async function 
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                token: codigo,
+                code: codigo,
                 newPassword: contrasena,
+		confirmPassword: confirmarContrasena,
             }),
         });
 

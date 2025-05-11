@@ -2,16 +2,13 @@
 @use 'base/mixins' as m;
 
 .container_inicio {
-
-
     h1 {
         padding: 0.5rem;
         text-align: center;
     }
 }
 
-h1,
-h2 {
+h1,h2 {
     color: v.$black;
     font-size: 1.5rem;
 }
@@ -22,8 +19,7 @@ h2 {
     border-radius: 50%;
 }
 
-.fecha,
-.fecha_num {
+.fecha, .fecha_num {
     color: v.$mainColor-strong;
 }
 
@@ -40,8 +36,6 @@ h2 {
     flex-direction: row;
     padding-bottom: 1rem;
 }
-
-.day_number {}
 
 .state {
     padding-left: 6rem;
@@ -90,7 +84,6 @@ h2 {
     padding: 6px 14px;
     border: none;
 }
-
 
 .sidebar {
     position: fixed;

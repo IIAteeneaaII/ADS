@@ -2,13 +2,17 @@
 
     <div class="sidebar-content-top">
         <div class="top-bar-menu">
-            <a onclick="cerrarMenu()" class="back-arrow">&lsaquo;</a>
+            <a onclick="cerrarMenu()" class="back-arrow">
+                <i class="fas fa-chevron-left"></i>
+            </a>
             <h4 class="fw-bold">Menú</h4>
         </div>
-                <!-- Sección de foto de perfil -->
+        <!-- Sección de foto de perfil -->
         <div class="profile-section text-center mt-3">
             <img src="/img/logo.png" alt="Foto de perfil" class="profile-img mb-2">
-            <h5 class="username"><%= userName %></h5>
+            <h5 class="username">
+                <%= userName %>
+            </h5>
         </div>
         <div class="d-grid mt-3">
             <button class="menu-btn" onclick="location.href='/actualizarPerfil';">

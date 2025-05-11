@@ -11,7 +11,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -26,11 +28,15 @@ img {
   flex-direction: column;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: "Segoe UI", serif;
 }
 
-p, a {
+p,
+a {
+  text-decoration: none;
   font-family: "Segoe UI", serif;
 }
 
@@ -54,8 +60,15 @@ footer {
   align-items: center;
   position: relative;
 }
-.top-bar .back-arrow {
-  font-size: 3rem;
+.top-bar h1 {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.back-arrow {
+  font-size: 1.3rem;
   text-decoration: none !important;
   color: #1f2421;
   margin-right: 2rem;
@@ -63,15 +76,9 @@ footer {
   font-style: normal;
   cursor: pointer;
 }
-.top-bar .back-arrow:hover {
+.back-arrow:hover {
   color: #1e62af;
   transform: scale(1.1);
-}
-.top-bar h1 {
-  flex-grow: 1;
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 0;
 }
 
 .btn-primary {
@@ -215,14 +222,14 @@ main h2 {
   outline: none;
 }
 
-a {
+.link {
   font-style: italic;
   text-decoration: underline;
   color: #1f2421;
   font-size: small;
   font-weight: 500;
 }
-a:hover {
+.link:hover {
   text-decoration: underline;
   color: #1e62af;
 }
@@ -248,8 +255,7 @@ a:hover {
   text-align: center;
 }
 
-h1,
-h2 {
+h1, h2 {
   color: #1f2421;
   font-size: 1.5rem;
 }
@@ -260,8 +266,7 @@ h2 {
   border-radius: 50%;
 }
 
-.fecha,
-.fecha_num {
+.fecha, .fecha_num {
   color: #1e62af;
 }
 
@@ -655,6 +660,7 @@ h2 {
   align-items: center;
   cursor: pointer;
   transition: background-color 0.3s cubic-bezier(0.4, 0, 1, 1);
+  border: 2px solid rgb(237.9905405405, 239.65, 241.3094594595);
 }
 .optionpr img {
   margin-bottom: 1rem;
@@ -934,18 +940,27 @@ h2 {
 
 .texto-eliminar {
   font-family: "Segoe UI", serif;
-  color: #f8f9fa;
+  color: #1f2421;
 }
 
 .form-check-label {
   font-family: "Segoe UI", serif;
   font-size: 12px;
-  color: #f8f9fa;
 }
 
 .form-check a:hover {
   text-decoration: underline;
   color: #0056b3; /* Cambia el color al pasar el mouse */
+}
+
+.form-check a {
+  color: #1f2421; /* Color del enlace */
+  text-decoration: underline; /* Sin subrayado */
+}
+
+.contraseña-eliminar {
+  font-family: "Segoe UI", serif;
+  color: #1f2421;
 }
 
 .emocion-container {
@@ -1153,11 +1168,6 @@ h2 {
   color: rgb(11, 32, 255);
 }
 
-.container a {
-  color: #8294A6;
-  text-decoration: none;
-}
-
 .guia-contenido {
   max-width: 800px;
   margin: 0 auto;
@@ -1207,7 +1217,7 @@ ul li ul li {
 
 h1.actualizar {
   font-family: "Segoe UI", serif;
-  color: #f8f9fa;
+  color: #1f2421;
 }
 
 .perfil-foto-container {
@@ -1240,7 +1250,11 @@ h1.actualizar {
 }
 
 .perfil {
-  color: #f8f9fa;
+  color: #1f2421;
+}
+
+.nombreColor {
+  color: #1e62af;
 }
 
 .icon-right {

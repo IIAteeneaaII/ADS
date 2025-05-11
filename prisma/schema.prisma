@@ -99,3 +99,11 @@ model HabitTrackingLog {
 
   @@unique([userHabitId, date])
 }
+
+model ResetCode {
+  id         Int      @id @default(autoincrement())
+  email      String
+  code       String
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime
+}

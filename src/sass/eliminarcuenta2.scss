@@ -2,3 +2,7 @@
 @use 'base/mixins' as m;
 
 
+.contraseña-eliminar{
+    font-family: v.$text;
+    color: v.$black;
+}

@@ -4,6 +4,7 @@ const btnEditar = document.getElementById("btnEditar");
 const btnGuardar = document.getElementById("btnGuardar");
 const fotoInput = document.getElementById("fotoInput");
 const imagenPerfil = document.querySelector(".perfil-foto");
+const iconoCamara = document.querySelector('.icono-camara');
 
 let editando = false;
 let nuevaFoto = null;
@@ -12,6 +13,7 @@ btnEditar.addEventListener("click", () => {
   inputNombre.value = nombreElemento.textContent.trim();
   nombreElemento.classList.add("d-none");
   inputNombre.classList.remove("d-none");
+  iconoCamara.classList.remove("d-none"); // se muestra la cámara
 
   btnEditar.classList.add("d-none");
   btnGuardar.classList.remove("d-none");
@@ -20,9 +22,15 @@ btnEditar.addEventListener("click", () => {
 
 btnGuardar.addEventListener("click", async () => {
   const nuevoNombre = inputNombre.value.trim();
+  const errorMsg = document.getElementById("nombreError");
+
+  iconoCamara.classList.add("d-none"); // se oculta la cámara
+
   if (!nuevoNombre) {
-    Swal.fire('Error', 'El nombre de usuario no puede estar vacío.', 'error');
+    errorMsg.classList.remove("d-none");
     return;
+  } else {
+    errorMsg.classList.add("d-none");
   }
 
   await actualizarPerfil(nuevoNombre, nuevaFoto);
