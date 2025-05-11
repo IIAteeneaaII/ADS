@@ -2,7 +2,7 @@
 @use 'base/mixins' as m;
 
 .form_habitos {
-    color: v.$white;
+    color: v.$mainColor-strong;
 
     .btn-outline-secondary {
         color: v.$white;
