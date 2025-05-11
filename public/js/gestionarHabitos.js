@@ -1,21 +1,21 @@
 const HABITOS = {
     movimiento: [
-        { img: '/img/gestorhabitos/estiramiento.png', nombre: 'Estiramientos matutinos', link: '/gestionarestiramientos' },
-        { img: '/img/gestorhabitos/correr.png', nombre: 'Correr', link: '/gestionarCorrer' },
+        { img: '/img/gestorhabitos/estiramiento.png', nombre: 'Estiramientos matutinos', link: '/GestionarEstiramientos' },
+        { img: '/img/gestorhabitos/correr.png', nombre: 'Correr', link: '/GestionarCorrer' },
         { img: '/img/gestorhabitos/bici.png', nombre: 'Andar en bicicleta', link: '/GestionarBici' },
         { img: '/img/gestorhabitos/saltar-la-cuerda.png', nombre: 'Saltar la cuerda', link: '/GestionarSaltarCuerda' }
     ],
     bienestar: [
-        { img: '/img/gestorhabitos/dormir.png', nombre: 'Horas de sueño', link: '/sueño' },
-        { img: '/img/gestorhabitos/sintelefono.png', nombre: 'Desintoxicación Digital', link: '/sueño' },
-        { img: '/img/gestorhabitos/piel.png', nombre: 'Cuidado de la Piel', link: '/sueño' },
+        { img: '/img/gestorhabitos/dormir.png', nombre: 'Horas de sueño', link: '/GestionarHorasDormir' },
+        { img: '/img/gestorhabitos/sintelefono.png', nombre: 'Desintoxicación Digital', link: '/GestionarDesintoxicacionDigital' },
+        { img: '/img/gestorhabitos/piel.png', nombre: 'Cuidado de la Piel', link: '/GestionarCuidadoPiel' },
         { img: '/img/gestorhabitos/alimentacion.png', nombre: 'Alimentación', link: '/sueño' },
     ],
     mental: [
-        { img: '/img/gestorhabitos/ordenar.png', nombre: 'Ordenar Espacio Personal', link: '/ordenarEspacio' },
-        { img: '/img/gestorhabitos/leer.png', nombre: 'Lectura', link: '/Lectura' },
-        { img: '/img/gestorhabitos/meditacion.png', nombre: 'Meditación', link: '/Meditacion' },
-        { img: '/img/gestorhabitos/escuchar-musica.png', nombre: 'Escuchar Musica Relajante', link: '/EscucharMusicaRelajante' },
+        { img: '/img/gestorhabitos/ordenar.png', nombre: 'Ordenar Espacio Personal', link: '/GestionarOrdenarEspacio' },
+        { img: '/img/gestorhabitos/leer.png', nombre: 'Lectura', link: '/GestionarLectura' },
+        { img: '/img/gestorhabitos/meditacion.png', nombre: 'Meditación', link: '/GestionarMeditacion' },
+        { img: '/img/gestorhabitos/escuchar-musica.png', nombre: 'Escuchar Musica Relajante', link: '/GestionarMusicaRelajante' },
     ]
 };
 
