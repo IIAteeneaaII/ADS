@@ -11,38 +11,51 @@
   <title>Inicio</title>
 </head>
 
-<style>
-  #unread-count {
-  font-size: 12px;
-  padding: 3px 7px;
-  border-radius: 50%;
-}
-</style>
 
 <body>
   <!-- Overlay oscuro -->
   <div id="overlay" class="overlay"></div>
 
-  <div class="container mt-5 pt-2">
+  <div class="container_inicio">
     <!-- Menú lateral -->
     <div class="sidebar translate-left" id="menuLateral">
-      <div class="text-center p-3">
-        <a onclick="cerrarMenu()" class="back-arrow">&lsaquo;</a>
-        <h4 class="fw-bold">Menú</h4>
 
-        <div class="d-grid gap-2 mt-3">
-          <button class="btn btn-secondary" onclick="location.href='/actualizarPerfil';">Actualizar perfil</button>
-          <button class="btn btn-secondary" onclick="location.href='/Preferencias';">Preferencias</button>
-          <button class="btn btn-secondary" onclick="location.href='/ConfigurarNotificaciones';">Configurar horario de notificaciones</button>
-          <button class="btn btn-secondary" onclick="location.href='/guiadeUsuario';">Guía de usuario</button>
-          <button class="btn btn-secondary" onclick="location.href='/quienesSomos';">¿Quiénes somos?</button>
-          <button class="btn btn-secondary" onclick="location.href='/privacidad';">Términos y privacidad</button>
+      <div class="text-center">
+        <div class="top-bar">
+          <a onclick="cerrarMenu()" class="back-arrow">&lsaquo;</a>
+          <h4 class="fw-bold">Menú</h4>
+        </div>
+
+        <div class="d-grid mt-3">
+          <button class="menu-btn" onclick="location.href='/actualizarPerfil';">
+            <i class="fas fa-user-edit"></i> Actualizar perfil
+          </button>
+          <button class="menu-btn" onclick="location.href='/Preferencias';">
+            <i class="fas fa-sliders-h"></i> Preferencias
+          </button>
+          <button class="menu-btn" onclick="location.href='/ConfigurarNotificaciones';">
+            <i class="fas fa-bell"></i> Configurar notificaciones
+          </button>
+          <button class="menu-btn" onclick="location.href='/guiadeUsuario';">
+            <i class="fas fa-book-open"></i> Guía de usuario
+          </button>
+          <button class="menu-btn" onclick="location.href='/quienesSomos';">
+            <i class="fas fa-users"></i> ¿Quiénes somos?
+          </button>
+          <button class="menu-btn" onclick="location.href='/privacidad';">
+            <i class="fas fa-shield-alt"></i> Términos y privacidad
+          </button>
         </div>
 
         <div class="d-grid gap-2 mt-4">
-          <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#logoutModal">Cerrar sesión</button>
-          <button class="btn btn-dark" onclick="location.href='/eliminarcuenta';">Eliminar cuenta</button>
+          <button class="btn logout-btn " data-bs-toggle="modal" data-bs-target="#logoutModal">
+            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+          </button>
+          <button class="btn logout-btn" onclick="location.href='/eliminarcuenta';">
+            <i class="fas fa-user-slash"></i> Eliminar cuenta
+          </button>
         </div>
+
       </div>
     </div>
 
@@ -53,12 +66,13 @@
       </div>
       <div class="icons">
         <!-- <i class="fa-solid fa-chart-line" style="cursor: pointer; color: #fff;" onclick="location.href='/estadisticas';" title="Estadísticas"></i> -->
-        <i class="fa-regular fa-bell iconos" onclick="location.href='/notificaciones';" title="Notificaciones" style="position: relative;">
-          <% if (unreadNotifications > 0) { %>
+        <i class="fa-regular fa-bell iconos" onclick="location.href='/notificaciones';" title="Notificaciones"
+          style="position: relative;">
+          <% if (unreadNotifications> 0) { %>
             <span id="unread-count" class="badge bg-danger" style="position: absolute; top: -5px; right: -5px;">
               <%= unreadNotifications %>
             </span>
-          <% } %>
+            <% } %>
         </i>
         <i class="fa-solid fa-bolt iconos" onclick="location.href='/racha';" title="Racha"></i>
 
@@ -90,8 +104,6 @@
         <h2>Habitos de hoy</h2>
       </div>
     </div>
-
-
 
     <!-- Sección de hábitos -->
     <div class="habit-card mt-4" id="seccion-de-habitos">

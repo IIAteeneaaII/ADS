@@ -1,42 +1,49 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.container {
-    max-width: 350px;
-    width: 100%;
-    background-color: transparent;
-    padding: 1rem;
-    h1{
+.container_inicio {
+
+
+    h1 {
         padding: 0.5rem;
         text-align: center;
     }
 }
 
-h1, h2 {
+h1,
+h2 {
     color: v.$black;
     font-size: 1.5rem;
 }
 
+#unread-count {
+    font-size: 12px;
+    padding: 3px 7px;
+    border-radius: 50%;
+}
 
-.fecha, .fecha_num{
+.fecha,
+.fecha_num {
     color: v.$mainColor-strong;
 }
-.fecha_num{
+
+.fecha_num {
     color: v.$white;
     background-color: v.$mainColor-strong;
     border: none;
     border-radius: 1rem;
 }
-.day_state{
+
+.day_state {
     text-align: center;
     display: flex;
     flex-direction: row;
     padding-bottom: 1rem;
 }
-.day_number{
-    
-}
-.state{
+
+.day_number {}
+
+.state {
     padding-left: 6rem;
     display: flex;
     flex-direction: row;
@@ -84,9 +91,6 @@ h1, h2 {
     border: none;
 }
 
-.btn-create:hover {
-
-}
 
 .sidebar {
     position: fixed;
@@ -96,15 +100,41 @@ h1, h2 {
     max-width: 300px;
     height: 100%;
     background-color: #d6e4f0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    // box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
     z-index: 1052;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1);
     overflow-y: auto;
     transform: translateX(-100%);
 }
 
 .sidebar.active {
     transform: translateX(0);
+}
+
+.menu-btn {
+    position: relative;
+    background-color: v.$mainColor-low;
+    color: v.$white;
+    border: none;
+    // border-radius: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.2rem;
+        text-align: center;
+    }
+
+    &:hover {
+        background-color: v.$mainColor-strong;
+    }
 }
 
 .overlay {
@@ -123,25 +153,48 @@ h1, h2 {
 }
 
 .top-bar-inicio {
-    background-color: v.$mainColor-strong;
+    background-color: v.$mainColor-low;
     padding: 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 0.5rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    // border: 1px solid v.$mainColor-strong;
 }
 
 .top-bar-inicio .icons i {
     margin-left: 10px;
     font-size: 1.2rem;
 }
-.iconos{
-    color: v.$white;
+
+.iconos {
+    color: v.$black;
     cursor: pointer;
-    &:hover{
-        transform: scale(1.3); 
+
+    &:hover {
+        transform: scale(1.3);
     }
 }
+
+.logout-btn {
+    position: relative;
+    width: 100%;
+
+    i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.2rem;
+        text-align: center;
+    }
+
+    &:hover {
+        background-color: darken(v.$secondaryColor-strong, 10%);
+    }
+}
+
+
 .time-buttons {
     text-align: center;
 }
