@@ -10,6 +10,7 @@ exports.createUserHabit = async (data) => {
 
 exports.getUserHabitsWithLog = async (userId, date, dayName) => {
   console.log({ userId, date, dayName });
+
   const habits = await prisma.userHabit.findMany({
     where: {
       userId: userId,
@@ -32,11 +33,32 @@ exports.getUserHabitsWithLog = async (userId, date, dayName) => {
         },
       ],
     },
+    include: {
+      logs: {
+        where: {
+          userHabitId: {
+            equals: prisma.userHabit.id,
+          },
+          date: date,
+        },
+        take: 1,
+      },
+    },
   });
-  console.log(habits)
 
-  return habits
+  const habitsWithLog = habits.map(habit => {
+    if (habit.logs && habit.logs.length > 0) {
+      habit.logs = habit.logs[0];
+    }
+    return habit;
+  });
+
+  console.log(habitsWithLog);
+
+  return habitsWithLog;
 };
+
+
 
 
 exports.getAllUserHabits = async (userId) => {
@@ -48,6 +70,37 @@ exports.getAllUserHabits = async (userId) => {
   });
 };
 
+
+exports.getAllUsersHabits = async (date, dayName) => {
+  return await prisma.userHabit.findMany({
+    where: {
+      isActive: true,
+      startDate: { lte: date },
+      AND: [
+        {
+          frequency: {
+            path: ['type'],
+            equals: 'weekly'
+          }
+        },
+        {
+          frequency: {
+            path: ['days'],
+            array_contains: dayName
+          }
+        }
+      ]
+    }
+  });
+};
+
+
+exports.UploadHabits = async (logs, skipDuplicates) => {
+  return prisma.habitTrackingLog.createMany({
+    data: logs,
+    skipDuplicates: skipDuplicates
+  });
+};
 
 exports.getDailyHabitCompletionPercentage = async (userId, date) => {
   const totalHabits = await prisma.userHabit.count({
@@ -77,4 +130,42 @@ exports.getDailyHabitCompletionPercentage = async (userId, date) => {
     completedHabits,
     percentage: parseFloat(percentage.toFixed(2))
   };
+};
+
+
+exports.getRecentNotifications = async (userId) => {
+  return await prisma.notification.findMany({
+    where: {
+      userId: userId,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    take: 10,
+  });
+};
+
+
+exports.countUnreadNotifications = async (userId) => {
+  const unreadCount = await prisma.notification.count({
+    where: {
+      userId: userId,
+      isRead: false,
+    },
+  });
+
+  return unreadCount;
+};
+
+exports.markAllAsRead = async (userId) => {
+  return await prisma.notification.updateMany({
+    where: {
+      userId: userId,
+      isRead: false,
+    },
+    data: {
+      isRead: true,
+      readAt: new Date(),
+    },
+  });
 };

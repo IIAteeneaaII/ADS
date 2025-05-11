@@ -11,6 +11,14 @@
   <title>Inicio</title>
 </head>
 
+<style>
+  #unread-count {
+  font-size: 12px;
+  padding: 3px 7px;
+  border-radius: 50%;
+}
+</style>
+
 <body>
   <!-- Overlay oscuro -->
   <div id="overlay" class="overlay"></div>
@@ -45,7 +53,13 @@
       </div>
       <div class="icons">
         <!-- <i class="fa-solid fa-chart-line" style="cursor: pointer; color: #fff;" onclick="location.href='/estadisticas';" title="Estadísticas"></i> -->
-        <i class="fa-regular fa-bell iconos" onclick="location.href='/notificaciones';" title="Notificaciones"></i>
+        <i class="fa-regular fa-bell iconos" onclick="location.href='/notificaciones';" title="Notificaciones" style="position: relative;">
+          <% if (unreadNotifications > 0) { %>
+            <span id="unread-count" class="badge bg-danger" style="position: absolute; top: -5px; right: -5px;">
+              <%= unreadNotifications %>
+            </span>
+          <% } %>
+        </i>
         <i class="fa-solid fa-bolt iconos" onclick="location.href='/racha';" title="Racha"></i>
 
 
