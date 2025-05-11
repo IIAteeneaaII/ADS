@@ -307,7 +307,7 @@ h2 {
 }
 
 .calendar-dot.active {
-  border: 2px solid var(--main--color--black);
+  border: 2px solid #1f2421;
 }
 
 .icon-bar span {
@@ -333,22 +333,48 @@ h2 {
   left: 0;
   width: 75%;
   max-width: 300px;
-  height: 100%;
-  background-color: #d6e4f0;
+  height: 100vh;
+  background-color: #f8f9fa;
   z-index: 1052;
   transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1);
-  overflow-y: auto;
   transform: translateX(-100%);
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar.active {
   transform: translateX(0);
 }
 
+.sidebar-content-bottom {
+  margin-top: 10rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-section .profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1e62af;
+}
+.profile-section .username {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1e62af;
+}
+
 .menu-btn {
   position: relative;
-  background-color: #93c5fd;
-  color: #f8f9fa;
+  background-color: #f8f9fa;
+  color: #1f2421;
   border: none;
   width: 100%;
   padding: 0.75rem 1rem;
@@ -365,7 +391,7 @@ h2 {
   text-align: center;
 }
 .menu-btn:hover {
-  background-color: #1e62af;
+  color: #2582eb;
 }
 
 .overlay {
@@ -391,8 +417,19 @@ h2 {
   align-items: center;
   border-radius: 0 0 0.5rem 0.5rem;
 }
-
 .top-bar-inicio .icons i {
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+.top-bar-menu {
+  background-color: #bfddfe;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+.top-bar-menu .icons i {
   margin-left: 10px;
   font-size: 1.2rem;
 }
@@ -418,13 +455,12 @@ h2 {
   text-align: center;
 }
 .logout-btn:hover {
-  background-color: rgb(18.5714285714, 104.9285714286, 202.4285714286);
+  color: #cc0000;
 }
 
 .time-buttons {
   text-align: center;
 }
-
 .time-buttons .btn {
   margin: 0 0.25rem;
   margin-bottom: 0.25rem;
@@ -438,13 +474,6 @@ h2 {
   text-align: center;
   color: #f8f9fa;
   padding-top: 1rem;
-}
-
-.btn-dark {
-  background-color: #1f2421;
-  border: none;
-  border-radius: 1rem;
-  padding: 0.75rem;
 }
 
 .container p {
