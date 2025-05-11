@@ -6,6 +6,8 @@ const { setFlashMessage } = require('../utils/flashMessage');
 const redis = require('../redisClient');
 const { sendRecoveryEmail } = require('../emailSender');
 const { createOrUpdateJob } = require('../utils/jobManager');
+const { createResetCode } = userRepo;
+const { findValidResetCode, deleteResetCodeById } = userRepo;
 
 exports.register = async (req, res) => {
   const { email, password, userName } = req.body;
@@ -107,11 +109,13 @@ exports.recoverPassword = async (req, res) => {
   const user = await userRepo.findByEmail(email);
   if (!user) return res.status(404).json({ message: 'Email not found' });
 
-  const token = uuidv4();
-  await redis.setEx(`reset-token:${token}`, 3600, email);
-  await sendRecoveryEmail(email, token);
+  const code = Math.floor(100000 + Math.random() * 900000).toString(); // Código de 6 dígitos
 
-  res.status(200).json({ message: 'Recovery link sent' });
+  await createResetCode(email, code);
+  // Enviar el código por correo
+  await sendRecoveryEmail(email, code);
+
+  res.status(200).json({ message: 'Verification code sent to your email' });
 };
 
 exports.validateResetToken = async (req, res) => {
@@ -126,28 +130,30 @@ exports.validateResetToken = async (req, res) => {
 };
 
 exports.resetPassword = async (req, res) => {
-  const { token, newPassword } = req.body;
+  const { code, newPassword, confirmPassword } = req.body;
 
-  const email = await redis.get(`reset-token:${token}`);
-  if (!email) {
-    return res.status(400).json({ message: 'Invalid or expired token' });
+  if (newPassword !== confirmPassword) {
+    return res.status(400).json({ message: 'Passwords do not match' });
   }
 
-  const user = await userRepo.findByEmail(email);
+const codeEntry = await findValidResetCode(code);
+
+  if (!codeEntry) {
+    return res.status(400).json({ message: 'Invalid or expired code' });
+  }
+
+  const user = await userRepo.findByEmail(codeEntry.email);
   if (!user) {
     return res.status(404).json({ message: 'User not found' });
   }
 
   const hashedPassword = await bcrypt.hash(newPassword, 10);
-  
-  try {
-    await userRepo.updatePassword(email, hashedPassword);  // Llama al método de actualización
-    await redis.del(`reset-token:${token}`);
+  await userRepo.updatePassword(user.email, hashedPassword);
 
-    res.status(200).json({ message: 'Password updated successfully' });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+  // Eliminar el código usado
+await deleteResetCodeById(codeEntry.id);
+
+  res.status(200).json({ message: 'Password updated successfully' });
 };
 
 exports.logout = async (req, res) => {
