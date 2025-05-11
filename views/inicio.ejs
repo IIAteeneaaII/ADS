@@ -19,63 +19,66 @@
   <div class="container_inicio">
     <!-- Menú lateral -->
     <%- include('partials/menuLateral',{ userName: userName }) %>
-    <!-- Barra superior -->
-    <div class="top-bar-inicio">
-      <div>
-        <i class="fas fa-bars iconos" style="cursor: pointer;" id="btnMenu"></i>
-      </div>
-      <div class="icons">
-        <!-- <i class="fa-solid fa-chart-line" style="cursor: pointer; color: #fff;" onclick="location.href='/estadisticas';" title="Estadísticas"></i> -->
-        <i class="fa-regular fa-bell iconos" onclick="location.href='/notificaciones';" title="Notificaciones"
-          style="position: relative;">
-          <% if (unreadNotifications> 0) { %>
-            <span id="unread-count" class="badge bg-danger" style="position: absolute; top: -5px; right: -5px;">
-              <%= unreadNotifications %>
-            </span>
-            <% } %>
-        </i>
-        <i class="fa-solid fa-bolt iconos" onclick="location.href='/racha';" title="Racha"></i>
+      <!-- Barra superior -->
+      <div class="top-bar-inicio">
 
-
-      </div>
-    </div>
-
-    <!-- Contenido principal -->
-    <div class="container-md pt-2">
-      <!-- <i class="fa-solid fa-hand-peace"></i> -->
-      <h1>Hola, <span id="nombreUsuario"><%= userName %></span> </h1>
-
-      <div class="day_state">
-        <div class="day_number">
-          <div class="fw-bold fecha" id="diaSemana">Sábado</div>
-          <div class="day-badge fecha_num" id="numeroDia">7</div>
+        <!-- <i class="fas fa-bars iconos" id="btnMenu"></i> -->
+        <div class="iconos" id="btnMenu">
+          <i class="fas fa-bars"></i>
         </div>
-        <div class="state">
-          <p>¿Cómo te sientes el día de hoy?</p>
-          <button class="btn-tertiary" onclick="location.href='/estadodeAnimo';">
-            <i class="fa-solid fa-face-meh-blank emoji" id="emoji-inicio"></i>
-          </button>
+        <div class="icons">
+          <!-- <i class="fa-solid fa-chart-line" style="cursor: pointer; color: #fff;" onclick="location.href='/estadisticas';" title="Estadísticas"></i> -->
+          <i class="fa-regular fa-bell iconos" onclick="location.href='/notificaciones';" title="Notificaciones"
+            style="position: relative;">
+            <% if (unreadNotifications> 0) { %>
+              <span id="unread-count" class="badge bg-danger" style="position: absolute; top: -5px; right: -5px;">
+                <%= unreadNotifications %>
+              </span>
+              <% } %>
+          </i>
+          <div class="iconos">
+          <i class="fa-solid fa-bolt" onclick="location.href='/racha';" title="Racha"></i>
+          </div>
         </div>
       </div>
-      <div class="text-center">
-        <button class="btn btn-primary" onclick="location.href='/gestionarMisHabitos';">Gestionar mis hábitos</button>
-      </div>
-      <div class="habitos_titulo">
-        <h2>Habitos de hoy</h2>
-      </div>
-    </div>
 
-    <!-- Sección de hábitos -->
-    <div class="habit-card mt-4" id="seccion-de-habitos">
-      <p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón “Crear +” para crear tu primer
-        hábito.</p>
-    </div>
+      <!-- Contenido principal -->
+      <div class="container-md pt-2">
+        <h1>Hola, <span id="nombreUsuario">
+            <%= userName %>
+          </span> </h1>
 
-    <div class="create-button">
-      <button class="btn btn-primary rounded-pill px-4" onclick="location.href='/gestionarHabitos'">
-        <i class="fas fa-plus me-2"></i>Crear nuevo hábito
-      </button>
-    </div>
+        <div class="day_state">
+          <div class="day_number">
+            <div class="fw-bold fecha" id="diaSemana">Sábado</div>
+            <div class="day-badge fecha_num" id="numeroDia">7</div>
+          </div>
+          <div class="state">
+            <p>¿Cómo te sientes el día de hoy?</p>
+            <button class="btn-tertiary" onclick="location.href='/estadodeAnimo';">
+              <i class="fa-solid fa-face-meh-blank emoji" id="emoji-inicio"></i>
+            </button>
+          </div>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary" onclick="location.href='/gestionarMisHabitos';">Gestionar mis hábitos</button>
+        </div>
+        <div class="habitos_titulo">
+          <h2>Habitos de hoy</h2>
+        </div>
+      </div>
+
+      <!-- Sección de hábitos -->
+      <div class="habit-card mt-4" id="seccion-de-habitos">
+        <p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón “Crear +” para crear tu primer
+          hábito.</p>
+      </div>
+
+      <div class="create-button">
+        <button class="btn btn-primary rounded-pill px-4" onclick="location.href='/gestionarHabitos'">
+          <i class="fas fa-plus me-2"></i>Crear nuevo hábito
+        </button>
+      </div>
   </div>
 
   <!-- Modal de cierre de sesión -->

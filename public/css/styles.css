@@ -72,7 +72,6 @@ footer {
   text-decoration: none !important;
   color: #1f2421;
   margin-right: 2rem;
-  margin-bottom: 1.1rem;
   font-style: normal;
   cursor: pointer;
 }
@@ -255,7 +254,8 @@ main h2 {
   text-align: center;
 }
 
-h1, h2 {
+h1,
+h2 {
   color: #1f2421;
   font-size: 1.5rem;
 }
@@ -266,7 +266,8 @@ h1, h2 {
   border-radius: 50%;
 }
 
-.fecha, .fecha_num {
+.fecha,
+.fecha_num {
   color: #1e62af;
 }
 
@@ -372,7 +373,6 @@ h1, h2 {
 .profile-section .username {
   margin-top: 10px;
   font-size: 1.2rem;
-  font-weight: bold;
   color: #1e62af;
 }
 
@@ -415,16 +415,40 @@ h1, h2 {
 }
 
 .top-bar-inicio {
-  background-color: #93c5fd;
   padding: 0.75rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 0 0 0.5rem 0.5rem;
 }
-.top-bar-inicio .icons i {
-  margin-left: 10px;
-  font-size: 1.2rem;
+
+.icons {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.iconos {
+  background-color: #f8f9fa;
+  box-shadow: 0 0 1px #1f2421;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.iconos i {
+  display: inline-block;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+.iconos:hover i {
+  transform: scale(1.1);
 }
 
 .top-bar-menu {
@@ -432,19 +456,10 @@ h1, h2 {
   padding: 0.75rem;
   display: flex;
   justify-content: space-between;
-  border-radius: 0 0 0.5rem 0.5rem;
 }
 .top-bar-menu .icons i {
   margin-left: 10px;
   font-size: 1.2rem;
-}
-
-.iconos {
-  color: #1f2421;
-  cursor: pointer;
-}
-.iconos:hover {
-  transform: scale(1.3);
 }
 
 .logout-btn {

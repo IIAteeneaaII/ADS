@@ -8,7 +8,8 @@
     }
 }
 
-h1,h2 {
+h1,
+h2 {
     color: v.$black;
     font-size: 1.5rem;
 }
@@ -19,7 +20,8 @@ h1,h2 {
     border-radius: 50%;
 }
 
-.fecha, .fecha_num {
+.fecha,
+.fecha_num {
     color: v.$mainColor-strong;
 }
 
@@ -109,6 +111,7 @@ h1,h2 {
     display: grid;
     gap: 0.5rem;
 }
+
 .profile-section {
     display: flex;
     flex-direction: column;
@@ -125,7 +128,6 @@ h1,h2 {
     .username {
         margin-top: 10px;
         font-size: 1.2rem;
-        font-weight: bold;
         color: v.$mainColor-strong;
     }
 }
@@ -172,40 +174,63 @@ h1,h2 {
 }
 
 .top-bar-inicio {
-    background-color: v.$mainColor-low;
+    // background-color: v.$mainColor-low;
     padding: 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 0 0 0.5rem 0.5rem;
-    .icons i {
-    margin-left: 10px;
-    font-size: 1.2rem;
+}
+
+.icons {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+.iconos {
+    background-color: v.$white;
+    box-shadow: 0 0 1px v.$black;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    // margin-left: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    i {
+        display: inline-block;
+        position: relative;
+
+        transition: transform 0.2s ease;
+    }
+
+    &:hover i {
+        transform: scale(1.1);
     }
 }
-.top-bar-menu{
+
+.top-bar-menu {
     background-color: v.$secondaryColor;
     padding: 0.75rem;
     display: flex;
     justify-content: space-between;
-    border-radius: 0 0 0.5rem 0.5rem;
-    .icons i {
-    margin-left: 10px;
-    font-size: 1.2rem;
-    }
-}
 
-.iconos {
-    color: v.$black;
-    cursor: pointer;
-    &:hover {
-        transform: scale(1.3);
+    .icons i {
+        margin-left: 10px;
+        font-size: 1.2rem;
     }
 }
 
 .logout-btn {
     position: relative;
     width: 100%;
+
     i {
         position: absolute;
         left: 1rem;
@@ -214,6 +239,7 @@ h1,h2 {
         width: 1.2rem;
         text-align: center;
     }
+
     &:hover {
         color: darken(red, 10%);
     }
@@ -221,9 +247,10 @@ h1,h2 {
 
 .time-buttons {
     text-align: center;
+
     .btn {
-    margin: 0 0.25rem;
-    margin-bottom: 0.25rem;
+        margin: 0 0.25rem;
+        margin-bottom: 0.25rem;
     }
 }
 
