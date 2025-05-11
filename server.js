@@ -114,8 +114,8 @@ app.get('/OrdenarEspacio', authMiddleware, (req, res) => {
     res.render('ordenarEspacio');
 });
 
-app.get('/Alimentacion', authMiddleware, (req, res) => {
-    res.render('alimentacion');
+app.get('/Hidratacion', authMiddleware, (req, res) => {
+    res.render('hidratacion');
 });
 
 app.get('/Estadisticas',authMiddleware, (req, res) => {
@@ -184,6 +184,30 @@ app.get('/GestionarEspacio', authMiddleware,(req, res) => {
 
 app.get('/GestionarHorasDormir', authMiddleware, (req, res) => {
     res.render('gestionarhorasdormir');
+});
+
+app.get('/SaltarCuerda', authMiddleware, (req, res) => {
+    res.render('saltarCuerda');
+});
+
+app.get('/DesintoxicacionDigital', authMiddleware, (req, res) => {
+    res.render('desintoxicacionDigital');
+});
+
+app.get('/CuidadoPiel', authMiddleware, (req, res) => {
+    res.render('cuidadoPiel');
+});
+
+app.get('/Lectura', authMiddleware, (req, res) => {
+    res.render('lectura');
+});
+
+app.get('/Meditacion', authMiddleware, (req, res) => {
+    res.render('meditacion');
+});
+
+app.get('/MusicaRelajante', authMiddleware, (req, res) => {
+    res.render('musicaRelajante');
 });
 
 app.use('/api/auth', authRoutes);
