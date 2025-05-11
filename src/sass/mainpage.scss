@@ -1,42 +1,49 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.container {
-    max-width: 350px;
-    width: 100%;
-    background-color: transparent;
-    padding: 1rem;
-    h1{
+.container_inicio {
+
+
+    h1 {
         padding: 0.5rem;
         text-align: center;
     }
 }
 
-h1, h2 {
+h1,
+h2 {
     color: v.$black;
     font-size: 1.5rem;
 }
 
+#unread-count {
+    font-size: 12px;
+    padding: 3px 7px;
+    border-radius: 50%;
+}
 
-.fecha, .fecha_num{
+.fecha,
+.fecha_num {
     color: v.$mainColor-strong;
 }
-.fecha_num{
+
+.fecha_num {
     color: v.$white;
     background-color: v.$mainColor-strong;
     border: none;
     border-radius: 1rem;
 }
-.day_state{
+
+.day_state {
     text-align: center;
     display: flex;
     flex-direction: row;
     padding-bottom: 1rem;
 }
-.day_number{
-    
-}
-.state{
+
+.day_number {}
+
+.state {
     padding-left: 6rem;
     display: flex;
     flex-direction: row;
@@ -64,7 +71,7 @@ h1, h2 {
 }
 
 .calendar-dot.active {
-    border: 2px solid var(--main--color--black);
+    border: 2px solid v.$black;
 }
 
 .icon-bar span {
@@ -84,9 +91,6 @@ h1, h2 {
     border: none;
 }
 
-.btn-create:hover {
-
-}
 
 .sidebar {
     position: fixed;
@@ -94,17 +98,69 @@ h1, h2 {
     left: 0;
     width: 75%;
     max-width: 300px;
-    height: 100%;
-    background-color: #d6e4f0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    background-color: v.$white;
     z-index: 1052;
-    transition: transform 0.3s ease-in-out;
-    overflow-y: auto;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1);
     transform: translateX(-100%);
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar.active {
     transform: translateX(0);
+}
+
+.sidebar-content-bottom {
+    margin-top: 10rem;
+    display: grid;
+    gap: 0.5rem;
+}
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .profile-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid v.$mainColor-strong;
+    }
+
+    .username {
+        margin-top: 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: v.$mainColor-strong;
+    }
+}
+
+.menu-btn {
+    position: relative;
+    background-color: v.$white;
+    color: v.$black;
+    border: none;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.2rem;
+        text-align: center;
+    }
+
+    &:hover {
+        color: v.$secondaryColor-strong;
+        // background-color: v.$mainColor-strong;
+    }
 }
 
 .overlay {
@@ -123,32 +179,59 @@ h1, h2 {
 }
 
 .top-bar-inicio {
-    background-color: v.$mainColor-strong;
+    background-color: v.$mainColor-low;
     padding: 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 0.5rem;
-}
-
-.top-bar-inicio .icons i {
+    border-radius: 0 0 0.5rem 0.5rem;
+    .icons i {
     margin-left: 10px;
     font-size: 1.2rem;
-}
-.iconos{
-    color: v.$white;
-    cursor: pointer;
-    &:hover{
-        transform: scale(1.3); 
     }
 }
-.time-buttons {
-    text-align: center;
+.top-bar-menu{
+    background-color: v.$secondaryColor;
+    padding: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0 0 0.5rem 0.5rem;
+    .icons i {
+    margin-left: 10px;
+    font-size: 1.2rem;
+    }
 }
 
-.time-buttons .btn {
+.iconos {
+    color: v.$black;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.3);
+    }
+}
+
+.logout-btn {
+    position: relative;
+    width: 100%;
+    i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.2rem;
+        text-align: center;
+    }
+    &:hover {
+        color: darken(red, 10%);
+    }
+}
+
+.time-buttons {
+    text-align: center;
+    .btn {
     margin: 0 0.25rem;
     margin-bottom: 0.25rem;
+    }
 }
 
 .create-button {
@@ -159,11 +242,4 @@ h1, h2 {
     text-align: center;
     color: v.$white;
     padding-top: 1rem;
-}
-
-.btn-dark {
-    background-color: v.$black;
-    border: none;
-    border-radius: 1rem;
-    padding: 0.75rem;
 }

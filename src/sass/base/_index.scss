@@ -40,15 +40,24 @@ footer{
     margin: 1rem
 }
 .top-bar { // TOP BAR PARA TODOS
+    text-align: center;
     display: flex;
     align-items: center;
     position: relative;
 
     .back-arrow {
-        font-size: 2rem;
-        text-decoration: none;
-        color: v.$white;
-        margin-right: 1rem;
+        font-size: 3rem;
+        text-decoration: none !important;
+        color: v.$black;
+        margin-right: 2rem;
+        margin-bottom: 1.1rem;
+        font-style: normal;
+        cursor: pointer;
+        
+        &:hover {
+            color: v.$mainColor-strong;
+            transform: scale(1.1);
+        }
     }
 
     h1 {
