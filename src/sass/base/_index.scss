@@ -138,7 +138,8 @@ footer {
 }
 
 .just-validate-error-label {
-    color: v.$mainColor-low !important;
+    font-size: small;
+    color: v.$secondaryColor-strong !important;
     margin-top: 0.5rem;
 }
 

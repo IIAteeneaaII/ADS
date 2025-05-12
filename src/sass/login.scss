@@ -107,15 +107,21 @@ main {
     text-align: center !important;
 }
 
-.position-relative {
-    position: relative;
-}
-
-
 .shark-random {
     position: absolute;
     width: 80px;
     z-index: -1;
     /* Asegura que el tiburón esté debajo de los elementos del formulario */
     transition: top 2s linear, left 2s linear, transform 0.5s ease-in-out;
+}
+.registroBtn{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    .btn-primary, .btn-secondary {
+        padding: 0.5rem;
+    }
+}
+input.check {
+  accent-color: v.$mainColor-low; // el color que quieras cuando esté marcado
 }

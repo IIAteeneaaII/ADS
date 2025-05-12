@@ -17,16 +17,37 @@
     border-radius: 50%;
 }
 
-.fecha,
-.fecha_num {
-    color: v.$mainColor-strong;
-}
 
-.fecha_num {
-    color: v.$white;
-    background-color: v.$mainColor-strong;
-    border: none;
-    border-radius: 1rem;
+.day_number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .fecha {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .fecha_num {
+        margin-top: 0.25rem;
+        padding: 0.3rem 0.75rem;
+        color: v.$white;
+        background-color: v.$mainColor-strong;
+        border-radius: 1rem;
+    }
+}
+.state {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;  
+    padding-left: 6rem;
+    p {
+        margin: 0;
+        font-weight: 500;
+    }
+    .emoji {
+        font-size: 1.5rem;
+    }
 }
 
 .day_state {
@@ -34,20 +55,11 @@
     display: flex;
     flex-direction: row;
     padding-bottom: 1rem;
-}
 
-.state {
-    padding-left: 6rem;
-    display: flex;
-    flex-direction: row;
 }
 
 .text-end {
     text-align: center !important;
-}
-
-.position-relative {
-    position: relative;
 }
 
 .calendar-day {

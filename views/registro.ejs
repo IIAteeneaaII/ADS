@@ -4,23 +4,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../css/styles.css" rel="stylesheet" />
+    <%- include('partials/allStyles') %>
     <title>Registro Fin It</title>
 </head>
 
 <body>
-    <div class="login_wrapper">
+    <div class="login-wrapper">
         <div class="hero-img">
-            <img src="/img/finit1.png" class="img" alt="Fin It" />
+            <img src="/img/backgroundImg.png" class="img" alt="Fin It" />
         </div>
-    <div class="container-md login-card">
+
+    <div class="login-card position-relative">
+        <img src="/img/tiburon.gif" alt="Tiburón" class="shark-random" />
         <div class="login-box w-100">
             <div class="wrapp">
                 <header class="text-center ">
                     <div class="container_logo">
-                        <!-- <img src="/img/fin_negro.png" class="img" alt="Logo Fin" />
-                        <img src="/img/negro.png" class="img" alt="Fin It" /> -->
                     </div>
                 </header>
 
@@ -45,7 +44,7 @@
                             <div class="mb-3">
                                 <label for="contrasena" class="form-label">Contraseña:</label>
                                 <div class="d-block">
-                                    <input type="password" class="form-control me-2" id="password" name="password"
+                                    <input type="password" class="form-control" id="password" name="password"
                                         placeholder="Ingresa tu contraseña" />
                                 </div>
                             </div>
@@ -54,36 +53,34 @@
                             <div class="mb-3">
                                 <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
                                 <div class="d-block">
-                                    <input type="password" class="form-control me-2" id="confirmarContrasena"
+                                    <input type="password" class="form-control" id="confirmarContrasena"
                                         name="confirmarContrasena" placeholder="Confirma tu contraseña" />
                                 </div>
                             </div>
 
                             <!-- Términos -->
-                            <div class="form-check mb-3">
+                            <div class="form-check">
                                 <input class="check" type="checkbox" id="terminosCheck" />
                                 <label class="form-check-label" for="terminosCheck">
-                                    Aceptar <a href="/terminosyCondiciones">términos y condiciones</a>
+                                    Aceptar <a class="link" href="/terminosyCondiciones">términos y condiciones</a>
                                 </label>
                             </div>
 
                             <!-- Botones -->
-                            <div class="d-grid gap-2">
+                            <div class="registroBtn">
                                 <button type="submit" class="btn-primary">Registrarse</button>
                                 <button type="button" class="btn-secondary" id="btn-cancelar" onclick="history.back()">Cancelar</button>
                             </div>
                         </form>
 
                         <p class="text-end mt-2">
-                            ¿Ya tienes cuenta? <a href="/">Inicia sesión</a>
+                            ¿Ya tienes cuenta? <a class="link" href="/">Inicia sesión</a>
                         </p>
                 </main>
             </div>
         </div>
     </div>
-    <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+    <%- include('partials/allScripts') %>
     <script src="/js/registro.js"></script>
     <script src="/js/flashMessage.js"></script>
 

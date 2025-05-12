@@ -131,7 +131,8 @@ footer {
 }
 
 .just-validate-error-label {
-  color: #93c5fd !important;
+  font-size: small;
+  color: #2582eb !important;
   margin-top: 0.5rem;
 }
 
@@ -237,16 +238,25 @@ main h2 {
   text-align: center !important;
 }
 
-.position-relative {
-  position: relative;
-}
-
 .shark-random {
   position: absolute;
   width: 80px;
   z-index: -1;
   /* Asegura que el tiburón esté debajo de los elementos del formulario */
   transition: top 2s linear, left 2s linear, transform 0.5s ease-in-out;
+}
+
+.registroBtn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.registroBtn .btn-primary, .registroBtn .btn-secondary {
+  padding: 0.5rem;
+}
+
+input.check {
+  accent-color: #93c5fd;
 }
 
 .container_inicio {
@@ -264,16 +274,36 @@ main h2 {
   border-radius: 50%;
 }
 
-.fecha,
-.fecha_num {
-  color: #1e62af;
+.day_number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
-.fecha_num {
+.day_number .fecha {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.day_number .fecha_num {
+  margin-top: 0.25rem;
+  padding: 0.3rem 0.75rem;
   color: #ffffff;
   background-color: #1e62af;
-  border: none;
   border-radius: 1rem;
+}
+
+.state {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-left: 6rem;
+}
+.state p {
+  margin: 0;
+  font-weight: 500;
+}
+.state .emoji {
+  font-size: 1.5rem;
 }
 
 .day_state {
@@ -283,18 +313,8 @@ main h2 {
   padding-bottom: 1rem;
 }
 
-.state {
-  padding-left: 6rem;
-  display: flex;
-  flex-direction: row;
-}
-
 .text-end {
   text-align: center !important;
-}
-
-.position-relative {
-  position: relative;
 }
 
 .calendar-day {
