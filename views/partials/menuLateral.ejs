@@ -7,13 +7,13 @@
             </a>
             <h4 class="fw-bold">Menú</h4>
         </div>
-        <!-- Sección de foto de perfil -->
-        <div class="profile-section text-center mt-3">
-            <img src="/img/logo.png" alt="Foto de perfil" class="profile-img mb-2">
-            <h5 class="username">
-                <%= userName %>
-            </h5>
-        </div>
+<!-- Sección de foto de perfil -->
+    <div class="profile-section text-center mt-3">
+        <img src="<%= profilePic || '/img/logo.png' %>" alt="Foto de perfil" class="profile-img mb-2" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+        <h5 class="username mt-2">
+        <%= userName %>
+        </h5>
+    </div>
         <div class="d-grid mt-3">
             <button class="menu-btn" onclick="location.href='/actualizarPerfil';">
                 <i class="fas fa-user-edit"></i> Actualizar perfil

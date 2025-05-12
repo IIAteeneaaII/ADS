@@ -13,6 +13,8 @@ const { getRecentNotifications, countUnreadNotifications, markAllAsRead } = requ
 //pruebas, no estara en la app
 const cargarHabitosRoutes = require('./routes/cargarhabitos');
 //
+const { PrismaClient } = require('./generated/prisma');
+const prisma = new PrismaClient();
 
 const app = express();
 
@@ -56,10 +58,21 @@ app.get('/Preferencias', authMiddleware, (req, res) => {
 });
 
 app.get('/Inicio', authMiddleware, async (req, res) => {
-    const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
+const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
 
-    const { userName } = req.user;
-    res.render('inicio',{userName, unreadNotifications});
+const user = await prisma.user.findUnique({
+    where: { id: req.user.id },
+    select: {
+    userName: true,
+    profilePic: true
+    }
+});
+
+res.render('inicio', {
+    userName: user.userName,
+    profilePic: user.profilePic,
+    unreadNotifications
+});
 });
 
 app.get('/EstadoDeAnimo', authMiddleware, (req, res) => {
@@ -158,9 +171,24 @@ app.get('/personalizado', authMiddleware, (req, res) => {
   res.render('habitoPersonalizado');
 });
 
-app.get('/actualizarPerfil', authMiddleware, (req, res) => {
-    res.render('actualizarPerfil', { user: req.user });
-  });
+
+app.get('/actualizarPerfil', authMiddleware, async (req, res) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id }
+    });
+
+    if (!user) {
+      return res.redirect('/login');
+    }
+
+    res.render('actualizarPerfil', { user });
+  } catch (err) {
+    console.error('Error al cargar el perfil:', err);
+    res.status(500).send('Error al cargar el perfil');
+  }
+});
+
   
 app.get('/quienesSomos', (req, res) => {
     res.render('quienesSomos');  //
