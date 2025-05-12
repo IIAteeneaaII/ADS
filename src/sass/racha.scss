@@ -1,0 +1,61 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.streak-container {
+  max-width: 400px;
+  width: 100%;
+  animation: fadeIn 1s ease-in; //anima al tiburon para q crezca en cuanto se entre a la pnatalla
+}
+
+.imagen-animada {
+  width: 240px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+  animation: popIn 1s ease forwards;
+  transform: scale(0.5);
+  opacity: 0;
+}
+
+.streak-number {
+  font-size: 64px;
+  margin: 10px 0;
+  transition: all 0.5s ease;
+  font-family: v.$special;
+}
+
+.streak-label {
+  font-size: 26px;
+  color: v.$colorPrimariBtn;
+  font-weight: bold;
+  font-family: v.$special;
+}
+
+.message-box {
+  background-color: v.$colorPrimariBtn;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  font-size: 18px;
+  color: v.$black;
+  font-family: v.$text;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .streak-number { font-size: 48px; }
+  .shark-img { width: 140px; }
+}
