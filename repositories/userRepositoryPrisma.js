@@ -78,3 +78,65 @@ exports.deleteResetCodeById = async (id) => {
     where: { id },
   });
 };
+
+exports.saveMood = async ({ userId, date, mood, isUpdate = false }) => {
+  try {
+    const parsedDate = new Date(date); // Asegura formato Date correcto
+
+    if (isUpdate) {
+      return await prisma.mood.update({
+        where: {
+          userId_date: {
+            userId: userId,
+            date: parsedDate
+          }
+        },
+        data: {
+          mood, 
+        }
+      });
+    } else {
+      return await prisma.mood.create({
+        data: {
+          userId,
+          mood, 
+          date: parsedDate,
+        }
+      });
+    }
+  } catch (error) {
+    console.error('Error en la operación de estado de ánimo:', error);
+    throw error;
+  }
+};
+
+function truncateDateToUTC(dateInput) {
+  const date = new Date(dateInput);
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+}
+
+exports.findMoodByUserAndDate = async (userId, date) => {
+  const normalizedDate = truncateDateToUTC(date);
+
+ 
+  const isoDate = normalizedDate.toISOString(); 
+
+  return await prisma.mood.findUnique({
+    where: {
+      userId_date: {
+        userId: userId,
+        date: isoDate,
+      }
+    }
+  });
+};
+
+exports.getMoodsByUser = async (userId) => {
+  return await prisma.mood.findMany({
+    where: { userId },
+    select: {
+      date: true,
+      mood: true,
+    },
+  });
+};
