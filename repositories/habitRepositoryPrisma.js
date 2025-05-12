@@ -103,6 +103,11 @@ exports.UploadHabits = async (logs, skipDuplicates) => {
 };
 
 exports.UpdateStatus = async ({ userHabitId, date, status }) => {
+  const habito = await prisma.userHabit.findUnique({
+    where: {
+        id:userHabitId,
+    }
+  });
   const logExistente = await prisma.habitTrackingLog.findUnique({
     where: {
       userHabitId_date: {
@@ -123,15 +128,11 @@ exports.UpdateStatus = async ({ userHabitId, date, status }) => {
         }
       },
       data: {
-        status
+        status,
+        fieldValues: habito.fieldValues
       }
     });
   } else {
-    const habito = await prisma.userHabit.findUnique({
-    where: {
-        id:userHabitId,
-    }
-  });
     log = await prisma.habitTrackingLog.create({
       data: {
         userHabitId,
