@@ -17,35 +17,96 @@ function seleccionarEmocion(elemento) {
 document.addEventListener('DOMContentLoaded', function() {
   const botonGuardar = document.querySelector('.btn-save');
 
-  botonGuardar.addEventListener('click', function() {
+botonGuardar.addEventListener('click', async function () {
     if (emocionSeleccionada) {
       const hoy = new Date();
-      const clave = `${hoy.getFullYear()}-${hoy.getMonth() + 1}-${hoy.getDate()}`;
-      localStorage.setItem(clave, emocionSeleccionada);
-      // emoción seleccionada
-      Swal.fire({
-        icon: 'success',
-        title: 'Guardado',
-        text: `Has seleccionado: ${emocionSeleccionada}`,
-        confirmButtonText: 'Aceptar',
-        customClass: {
-            confirmButton: 'btn-secondary',
-        },
-        buttonsStyling: false
-      });
+      const fecha = hoy.toISOString().split('T')[0]; // YYYY-MM-DD
 
-      // Para enviar la emoción a tu base de datos
-      console.log("Emoción para guardar:", emocionSeleccionada);
-      
+      // Mapeo de emoción a enum
+      const emocionesMap = {
+        'Feliz': 'HAPPY',
+        'Triste': 'SAD',
+        'Neutral': 'CALM',
+        'Enojado': 'ANGRY'
+      };
+
+      const moodEnum = emocionesMap[emocionSeleccionada];
+
+      if (!moodEnum) {
+        return Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Emoción no válida.',
+          confirmButtonText: 'Aceptar',
+          customClass: {
+            confirmButton: 'btn-secondary'
+          },
+          buttonsStyling: false
+        });
+      }
+
+      try {
+        // ENVÍA LA EMOCIÓN AL BACKEND
+        const response = await fetch('/api/auth/mood', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            userId: USER_ID, // 🔁 DEBES definir esto en tu EJS
+            date: fecha,
+            mood: moodEnum
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Guardado',
+            text: `Has seleccionado: ${emocionSeleccionada}`,
+            confirmButtonText: 'Aceptar',
+            customClass: {
+              confirmButton: 'btn-secondary'
+            },
+            buttonsStyling: false
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: result.error || 'Error al guardar tu estado de ánimo.',
+            confirmButtonText: 'Aceptar',
+            customClass: {
+              confirmButton: 'btn-secondary'
+            },
+            buttonsStyling: false
+          });
+        }
+
+      } catch (error) {
+        console.error(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de conexión',
+          text: 'No se pudo conectar con el servidor.',
+          confirmButtonText: 'Aceptar',
+          customClass: {
+            confirmButton: 'btn-secondary'
+          },
+          buttonsStyling: false
+        });
+      }
+
     } else {
-      // Si no hay emoción seleccionada, mostrar advertencia
       Swal.fire({
         icon: 'warning',
-        title: 'No se selecciono una emocion',
+        title: 'No se seleccionó una emoción',
         text: 'Por favor selecciona una emoción antes de guardar.',
         confirmButtonText: 'Aceptar',
         customClass: {
-            confirmButton: 'btn-secondary',
+          confirmButton: 'btn-secondary'
         },
         buttonsStyling: false
       });
