@@ -85,7 +85,7 @@ footer {
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
-  color: #f8f9fa;
+  color: #ffffff;
   font-weight: 500;
 }
 .btn-primary:hover {
@@ -119,11 +119,11 @@ footer {
   border: none;
   border-radius: 5rem;
   padding: 1rem;
-  color: #f8f9fa;
+  color: #ffffff;
 }
 .btn-tertiary:hover {
   transform: scale(1.02);
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   color: #bfddfe;
 }
 .btn-tertiary:focus {
@@ -186,7 +186,7 @@ main h2 {
 .login-card {
   position: relative;
   z-index: 2;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   padding: 1.5rem;
   border-radius: 1.5rem;
   width: 90%;
@@ -249,15 +249,13 @@ main h2 {
   transition: top 2s linear, left 2s linear, transform 0.5s ease-in-out;
 }
 
-.container_inicio h1 {
-  padding: 0.5rem;
-  text-align: center;
+.container_inicio {
+  padding: 1rem;
 }
-
-h1,
-h2 {
-  color: #1f2421;
-  font-size: 1.5rem;
+.container_inicio h1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
 }
 
 #unread-count {
@@ -272,7 +270,7 @@ h2 {
 }
 
 .fecha_num {
-  color: #f8f9fa;
+  color: #ffffff;
   background-color: #1e62af;
   border: none;
   border-radius: 1rem;
@@ -321,12 +319,6 @@ h2 {
   cursor: pointer;
 }
 
-.habit-card {
-  margin-top: 2rem;
-  text-align: center;
-  font-weight: 500;
-}
-
 .btn-create {
   border-radius: 20px;
   padding: 6px 14px;
@@ -340,7 +332,7 @@ h2 {
   width: 75%;
   max-width: 300px;
   height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   z-index: 1052;
   transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1);
   transform: translateX(-100%);
@@ -378,7 +370,7 @@ h2 {
 
 .menu-btn {
   position: relative;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   color: #1f2421;
   border: none;
   width: 100%;
@@ -431,11 +423,11 @@ h2 {
 }
 
 .iconos {
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   box-shadow: 0 0 1px #1f2421;
   border-radius: 0.2rem;
   padding: 0.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -486,14 +478,96 @@ h2 {
   margin-bottom: 0.25rem;
 }
 
-.create-button {
-  text-align: center;
-}
-
 .habitos_titulo {
   text-align: center;
-  color: #f8f9fa;
+  color: #1f2421;
   padding-top: 1rem;
+}
+.habitos_titulo h2 {
+  font-weight: 700;
+}
+
+.habit-toggle {
+  background-color: #ffffff;
+  border-radius: 9999px;
+  display: inline-flex;
+  padding: 2px;
+  margin: 1rem auto;
+  position: relative;
+  justify-content: space-between;
+  gap: 22px;
+}
+.habit-toggle .habit-tab {
+  background-color: #ffffff;
+  position: relative;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  color: #1e62af;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 1;
+}
+.habit-toggle .habit-tab:hover {
+  background-color: #93c5fd;
+  color: #173454;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+.habit-toggle .habit-tab:active {
+  background-color: #93c5fd;
+  color: #2582eb;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+.habit-toggle .habit-tab .badge {
+  background-color: #1e62af;
+  color: white;
+  border-radius: 9999px;
+  padding: 2px 6px;
+  font-size: 0.65rem;
+  margin-left: 6px;
+}
+
+.habit-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 14px;
+  flex-shrink: 0;
+}
+
+.habit-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  color: #1f2421;
+  position: relative;
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.check-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #1f2421;
+  background-color: #ffffff;
+  cursor: pointer;
+  display: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.check-circle.complete {
+  background-color: #93c5fd;
+}
+.check-circle.scale {
+  transform: scale(1.1);
+}
+
+.habit-value-badge {
+  background-color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-right: 14px;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .container p {
@@ -633,7 +707,7 @@ h2 {
 
 .pref_text {
   align-items: center;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   padding: 1rem;
   width: 100vw;
   text-align: center;
@@ -666,7 +740,7 @@ h2 {
 }
 
 .optionpr {
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   color: #173454;
   padding: 1rem;
   border-radius: 10px;
@@ -700,7 +774,7 @@ h2 {
 
 .page_preferencias .button {
   background-color: #60a9fa;
-  color: #f8f9fa;
+  color: #ffffff;
   padding: 8px 16px;
   border: none;
   border-radius: 10px;
@@ -710,7 +784,7 @@ h2 {
 .page_preferencias .button:disabled {
   cursor: not-allowed;
   background-color: #adb5bd;
-  color: #f8f9fa;
+  color: #ffffff;
 }
 .page_preferencias .button:hover {
   cursor: pointer;
@@ -852,7 +926,7 @@ h2 {
 }
 .btn-dias.selected {
   background-color: #1e62af;
-  color: #f8f9fa;
+  color: #ffffff;
   border-color: #1e62af;
 }
 .btn-dias:hover:not(.selected) {
@@ -1280,7 +1354,7 @@ h1.actualizar {
   color: #1e62af;
 }
 .form_habitos .btn-outline-secondary {
-  color: #f8f9fa;
+  color: #ffffff;
   border-color: #93c5fd;
   background-color: #bfddfe;
 }

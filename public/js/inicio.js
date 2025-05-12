@@ -45,100 +45,69 @@ const seccionHabitos = document.getElementById('seccion-de-habitos');
 
 async function cargarHabitos() {
   const today = new Date();
-  today.setHours(0,0,0,0)
+  today.setHours(0, 0, 0, 0);
   seccionHabitos.innerHTML = '';
 
   try {
-    //habitos del usuario del dia
     const response = await fetch('http://localhost:3000/api/inicio/principalScr', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     });
+
     const habitos = await response.json();
 
-
-    // HTML
     if (habitos.length === 0) {
-      seccionHabitos.innerHTML = '<p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón “Crear +” para crear tu primer hábito.</p>';
+      seccionHabitos.innerHTML = `
+        <p>Hmm, no hay ningún hábito establecido por el momento.<br>
+        Presiona el botón “Crear nuevo hábito” para crear tu primer hábito y comenzar a cumplir tus objetivos.</p>
+      `;
     } else {
       habitos.forEach(habito => {
         const habitContainer = document.createElement('div');
-        habitContainer.className = 'd-flex align-items-center mb-3';
-      
+        habitContainer.className = 'd-flex align-items-center mb-3 px-2';
+
         const habitIcon = document.createElement('img');
         habitIcon.src = habito.icon;
         habitIcon.alt = 'icono';
-        habitIcon.style.width = '40px';
-        habitIcon.style.height = '40px';
-        habitIcon.style.marginRight = '10px';
-      
+        habitIcon.classList.add('habit-icon');
+
         const habitCard = document.createElement('div');
-        habitCard.className = 'd-flex justify-content-between align-items-center p-3 flex-grow-1';
-        habitCard.style.backgroundColor = '#a3b8cc';
-        habitCard.style.borderRadius = '12px';
-        habitCard.style.color = '#000';
-        habitCard.style.position = 'relative';
-      
-      
+        habitCard.className = 'habit-card d-flex justify-content-between align-items-center p-3 flex-grow-1 shadow-sm';
+
         const checkCircle = document.createElement('div');
         checkCircle.className = 'check-circle';
-        checkCircle.style.width = '24px';
-        checkCircle.style.height = '24px';
-        checkCircle.style.borderRadius = '50%';
-        checkCircle.style.border = '2px solid #000';
-        checkCircle.style.backgroundColor = 'white';
-        checkCircle.style.cursor = 'pointer';
-        checkCircle.style.display = 'none';
-        checkCircle.style.transition = 'background-color 0.3s';
-      
-
 
         let status = habito.logs.status === 'complete' ? 'complete' : 'pending';
-        checkCircle.style.backgroundColor = status === 'complete' ? 'green' : 'white';
-        console.log(habito.logs.status)
+        if (status === 'complete') {
+          checkCircle.classList.add('complete');
+        }
 
-        // ${habito.fieldValues.value} ${habito.fieldValues.unit}
         const cardContent = `
-          <div class="d-flex align-items-center">
+          <div class="d-flex flex-column">
             <span class="fw-bold">${habito.name}</span>
           </div>
           <div class="d-flex align-items-center">
-            <span style="
-              background-color: white;
-              padding: 4px 12px;
-              border-radius: 20px;
-              font-weight: 500;
-              margin-right: 12px;
-              ">
-          ${habito.fieldValues?.value ?? ''} ${habito.fieldValues?.unit ?? ''}
-</span>
-
+            <span class="habit-value-badge">
+              ${habito.fieldValues?.value ?? ''} ${habito.fieldValues?.unit ?? ''}
+            </span>
           </div>
         `;
-      
-
 
         habitCard.innerHTML = cardContent;
         habitCard.querySelector('.d-flex.align-items-center:last-child').appendChild(checkCircle);
-      
+
         habitCard.addEventListener('click', (e) => {
           if (e.target.classList.contains('check-circle')) return;
-      
-          if (checkCircle.style.display === 'none') {
-            checkCircle.style.display = 'block';
-          } else {
-            checkCircle.style.display = 'none';
-          }
+          checkCircle.style.display = checkCircle.style.display === 'none' ? 'block' : 'none';
         });
 
         checkCircle.addEventListener('click', async function (e) {
-          e.stopPropagation(); // Evita que se dispare el click del card
-
-          // Cambia estado local
+          e.stopPropagation();
           status = status === 'complete' ? 'pending' : 'complete';
-          this.style.backgroundColor = status === 'complete' ? 'green' : 'white';
-          console.log(`Hábito marcado como: ${status}`);
+          checkCircle.classList.toggle('complete');
+          checkCircle.classList.add('scale');
+          setTimeout(() => checkCircle.classList.remove('scale'), 150);
 
           try {
             const res = await fetch('http://localhost:3000/api/inicio/actualizarlogs', {
@@ -176,6 +145,7 @@ async function cargarHabitos() {
     seccionHabitos.innerHTML = '<p>Error al cargar los hábitos.</p>';
   }
 }
+
 
 // Llamar a la función de carga de hábitos cuando la página se carga
 window.addEventListener('load', cargarHabitos);

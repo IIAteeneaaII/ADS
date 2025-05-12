@@ -2,16 +2,13 @@
 @use 'base/mixins' as m;
 
 .container_inicio {
-    h1 {
-        padding: 0.5rem;
-        text-align: center;
-    }
-}
+    padding: 1rem;
 
-h1,
-h2 {
-    color: v.$black;
-    font-size: 1.5rem;
+    h1 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        text-align: left;
+    }
 }
 
 #unread-count {
@@ -73,12 +70,6 @@ h2 {
 .icon-bar span {
     font-size: 1.5rem;
     cursor: pointer;
-}
-
-.habit-card {
-    margin-top: 2rem;
-    text-align: center;
-    font-weight: 500;
 }
 
 .btn-create {
@@ -196,7 +187,7 @@ h2 {
     border-radius: 0.2rem;
     padding: 0.5rem;
     // margin-left: 10px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -254,12 +245,104 @@ h2 {
     }
 }
 
-.create-button {
-    text-align: center;
-}
-
 .habitos_titulo {
     text-align: center;
-    color: v.$white;
+    color: v.$black;
     padding-top: 1rem;
+
+    // padding-bottom: 1rem;
+    h2 {
+        font-weight: 700;
+    }
+}
+
+.habit-toggle {
+    background-color: v.$white; // más suave
+    border-radius: 9999px;
+    display: inline-flex;
+    padding: 2px;
+    margin: 1rem auto;
+    position: relative;
+    justify-content: space-between;
+    gap: 22px;
+
+    .habit-tab {
+        background-color: v.$white;
+        position: relative;
+        // background-color: transparent;
+        border: none;
+        padding: 0.5rem 1.2rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        color: v.$mainColor-strong; // gris medio
+        transition: all 0.3s ease;
+        cursor: pointer;
+        z-index: 1;
+
+        &:hover {
+            background-color: v.$mainColor-low;
+            color: v.$colorSecondaryBtn;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+        }
+
+        &:active {
+            background-color: v.$mainColor-low;
+            color: v.$secondaryColor-strong;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge {
+            background-color: v.$mainColor-strong;
+            color: white;
+            border-radius: 9999px;
+            padding: 2px 6px;
+            font-size: 0.65rem;
+            margin-left: 6px;
+        }
+    }
+}
+
+.habit-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 14px;
+    flex-shrink: 0;
+}
+
+.habit-card {
+    background-color: v.$white;
+    border-radius: 16px;
+    color: v.$black;
+    position: relative;
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.check-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid v.$black;
+    background-color: v.$white;
+    cursor: pointer;
+    display: none;
+    transition: background-color 0.3s, transform 0.2s;
+
+    &.complete {
+        background-color: v.$mainColor-low;
+    }
+
+    &.scale {
+        transform: scale(1.1);
+    }
+}
+
+.habit-value-badge {
+    background-color: v.$white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    // font-weight: 500;
+    margin-right: 14px;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }

@@ -21,8 +21,6 @@
     <%- include('partials/menuLateral',{ userName: userName }) %>
       <!-- Barra superior -->
       <div class="top-bar-inicio">
-
-        <!-- <i class="fas fa-bars iconos" id="btnMenu"></i> -->
         <div class="iconos" id="btnMenu">
           <i class="fas fa-bars"></i>
         </div>
@@ -37,13 +35,13 @@
               <% } %>
           </i>
           <div class="iconos">
-          <i class="fa-solid fa-bolt" onclick="location.href='/racha';" title="Racha"></i>
+            <i class="fa-solid fa-bolt" onclick="location.href='/racha';" title="Racha"></i>
           </div>
         </div>
       </div>
 
       <!-- Contenido principal -->
-      <div class="container-md pt-2">
+      <div class="container-md">
         <h1>Hola, <span id="nombreUsuario">
             <%= userName %>
           </span> </h1>
@@ -60,26 +58,23 @@
             </button>
           </div>
         </div>
-        <div class="text-center">
-          <button class="btn btn-primary" onclick="location.href='/gestionarMisHabitos';">Gestionar mis hábitos</button>
+        <div class="habit-toggle d-flex justify-content-center my-3">
+          <button class="habit-tab" onclick="location.href='/gestionarMisHabitos'">Mis hábitos</button>
+          <button class="habit-tab" onclick="location.href='/gestionarHabitos'">
+            Crear nuevo hábito
+          </button>
         </div>
+
         <div class="habitos_titulo">
           <h2>Habitos de hoy</h2>
         </div>
-      </div>
-
-      <!-- Sección de hábitos -->
-      <div class="habit-card mt-4" id="seccion-de-habitos">
-        <p>Hmm, no hay ningún hábito establecido por el momento.<br>Presiona el botón “Crear +” para crear tu primer
-          hábito.</p>
-      </div>
-
-      <div class="create-button">
-        <button class="btn btn-primary rounded-pill px-4" onclick="location.href='/gestionarHabitos'">
-          <i class="fas fa-plus me-2"></i>Crear nuevo hábito
-        </button>
+        <!-- Sección de hábitos -->
+        <div class="mt-4" id="seccion-de-habitos">
+          
+        </div>
       </div>
   </div>
+
 
   <!-- Modal de cierre de sesión -->
   <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
