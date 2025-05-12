@@ -6,6 +6,7 @@ const { authMiddleware } = require('./middlewares/authMiddleware');
 const cookieParser = require('cookie-parser');
 const { loadAllJobs } = require('./utils/jobManager');
 require('./utils/UploadHabitsPerDay');
+const { renderCalendar } = require('./controllers/authController');
 
 const { getRecentNotifications, countUnreadNotifications, markAllAsRead } = require('./repositories/habitRepositoryPrisma');
 
@@ -44,9 +45,7 @@ app.get('/ingresarcodigo', (req, res) => {
     res.render('ingresarcodigo');
 });
 
-app.get('/calendario_emociones', authMiddleware, (req, res) => {
-    res.render('calendario_emociones');
-});
+app.get('/calendario_emociones', authMiddleware, renderCalendar);
 
 app.get('/racha', authMiddleware, (req, res) => {
     res.render('racha');
