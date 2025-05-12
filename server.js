@@ -48,6 +48,10 @@ app.get('/calendario_emociones', (req, res) => {
     res.render('calendario_emociones');
 });
 
+app.get('/racha', (req, res) => {
+    res.render('racha');
+});
+
 app.get('/reset-password', (req, res) => {
     const token = req.query.token;
     res.render('ingresarcodigo', { token });
