@@ -26,6 +26,7 @@ model User {
   habits         UserHabit[]
   profilePic     String?
   notifications  Notification[]
+  moods          Mood[]
 }
 
 model Notification {
@@ -106,4 +107,22 @@ model ResetCode {
   code       String
   createdAt  DateTime @default(now())
   expiresAt  DateTime
+}
+
+enum MoodType {
+  HAPPY
+  SAD
+  ANGRY
+  CALM
+}
+
+model Mood {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  date      DateTime
+  mood      MoodType
+  createdAt DateTime  @default(now())
+
+  @@unique([userId, date]) // Asegura que un usuario solo registre un estado por día
 }
