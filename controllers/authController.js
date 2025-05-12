@@ -7,7 +7,7 @@ const redis = require('../redisClient');
 const { sendRecoveryEmail } = require('../emailSender');
 const { createOrUpdateJob } = require('../utils/jobManager');
 const { createResetCode } = userRepo;
-const { findValidResetCode, deleteResetCodeById } = userRepo;
+const { findValidResetCode, deleteResetCodeById, saveMood, findMoodByUserAndDate, getMoodsByUser } = userRepo;
 
 exports.register = async (req, res) => {
   const { email, password, userName } = req.body;
@@ -207,4 +207,54 @@ exports.updateProfile = async (req, res) => {
       error: err.message
     });
   }
+};
+
+function truncateDateToUTC(dateInput) {
+  const date = new Date(dateInput);
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+}
+
+exports.saveMood = async (req, res) => {
+  try {
+    const { mood, date } = req.body;
+    const userId = req.user.id;
+
+    if (!mood || !date) {
+      return res.status(400).json({ error: 'Faltan datos requeridos.' });
+    }
+
+    // 🔐 Normalizar la fecha a UTC sin hora
+    const normalizedDate = truncateDateToUTC(date);
+
+    // Buscar si ya existe un estado de ánimo para ese usuario y fecha
+    const existingMood = await findMoodByUserAndDate(userId, normalizedDate);
+
+    let result;
+    if (existingMood) {
+      // Si existe, actualizamos
+      result = await saveMood({ userId, date: normalizedDate, mood, isUpdate: true });
+      return res.status(200).json({ message: 'Estado de ánimo actualizado', mood: result });
+    } else {
+      // Si no existe, creamos uno nuevo
+      result = await saveMood({ userId, date: normalizedDate, mood });
+      return res.status(201).json({ message: 'Estado de ánimo guardado', mood: result });
+    }
+
+  } catch (error) {
+    console.error('Error al guardar estado de ánimo:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+exports.renderCalendar = async (req, res) => {
+  const userId = req.user.id;
+  const moods = await getMoodsByUser(userId);
+
+  const moodsByDate = moods.reduce((acc, mood) => {
+    const dateStr = mood.date.toISOString().split("T")[0];
+    acc[dateStr] = mood.mood;
+    return acc;
+  }, {});
+
+  res.render("calendario_emociones", { moodsByDate }); // 👈 importante: nombre correcto
 };
