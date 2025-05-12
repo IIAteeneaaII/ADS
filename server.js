@@ -44,11 +44,11 @@ app.get('/ingresarcodigo', (req, res) => {
     res.render('ingresarcodigo');
 });
 
-app.get('/calendario_emociones', (req, res) => {
+app.get('/calendario_emociones', authMiddleware, (req, res) => {
     res.render('calendario_emociones');
 });
 
-app.get('/racha', (req, res) => {
+app.get('/racha', authMiddleware, (req, res) => {
     res.render('racha');
 });
 
@@ -62,21 +62,21 @@ app.get('/Preferencias', authMiddleware, (req, res) => {
 });
 
 app.get('/Inicio', authMiddleware, async (req, res) => {
-const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
+    const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
 
-const user = await prisma.user.findUnique({
-    where: { id: req.user.id },
-    select: {
-    userName: true,
-    profilePic: true
-    }
-});
+    const user = await prisma.user.findUnique({
+        where: { id: req.user.id },
+        select: {
+            userName: true,
+            profilePic: true
+        }
+    });
 
-res.render('inicio', {
-    userName: user.userName,
-    profilePic: user.profilePic,
-    unreadNotifications
-});
+    res.render('inicio', {
+        userName: user.userName,
+        profilePic: user.profilePic,
+        unreadNotifications
+    });
 });
 
 app.get('/EstadoDeAnimo', authMiddleware, (req, res) => {
@@ -92,7 +92,7 @@ app.get('/TerminosyCondiciones', (req, res) => {
 
 app.get('/Notificaciones', authMiddleware, async (req, res) => {
     const notifications = await getRecentNotifications(req.user.id);
-    
+
     markAllAsRead(req.user.id);
 
     res.render('notificaciones', {
@@ -139,84 +139,84 @@ app.get('/Hidratacion', authMiddleware, (req, res) => {
     res.render('hidratacion');
 });
 
-app.get('/Estadisticas',authMiddleware, (req, res) => {
+app.get('/Estadisticas', authMiddleware, (req, res) => {
     res.render('estadisticas');
 });
 
-app.get('/Estadisticas2', authMiddleware,(req, res) => {
+app.get('/Estadisticas2', authMiddleware, (req, res) => {
     res.render('estadisticas2');
 });
 
-app.get('/EliminarCuenta', authMiddleware,(req, res) => {
+app.get('/EliminarCuenta', authMiddleware, (req, res) => {
     res.render('eliminarCuenta');
 });
 
-app.get('/EliminarCuenta1', authMiddleware,(req, res) => {
+app.get('/EliminarCuenta1', authMiddleware, (req, res) => {
     res.render('eliminarCuenta1');
 });
 
-app.get('/EliminarCuenta2', authMiddleware,(req, res) => {
+app.get('/EliminarCuenta2', authMiddleware, (req, res) => {
     res.render('eliminarCuenta2');
 });
 
-app.get('/Privacidad', authMiddleware,(req, res) => {
+app.get('/Privacidad', authMiddleware, (req, res) => {
     res.render('privacidad');
 });
 
-app.get('/FaltaDeTiempo', authMiddleware,(req, res) => {
+app.get('/FaltaDeTiempo', authMiddleware, (req, res) => {
     res.render('faltadetiempo');
 });
 
-app.get('/UsoFinit', authMiddleware,(req, res) => {
+app.get('/UsoFinit', authMiddleware, (req, res) => {
     res.render('usofinit');
 });
 
 app.get('/personalizado', authMiddleware, (req, res) => {
-  res.render('habitoPersonalizado');
+    res.render('habitoPersonalizado');
 });
 
 
 app.get('/actualizarPerfil', authMiddleware, async (req, res) => {
-  try {
-    const user = await prisma.user.findUnique({
-      where: { id: req.user.id }
-    });
+    try {
+        const user = await prisma.user.findUnique({
+            where: { id: req.user.id }
+        });
 
-    if (!user) {
-      return res.redirect('/login');
+        if (!user) {
+            return res.redirect('/login');
+        }
+
+        res.render('actualizarPerfil', { user });
+    } catch (err) {
+        console.error('Error al cargar el perfil:', err);
+        res.status(500).send('Error al cargar el perfil');
     }
-
-    res.render('actualizarPerfil', { user });
-  } catch (err) {
-    console.error('Error al cargar el perfil:', err);
-    res.status(500).send('Error al cargar el perfil');
-  }
 });
 
-  
-app.get('/quienesSomos', (req, res) => {
+
+app.get('/quienesSomos', authMiddleware, (req, res) => {
     res.render('quienesSomos');  //
-  });
-
-app.get('/GestionarCorrer', authMiddleware,(req, res) => {
-res.render('gestionarcorrer');  //
 });
 
-app.get('/GestionarBici', authMiddleware,(req, res) => {
-res.render('gestionarbicicleta');  //
+app.get('/GestionarCorrer', authMiddleware, (req, res) => {
+    res.render('gestionarcorrer');  //
 });
 
-app.get('/Correr', authMiddleware,(req, res) => {
+app.get('/GestionarBici', authMiddleware, (req, res) => {
+    res.render('gestionarbicicleta');  //
+});
+
+app.get('/Correr', authMiddleware, (req, res) => {
     res.render('correr');  //
-  });
+});
 
-app.get('/Bicicleta', authMiddleware,(req, res) => {
+app.get('/Bicicleta', authMiddleware, (req, res) => {
     res.render('bicicleta');  //
-  });
+});
 
-app.get('/GestionarOrdenarEspacio', authMiddleware,(req, res) => {
+app.get('/GestionarOrdenarEspacio', authMiddleware, (req, res) => {
     res.render('gestionarOrdenarEspacio');  //
-  });
+});
 
 app.get('/GestionarHorasDormir', authMiddleware, (req, res) => {
     res.render('gestionarhorasdormir');
