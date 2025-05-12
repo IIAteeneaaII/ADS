@@ -25,8 +25,8 @@ function renderizarCalendario() {
     const diaDiv = document.createElement("div");
     diaDiv.classList.add("dia");
 
-    const clave = `${year}-${mes + 1}-${dia}`;
-    const emocion = localStorage.getItem(clave);
+    const diaStr = `${year}-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
+    const emocion = moodsFromServer[diaStr];  // Acceder directamente al objeto usando la fecha
 
     const emojiSpan = document.createElement("span");
     emojiSpan.classList.add("emoji");
@@ -41,7 +41,7 @@ function renderizarCalendario() {
       dia === hoy.getDate() &&
       mes === hoy.getMonth() &&
       year === hoy.getFullYear();
-  
+
     if (esHoy) {
       diaDiv.classList.add("dia-hoy");
     }
@@ -49,17 +49,16 @@ function renderizarCalendario() {
     diaDiv.appendChild(emojiSpan);
     diaDiv.appendChild(numeroSpan);
 
-
     diasContainer.appendChild(diaDiv);
   }
 }
 
 function obtenerEmoji(emocion) {
   switch (emocion) {
-    case "Feliz": return "😄";
-    case "Triste": return "😢";
-    case "Neutral": return "😐";
-    case "Enojado": return "😠";
+    case "HAPPY": return "😄";
+    case "SAD": return "😢";
+    case "CALM": return "😐";
+    case "ANGRY": return "😠";
     default: return "❓";
   }
 }
