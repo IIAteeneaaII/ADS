@@ -1,4 +1,5 @@
 const { PrismaClient } = require('../generated/prisma');
+const { createOrUpdateJob } = require('../utils/jobManager');
 const prisma = new PrismaClient();
 
 exports.createUserHabit = async (data) => {
@@ -213,4 +214,36 @@ exports.markAllAsRead = async (userId) => {
       readAt: new Date(),
     },
   });
+};
+
+exports.getNotificationsTime = async (userId) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      morningHour: true,
+      afternoonHour: true,
+      nightHour: true
+    }
+  });
+
+   return {
+    morningHour: user.morningHour,
+    afternoonHour: user.afternoonHour,
+    nightHour: user.nightHour
+  };
+}
+
+exports.updateNotificationHours = async (userId, morningHour, afternoonHour, nightHour) => {
+  return await prisma.user.update({
+    where: { id: userId },
+    data: {
+      morningHour: parseInt(morningHour),
+      afternoonHour: parseInt(afternoonHour),
+      nightHour: parseInt(nightHour)
+    }
+  });
+
+  createOrUpdateJob(userId, 'morning', parseInt(morningHour));
+  createOrUpdateJob(userId, 'afternoon', parseInt(afternoonHour));
+  createOrUpdateJob(userId, 'night', parseInt(nightHour));
 };

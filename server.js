@@ -8,7 +8,7 @@ const { loadAllJobs } = require('./utils/jobManager');
 require('./utils/UploadHabitsPerDay');
 const { renderCalendar } = require('./controllers/authController');
 
-const { getRecentNotifications, countUnreadNotifications, markAllAsRead } = require('./repositories/habitRepositoryPrisma');
+const { getRecentNotifications, countUnreadNotifications, markAllAsRead, getNotificationsTime, updateNotificationHours } = require('./repositories/habitRepositoryPrisma');
 
 
 //pruebas, no estara en la app
@@ -271,6 +271,23 @@ app.get('/GestionarMeditacion', authMiddleware, (req, res) => {
 
 app.get('/GestionarMusicaRelajante', authMiddleware, (req, res) => {
     res.render('gestionarMusicaRelajante');
+});
+
+app.get('/ConfigurarNotificaciones', authMiddleware, async (req, res) => {
+    const { afternoonHour, morningHour, nightHour } = await getNotificationsTime(req.user.id);
+    res.render('configNotis', {
+        afternoonHour,
+        morningHour,
+        nightHour
+    })
+});
+
+app.post('/ConfigurarNotificaciones', authMiddleware, async (req, res) => {
+    const { morningHour, afternoonHour, nightHour } = req.body;
+
+    await updateNotificationHours(req.user.id, morningHour, afternoonHour, nightHour);
+
+    res.redirect('/ConfigurarNotificaciones');
 });
 
 app.use('/api/auth', authRoutes);
