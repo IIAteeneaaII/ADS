@@ -41,3 +41,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiO
 
 GET http://localhost:3000/api/inicio/principalScr
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJQUlVFQkFAZ21haWwuY29tIiwidXNlck5hbWUiOiJwcnVlYmEiLCJpYXQiOjE3NDYyODU1NzAsImV4cCI6MTc0NjI4OTE3MH0.nYRpajwPuuD3hM5_da65MJ00e735V8HNmGXanC-NU24
+
+### Prueba semanal
+GET http://localhost:3000/api/habits/duration/weekly?userId=1
+Content-Type: application/json
+
+###
+
+### Prueba mensual
+GET http://localhost:3000/api/habits/duration/monthly?userId=1
+Content-Type: application/json
