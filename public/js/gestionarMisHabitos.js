@@ -1,18 +1,18 @@
 const HABITOS_MIS = [
-    { nombre: 'Estiramientos Matutinos', routeGestion: '/GestionarEstiramientos' },
-    { nombre: 'Correr', routeGestion: '/GestionarCorrer' }, 
-    { nombre: 'Andar en bicicleta', routeGestion: '/GestionarBici' }, 
-    { nombre: 'Saltar la cuerda', routeGestion: '/GestionarSaltarCuerda' },
+    { nombre: 'Estiramientos Matutinos', routeGestion: '/Estiramientos' },
+    { nombre: 'Correr', routeGestion: '/Correr' }, 
+    { nombre: 'Andar en bicicleta', routeGestion: '/Bicicleta' }, 
+    { nombre: 'Saltar la cuerda', routeGestion: '/SaltarCuerda' },
 
-    { nombre: 'Horas de Dormir', routeGestion: '/GestionarHorasDormir' },
-    { nombre: 'Desintoxicación Digital', routeGestion: '/GestionarDesintoxicacionDigital' },
-    { nombre: 'Cuidado de la Piel', routeGestion: '/GestionarCuidadoPiel' },
-    { nombre: 'Hidratación', routeGestion: '/GestionarHidratacion' },
+    { nombre: 'Horas de Dormir', routeGestion: '/HorasDeDormir' },
+    { nombre: 'Desintoxicación Digital', routeGestion: '/DesintoxicacionDigital' },
+    { nombre: 'Cuidado de la Piel', routeGestion: '/CuidadoPiel' },
+    { nombre: 'Hidratación', routeGestion: '/Hidratacion' },
 
-    { nombre: 'Ordenar Espacio Personal', routeGestion: '/GestionarOrdenarEspacio' },
-    { nombre: 'Lectura', routeGestion: '/GestionarLectura' },
-    { nombre: 'Meditación', routeGestion: '/GestionarMeditacion' },
-    { nombre: 'Escuchar Musica Relajante', routeGestion: '/GestionarMusicaRelajante' },
+    { nombre: 'Ordenar Espacio Personal', routeGestion: '/OrdenarEspacio' },
+    { nombre: 'Lectura', routeGestion: '/Lectura' },
+    { nombre: 'Meditación', routeGestion: '/Meditacion' },
+    { nombre: 'Escuchar Musica Relajante', routeGestion: '/MusicaRelajante' },
     
 ];
 document.addEventListener("DOMContentLoaded", async () => {
