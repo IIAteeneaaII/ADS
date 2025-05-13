@@ -6,10 +6,10 @@ const HABITOS = {
         { img: '/img/gestorhabitos/saltar-la-cuerda.png', nombre: 'Saltar la cuerda', link: '/GestionarSaltarCuerda' }
     ],
     bienestar: [
-        { img: '/img/gestorhabitos/dormir.png', nombre: 'Horas de sueño', link: '/GestionarHorasDormir' },
+        { img: '/img/gestorhabitos/dormir.png', nombre: 'Horas de Dormir', link: '/GestionarHorasDormir' },
         { img: '/img/gestorhabitos/sintelefono.png', nombre: 'Desintoxicación Digital', link: '/GestionarDesintoxicacionDigital' },
         { img: '/img/gestorhabitos/piel.png', nombre: 'Cuidado de la Piel', link: '/GestionarCuidadoPiel' },
-        { img: '/img/gestorhabitos/alimentacion.png', nombre: 'Alimentación', link: '/sueño' },
+        { img: '/img/gestorhabitos/alimentacion.png', nombre: 'Hidratación', link: '/GestionarHidratacion' },
     ],
     mental: [
         { img: '/img/gestorhabitos/ordenar.png', nombre: 'Ordenar Espacio Personal', link: '/GestionarOrdenarEspacio' },

@@ -1,3 +1,20 @@
+const HABITOS_MIS = [
+    { nombre: 'Estiramientos Matutinos', routeGestion: '/GestionarEstiramientos' },
+    { nombre: 'Correr', routeGestion: '/GestionarCorrer' }, 
+    { nombre: 'Andar en bicicleta', routeGestion: '/GestionarBici' }, 
+    { nombre: 'Saltar la cuerda', routeGestion: '/GestionarSaltarCuerda' },
+
+    { nombre: 'Horas de Dormir', routeGestion: '/GestionarHorasDormir' },
+    { nombre: 'Desintoxicación Digital', routeGestion: '/GestionarDesintoxicacionDigital' },
+    { nombre: 'Cuidado de la Piel', routeGestion: '/GestionarCuidadoPiel' },
+    { nombre: 'Hidratación', routeGestion: '/GestionarHidratacion' },
+
+    { nombre: 'Ordenar Espacio Personal', routeGestion: '/GestionarOrdenarEspacio' },
+    { nombre: 'Lectura', routeGestion: '/GestionarLectura' },
+    { nombre: 'Meditación', routeGestion: '/GestionarMeditacion' },
+    { nombre: 'Escuchar Musica Relajante', routeGestion: '/GestionarMusicaRelajante' },
+    
+];
 document.addEventListener("DOMContentLoaded", async () => {
 
     try {
@@ -45,7 +62,17 @@ function renderHabits(habits) {
 
         // Redirección al hacer clic
         habitCard.addEventListener('click', () => {
-            window.location.href = `/estiramientos`;
+            const habitInfo = HABITOS_MIS.find(h => h.nombre === habito.name);
+            if (habitInfo) {
+                window.location.href = habitInfo.routeGestion;
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Hábito no disponible',
+                    text: 'No se encontró una página de gestión para este hábito.',
+                    confirmButtonText: 'Aceptar',
+                });
+            }
         });
 
         const cardContent = document.createElement('div');
