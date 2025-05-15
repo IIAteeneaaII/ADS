@@ -5,19 +5,17 @@
     <meta charset="UTF-8">
     <title>Agregar un nuevo hábito</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../css/styles.css" rel="stylesheet">
+    <%- include('partials/allStyles') %>
 </head>
 
 <body>
     <div class="container py-4">
-
         <header>
             <div class="top-bar">
-                <a href="/inicio" class="back-arrow">&lsaquo;</a>
-                <h1 class="mx-auto">Agregar un nuevo hábito</h1>
+                <a onclick="location.href='/inicio';" class="back-arrow">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                <h4 class="fw-bold">Agregar un nuevo hábito</h4>
             </div>
         </header>
         <div class="separator"></div>
@@ -37,10 +35,10 @@
                     <span>Mentales</span>
                 </div>
             </div>
-            
+
             <!-- Contenedor donde se mostrarán los hábitos -->
             <div id="habitos-container" class="grid habitos mt-4"></div>
-            
+
             <div class="btn_personalizados">
                 <button onclick="location.href='/personalizado'" class="btn-primary">
                     Habito personalizado
