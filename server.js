@@ -99,9 +99,6 @@ app.get('/Notificaciones', authMiddleware, async (req, res) => {
     });
 });
 
-app.get('/GestionarHabitos', authMiddleware, (req, res) => {
-    res.render('gestionarHabitos');
-});
 app.get('/GestionarMisHabitos', authMiddleware, (req, res) => {
     res.render('gestionarMisHabitos');
 });
@@ -197,12 +194,26 @@ app.get('/quienesSomos', authMiddleware, (req, res) => {
     res.render('quienesSomos');  //
 });
 
-app.get('/GestionarCorrer', authMiddleware, (req, res) => {
-    res.render('gestionarcorrer');  //
+// app.get('/LayoutGestionar', authMiddleware, (req, res) => {
+//     const titlePage = 'gestionarcorrer'; // o cualquier valor que tengas
+//     res.render('layoutGestionar',{titlePage});  //
+// });
+app.get('/GestionarHabitos', authMiddleware, (req, res) => {
+    res.render('gestionarHabitos');
+});
+app.get('/gestionar/:habito', authMiddleware, (req, res) => {
+    const habito = 'mimirowo';
+    // Capitaliza la primera letra del hábito para mostrarlo bonito
+    const titlePage = habito.charAt(0).toUpperCase() + habito.slice(1);
+    res.render('layoutGestionar', {
+        titlePage
+    });
 });
 
-app.get('/GestionarBici', authMiddleware, (req, res) => {
-    res.render('gestionarbicicleta');  //
+
+
+app.get('/GestionarCorrer', authMiddleware, (req, res) => {
+    res.render('gestionarcorrer');  //
 });
 
 app.get('/Correr', authMiddleware, (req, res) => {
@@ -245,34 +256,6 @@ app.get('/MusicaRelajante', authMiddleware, (req, res) => {
     res.render('musicaRelajante');
 });
 
-app.get('/GestionarSaltarCuerda', authMiddleware, (req, res) => {
-    res.render('gestionarSaltarCuerda');
-});
-
-app.get('/GestionarDesintoxicacionDigital', authMiddleware, (req, res) => {
-    res.render('gestionarDesintoxicacionDigital');
-});
-
-app.get('/GestionarCuidadoPiel', authMiddleware, (req, res) => {
-    res.render('gestionarCuidadoPiel');
-});
-
-app.get('/GestionarHidratacion', authMiddleware, (req, res) => {
-    res.render('gestionarHidratacion');
-});
-
-app.get('/GestionarLectura', authMiddleware, (req, res) => {
-    res.render('gestionarLectura');
-});
-
-app.get('/GestionarMeditacion', authMiddleware, (req, res) => {
-    res.render('gestionarMeditacion');
-});
-
-app.get('/GestionarMusicaRelajante', authMiddleware, (req, res) => {
-    res.render('gestionarMusicaRelajante');
-});
-
 app.get('/ConfigurarNotificaciones', authMiddleware, async (req, res) => {
     const { afternoonHour, morningHour, nightHour } = await getNotificationsTime(req.user.id);
     res.render('configNotis', {
@@ -300,8 +283,9 @@ app.use('/api/cargarHabitos', cargarHabitosRoutes);
 
 
 const PORT = 3000;
-app.listen(PORT, async () => {
-    console.log(`Server running on port ${PORT}`)
+const HOST = '0.0.0.0'; // Escucha en todas las interfaces
 
-    await loadAllJobs()
+app.listen(PORT, HOST, async () => {
+    console.log(`Server running at http://${HOST}:${PORT}`);
+    await loadAllJobs();
 });

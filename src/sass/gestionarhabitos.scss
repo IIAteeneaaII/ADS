@@ -4,38 +4,45 @@
 
 .container {
     p {
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
     }
 }
 
-.habitos{
+.habitos {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra el contenido */
-    gap: 1rem; /* Espacio entre las opciones */
-    img{
+    justify-content: center;
+    /* Centra el contenido */
+    gap: 1rem;
+
+    /* Espacio entre las opciones */
+    img {
         width: 50%;
     }
 }
-.habitsGestion{
+
+.habitsGestion {
     // background-color: v.$secondaryColor;
     color: v.$black;
 }
-.card_gestionar{
+
+.card_gestionar {
     background-color: v.$secondaryColor;
     border-radius: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem; 
+    padding: 1rem;
     flex-grow: 1;
 }
-.grid_habitos{
-    background-color: transparent  !important;
+
+.grid_habitos {
+    background-color: transparent !important;
     display: flex;
     flex-direction: row;
 }
+
 .option {
     border: 0.2rem solid v.$secondaryColor;
     background-color: v.$secondaryColor;
@@ -46,16 +53,17 @@
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    
+
 }
 
-.caja{
+.caja {
     // display: flex;
     align-items: center;
     // justify-content: flex-start;
     margin-top: 15px;
     position: relative;
 }
+
 .plus-button {
     position: absolute;
     top: 55%;
@@ -74,16 +82,19 @@
     padding: 0;
     flex-shrink: 0;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    &:active{
-        background-color: v.$mainColor-low;  
-        color: white;        
-        border-color: v.$mainColor-low;  
+
+    &:active {
+        background-color: v.$mainColor-low;
+        color: white;
+        border-color: v.$mainColor-low;
     }
-    &:hover{
-        border-color: v.$mainColor-low;  
-        color: v.$mainColor-low;   
+
+    &:hover {
+        border-color: v.$mainColor-low;
+        color: v.$mainColor-low;
     }
-  }
+}
+
 .option-1 {
     background-color: v.$secondaryColor;
     padding: 12px;
@@ -97,13 +108,17 @@
     gap: 12px;
     position: relative;
 }
+
 .option-1 img {
     width: 40px;
     height: 40px;
 }
-.option,.option-1 span {
+
+.option,
+.option-1 span {
     font-size: 1rem;
-    color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
+    color: rgb(0, 0, 0);
+    /* O lo que combine con tu fondo */
 }
 
 .option-1:hover {
@@ -117,12 +132,54 @@
 }
 
 .main-content {
-    margin-top: 80px; 
+    margin-top: 80px;
 }
-.btn_personalizados{
+
+.btn_personalizados {
     padding-top: 3rem;
 }
-.ir_Alhabito{
+
+.ir_Alhabito {
     padding-left: 10rem;
-    background-color:v.$mainColor-low;
+    background-color: v.$mainColor-low;
+}
+
+/* Esto lo puedes colocar en tu archivo CSS global */
+.swal-fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw;
+    margin: 0 !important;
+    padding: 0rem !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none !important;
+}
+
+@keyframes popupFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-popup {
+    animation: popupFadeIn 300ms ease forwards;
+}
+
+.no-scroll {
+    overflow: hidden !important;
+    height: 100% !important;
+    position: fixed !important;
+    width: 100% !important;
+    touch-action: none !important;
+
 }

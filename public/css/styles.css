@@ -140,6 +140,10 @@ footer {
   display: block;
 }
 
+.title {
+  padding-top: 0.5rem;
+}
+
 header {
   text-align: center;
 }
@@ -598,8 +602,10 @@ input.check {
 .habitos {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra el contenido */
-  gap: 1rem; /* Espacio entre las opciones */
+  justify-content: center;
+  /* Centra el contenido */
+  gap: 1rem;
+  /* Espacio entre las opciones */
 }
 .habitos img {
   width: 50%;
@@ -691,9 +697,11 @@ input.check {
   height: 40px;
 }
 
-.option, .option-1 span {
+.option,
+.option-1 span {
   font-size: 1rem;
-  color: rgb(0, 0, 0); /* O lo que combine con tu fondo */
+  color: rgb(0, 0, 0);
+  /* O lo que combine con tu fondo */
 }
 
 .option-1:hover {
@@ -717,6 +725,43 @@ input.check {
 .ir_Alhabito {
   padding-left: 10rem;
   background-color: #93c5fd;
+}
+
+/* Esto lo puedes colocar en tu archivo CSS global */
+.swal-fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw;
+  margin: 0 !important;
+  padding: 0rem !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none !important;
+}
+
+@keyframes popupFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-popup {
+  animation: popupFadeIn 300ms ease forwards;
+}
+
+.no-scroll {
+  overflow: hidden !important;
+  height: 100% !important;
+  position: fixed !important;
+  width: 100% !important;
+  touch-action: none !important;
 }
 
 .page_preferencias {
