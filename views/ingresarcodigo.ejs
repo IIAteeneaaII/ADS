@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/css/styles.css" rel="stylesheet" />
-  <title>Recupera tu cuenta</title>
+  <title><%= title || 'Ingresar Código' %></title>
 </head>
 <body>
   <div class="container mt-5 pt-2">
@@ -16,37 +16,16 @@
 
       <main>
         <div class="form-container">
-          <h2 class="text-center mb-4">Recupera tu cuenta</h2>
-
-          <form id="formCodigo" autocomplete="off" method="POST" action="/reset-password">
-
+          <h2 class="text-center mb-4">Ingresar Código</h2>
+          <form id="formCodigo" autocomplete="off" method="POST" action="<%= action || '#' %>">
             <div class="mb-3">
               <label for="codigo" class="form-label">Código de verificación:</label>
-              <input type="text" class="form-control" id="codigo" name="code" placeholder="########" required />
+              <input type="text" class="form-control" id="codigo" name="codigo" placeholder="########" required />
             </div>
-
-            <div class="mb-3">
-              <label for="nuevaContrasena" class="form-label">Contraseña nueva:</label>
-              <div class="d-flex align-items-center">
-                <input type="password" class="form-control me-2" id="nuevaContrasena" name="newPassword" placeholder="Ingresa tu contraseña" required />
-                <span class="text-muted fs-5" id="togglePassword3" style="cursor: pointer;">👁️</span>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
-              <div class="d-flex align-items-center">
-                <input type="password" class="form-control" id="confirmarContrasena" name="confirmPassword" placeholder="Confirma tu contraseña" required />
-                <span class="text-muted fs-5" id="togglePassword4" style="cursor: pointer;">👁️</span>
-              </div>
-            </div>
-
             <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
-              <a href="/" class="btn btn-secondary">Cancelar</a>
+              <button type="submit" class="btn btn-primary" id="solicitarcodigo">Continuar</button>
             </div>
           </form>
-
           <div class="text-end mt-3">
             <p>¿No recibiste el código?</p>
             <button type="button" class="btn btn-secondary" id="reenviarCodigo">Reenviar código</button>
@@ -59,6 +38,5 @@
   <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/js/ingresarcodigo.js"></script>
-
 </body>
 </html>
