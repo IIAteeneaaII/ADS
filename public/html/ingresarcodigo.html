@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../css/styles.css" rel="stylesheet" />
-  <title>Recuperar contraseña</title>
+  <title>Ingresar Código</title>
 </head>
 <body>
   <div class="container mt-5 pt-2">
@@ -16,33 +16,15 @@
 
       <main>
         <div class="form-container">
-          <h2 class="text-center mb-4">Recuperar contraseña</h2>
+          <h2 class="text-center mb-4">Ingresar Código</h2>
           <form id="formCodigo" autocomplete="off">
             <div class="mb-3">
               <label for="codigo" class="form-label">Código de verificación:</label>
               <input type="text" class="form-control" id="codigo" placeholder="########" required />
             </div>
-
-            <div class="mb-3">
-              <label for="nuevaContrasena" class="form-label">Contraseña nueva:</label>
-              <div class="position-relative d-flex align-items-center">
-                <input type="password" class="form-control pe-2" id="nuevaContrasena" placeholder="Ingresa tu contraseña" required />
-                <img src="../img/iconos/eye-fill.svg" class="text-muted fs-5" id="togglePassword3" style="cursor: pointer; position: absolute; right: 1rem; cursor: pointer; width: 1.2rem;"/>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
-              <div class="position-relative d-flex align-items-center">
-                <input type="password" class="form-control pe-2" id="confirmarContrasena" placeholder="Confirmar contraseña" required />
-                <img src="../img/iconos/eye-fill.svg" class="text-muted fs-5" id="togglePassword4" style="cursor: pointer; position: absolute; right: 1rem; cursor: pointer; width: 1.2rem;"/>
-              </div>
-            </div>
-
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
-              <button type="button" class="btn btn-secondary">Cancelar</button>
-            </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary" id="solicitarcodigo">Continuar</button>
+          </div>
           </form>
           <div class="text-end mt-3">
             <p>¿No recibiste el código?</p>
