@@ -182,4 +182,10 @@
     width: 100% !important;
     touch-action: none !important;
 
+    .swal2-container {
+        overflow: hidden !important;
+    }
+}
+body.no-scroll.swal2-no-backdrop.swal2-shown {
+    background-color: v.$white !important;
 }

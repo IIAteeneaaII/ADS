@@ -11,7 +11,7 @@ function mostrarAlerta({ title, text, imageUrl, redirectUrl, btnText }) {
         confirmButtonText: btnText,
         customClass: {
             popup: 'swal-fullscreen animate-popup',
-            confirmButton: 'btn btn-primary mt-4'
+            confirmButton: 'btn-primary mt-4'
         },
         allowOutsideClick: false,
         allowEscapeKey: false,

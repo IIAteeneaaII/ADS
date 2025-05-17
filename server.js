@@ -19,10 +19,6 @@ const prisma = new PrismaClient();
 
 const app = express();
 
-app.listen(3000, '0.0.0.0', () => {
-  console.log('Servidor corriendo en http://0.0.0.0:3000');
-});
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -83,7 +79,8 @@ app.get('/Inicio', authMiddleware, async (req, res) => {
 });
 
 app.get('/EstadoDeAnimo', authMiddleware, (req, res) => {
-    res.render('estadodeAnimo');
+    user=req.user;
+    res.render('estadodeAnimo',{user});
 });
 app.get('/GuiadeUsuario', authMiddleware, (req, res) => {
     res.render('guiadeUsuario');
@@ -205,7 +202,7 @@ app.get('/quienesSomos', authMiddleware, (req, res) => {
 app.get('/GestionarHabitos', authMiddleware, (req, res) => {
     res.render('gestionarHabitos');
 });
-app.get('/gestionar/:habito', authMiddleware, (req, res) => {
+app.get('/gestionar/:habito', (req, res) => {
     const habito = 'mimirowo';
     // Capitaliza la primera letra del hábito para mostrarlo bonito
     const titlePage = habito.charAt(0).toUpperCase() + habito.slice(1);
@@ -287,9 +284,9 @@ app.use('/api/cargarHabitos', cargarHabitosRoutes);
 
 
 const PORT = 3000;
-const HOST = '0.0.0.0'; // Escucha en todas las interfaces
+const HOST = '0.0.0.0';
 
 app.listen(PORT, HOST, async () => {
-    console.log(`Server running at http://${HOST}:${PORT}`);
+    console.log(`Servidor corriendo en http://${HOST}:${PORT}`);
     await loadAllJobs();
 });

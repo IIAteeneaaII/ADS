@@ -93,6 +93,9 @@ footer {
   transform: scale(1.02);
   background-color: #93c5fd;
 }
+.btn-primary:active {
+  background-color: #93c5fd;
+}
 .btn-primary:focus {
   background-color: #93c5fd;
   border: none;
@@ -762,6 +765,13 @@ input.check {
   position: fixed !important;
   width: 100% !important;
   touch-action: none !important;
+}
+.no-scroll .swal2-container {
+  overflow: hidden !important;
+}
+
+body.no-scroll.swal2-no-backdrop.swal2-shown {
+  background-color: #ffffff !important;
 }
 
 .page_preferencias {
