@@ -203,15 +203,25 @@ app.get('/GestionarHabitos', authMiddleware, (req, res) => {
     res.render('gestionarHabitos');
 });
 app.get('/gestionar/:habito', (req, res) => {
-    const habito = 'mimirowo';
-    // Capitaliza la primera letra del hábito para mostrarlo bonito
-    const titlePage = habito.charAt(0).toUpperCase() + habito.slice(1);
+    const habitosPermitidos = [
+        'Estiramientos', 'correr', 'bicicleta', 'saltarCuerda',
+        'horasdeDormir', 'desintoxicacionDigital', 'cuidadoDePiel',
+        'hidratacion', 'espacioPersonal', 'lectura', 'meditacion',
+        'musicaRelajante','personalizado'
+    ];
+
+    const habitoSolicitado = req.params.habito;
+    if (!habitosPermitidos.includes(habitoSolicitado)) {
+        return res.render('gestionarHabitos');
+    }
+
+    const titlePage = habitoSolicitado.charAt(0).toUpperCase() + habitoSolicitado.slice(1);
+    const esPersonalizado = habitoSolicitado === 'personalizado';
+
     res.render('layoutGestionar', {
-        titlePage
+        titlePage, esPersonalizado
     });
 });
-
-
 
 app.get('/GestionarCorrer', authMiddleware, (req, res) => {
     res.render('gestionarcorrer');  //

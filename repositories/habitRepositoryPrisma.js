@@ -9,6 +9,20 @@ exports.createUserHabit = async (data) => {
   });
 };
 
+exports.findUserHabitByName = async (userId, name) => {
+  return await prisma.userHabit.findFirst({
+    where: {
+      userId,
+      name: {
+        equals: name,
+        mode: 'insensitive'
+      },
+      isActive: true
+    }
+  });
+}
+
+
 exports.getUserHabitsWithLog = async (userId, date, dayName) => {
   console.log({ userId, date, dayName });
 
