@@ -41,8 +41,10 @@
       <!-- Campo para la contraseña con toggle -->
       <div class="mb-3 password-container">
         <label for="contrasena" class="form-label">Contraseña:</label>
-        <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" required>
-        <span class="password-toggle" id="togglePassword">👁️</span>
+        <div class = "position-relative">
+          <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+          <i id="togglePassword" class="fa-solid fa-eye" data-visible="false" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></i>
+        </div>
       </div>
       
       <div class="separator my-3"></div>
@@ -59,10 +61,12 @@
   <script>
     // Mostrar/ocultar contraseña
     document.getElementById("togglePassword").addEventListener("click", function () {
-      const passwordInput = document.getElementById("contrasena");
-      const type = passwordInput.type === "password" ? "text" : "password";
-      passwordInput.type = type;
-      this.textContent = type === "password" ? "👁️" : "🙈";
+      const input = document.getElementById("contrasena");
+      const isVisible = this.dataset.visible === "true";
+
+      input.type = isVisible ? "password" : "text";
+      this.className = isVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
+      this.dataset.visible = (!isVisible).toString();
     });
 
     // Cargar correo desde localStorage
