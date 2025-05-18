@@ -49,7 +49,7 @@ async function cargarHabitos() {
   seccionHabitos.innerHTML = '';
 
   try {
-    const response = await fetch('http://localhost:3000/api/inicio/principalScr', {
+    const response = await fetch('/api/inicio/principalScr', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -110,7 +110,7 @@ async function cargarHabitos() {
           setTimeout(() => checkCircle.classList.remove('scale'), 150);
 
           try {
-            const res = await fetch('http://localhost:3000/api/inicio/actualizarlogs', {
+            const res = await fetch('/api/inicio/actualizarlogs', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ const HABITOS_MIS = [
 document.addEventListener("DOMContentLoaded", async () => {
 
     try {
-        const response = await fetch('http://localhost:3000/api/inicio/all', {
+        const response = await fetch('/api/inicio/all', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
