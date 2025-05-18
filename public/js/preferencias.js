@@ -45,17 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonText: 'Aceptar'
             });
         } else {
-            Swal.fire({
-                icon: 'success',
+            mostrarAlerta({
                 title: '¡Perfecto!',
-                text: 'Has seleccionado tus 3 intereses.',
-                customClass: {
-                    confirmButton: 'btn-secondary'
-                },
-                confirmButtonText: 'Continuar'
-            }).then(() => {
-                document.getElementById("nextBtn").classList.add("btn-secondary");
-                window.location.href = "/inicio"; // ir al inicio
+                text: 'Tus intereses han sido almacenados',
+                imageUrl: '/img/sharki/feliz.png',
+                redirectUrl: '/inicio', // Puedes omitir esto si no quieres redireccionar
+                btnText: 'Continuar'
             });
         }
     });

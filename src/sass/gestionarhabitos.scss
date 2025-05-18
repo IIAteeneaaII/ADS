@@ -186,6 +186,6 @@
         overflow: hidden !important;
     }
 }
-body.no-scroll.swal2-no-backdrop.swal2-shown {
+body.no-scroll.swal2-no-backdrop.swal2-shown, .swal2-container.swal2-center.swal2-backdrop-show {
     background-color: v.$white !important;
 }

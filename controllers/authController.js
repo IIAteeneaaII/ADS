@@ -67,7 +67,7 @@ exports.login = async (req, res) => {
       secure: false,
       maxAge: 60 * 60 * 1000,
     });
-    setFlashMessage(res, '¡Inicio de sesión éxitoso.', 'success');
+    setFlashMessage(res, '¡Inicio de sesión éxitoso!.', 'success');
     res.redirect('/Preferencias');
   } catch (err) {
     console.error(err);

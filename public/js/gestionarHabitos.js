@@ -1,21 +1,21 @@
 const HABITOS = {
     movimiento: [
-        { img: '/img/gestorhabitos/estiramiento.png', nombre: 'Estiramientos matutinos', link: '/GestionarEstiramientos' },
-        { img: '/img/gestorhabitos/correr.png', nombre: 'Correr', link: '/GestionarCorrer' },
-        { img: '/img/gestorhabitos/bici.png', nombre: 'Andar en bicicleta', link: '/GestionarBici' },
-        { img: '/img/gestorhabitos/saltar-la-cuerda.png', nombre: 'Saltar la cuerda', link: '/GestionarSaltarCuerda' }
+        { img: '/img/gestorhabitos/estiramiento.png', nombre: 'Estiramientos matutinos', link: '/gestionar/estiramientos' },
+        { img: '/img/gestorhabitos/correr.png', nombre: 'Correr', link: '/gestionar/correr' },
+        { img: '/img/gestorhabitos/bici.png', nombre: 'Andar en bicicleta', link: '/gestionar/bicicleta' },
+        { img: '/img/gestorhabitos/saltar-la-cuerda.png', nombre: 'Saltar la cuerda', link: '/gestionar/saltarCuerda' }
     ],
     bienestar: [
-        { img: '/img/gestorhabitos/dormir.png', nombre: 'Horas de Dormir', link: '/GestionarHorasDormir' },
-        { img: '/img/gestorhabitos/sintelefono.png', nombre: 'Desintoxicación Digital', link: '/GestionarDesintoxicacionDigital' },
-        { img: '/img/gestorhabitos/piel.png', nombre: 'Cuidado de la Piel', link: '/GestionarCuidadoPiel' },
-        { img: '/img/gestorhabitos/alimentacion.png', nombre: 'Hidratación', link: '/GestionarHidratacion' },
+        { img: '/img/gestorhabitos/dormir.png', nombre: 'Horas de Dormir', link: '/gestionar/horasdeDormir' },
+        { img: '/img/gestorhabitos/sintelefono.png', nombre: 'Desintoxicación Digital', link: '/gestionar/desintoxicacionDigital' },
+        { img: '/img/gestorhabitos/piel.png', nombre: 'Cuidado de la Piel', link: '/gestionar/cuidadoDePiel' },
+        { img: '/img/gestorhabitos/alimentacion.png', nombre: 'Hidratación', link: '/gestionar/hidratacion' },
     ],
     mental: [
-        { img: '/img/gestorhabitos/ordenar.png', nombre: 'Ordenar Espacio Personal', link: '/GestionarOrdenarEspacio' },
-        { img: '/img/gestorhabitos/leer.png', nombre: 'Lectura', link: '/GestionarLectura' },
-        { img: '/img/gestorhabitos/meditacion.png', nombre: 'Meditación', link: '/GestionarMeditacion' },
-        { img: '/img/gestorhabitos/escuchar-musica.png', nombre: 'Escuchar Musica Relajante', link: '/GestionarMusicaRelajante' },
+        { img: '/img/gestorhabitos/ordenar.png', nombre: 'Ordenar Espacio Personal', link: '/gestionar/espacioPersonal' },
+        { img: '/img/gestorhabitos/leer.png', nombre: 'Lectura', link: '/gestionar/lectura' },
+        { img: '/img/gestorhabitos/meditacion.png', nombre: 'Meditación', link: '/gestionar/meditacion' },
+        { img: '/img/gestorhabitos/escuchar-musica.png', nombre: 'Escuchar Musica Relajante', link: '/gestionar/musicaRelajante' },
     ]
 };
 
