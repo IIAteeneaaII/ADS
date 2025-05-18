@@ -80,3 +80,12 @@ if (!shark || !card) {
 
   setInterval(moveShark, 10);
 }
+// Mostrar/ocultar contraseña principal
+document.getElementById("togglePassword").addEventListener("click", function () {
+  const input = document.getElementById("contrasena");
+  const isVisible = this.dataset.visible === "true";
+
+  input.type = isVisible ? "password" : "text";
+  this.className = isVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
+  this.dataset.visible = (!isVisible).toString();
+});
