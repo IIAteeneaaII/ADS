@@ -98,3 +98,21 @@ document.getElementById("formRegistro").addEventListener("submit", function (eve
       });
     });
 });
+// Mostrar/ocultar contraseña principal
+document.getElementById("togglePassword").addEventListener("click", function () {
+  const input = document.getElementById("password");
+  const isVisible = this.dataset.visible === "true";
+
+  input.type = isVisible ? "password" : "text";
+  this.className = isVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
+  this.dataset.visible = (!isVisible).toString();
+});
+// Mostrar/ocultar contraseña de confirmación
+document.getElementById("togglePassword2").addEventListener("click", function () {
+  const input = document.getElementById("confirmarContrasena");
+  const isVisible = this.dataset.visible === "true";
+
+  input.type = isVisible ? "password" : "text";
+  this.className = isVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
+  this.dataset.visible = (!isVisible).toString();
+});
