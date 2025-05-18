@@ -1,9 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const { createCustomHabit  } = require('../controllers/habitController');
+const {
+  createCustomHabit,
+  updateHabit,
+  deleteHabit
+} = require('../controllers/habitController');
 const { validateCreateHabit } = require('../middlewares/validateCreateHabit');
 const { authMiddleware } = require('../middlewares/authMiddleware');
 
-router.post('/personalizado', createCustomHabit);
+// Crear hábito personalizado
+router.post('/personalizado', authMiddleware, createCustomHabit);
+
+// Editar hábito
+router.put('/:id', authMiddleware, updateHabit);
+
+// Eliminar hábito
+router.delete('/:id', authMiddleware, deleteHabit);
 
 module.exports = router;

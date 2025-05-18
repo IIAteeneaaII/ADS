@@ -247,3 +247,18 @@ exports.updateNotificationHours = async (userId, morningHour, afternoonHour, nig
   createOrUpdateJob(userId, 'afternoon', parseInt(afternoonHour));
   createOrUpdateJob(userId, 'night', parseInt(nightHour));
 };
+
+exports.updateUserHabit = async (userId, habitId, updates) => {
+  return prisma.userHabit.update({
+    where: { id: habitId, userId },
+    data: {
+      ...updates,
+    }
+  });
+};
+
+exports.deleteUserHabit = async (userId, habitId) => {
+  return prisma.userHabit.delete({
+    where: { id: habitId, userId }
+  });
+};

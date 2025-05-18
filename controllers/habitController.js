@@ -130,3 +130,30 @@ exports.UpdateLog = async (req, res) => {
     return res.status(500).json({ error: 'Error al actualizar el estado del hábito.' });
   }
 };
+
+exports.updateHabit = async (req, res) => {
+  const userId = req.user.id;
+  const habitId = parseInt(req.params.id);
+  const updates = req.body;
+
+  try {
+    const updated = await habitRepo.updateUserHabit(userId, habitId, updates);
+    res.json({ message: 'Hábito actualizado', habit: updated });
+  } catch (error) {
+    console.error("Error al actualizar hábito:", error);
+    res.status(500).json({ message: 'Error al actualizar hábito' });
+  }
+};
+
+exports.deleteHabit = async (req, res) => {
+  const userId = req.user.id;
+  const habitId = parseInt(req.params.id);
+
+  try {
+    await habitRepo.deleteUserHabit(userId, habitId);
+    res.json({ message: 'Hábito eliminado correctamente' });
+  } catch (error) {
+    console.error("Error al eliminar hábito:", error);
+    res.status(500).json({ message: 'Error al eliminar hábito' });
+  }
+};

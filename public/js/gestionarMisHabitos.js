@@ -62,18 +62,21 @@ function renderHabits(habits) {
 
         // Redirección al hacer clic
         habitCard.addEventListener('click', () => {
-            const habitInfo = HABITOS_MIS.find(h => h.nombre === habito.name);
-            if (habitInfo) {
-                window.location.href = habitInfo.routeGestion;
-            } else {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Hábito no disponible',
-                    text: 'No se encontró una página de gestión para este hábito.',
-                    confirmButtonText: 'Aceptar',
-                });
-            }
-        });
+        const habitInfo = HABITOS_MIS.find(h => h.nombre === habito.name);
+        if (habitInfo && habitInfo.routeGestion === '/Correr') {
+    // Si es un hábito personalizado como "Correr", redirige con ID
+    window.location.href = `/Correr/${habito.id}`;
+} else if (habitInfo) {
+    window.location.href = habitInfo.routeGestion;
+} else {
+    Swal.fire({
+        icon: 'warning',
+        title: 'Hábito no disponible',
+        text: 'No se encontró una página de gestión para este hábito.',
+        confirmButtonText: 'Aceptar',
+    });
+}
+}); 
 
         const cardContent = document.createElement('div');
         cardContent.className = 'w-100 d-flex justify-content-between align-items-center';

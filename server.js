@@ -212,13 +212,55 @@ app.get('/gestionar/:habito', (req, res) => {
 });
 
 
-
+// Crear nuevo hábito correr
 app.get('/GestionarCorrer', authMiddleware, (req, res) => {
-    res.render('gestionarcorrer');  //
+  res.render('gestionarcorrer', { habit: null });
 });
 
-app.get('/Correr', authMiddleware, (req, res) => {
-    res.render('correr');  //
+//Editar hábito
+app.get('/GestionarCorrer/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+
+        res.render('gestionarcorrer', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+
+app.get('/Correr/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+
+        res.render('correr', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
 });
 
 app.get('/Bicicleta', authMiddleware, (req, res) => {
