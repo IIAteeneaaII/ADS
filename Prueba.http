@@ -2,9 +2,9 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "userName":"prueba3",
-  "email": "PRUEBA4@gmail.com",
-  "password": "contras234"
+  "userName":"Antozada",
+  "email": "rivera.martinez.cristhian.antonio@gmail.com",
+  "password": "User123456"
 }
 
 
@@ -14,9 +14,9 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "userName":"54646dfg",
-  "email": "PRUEBA7@gmail.com",
-  "password": " Contras1234"
+  "userName":"Antozada",
+  "email": "rivera.martinez.cristhian.antonio@gmail.com",
+  "password": "User123456"
 }
 
 ###
@@ -76,4 +76,4 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/inicio/completed/details
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyaXZlcmEubWFydGluZXouY3Jpc3RoaWFuLmFudG9uaW9AZ21haWwuY29tIiwidXNlck5hbWUiOiJBbnRvemFkYSIsImlhdCI6MTc0NzYxOTEzMSwiZXhwIjoxNzQ3NjIyNzMxfQ.s_YIe8WdB8WlNwmo9uKZZeF6d1JFy6YjYXUpXRrshnI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyaXZlcmEubWFydGluZXouY3Jpc3RoaWFuLmFudG9uaW9AZ21haWwuY29tIiwidXNlck5hbWUiOiJBbnRvemFkYSIsImlhdCI6MTc0NzYyNTYwMiwiZXhwIjoxNzQ3NjI5MjAyfQ.F7RIZ82Uf2Vs_z6SwGnIQYOQTAZuHDG9ob3zF_OaFV0

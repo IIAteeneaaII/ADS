@@ -774,6 +774,12 @@ body.no-scroll.swal2-no-backdrop.swal2-shown, .swal2-container.swal2-center.swal
   background-color: #ffffff !important;
 }
 
+.dia.completado {
+  background-color: #28a745;
+  color: white;
+  border-radius: 50%;
+}
+
 .page_preferencias {
   padding: 0;
   display: flex;

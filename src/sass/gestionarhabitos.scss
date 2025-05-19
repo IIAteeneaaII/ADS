@@ -189,3 +189,8 @@
 body.no-scroll.swal2-no-backdrop.swal2-shown, .swal2-container.swal2-center.swal2-backdrop-show {
     background-color: v.$white !important;
 }
+.dia.completado {
+  background-color: #28a745;
+  color: white;
+  border-radius: 50%;
+}
