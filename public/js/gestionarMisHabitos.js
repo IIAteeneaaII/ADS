@@ -51,7 +51,7 @@ function renderHabits(habits) {
                 window.location.href = `/bicicleta/${habito.id}`;
             } else if (nombre.includes('cuidado')) {
                 window.location.href = `/CuidadoPiel/${habito.id}`;
-            } else if (nombre.includes('desintoxicacion')) {
+            } else if (nombre.includes('desintoxicación digital')) {
                 window.location.href = `/desintoxicacionDigital/${habito.id}`;
             } else if (nombre.includes('estiramiento')) {
                 window.location.href = `/Estiramientos/${habito.id}`;
