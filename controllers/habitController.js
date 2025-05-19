@@ -14,12 +14,6 @@ exports.createCustomHabit = async (req, res) => {
   } = req.body;
 
   try {
-    const normalizedName = name.trim().toLowerCase();
-    const existingHabit = await habitRepo.findUserHabitByName(userId, normalizedName);
-    if (existingHabit) {
-      return res.status(400).json({ message: 'Ya tienes un hábito registrado con ese nombre.' });
-    }
-    
     const newHabit = await habitRepo.createUserHabit({
       userId,
       name,
@@ -40,7 +34,6 @@ exports.createCustomHabit = async (req, res) => {
   }
 };
 
-
 exports.getHabitsForDate = async (req, res) => {
   const userId = req.user.id;
   const date = new Date(Date.now());
@@ -60,7 +53,6 @@ exports.getHabitsForDate = async (req, res) => {
     res.status(500).json({ message: 'Error getting habits' });
   }
 };
-
 
 exports.getAllHabits = async (req, res) => {
   const userId = req.user.id;
@@ -90,7 +82,7 @@ exports.generateDailyHabitLog = async (req, res) => {
     const logs = habits.map(habit => ({
       userHabitId: habit.id,
       date: date,
-      status: 'pending',  // Status por defecto para el log
+      status: 'pending',
       notes: '',
       fieldValues: habit.fieldValues
     }));
@@ -105,7 +97,7 @@ exports.generateDailyHabitLog = async (req, res) => {
       console.error("Error al subir los hábitos:", error);
       res.status(500).json({ message: 'Error subiendo los hábitos' });
     }
-    
+
   } catch (error) {
     console.error("Error al conseguir los hábitos:", error);
     res.status(500).json({ message: 'Error cargando los hábitos' });
@@ -120,7 +112,7 @@ exports.UpdateLog = async (req, res) => {
     return res.status(400).json({ error: 'Faltan datos obligatorios.' });
   }
 
-  const today =new Date();
+  const today = new Date();
   today.setHours(1, 0, 0, 0);
 
   try {
@@ -174,8 +166,8 @@ exports.getCompletedHabitsWithFieldValues = async (req, res) => {
       name: log.userHabit.name,
       description: log.userHabit.description,
       date: log.date,
-      value: log.fieldValues?.value || null,  // extraemos el valor (por ejemplo, "30")
-      unit: log.fieldValues?.unit || null     // por si también quieres mostrar "min"
+      value: log.fieldValues?.value || null,
+      unit: log.fieldValues?.unit || null
     }));
 
     res.json(formatted);
