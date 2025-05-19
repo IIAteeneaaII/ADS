@@ -1332,27 +1332,27 @@ body.no-scroll.swal2-no-backdrop.swal2-shown, .swal2-container.swal2-center.swal
   color: rgb(11, 32, 255);
 }
 
-.guia-contenido {
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #cacaca;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.icono-hover {
+  color: #1f2421;
+  transition: color 0.3s ease, transform 0.5s ease;
 }
 
-.seccion {
-  margin-bottom: 20px;
+.icono-hover:hover {
+  color: #1e62af;
+  transform: scale(1.3);
+  cursor: pointer;
 }
 
 ul {
   margin-left: 20px;
+  padding-left: 10px;
   list-style-type: disc;
 }
 
 ul li {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-size: 16px;
+  line-height: 1.5;
 }
 
 ul li ul {
@@ -1363,20 +1363,20 @@ ul li ul li {
   font-size: 15px;
 }
 
-@media (max-width: 600px) {
-  h1 {
-    font-size: 22px;
-  }
-  h2 {
-    font-size: 18px;
-  }
-  ul li {
-    font-size: 14px;
-  }
-}
 .btn-primary, .btn-secondary {
   padding: 10px 20px;
   font-size: 16px;
+  border-radius: 8px;
+}
+
+.contenedor-scroll {
+  background-color: #bfddfe;
+  border: 1px solid #1e62af;
+  border-radius: 12px;
+  padding: 16px;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px #1f2421; /*sombritaaa*/
 }
 
 h1.actualizar {
