@@ -1,4 +1,4 @@
-onst habitRepo = require('../repositories/habitRepositoryPrisma');
+const habitRepo = require('../repositories/habitRepositoryPrisma');
 const { setFlashMessage } = require('../utils/flashMessage');
 
 exports.createCustomHabit = async (req, res) => {
@@ -34,7 +34,6 @@ exports.createCustomHabit = async (req, res) => {
   }
 };
 
-
 exports.getHabitsForDate = async (req, res) => {
   const userId = req.user.id;
   const date = new Date(Date.now());
@@ -54,7 +53,6 @@ exports.getHabitsForDate = async (req, res) => {
     res.status(500).json({ message: 'Error getting habits' });
   }
 };
-
 
 exports.getAllHabits = async (req, res) => {
   const userId = req.user.id;
@@ -84,7 +82,7 @@ exports.generateDailyHabitLog = async (req, res) => {
     const logs = habits.map(habit => ({
       userHabitId: habit.id,
       date: date,
-      status: 'pending',  // Status por defecto para el log
+      status: 'pending',
       notes: '',
       fieldValues: habit.fieldValues
     }));
@@ -93,13 +91,13 @@ exports.generateDailyHabitLog = async (req, res) => {
 
     try {
       await habitRepo.UploadHabits(logs, true);
-      console.log(${logs.length} logs creados para el día ${dayName});
+      console.log(`${logs.length} logs creados para el día ${dayName}`);
       res.status(200).json({ message: 'Logs generados correctamente' });
     } catch (error) {
       console.error("Error al subir los hábitos:", error);
       res.status(500).json({ message: 'Error subiendo los hábitos' });
     }
-    
+
   } catch (error) {
     console.error("Error al conseguir los hábitos:", error);
     res.status(500).json({ message: 'Error cargando los hábitos' });
@@ -114,7 +112,7 @@ exports.UpdateLog = async (req, res) => {
     return res.status(400).json({ error: 'Faltan datos obligatorios.' });
   }
 
-  const today =new Date();
+  const today = new Date();
   today.setHours(1, 0, 0, 0);
 
   try {
@@ -168,8 +166,8 @@ exports.getCompletedHabitsWithFieldValues = async (req, res) => {
       name: log.userHabit.name,
       description: log.userHabit.description,
       date: log.date,
-      value: log.fieldValues?.value || null,  // extraemos el valor (por ejemplo, "30")
-      unit: log.fieldValues?.unit || null     // por si también quieres mostrar "min"
+      value: log.fieldValues?.value || null,
+      unit: log.fieldValues?.unit || null
     }));
 
     res.json(formatted);
