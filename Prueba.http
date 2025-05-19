@@ -73,3 +73,7 @@ Content-Type: application/json
   "date": "2025-05-10T00:00:00.000Z",
   "status": "complete"
 }
+
+###
+GET http://localhost:3000/api/inicio/completed/details
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyaXZlcmEubWFydGluZXouY3Jpc3RoaWFuLmFudG9uaW9AZ21haWwuY29tIiwidXNlck5hbWUiOiJBbnRvemFkYSIsImlhdCI6MTc0NzYxOTEzMSwiZXhwIjoxNzQ3NjIyNzMxfQ.s_YIe8WdB8WlNwmo9uKZZeF6d1JFy6YjYXUpXRrshnI
