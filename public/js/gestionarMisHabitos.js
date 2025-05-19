@@ -63,7 +63,7 @@ function renderHabits(habits) {
                 window.location.href = `/Lectura/${habito.id}`;
             } else if (nombre.includes('meditación') || nombre.includes('meditacion')) {
                 window.location.href = `/Meditacion/${habito.id}`;
-            } else if (nombre.includes('musica')) {
+            } else if (nombre.includes('escuchar música relajante')) {
                 window.location.href = `/MusicaRelajante/${habito.id}`;
             } else if (nombre.includes('ordenar')) {
                 window.location.href = `/ordenarespacio/${habito.id}`;
