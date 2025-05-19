@@ -127,7 +127,7 @@ exports.UpdateLog = async (req, res) => {
     const updatedLog = await habitRepo.UpdateStatus({
       userHabitId,
       date: today,
-      status
+      status: 'completed'
     });
 
     return res.status(200).json({ message: 'Estado actualizado', log: updatedLog });
@@ -161,5 +161,26 @@ exports.deleteHabit = async (req, res) => {
   } catch (error) {
     console.error("Error al eliminar hábito:", error);
     res.status(500).json({ message: 'Error al eliminar hábito' });
+  }
+};
+
+exports.getCompletedHabitsWithFieldValues = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const logs = await habitRepo.getCompletedHabitsForUser(userId);
+
+    const formatted = logs.map(log => ({
+      name: log.userHabit.name,
+      description: log.userHabit.description,
+      date: log.date,
+      value: log.fieldValues?.value || null,  // extraemos el valor (por ejemplo, "30")
+      unit: log.fieldValues?.unit || null     // por si también quieres mostrar "min"
+    }));
+
+    res.json(formatted);
+  } catch (error) {
+    console.error('Error al obtener hábitos completados:', error);
+    res.status(500).json({ message: 'Error al obtener hábitos completados' });
   }
 };
