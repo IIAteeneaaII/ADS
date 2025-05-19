@@ -77,7 +77,7 @@ document.getElementById("togglePassword3").addEventListener("click", function ()
 
 // Mostrar/Ocultar confirmar contraseña
 document.getElementById("togglePassword4").addEventListener("click", function () {
-    const input = document.getElementById("confirmarContrasena");
+    const input = document.getElementById("confirmaContrasena");
     const type = input.getAttribute("type") === "password" ? "text" : "password";
     input.setAttribute("type", type);
     // Cambia la imagen del ícono
