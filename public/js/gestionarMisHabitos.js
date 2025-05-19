@@ -1,22 +1,4 @@
-const HABITOS_MIS = [
-    { nombre: 'Estiramientos Matutinos', routeGestion: '/Estiramientos' },
-    { nombre: 'Correr', routeGestion: '/Correr' }, 
-    { nombre: 'Andar en bicicleta', routeGestion: '/Bicicleta' }, 
-    { nombre: 'Saltar la cuerda', routeGestion: '/SaltarCuerda' },
-
-    { nombre: 'Horas de Dormir', routeGestion: '/HorasDeDormir' },
-    { nombre: 'Desintoxicación Digital', routeGestion: '/DesintoxicacionDigital' },
-    { nombre: 'Cuidado de la Piel', routeGestion: '/CuidadoPiel' },
-    { nombre: 'Hidratación', routeGestion: '/Hidratacion' },
-
-    { nombre: 'Ordenar Espacio Personal', routeGestion: '/OrdenarEspacio' },
-    { nombre: 'Lectura', routeGestion: '/Lectura' },
-    { nombre: 'Meditación', routeGestion: '/Meditacion' },
-    { nombre: 'Escuchar Musica Relajante', routeGestion: '/MusicaRelajante' },
-    
-];
 document.addEventListener("DOMContentLoaded", async () => {
-
     try {
         const response = await fetch('/api/inicio/all', {
             method: 'GET',
@@ -60,23 +42,41 @@ function renderHabits(habits) {
         habitCard.style.color = '#000';
         habitCard.style.cursor = 'pointer';
 
-        // Redirección al hacer clic
         habitCard.addEventListener('click', () => {
-        const habitInfo = HABITOS_MIS.find(h => h.nombre === habito.name);
-        if (habitInfo && habitInfo.routeGestion === '/Correr') {
-    // Si es un hábito personalizado como "Correr", redirige con ID
-    window.location.href = `/Correr/${habito.id}`;
-} else if (habitInfo) {
-    window.location.href = habitInfo.routeGestion;
-} else {
-    Swal.fire({
-        icon: 'warning',
-        title: 'Hábito no disponible',
-        text: 'No se encontró una página de gestión para este hábito.',
-        confirmButtonText: 'Aceptar',
-    });
-}
-}); 
+            const nombre = habito.name.toLowerCase();
+
+            if (nombre.includes('correr')) {
+                window.location.href = `/Correr/${habito.id}`;
+            } else if (nombre.includes('bicicleta')) {
+                window.location.href = `/bicicleta/${habito.id}`;
+            } else if (nombre.includes('cuidado')) {
+                window.location.href = `/CuidadoPiel/${habito.id}`;
+            } else if (nombre.includes('desintoxicacion')) {
+                window.location.href = `/desintoxicacionDigital/${habito.id}`;
+            } else if (nombre.includes('estiramiento')) {
+                window.location.href = `/Estiramientos/${habito.id}`;
+            } else if (nombre.includes('hidratación') || nombre.includes('hidratacion')) {
+                window.location.href = `/Hidratacion/${habito.id}`;
+            } else if (nombre.includes('horas')) {
+                window.location.href = `/horasdormir/${habito.id}`;
+            } else if (nombre.includes('lectura')) {
+                window.location.href = `/Lectura/${habito.id}`;
+            } else if (nombre.includes('meditación') || nombre.includes('meditacion')) {
+                window.location.href = `/Meditación/${habito.id}`;
+            } else if (nombre.includes('musica')) {
+                window.location.href = `/MusicaRelajante/${habito.id}`;
+            } else if (nombre.includes('ordenar')) {
+                window.location.href = `/ordenarespacio/${habito.id}`;
+            } else if (nombre.includes('saltar')) {
+                window.location.href = `/SaltarCuerda/${habito.id}`;
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Hábito no disponible',
+                    text: 'No se encontró una pantalla de gestión para este hábito.'
+                });
+            }
+        });
 
         const cardContent = document.createElement('div');
         cardContent.className = 'w-100 d-flex justify-content-between align-items-center';
@@ -105,5 +105,3 @@ function renderHabits(habits) {
         container.appendChild(habitContainer);
     });
 }
-
-
