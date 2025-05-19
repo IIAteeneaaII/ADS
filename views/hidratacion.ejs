@@ -21,37 +21,34 @@
             <a href="/GestionarMisHabitos" class="back-arrow">&lsaquo;</a>
             <div class="titulo-habito" id="tabs">
                 <img src="/img/gestorhabitos/hidratacion.png" alt="Hidratación">
-                <h1>Hidratación</h1>
-                <div class="grupo-iconos">
-                    <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='/gestionarestiramientos';"></i>
-                    <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('Hidratación')" style="cursor: pointer;"></i>
+                <h1><%= habit.name %></h1>
+                <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
+                    <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='/gestionarhidratacion/<%= habit.id %>';"></i>
+                    <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')" style="cursor: pointer;"></i>
                 </div>
             </div>
         </div>
 
         <div class="separator my-2"></div>
-        
+
         <div class="grid mb-4">
             <div class="titulo-info">
-                <div class="w-100 texto-principal d-flex align-items-center justify-content-center" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#infoCollapse" 
-                    aria-expanded="false" 
+                <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#infoCollapse"
+                    aria-expanded="false"
                     aria-controls="infoCollapse"
                     style="cursor: pointer;">
                     <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
-                    <!-- <i class="fa-solid fa-book iconos-habitos me-2"></i> -->
                     <h2 class="mb-0 clickable-subrayado">Descripción</h2>
                 </div>
             </div>
             <div id="infoCollapse" class="collapse mt-2">
                 <div class="informacion">
-                    <p>Aqui iria la descripcion que ponga el usuario</p>
+                    <p><%= habit.description %></p>
                 </div>
             </div>
         </div>
-        
-
 
         <div class="text-center mb-4">
             <button id="btn-graficas" class="btn btn-primary me-2" onclick="mostrarSeccion('graficas')">
@@ -61,25 +58,14 @@
                 <i class="fas fa-calendar-alt"></i> Calendario
             </button>
         </div>
-        
+
         <!-- Sección de gráficas -->
         <div id="seccion-graficas">
-            <div>
-                <h2 class="text-center">Graficas</h2>
-            </div>
-            <!-- Aquí va la lógica de tabs (semana / mes) que ya tienes -->
-
+            <div><h2 class="text-center">Gráficas</h2></div>
             <div class="text-center mb-3">
-                <button id="btn-semana" class="btn btn-primary me-2" onclick="seleccionarPeriodo('u-semana')">
-                    Última semana
-                </button>
-                <button id="btn-mes" class="btn btn-secondary" onclick="seleccionarPeriodo('u-mes')">
-                    Último mes
-                </button>
+                <button id="btn-semana" class="btn btn-primary me-2" onclick="seleccionarPeriodo('u-semana')">Última semana</button>
+                <button id="btn-mes" class="btn btn-secondary" onclick="seleccionarPeriodo('u-mes')">Último mes</button>
             </div>
-            
-            
-    
             <div class="grid grafica" id="grafica">
                 <div class="tab-pane active" id="u-semana">
                     <h2 class="text-center">Última semana</h2>
@@ -102,10 +88,36 @@
                 </div>
             </div>
         </div>
-        
-
-        
-        
     </div>
+
+    <script>
+        function confirmarEliminacion(nombre, id) {
+            Swal.fire({
+                title: '¿Eliminar hábito?',
+                text: `¿Estás seguro de que deseas eliminar "${nombre}"?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const response = await fetch(`/api/habit/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        Swal.fire('Eliminado', 'El hábito ha sido eliminado', 'success').then(() => {
+                            window.location.href = '/GestionarMisHabitos';
+                        });
+                    } else {
+                        Swal.fire('Error', 'No se pudo eliminar el hábito', 'error');
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>

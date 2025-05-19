@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Gestionar Estiramientos Matutinos</title>
@@ -12,12 +11,10 @@
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pikaday/plugins/pikaday.es.js"></script>
     <link href="/css/styles.css" rel="stylesheet">
-    <!-- <script src="/js/gestionarestiramientos.js"></script> -->
 </head>
 
 <body class="form_habitos">
     <div class="container py-4">
-
         <div class="top-bar">
             <a href="javascript:history.back()" class="back-arrow">&lsaquo;</a>
             <h1 class="mx-auto">Estiramientos Matutinos</h1>
@@ -25,72 +22,50 @@
 
         <div class="tab-content mt-4 texto-alternativo">
             <form id="form-habito">
-                <!-- <div class="mb-3">
-                    <label for="name" class="form-label">Nombre del hábito*</label>
-                    <input type="text" class="form-control" id="name" name="name"
-                        placeholder="Ej. Leer antes de dormir">
-                </div> -->
+                <input type="hidden" id="habitId" value="<%= habit ? habit.id : '' %>">
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Descripción*</label>
-                    <textarea class="form-control" id="description" name="description"
-                        placeholder="Ej. Leer cada noche antes de dormir durante varios minutos" rows="3"></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="3"><%= habit ? habit.description : '' %></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Coloca tu meta*</label>
                     <div class="d-flex align-items-center">
-                        <input type="number" class="form-control me-2" name="fieldValues[value]" value="1" min="1" required>
-
-                        <select class="corm-control form-select me-2" name="fieldValues[unit]" required>
-                            <option value="min">minutos</option>
+                        <input type="number" class="form-control me-2" name="fieldValues[value]" value="<%= habit ? habit.fieldValues.value : 1 %>" min="1" required>
+                        <select class="form-control form-select me-2" name="fieldValues[unit]" required>
+                            <option value="min" <%= habit && habit.fieldValues.unit === 'min' ? "selected" : "" %>>minutos</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="startDate" class="form-label">Fecha de inicio*</label>
-                    <input type="text" class="form-control calendario" id="startDate" name="startDate">
+                    <input type="text" class="form-control calendario" id="startDate" name="startDate" value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
                 </div>
 
                 <div class="mb-3">
                     <input type="hidden" name="frequency[type]" value="weekly">
                     <label class="form-label">Días de la semana*</label>
                     <div class="d-flex flex-wrap gap-2">
-                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="monday" id="monday">
-                        <label class="btn btn-outline-secondary rounded-pill dia_selected" for="monday">Lun</label>
-
-                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="tuesday" id="tuesday">
-                        <label class="btn btn-outline-secondary rounded-pill" for="tuesday">Mar</label>
-
-                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="wednesday"
-                            id="wednesday">
-                        <label class="btn btn-outline-secondary rounded-pill" for="wednesday">Mié</label>
-
-                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="thursday"
-                            id="thursday">
-                        <label class="btn btn-outline-secondary rounded-pill" for="thursday">Jue</label>
-
-                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="friday" id="friday">
-                        <label class="btn btn-outline-secondary rounded-pill" for="friday">Vie</label>
-
-                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="saturday"
-                            id="saturday">
-                        <label class="btn btn-outline-secondary rounded-pill" for="saturday">Sáb</label>
-
-                        <input type="checkbox" class="btn-check" name="frequency[days][]" value="sunday" id="sunday">
-                        <label class="btn btn-outline-secondary rounded-pill" for="sunday">Dom</label>
+                        <% const days = habit?.frequency?.days || []; %>
+                        <% const allDays = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']; %>
+                        <% allDays.forEach(day => { %>
+                            <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>" id="<%= day %>" <%= days.includes(day) ? 'checked' : '' %>>
+                            <label class="btn btn-outline-secondary rounded-pill <%= days.includes(day) ? 'dia_selected' : '' %>" for="<%= day %>"><%= day.charAt(0).toUpperCase() + day.slice(1,3) %></label>
+                        <% }); %>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="reminder">¿Deseas recibir notifiaciones?</label>
+                    <label class="form-label" for="reminder">¿Deseas recibir notificaciones?</label>
                     <select class="form-control" name="reminder" id="reminder">
                         <option value="">Selecciona una opción</option>
-                        <option value="yes">Sí</option>
-                        <option value="no">No</option>
+                        <option value="yes" <%= habit && habit.reminder ? "selected" : "" %>>Sí</option>
+                        <option value="no" <%= habit && habit.reminder === false ? "selected" : "" %>>No</option>
                     </select>
                 </div>
+
                 <button type="submit" class="btn btn-primary">Guardar hábito</button>
             </form>
         </div>
@@ -103,9 +78,9 @@
             i18n: {
                 previousMonth: 'Mes anterior',
                 nextMonth: 'Mes siguiente',
-                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+                months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                weekdays: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+                weekdaysShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']
             },
             toString(date) {
                 return date.toISOString().split('T')[0];
@@ -113,16 +88,11 @@
             minDate: new Date()
         });
 
-        document.getElementById('frequency-type').addEventListener('change', function () {
-            const isWeekly = this.value === 'weekly';
-            document.getElementById('weekly-days').classList.toggle('d-none', !isWeekly);
-        });
-    </script>
-    <script>
         document.getElementById('form-habito').addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const formData = new FormData(this);
+            const id = document.getElementById('habitId').value;
 
             const data = {
                 name: 'Estiramientos Matutinos',
@@ -140,9 +110,12 @@
                 reminder: formData.get('reminder') === 'yes'
             };
 
+            const url = id ? `/api/habit/${id}` : '/api/habit/personalizado';
+            const method = id ? 'PUT' : 'POST';
+
             try {
-                const response = await fetch('/api/habit/personalizado', {
-                    method: 'POST',
+                const response = await fetch(url, {
+                    method,
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -153,15 +126,14 @@
                 if (!response.ok) throw new Error('Error al guardar el hábito');
 
                 const result = await response.json();
-                console.log('Hábito guardado:', result);
-                window.location.href = "/gestionarHabitos";
+                const redirectId = id || result.habit.id;
+                window.location.href = `/Estiramientos/${redirectId}`;
             } catch (error) {
                 console.error('Error al enviar el hábito:', error);
                 alert('Ocurrió un error al guardar el hábito.');
             }
         });
-    </script>
-    <script>
+
         document.querySelectorAll('.btn-outline-secondary').forEach(btn => {
             btn.addEventListener('click', () => {
                 btn.classList.toggle('dia_selected');
@@ -169,5 +141,4 @@
         });
     </script>
 </body>
-
 </html>

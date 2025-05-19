@@ -116,26 +116,6 @@ app.get('/Bienestar', authMiddleware, (req, res) => {
     res.render('bienestar');
 });
 
-app.get('/Estiramientos', authMiddleware, (req, res) => {
-    res.render('estiramientos');
-});
-
-app.get('/GestionarEstiramientos', authMiddleware, (req, res) => {
-    res.render('gestionarestiramientos');
-});
-
-app.get('/HorasDeDormir', authMiddleware, (req, res) => {
-    res.render('horasdeDormir');
-});
-
-app.get('/OrdenarEspacio', authMiddleware, (req, res) => {
-    res.render('ordenarEspacio');
-});
-
-app.get('/Hidratacion', authMiddleware, (req, res) => {
-    res.render('hidratacion');
-});
-
 app.get('/Estadisticas', authMiddleware, (req, res) => {
     res.render('estadisticas');
 });
@@ -263,40 +243,522 @@ app.get('/Correr/:id', authMiddleware, async (req, res) => {
     }
 });
 
-app.get('/Bicicleta', authMiddleware, (req, res) => {
-    res.render('bicicleta');  //
+// Crear nuevo hábito bicicleta
+app.get('/gestionarbicicleta', authMiddleware, (req, res) => {
+  res.render('gestionarbicicleta', { habit: null });
 });
 
-app.get('/GestionarOrdenarEspacio', authMiddleware, (req, res) => {
-    res.render('gestionarOrdenarEspacio');  //
+//Editar hábito
+app.get('/gestionarbicicleta/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+
+        res.render('gestionarbicicleta', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
 });
 
-app.get('/GestionarHorasDormir', authMiddleware, (req, res) => {
-    res.render('gestionarhorasdormir');
+app.get('/bicicleta/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+
+        res.render('bicicleta', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+// Crear nuevo hábito CuidadoPiel
+app.get('/gestionarcuidadopiel', authMiddleware, (req, res) => {
+  res.render('gestionarcuidadopiel', { habit: null });
 });
 
-app.get('/SaltarCuerda', authMiddleware, (req, res) => {
-    res.render('saltarCuerda');
+// Editar hábito
+app.get('/gestionarcuidadopiel/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('gestionarcuidadopiel', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
 });
 
-app.get('/DesintoxicacionDigital', authMiddleware, (req, res) => {
-    res.render('desintoxicacionDigital');
+app.get('/CuidadoPiel/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('CuidadoPiel', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
 });
 
-app.get('/CuidadoPiel', authMiddleware, (req, res) => {
-    res.render('cuidadoPiel');
+
+// Crear nuevo hábito DesintoxicacionDigital
+app.get('/gestionarDesintoxicacionDigital', authMiddleware, (req, res) => {
+  res.render('gestionarDesintoxicacionDigital', { habit: null });
 });
 
-app.get('/Lectura', authMiddleware, (req, res) => {
-    res.render('lectura');
+// Editar hábito
+app.get('/gestionarDesintoxicacionDigital/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('gestionarDesintoxicacionDigital', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
 });
 
-app.get('/Meditacion', authMiddleware, (req, res) => {
-    res.render('meditacion');
+app.get('/desintoxicacionDigital/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('desintoxicacionDigital', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
 });
 
-app.get('/MusicaRelajante', authMiddleware, (req, res) => {
-    res.render('musicaRelajante');
+
+// Crear nuevo hábito Estiramientos
+app.get('/gestionarestiramientos', authMiddleware, (req, res) => {
+  res.render('gestionarestiramientos', { habit: null });
+});
+
+// Editar hábito
+app.get('/gestionarestiramientos/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('gestionarestiramientos', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+app.get('/Estiramientos/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('Estiramientos', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+
+// Crear nuevo hábito Hidratacion
+app.get('/gestionarhidratacion', authMiddleware, (req, res) => {
+  res.render('gestionarhidratacion', { habit: null });
+});
+
+// Editar hábito
+app.get('/gestionarhidratacion/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('gestionarhidratacion', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+app.get('/Hidratacion/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('Hidratacion', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+
+// Crear nuevo hábito horasdormir
+app.get('/gestionarhorasdormir', authMiddleware, (req, res) => {
+  res.render('gestionarhorasdormir', { habit: null });
+});
+
+// Editar hábito
+app.get('/gestionarhorasdormir/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('gestionarhorasdormir', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+app.get('/horasdormir/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('horasdormir', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+
+// Crear nuevo hábito Lectura
+app.get('/gestionarlectura', authMiddleware, (req, res) => {
+  res.render('gestionarlectura', { habit: null });
+});
+
+// Editar hábito
+app.get('/gestionarlectura/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('gestionarlectura', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+app.get('/Lectura/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('Lectura', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+
+// Crear nuevo hábito Meditacion
+app.get('/gestionarmeditacion', authMiddleware, (req, res) => {
+  res.render('gestionarmeditacion', { habit: null });
+});
+
+// Editar hábito
+app.get('/gestionarmeditacion/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('gestionarmeditacion', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+app.get('/Meditacion/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('Meditacion', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+
+// Crear nuevo hábito MusicaRelajante
+app.get('/gestionarmusicarelajante', authMiddleware, (req, res) => {
+  res.render('gestionarmusicarelajante', { habit: null });
+});
+
+// Editar hábito
+app.get('/gestionarmusicarelajante/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('gestionarmusicarelajante', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+app.get('/MusicaRelajante/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('MusicaRelajante', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+
+// Crear nuevo hábito ordenarespacio
+app.get('/gestionarordenarespacio', authMiddleware, (req, res) => {
+  res.render('gestionarordenarespacio', { habit: null });
+});
+
+// Editar hábito
+app.get('/gestionarordenarespacio/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('gestionarordenarespacio', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+app.get('/ordenarespacio/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('ordenarespacio', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+
+// Crear nuevo hábito SaltarCuerda
+app.get('/gestionarsaltarcuerda', authMiddleware, (req, res) => {
+  res.render('gestionarsaltarcuerda', { habit: null });
+});
+
+// Editar hábito
+app.get('/gestionarsaltarcuerda/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('gestionarsaltarcuerda', { habit });
+    } catch (error) {
+        console.error('Error al cargar hábito para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+app.get('/SaltarCuerda/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('SaltarCuerda', { habit });
+    } catch (error) {
+        console.error('Error al cargar el hábito:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
 });
 
 app.get('/ConfigurarNotificaciones', authMiddleware, async (req, res) => {
