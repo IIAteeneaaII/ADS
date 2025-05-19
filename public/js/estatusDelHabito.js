@@ -67,14 +67,26 @@ function mostrarGrafica(canvasId, datos, dias) {
   const fechaLimite = new Date();
   fechaLimite.setDate(fechaLimite.getDate() - dias);
 
-  // Agregar unidad a los datos para tooltip
-  const datosFiltrados = datos
+  // Agrupar por día
+  const agrupados = datos
     .filter(h => new Date(h.date) >= fechaLimite)
-    .map(h => ({
-      x: h.date,
-      y: Number(h.value),
-      unit: h.unit  // guardamos la unidad para tooltip
-    }));
+    .reduce((acc, h) => {
+      const fecha = new Date(h.date).toISOString().split('T')[0]; // yyyy-mm-dd
+      if (!acc[fecha]) {
+        acc[fecha] = { total: 0, unit: h.unit };
+      }
+      acc[fecha].total += Number(h.value);
+      return acc;
+    }, {});
+
+  // Convertir a array para la gráfica
+  const datosGrafica = Object.entries(agrupados).map(([fecha, info]) => ({
+    x: fecha,
+    y: info.total,
+    unit: info.unit
+  }));
+
+  const unidadY = datosGrafica[0]?.unit || '';
 
   const ctx = document.getElementById(canvasId)?.getContext('2d');
   if (!ctx) return;
@@ -83,54 +95,57 @@ function mostrarGrafica(canvasId, datos, dias) {
     type: 'bar',
     data: {
       datasets: [{
-        label: 'Duración',
-        data: datosFiltrados,
+        label: `Duración (${unidadY})`,
+        data: datosGrafica,
         backgroundColor: '#007bff'
       }]
     },
-  options: {
-  responsive: true,
-  plugins: {
-    tooltip: {
-      callbacks: {
-        label: function(context) {
-          const value = context.parsed.y;
-          const unit = context.raw.unit || '';
-          return `${value} ${unit}`.trim();  // <-- Esto mostrará "30 min"
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const value = context.parsed.y;
+              const unit = context.raw.unit || '';
+              return `${value} ${unit}`;
+            }
+          }
+        },
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: 'Actividad del hábito'
+        }
+      },
+      scales: {
+        x: {
+          type: 'time',
+          time: {
+            unit: dias === 7 ? 'day' : 'week',
+            tooltipFormat: 'dd/MM/yyyy',
+          },
+          title: {
+            display: true,
+            text: 'Fecha'
+          }
+        },
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: `Duración (${unidadY})`
+          },
+          ticks: {
+            callback: function(value) {
+              return `${value} ${unidadY}`;
+            }
+          }
         }
       }
-    },
-    legend: {
-      display: false
-    },
-    title: {
-      display: true,
-      text: 'Actividad del hábito'
     }
-  },
-  scales: {
-    x: {
-      type: 'time',
-      time: {
-        unit: dias === 7 ? 'day' : 'week',
-        tooltipFormat: 'dd/MM/yyyy',
-      },
-      title: {
-        display: true,
-        text: 'Fecha'
-      }
-    },
-    y: {
-      beginAtZero: true,
-      title: {
-        display: true,
-        text: 'Duración'
-      }
-    }
-    
-  }
-}
-
   });
 }
 
@@ -153,7 +168,7 @@ function renderizarCalendario(datos) {
       return fecha.getFullYear() === año && fecha.getMonth() === mes;
     })
     .map(h => new Date(h.date).getDate());
-console.log('Días completados en el mes:', fechasCompletadas);
+  console.log('Días completados en el mes:', fechasCompletadas);
   // Título del mes
   const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
     'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];

@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
-    <script src="/js/correrEstatus.js"></script>
+    <script src="/js/estatusDelHabito.js"></script>
 
 </head>
 <body>
@@ -69,8 +69,6 @@
                 <button id="btn-mes" class="btn btn-secondary">
                     Último mes
                 </button>
-                <button id="btn-semana" class="btn btn-primary me-2" onclick="seleccionarPeriodo('u-semana')">Última semana</button>
-                <button id="btn-mes" class="btn btn-secondary" onclick="seleccionarPeriodo('u-mes')">Último mes</button>
             </div>
             <div class="grid grafica" id="grafica">
                 <div class="tab-pane active" id="u-semana">
@@ -125,6 +123,5 @@
             });
         }
     </script>
-    <script src="/js/estiramientos.js"></script>
 </body>
 </html>

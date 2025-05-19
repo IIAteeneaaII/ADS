@@ -14,6 +14,12 @@ exports.createCustomHabit = async (req, res) => {
   } = req.body;
 
   try {
+    const normalizedName = name.trim().toLowerCase();
+    const existingHabit = await habitRepo.findUserHabitByName(userId, normalizedName);
+    if (existingHabit) {
+      return res.status(400).json({ message: 'Ya tienes un hábito registrado con ese nombre.' });
+    }
+
     const newHabit = await habitRepo.createUserHabit({
       userId,
       name,

@@ -5,12 +5,10 @@
   <meta charset="UTF-8">
   <title>Registra tu propio habito</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
+  <%- include('partials/allStyles') %>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
   <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pikaday/plugins/pikaday.es.js"></script>
-  <link href="/css/styles.css" rel="stylesheet">
   <!-- <script src="/js/habitosPersonalizados.js"></script> -->
 </head>
 
@@ -23,9 +21,9 @@
       <h1 class="mx-auto">Hábito personalizado</h1>
     </div>
 
-    <div class="separator my-2"></div>
+    <!-- <div class="separator my-2"></div> -->
 
-    <div class="tab-content mt-4">
+    <div class="tab-content mt-4 texto-alternativo">
         <form id="form-habito">
           <div class="mb-3">
             <label for="name" class="form-label">Nombre del hábito*</label>
