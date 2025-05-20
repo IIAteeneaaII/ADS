@@ -19,16 +19,25 @@ const HABITOS = {
     ]
 };
 
-function mostrarHabitos(categoria) {
+async function mostrarHabitos(categoria) {
     const contenedor = document.getElementById('habitos-container');
     contenedor.innerHTML = '';
 
+    let nombresActivos = [];
+    try {
+        const res = await fetch('/api/inicio/activeHabits');
+        nombresActivos = await res.json(); // ["correr", "lectura", ...]
+    } catch (err) {
+        console.error('No se pudieron obtener los hábitos activos del usuario', err);
+    }
+
     HABITOS[categoria].forEach(habito => {
-        // Contenedor general que envuelve la tarjeta + botón
+        const nombreNormalizado = habito.nombre.trim().toLowerCase();
+        if (nombresActivos.includes(nombreNormalizado)) return;
+
         const wrapper = document.createElement('div');
         wrapper.className = 'caja';
 
-        // La tarjeta del hábito
         const option = document.createElement('div');
         option.className = 'option-1';
         option.innerHTML = `
@@ -36,7 +45,6 @@ function mostrarHabitos(categoria) {
             <span>${habito.nombre}</span>
         `;
 
-        // El botón fuera del div.option-1
         const boton = document.createElement('button');
         boton.className = 'plus-button';
         boton.textContent = '+';
@@ -50,4 +58,3 @@ function mostrarHabitos(categoria) {
         contenedor.appendChild(wrapper);
     });
 }
-

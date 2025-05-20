@@ -12,7 +12,9 @@
 <body class="form_habitos">
     <div class="container py-4">
         <div class="top-bar">
-            <a href="javascript:history.back()" class="back-arrow">&lsaquo;</a>
+            <a href="javascript:history.back()" class="back-arrow">
+                <i class="fas fa-chevron-left"></i>
+            </a>
             <h1 class="mx-auto">Ordenar Espacio Personal</h1>
         </div>
 
@@ -66,7 +68,7 @@
             </form>
         </div>
     </div>
-
+    <%- include('partials/allScripts') %>
     <script>
         new Pikaday({
             field: document.getElementById('startDate'),
@@ -123,7 +125,14 @@
 
                 const result = await response.json();
                 const redirectId = id || result.habit.id;
-                window.location.href = `/ordenarespacio/${redirectId}`;
+                // window.location.href = `/ordenarespacio/${redirectId}`;
+                mostrarAlerta({
+                        title: '¡Felicidades!',
+                        text: 'Tu hábito ha sido registrado exitosamente',
+                        imageUrl: '/img/sharki/feliz.png',
+                        redirectUrl: '/ordenarespacio/${redirectId}`',
+                        btnText: 'Aceptar'
+                });
             } catch (error) {
                 console.error('Error al enviar el hábito:', error);
                 alert('Ocurrió un error al guardar el hábito.');

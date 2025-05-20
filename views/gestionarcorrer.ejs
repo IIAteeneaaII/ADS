@@ -6,21 +6,19 @@
     <title>Gestionar Correr</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('partials/allStyles') %>
-    <%- include('partials/allScripts') %>
-    <script src="/js/validarGestionarHabitos.js"></script>
 </head>
 
 <body class="form_habitos">
     <div class="container py-4">
         <div class="top-bar">
-            <a href="javascript:history.back()" class="back-arrow">
+            <a href="/GestionarMisHabitos" class="back-arrow">
                 <i class="fas fa-chevron-left"></i>
             </a>
             <h1 class="mx-auto">Correr</h1>
         </div>
 
         <div class="tab-content mt-4 texto-alternativo">
-            <form id="form-habito">
+            <form id="form-habito" method="post" action="javascript:void(0);">
                 <input type="hidden" id="habitId" value="<%= habit ? habit.id : '' %>">
 
                 <div class="mb-3">
@@ -80,7 +78,8 @@
             </form>
         </div>
     </div>
-
+    <%- include('partials/allScripts') %>
+    <script src="/js/validarGestionarHabitos.js"></script>
     <script>
         new Pikaday({
             field: document.getElementById('startDate'),
@@ -151,7 +150,13 @@
                 }
 
                 console.log('Hábito guardado:', result);
-                window.location.href = "/GestionarMisHabitos";
+                mostrarAlerta({
+                        title: '¡Hábito registrado!',
+                        text: 'Tu hábito fue guardado correctamente.',
+                        imageUrl: '/img/sharki/feliz.png',
+                        redirectUrl: '/GestionarMisHabitos',
+                        btnText: 'Aceptar'
+                });
             } catch (error) {
                 console.error('Error al enviar el hábito:', error);
                 alert('Ocurrió un error al guardar el hábito.');
@@ -164,7 +169,6 @@
             });
         });
     </script>
-    <%- include('partials/allScripts') %>
 </body>
 
 </html>

@@ -1,5 +1,7 @@
 function mostrarAlerta({ title, text, imageUrl, redirectUrl, btnText }) {
     document.body.classList.add('no-scroll');
+    console.log('Lanzando alerta...');
+
     Swal.fire({
         title: title,
         text: text,
@@ -15,8 +17,10 @@ function mostrarAlerta({ title, text, imageUrl, redirectUrl, btnText }) {
         },
         allowOutsideClick: false,
         allowEscapeKey: false,
-        backdrop: false
-    }).then(() => {
+        backdrop: true,
+        focusConfirm: false
+    }).then((result) => {
+        console.log('SweetAlert cerrado con:', result);
         document.body.classList.remove('no-scroll');
         if (redirectUrl) {
             window.location.href = redirectUrl;

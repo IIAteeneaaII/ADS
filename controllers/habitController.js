@@ -17,6 +17,7 @@ exports.createCustomHabit = async (req, res) => {
     const normalizedName = name.trim().toLowerCase();
     const existingHabit = await habitRepo.findUserHabitByName(userId, normalizedName);
     if (existingHabit) {
+      // setFlashMessage(res, 'Ya tienes un hábito registrado con ese nombre', 'error');
       return res.status(400).json({ message: 'Ya tienes un hábito registrado con ese nombre.' });
     }
 
@@ -69,6 +70,21 @@ exports.getAllHabits = async (req, res) => {
   } catch (error) {
     console.error("Error fetching all habits:", error);
     res.status(500).json({ message: 'Error getting all habits' });
+  }
+};
+exports.getActiveHabitNames = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const habits = await habitRepo.getAllUserHabits(userId); // Ya lo usas en getAllHabits
+    const activeNames = habits
+      .filter(h => h.isActive)
+      .map(h => h.name.trim().toLowerCase());
+
+    res.json(activeNames);
+  } catch (error) {
+    console.error('Error al obtener nombres de hábitos activos:', error);
+    res.status(500).json({ message: 'Error al obtener nombres de hábitos activos' });
   }
 };
 

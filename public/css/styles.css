@@ -695,14 +695,13 @@ input.check {
 
 .option-1 {
   flex: 0.9;
-  background-color: #bfddfe;
   padding: 13px;
   border-radius: 10px;
+  border: 1px solid #bfddfe;
   display: flex;
   align-items: center;
   gap: 1rem;
   cursor: default;
-  /* quita el puntero */
 }
 
 .option-1 img {

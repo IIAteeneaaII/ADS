@@ -110,14 +110,14 @@
 
 .option-1 {
     flex: 0.9;
-    background-color: v.$secondaryColor;
+    // background-color: v.$secondaryColor;
     padding: 13px;
     border-radius: 10px;
+    border: 1px solid v.$secondaryColor;
     display: flex;
     align-items: center;
     gap: 1rem;
     cursor: default;
-    /* quita el puntero */
 }
 
 
