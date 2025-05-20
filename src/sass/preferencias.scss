@@ -9,9 +9,9 @@
 
 .pref_text {
     align-items: center;
-    background-color: v.$white;
+    // background-color: v.$white;
     padding: 1rem;
-    width: 100vw; // fuerza a que ocupe todo el ancho de la ventana
+    width: 100vw;
     text-align: center;
 }
 
@@ -20,6 +20,7 @@
     background-color: transparent;
 
     p {
+        padding: 1rem;
         text-align: center;
         font-size: 0.8rem;
         padding-top: 1.5rem;

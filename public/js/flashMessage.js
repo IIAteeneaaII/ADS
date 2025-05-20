@@ -11,16 +11,15 @@ const rutasImagen = {
 };
 
 function obtenerRutaImagen(tipo) {
-    return rutasImagen[tipo] || '/img/sharki/neutral.png'; // Por si viene algo inesperado
+    return rutasImagen[tipo] || '/img/sharki/neutral.png';
 }
 document.body.classList.add('no-scroll');
 if (flashMessage) {
     Swal.fire({
-        // icon: flashType,
         title: flashType === 'error' ? 'Error' : 'Éxito',
         imageUrl: obtenerRutaImagen(flashType),
         imageWidth: 250,
-        imageHeight: 250,
+        // imageHeight: 250,
         text: flashMessage,
         confirmButtonText: 'Aceptar',
         customClass: {

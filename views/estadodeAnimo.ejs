@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../css/styles.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+  <%- include('partials/allStyles') %>
+  <%- include('partials/allScripts') %>
 <script> const USER_ID = <%= user.id %>;</script>
-  <script src="../js/estadoanimo.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/estadoanimo.js"></script>
+
   <title>Estado de ánimo</title>
 </head>
 <body>
   <div class="container mt-5 pt-2">
     <div class="top-bar">
-      <a href="/inicio" class="back-arrow">&lsaquo;</a>
-      <h1 class="mx-auto">¿Cómo estás?</h1>
+      <a href="/inicio" class="back-arrow">
+        <i class="fas fa-chevron-left"></i>
+      </a>
+        <h1 class="mx-auto">Estado de Animo</h1>
       <a href="/calendario_emociones" class="back-arrow"><i class="fas fa-calendar-alt" style="font-size: 1.5rem;"></i></a>
     </div>
-    
-    <div class="emocion-container">
+    <div class="separator my-3"></div>
+    <h4 class="mx-auto mt-3 text-center">¿Cómo estás?</h4>
+    <div class="emocion-container mt-5">
       <div class="emotion-option" onclick="seleccionarEmocion(this)" id="feliz">
           <div class="emotion-icon bg-warning text-dark">😄</div>
           <div class="emotion-label bg-warning text-dark">Feliz</div>

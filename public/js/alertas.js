@@ -7,7 +7,7 @@ function mostrarAlerta({ title, text, imageUrl, redirectUrl, btnText }) {
         text: text,
         imageUrl: imageUrl,
         imageWidth: 250,
-        imageHeight: 250,
+        // imageHeight: 250,
         background: '#ffffff',
         showConfirmButton: true,
         confirmButtonText: btnText,

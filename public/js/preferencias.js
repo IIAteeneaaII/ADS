@@ -35,14 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // console.log(`Seleccionados al hacer clic en "Siguiente": ${selected.length}`); // Para depuración
 
         if (selected.length !== maxSelections) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Selecciona 3 gustos',
+            mostrarAlerta({
+                title: 'Seleccion incompleta',
                 text: `Solo has seleccionado ${selected.length}.`,
-                customClass: {
-                    confirmButton: 'btn-secondary',
-                },
-                confirmButtonText: 'Aceptar'
+                imageUrl: '/img/sharki/curioso.png',
+                redirectUrl: '', 
+                btnText: 'Entendido'
             });
         } else {
             mostrarAlerta({
