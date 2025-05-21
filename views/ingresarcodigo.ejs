@@ -3,62 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingresar Código - Fin It</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/css/styles.css" rel="stylesheet" />
-  <title>Recupera tu cuenta</title>
 </head>
+
 <body>
-  <div class="container mt-5 pt-2">
-    <div class="login-box w-100">
-      <header class="text-center my-4">
-        <img src="/img/logofinit.png" class="img-fluid" alt="Logo" />
-      </header>
+  <div class="login-wrapper">
+    <!-- Imagen de fondo -->
+    <div class="hero-img">
+      <img src="/img/backgroundImg.png" class="img" alt="Fin It" />
+    </div>
 
-      <main>
-        <div class="form-container">
-          <h2 class="text-center mb-4">Recupera tu cuenta</h2>
+    <!-- Tarjeta de ingreso de código -->
+    <div class="login-card position-relative">
+      <img src="/img/tiburon.gif" alt="Tiburón" class="shark-random" />
+      <div class="login-box w-100">
+        <h1>FIN IT</h1>
 
-          <form id="formCodigo" autocomplete="off" method="POST" action="/reset-password">
-
-            <div class="mb-3">
-              <label for="codigo" class="form-label">Código de verificación:</label>
-              <input type="text" class="form-control" id="codigo" name="code" placeholder="########" required />
+        <div class="wrapp">
+          <header class="text-center mb-4">
+            <div class="container_logo">
+              <img src="/img/logofinit.png" class="img-fluid" alt="Logo Fin It" />
             </div>
+          </header>
 
-            <div class="mb-3">
-              <label for="nuevaContrasena" class="form-label">Contraseña nueva:</label>
-              <div class="d-flex align-items-center">
-                <input type="password" class="form-control me-2" id="nuevaContrasena" name="newPassword" placeholder="Ingresa tu contraseña" required />
-                <span class="text-muted fs-5" id="togglePassword3" style="cursor: pointer;">👁️</span>
+          <main>
+            <h2 class="text-center mb-4">Ingresar Código</h2>
+
+            <form id="formCodigo" autocomplete="off">
+              <div class="mb-3">
+                <label for="codigo" class="form-label">Código de verificación:</label>
+                <input type="text" class="form-control" id="codigo" placeholder="######" required />
               </div>
-            </div>
 
-            <div class="mb-3">
-              <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
-              <div class="d-flex align-items-center">
-                <input type="password" class="form-control" id="confirmarContrasena" name="confirmPassword" placeholder="Confirma tu contraseña" required />
-                <span class="text-muted fs-5" id="togglePassword4" style="cursor: pointer;">👁️</span>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Continuar</button>
               </div>
-            </div>
+            </form>
 
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
-              <a href="/" class="btn btn-secondary">Cancelar</a>
+            <div class="text-end mt-3">
+              <p class="mb-1">¿No recibiste el código?</p>
+              <button type="button" class="btn btn-secondary" id="btnReenviarCodigo">Reenviar código</button>
             </div>
-          </form>
-
-          <div class="text-end mt-3">
-            <p>¿No recibiste el código?</p>
-            <button type="button" class="btn btn-secondary" id="reenviarCodigo">Reenviar código</button>
-          </div>          
+          </main>
         </div>
-      </main>
+      </div>
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/js/ingresarcodigo.js"></script>
-
 </body>
 </html>
