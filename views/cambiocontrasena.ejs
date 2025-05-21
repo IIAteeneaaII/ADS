@@ -1,56 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cambiar Contraseña - Fin It</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/css/styles.css" rel="stylesheet" />
-  <title>Recuperar contraseña</title>
 </head>
+
 <body>
-  <div class="container mt-5 pt-2">
-    <div class="login-box w-100">
-      <header class="text-center my-4">
-        <img src="/img/logofinit.png" class="img-fluid" alt="Logo" />
-      </header>
-      <main>
-        <div class="form-container">
-          <h2 class="text-center mb-4">Recuperar contraseña</h2>
+  <div class="login-wrapper">
+    <!-- Imagen de fondo -->
+    <div class="hero-img">
+      <img src="/img/backgroundImg.png" class="img" alt="Fin It" />
+    </div>
+
+    <!-- Tarjeta -->
+    <div class="login-card position-relative">
+      <img src="/img/tiburon.gif" alt="Tiburón" class="shark-random" />
+
+      <div class="login-box w-100">
+        <h1>FIN IT</h1>
+
+        <div class="wrapp">
+          <header class="text-center mb-4">
+            <div class="container_logo">
+              <img src="/img/logofinit.png" class="img-fluid" alt="Logo Fin It" />
+            </div>
+          </header>
+
+          <main>
+       
+
             <form id="formCodigo" autocomplete="off">
 
-            <label class="form-label text-center d-block">
-              La contraseña debe tener al menos 8 caracteres e incluir una combinación de números, letras y caracteres especiales (!$@%).
-            </label>
+             <!-- Contraseña nueva -->
+<div class="mb-3">
+  <label for="nuevaContrasena" class="form-label">Contraseña nueva:</label>
+  <div class="position-relative d-flex align-items-center">
+    <input type="password" class="form-control pe-2" id="nuevaContrasena" name="nuevaContrasena" placeholder="Ingresa tu contraseña" required />
+    <i class="fa-solid fa-eye ms-2 text-muted fs-5" id="togglePassword3" style="cursor: pointer; position: absolute; right: 1rem; width: 1.2rem;"></i>
+  </div>
+  <div id="error-nueva" class="text-danger small mt-1"></div> <!-- Aquí va el mensaje -->
+</div>
 
-            <div class="mb-3">
-              <label for="nuevaContrasena" class="form-label">Contraseña nueva:</label>
-              <div class="position-relative d-flex align-items-center">
-                <input type="password" class="form-control pe-2" id="nuevaContrasena" name="nuevaContrasena" placeholder="Ingresa tu contraseña" required />
-                <i class="fa-solid fa-eye ms-2 text-muted fs-5" id="togglePassword3" style="cursor: pointer; position: absolute; right: 1rem; width: 1.2rem;"></i>
+<!-- Confirmar nueva -->
+<div class="mb-3">
+  <label for="confirmarContrasena" class="form-label">Confirmar nueva:</label>
+  <div class="position-relative d-flex align-items-center">
+    <input type="password" class="form-control pe-2" id="confirmarContrasena" name="confirmarContrasena" placeholder="Confirma tu contraseña" required />
+    <i class="fa-solid fa-eye ms-2 text-muted fs-5" id="togglePassword4" style="cursor: pointer; position: absolute; right: 1rem; width: 1.2rem;"></i>
+  </div>
+  <div id="error-confirmar" class="text-danger small mt-1"></div> <!-- Aquí va el mensaje -->
+</div>
+
+
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Confirmar</button>
+                <button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancelar</button>
               </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="confirmarContrasena" class="form-label">Confirmar nueva:</label>
-              <div class="position-relative d-flex align-items-center">
-                <input type="password" class="form-control pe-2" id="confirmarContrasena" name="confirmarContrasena" placeholder="Confirma tu contraseña" required />
-                <i class="fa-solid fa-eye ms-2 text-muted fs-5" id="togglePassword4" style="cursor: pointer; position: absolute; right: 1rem; width: 1.2rem;"></i>
-              </div>
-            </div>
-
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary">Confirmar</button>
-              <button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancelar</button>
-            </div>  
-          </form>       
+            </form>
+          </main>
         </div>
-      </main>
+      </div>
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
   <script src="/js/cambiocontrasena.js"></script>
 </body>
+
 </html>
+
