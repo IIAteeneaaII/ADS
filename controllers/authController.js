@@ -115,45 +115,40 @@ exports.recoverPassword = async (req, res) => {
   // Enviar el código por correo
   await sendRecoveryEmail(email, code);
 
-  res.status(200).json({ message: 'Verification code sent to your email' });
+  res.status(200).json({ message: 'Código de verificación enviado' });
 };
 
-exports.validateResetToken = async (req, res) => {
-  const { token } = req.query;
+exports.validateResetCode = async (req, res) => {
+  const { email, code } = req.body;
 
-  const email = await redis.get(`reset-token:${token}`);
-  if (!email) {
-    return res.status(400).json({ message: 'Invalid or expired token' });
+  const resetCode = await findValidResetCode(code);
+
+  if (!resetCode || resetCode.email !== email) {
+    return res.status(400).json({ message: 'Código Invalido o expirado' });
   }
 
-  res.status(200).json({ message: 'Token is valid', email });
+  res.status(200).json({ message: 'Code is valid' });
 };
 
 exports.resetPassword = async (req, res) => {
-  const { code, newPassword, confirmPassword } = req.body;
+  const { email, newPassword, confirmPassword } = req.body;
 
   if (newPassword !== confirmPassword) {
-    return res.status(400).json({ message: 'Passwords do not match' });
+    return res.status(400).json({ message: 'Contraseñas no coinciden' });
   }
 
-const codeEntry = await findValidResetCode(code);
-
-  if (!codeEntry) {
-    return res.status(400).json({ message: 'Invalid or expired code' });
-  }
-
-  const user = await userRepo.findByEmail(codeEntry.email);
+  const user = await userRepo.findByEmail(email);
   if (!user) {
-    return res.status(404).json({ message: 'User not found' });
+    return res.status(404).json({ message: 'Usuario no encontrado' });
   }
 
   const hashedPassword = await bcrypt.hash(newPassword, 10);
   await userRepo.updatePassword(user.email, hashedPassword);
 
-  // Eliminar el código usado
-await deleteResetCodeById(codeEntry.id);
+  // Opcional: eliminar todos los códigos previos de ese email
+  await userRepo.deleteResetCodesByEmail(user.email);
 
-  res.status(200).json({ message: 'Password updated successfully' });
+  res.status(200).json({ message: 'Contraseña Actualizada correctamente' });
 };
 
 exports.logout = async (req, res) => {
