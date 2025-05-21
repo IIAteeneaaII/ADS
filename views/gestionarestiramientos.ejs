@@ -52,7 +52,7 @@
                     <label class="form-label">Días de la semana*</label>
                     <div class="d-flex flex-wrap gap-2">
                         <% const days=habit?.frequency?.days || []; %>
-                            <% const allDays=['lunes','tuesday','miercoles','jueves','viernes','sabado','domingo']; %>
+                        <% const allDays = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']; %>
                                 <% allDays.forEach(day=> { %>
                                     <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>"
                                         id="<%= day %>" <%=days.includes(day) ? 'checked' : '' %>>
