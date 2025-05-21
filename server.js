@@ -45,16 +45,16 @@ app.get('/ingresarcodigo', (req, res) => {
     res.render('ingresarcodigo');
 });
 
+app.get('/cambiocontrasena', (req, res) => {
+    res.render('cambiocontrasena');
+});
+
 app.get('/calendario_emociones', authMiddleware, renderCalendar);
 
 app.get('/racha', authMiddleware, (req, res) => {
     res.render('racha');
 });
 
-app.get('/reset-password', (req, res) => {
-    const token = req.query.token;
-    res.render('ingresarcodigo', { token });
-});
 
 app.get('/Preferencias', authMiddleware, (req, res) => {
     res.render('preferencias');
