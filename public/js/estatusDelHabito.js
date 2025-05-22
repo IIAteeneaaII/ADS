@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const habitName = document.querySelector('.titulo-habito h1')?.innerText;
+  const pathParts = window.location.pathname.split('/');
+  const habitId = pathParts[2];
+
   const token = localStorage.getItem('token');
 
   const seccionGraficas = document.getElementById('seccion-graficas');
@@ -44,24 +46,27 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Fetch y renderizado de datos
-  fetch('/api/inicio/completed/details', {
+  fetch(`/api/inicio/${habitId}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`
     }
   })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error('No autorizado o hábito no encontrado');
+      return res.json();
+    })
     .then(data => {
-      const habitosFiltrados = data.filter(h => h.name === habitName);
-      console.log('Datos filtrados para el hábito:', habitosFiltrados);
-      mostrarGrafica('graficaSemana', habitosFiltrados, 7);
-      mostrarGrafica('graficaMes', habitosFiltrados, 30);
-      renderizarCalendario(habitosFiltrados);
+      console.log('Logs del hábito:', data);
+      mostrarGrafica('graficaSemana', data, 7);
+      mostrarGrafica('graficaMes', data, 30);
+      renderizarCalendario(data);
     })
     .catch(err => {
-      console.error('Error al obtener hábitos completados:', err);
+      console.error('Error al obtener logs del hábito:', err);
     });
 });
+
 
 function mostrarGrafica(canvasId, datos, dias) {
   const fechaLimite = new Date();

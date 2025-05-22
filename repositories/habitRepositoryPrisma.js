@@ -277,26 +277,30 @@ exports.deleteUserHabit = async (userId, habitId) => {
   });
 };
 
-exports.getCompletedHabitsForUser = async (userId) => {
+exports.getUserHabitById = async (habitId) => {
+  return await prisma.userHabit.findUnique({
+    where: { id: habitId },
+  });
+};
+
+exports.getHabitsLogsByHabitId = async (habitId) => {
   return await prisma.habitTrackingLog.findMany({
     where: {
-      userHabit: {
-        userId: userId,
-      },
-      status: 'completed',
+      userHabitId: habitId,
     },
     select: {
       date: true,
-      fieldValues: true, // aquí se espera que sea un JSON tipo { value: "30", unit: "min" }
+      fieldValues: true,
+      status: true,
       userHabit: {
         select: {
           name: true,
-          description: true
-        }
-      }
+          description: true,
+        },
+      },
     },
     orderBy: {
-      date: 'desc'
-    }
+      date: 'desc',
+    },
   });
 };
