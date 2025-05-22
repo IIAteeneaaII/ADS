@@ -149,7 +149,7 @@ app.get('/UsoFinit', authMiddleware, (req, res) => {
 });
 
 app.get('/personalizado', authMiddleware, (req, res) => {
-    res.render('habitoPersonalizado');
+    res.render('habitoPersonalizado',{ habit: null });
 });
 
 

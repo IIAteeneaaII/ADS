@@ -802,15 +802,27 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   padding: 1rem;
   text-align: center;
   font-size: 0.8rem;
+  font-family: "Segoe UI", serif;
   padding-top: 1.5rem;
 }
 .container_pr h1 {
+  padding-top: 1rem;
   font-family: "Segoe UI", serif;
   color: #1f2421;
+  text-align: center;
 }
 .container_pr .omitir {
   text-align: right;
-  padding-right: 1rem;
+  padding-right: 3rem;
+}
+.container_pr .omitir a {
+  color: #173454;
+  font-size: 20px;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+.container_pr .omitir a:hover {
+  color: #93c5fd;
 }
 
 .grid_pref {
@@ -818,7 +830,9 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.1rem;
-  margin-bottom: 16px;
+  margin: 10px 10px 16px 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 7px #2582eb;
 }
 
 .optionpr {
@@ -838,6 +852,9 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   width: 40px;
   height: 40px;
   object-fit: contain;
+}
+.optionpr span {
+  font-family: "Handlee", cursive;
 }
 .optionpr:hover {
   transform: scale(1.03);
