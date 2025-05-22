@@ -69,6 +69,8 @@ function renderHabits(habits) {
                 window.location.href = `/ordenarespacio/${habito.id}`;
             } else if (nombre.includes('saltar')) {
                 window.location.href = `/SaltarCuerda/${habito.id}`;
+            } else if (habito.icon?.includes('personalizado')) {
+                window.location.href = `/perso/${habito.id}`;
             } else {
                 Swal.fire({
                     icon: 'warning',

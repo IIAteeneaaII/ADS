@@ -23,17 +23,31 @@
         padding: 1rem;
         text-align: center;
         font-size: 0.8rem;
+        font-family: v.$text;
         padding-top: 1.5rem;
     }
 
     h1 {
+        padding-top: 1rem;
         font-family: v.$title;
         color: v.$black;
+        text-align: center;
     }
 
     .omitir {
         text-align: right;
-        padding-right: 1rem;
+        padding-right: 3rem;
+    }
+
+    .omitir a {
+        color: v.$colorSecondaryBtn;
+        font-size: 20px;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: v.$mainColor-low;
+        }
     }
 }
 
@@ -42,7 +56,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.1rem;
-    margin-bottom: 16px;
+    margin: 10px 10px 16px 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 7px #2582eb;
 }
 
 .optionpr {
@@ -61,6 +77,10 @@
         width: 40px;
         height: 40px;
         object-fit: contain;
+    }
+
+    span {
+        font-family: v.$special; 
     }
 
     &:hover {

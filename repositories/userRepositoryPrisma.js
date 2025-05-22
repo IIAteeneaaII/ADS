@@ -79,6 +79,12 @@ exports.deleteResetCodeById = async (id) => {
   });
 };
 
+exports.deleteResetCodesByEmail = async (email) => {
+  return await prisma.resetCode.deleteMany({
+    where: { email },
+  });
+};
+
 exports.saveMood = async ({ userId, date, mood, isUpdate = false }) => {
   try {
     const parsedDate = new Date(date); // Asegura formato Date correcto

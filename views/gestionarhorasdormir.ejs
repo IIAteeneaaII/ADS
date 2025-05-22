@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestionar Horas de Sueño</title>
+    <title>Gestionar Horas de Dormir</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('partials/allStyles') %>
     <%- include('partials/allScripts') %>
@@ -15,7 +15,7 @@
                 <a href="javascript:history.back()" class="back-arrow">
                     <i class="fas fa-chevron-left"></i>
                 </a>
-                <h4 class="fw-bold">Horas de Sueño</h4>
+                <h4 class="fw-bold">Horas de Dormir</h4>
             </div>
 
         <div class="tab-content mt-4 texto-alternativo">
@@ -47,7 +47,7 @@
                     <label class="form-label">Días de la semana*</label>
                     <div class="d-flex flex-wrap gap-2">
                         <% const days = habit?.frequency?.days || []; %>
-                        <% const allDays = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo']; %>
+                        <% const allDays = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']; %>
                         <% allDays.forEach(day => { %>
                             <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>" id="<%= day %>" <%= days.includes(day) ? 'checked' : '' %>>
                             <label class="btn btn-outline-secondary rounded-pill <%= days.includes(day) ? 'dia_selected' : '' %>" for="<%= day %>"><%= day.charAt(0).toUpperCase() + day.slice(1,3) %></label>
