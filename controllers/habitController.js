@@ -128,9 +128,9 @@ exports.generateDailyHabitLog = async (req, res) => {
 
 exports.UpdateLog = async (req, res) => {
   const userId = req.user.id;
-  const { userHabitId, date, status } = req.body;
+  const { userHabitId, date, status_h } = req.body;
 
-  if (!userHabitId || !status) {
+  if (!userHabitId || !status_h) {
     return res.status(400).json({ error: 'Faltan datos obligatorios.' });
   }
 
@@ -141,7 +141,7 @@ exports.UpdateLog = async (req, res) => {
     const updatedLog = await habitRepo.UpdateStatus({
       userHabitId,
       date: today,
-      status: 'completed'
+      status: status_h
     });
 
     return res.status(200).json({ message: 'Estado actualizado', log: updatedLog });
