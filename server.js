@@ -191,6 +191,52 @@ app.get('/gestionar/:habito', (req, res) => {
     });
 });
 
+// CREAR hábito personalizado
+app.get('/personalizado', authMiddleware, (req, res) => {
+    res.render('habitoPersonalizado', { habit: null }); // crear
+});
+
+// EDITAR hábito personalizado
+app.get('/habitoPersonalizado/:id/editar', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('habitoPersonalizado', { habit }); // editar
+    } catch (error) {
+        console.error('Error al cargar hábito personalizado para editar:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
+
+// VER hábito personalizado (pantalla de gráficas y calendario)
+app.get('/perso/:id', authMiddleware, async (req, res) => {
+    const habitId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    try {
+        const habit = await prisma.userHabit.findFirst({
+            where: {
+                id: habitId,
+                userId: userId
+            }
+        });
+
+        if (!habit) return res.status(404).send('Hábito no encontrado');
+        res.render('perso', { habit }); // ver gráficas
+    } catch (error) {
+        console.error('Error al cargar el hábito personalizado:', error);
+        res.status(500).send('Error al cargar el hábito');
+    }
+});
 
 // Crear nuevo hábito correr
 app.get('/GestionarCorrer', authMiddleware, (req, res) => {
