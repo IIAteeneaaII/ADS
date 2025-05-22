@@ -14,9 +14,9 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "userName":"Antozada",
-  "email": "rivera.martinez.cristhian.antonio@gmail.com",
-  "password": "User123456"
+  "userName":"prueba",
+  "email": "Prueba12@gmail.com",
+  "password": "Contras1234"
 }
 
 ###
@@ -75,5 +75,5 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/inicio/completed/details
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyaXZlcmEubWFydGluZXouY3Jpc3RoaWFuLmFudG9uaW9AZ21haWwuY29tIiwidXNlck5hbWUiOiJBbnRvemFkYSIsImlhdCI6MTc0NzYyNTYwMiwiZXhwIjoxNzQ3NjI5MjAyfQ.F7RIZ82Uf2Vs_z6SwGnIQYOQTAZuHDG9ob3zF_OaFV0
+GET http://localhost:3000/api/inicio/24
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJQcnVlYmExMkBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InBydWViYSIsImlhdCI6MTc0Nzg5MTMyMCwiZXhwIjoxNzQ3ODk0OTIwfQ.gmzCqAbzxaicgHfYjkihaE-VicYdoX7dmZw1IfQutkc
