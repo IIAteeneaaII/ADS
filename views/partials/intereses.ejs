@@ -1,0 +1,12 @@
+<% if (intereses && intereses.length > 0) { %>
+    <% intereses.forEach(function(interes) { %>
+        <div class="optionpr" onclick="toggleSelection(this)">
+            <div class="img_pref">
+                <img src="<%= interes.img %>" alt="<%= interes.titulo %>" />
+            </div>
+            <span><%= interes.titulo %></span>
+        </div>
+    <% }) %>
+<% } else { %>
+    <p>No hay intereses para mostrar.</p>
+<% } %>

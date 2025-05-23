@@ -7,9 +7,9 @@ const cookieParser = require('cookie-parser');
 const { loadAllJobs } = require('./utils/jobManager');
 require('./utils/UploadHabitsPerDay');
 const { renderCalendar } = require('./controllers/authController');
+const { interesesPreferencias, interesesActividades } = require('./utils/interesesData');
 
 const { getRecentNotifications, countUnreadNotifications, markAllAsRead, getNotificationsTime, updateNotificationHours } = require('./repositories/habitRepositoryPrisma');
-
 
 //pruebas, no estara en la app
 const cargarHabitosRoutes = require('./routes/cargarhabitos');
@@ -55,14 +55,28 @@ app.get('/racha', authMiddleware, (req, res) => {
     res.render('racha');
 });
 
-
 app.get('/Preferencias', authMiddleware, (req, res) => {
-    res.render('preferencias');
+    res.render('preferencias', {
+        tituloPagina: 'Selecciona tus intereses',
+        tituloPrincipal: 'Preferencias',
+        mensajeIntro: 'Para personalizar tus recomendaciones de manera óptima, ¡cuéntanos un poco sobre tus gustos e intereses!',
+        rutaOmitir: '/inicio',
+        intereses: interesesPreferencias
+    });
+});
+
+app.get('/Actividades', authMiddleware, (req, res) => {
+    res.render('preferencias', {
+        tituloPagina: 'Tus preferencias favoritas',
+        tituloPrincipal: '¿Qué preferencias disfrutas?',
+        mensajeIntro: 'Selecciona las preferencias que más te identifican.',
+        rutaOmitir: null,
+        intereses: interesesActividades
+    });
 });
 
 app.get('/Inicio', authMiddleware, async (req, res) => {
     const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
-
     const user = await prisma.user.findUnique({
         where: { id: req.user.id },
         select: {
@@ -92,9 +106,7 @@ app.get('/TerminosyCondiciones', (req, res) => {
 
 app.get('/Notificaciones', authMiddleware, async (req, res) => {
     const notifications = await getRecentNotifications(req.user.id);
-
     markAllAsRead(req.user.id);
-
     res.render('notificaciones', {
         notifications
     });
@@ -152,17 +164,14 @@ app.get('/personalizado', authMiddleware, (req, res) => {
     res.render('habitoPersonalizado',{ habit: null });
 });
 
-
 app.get('/actualizarPerfil', authMiddleware, async (req, res) => {
     try {
         const user = await prisma.user.findUnique({
             where: { id: req.user.id }
         });
-
         if (!user) {
             return res.redirect('/login');
         }
-
         res.render('actualizarPerfil', { user });
     } catch (err) {
         console.error('Error al cargar el perfil:', err);
@@ -170,25 +179,12 @@ app.get('/actualizarPerfil', authMiddleware, async (req, res) => {
     }
 });
 
-
 app.get('/quienesSomos', authMiddleware, (req, res) => {
     res.render('quienesSomos');  //
 });
 
-// app.get('/LayoutGestionar', authMiddleware, (req, res) => {
-//     const titlePage = 'gestionarcorrer'; // o cualquier valor que tengas
-//     res.render('layoutGestionar',{titlePage});  //
-// });
 app.get('/GestionarHabitos', authMiddleware, (req, res) => {
     res.render('gestionarHabitos');
-});
-app.get('/gestionar/:habito', (req, res) => {
-    const habito = 'mimirowo';
-    // Capitaliza la primera letra del hábito para mostrarlo bonito
-    const titlePage = habito.charAt(0).toUpperCase() + habito.slice(1);
-    res.render('layoutGestionar', {
-        titlePage
-    });
 });
 
 // CREAR hábito personalizado

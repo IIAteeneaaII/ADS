@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Selecciona tus intereses</title>
+    <title><%= tituloPagina || 'Selecciona tus intereses' %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('partials/allStyles') %>
     <%- include('partials/allScripts') %>
@@ -11,50 +11,19 @@
 <body>
     <div class="page_preferencias">
         <div class="container_pr w-100">            
-            <h1 class="fw-bold">Preferencias</h1>
+            <h1 class="fw-bold"><%= tituloPrincipal || 'Preferencias' %></h1>
 
-            <p>Para personalizar tus recomendaciones de manera óptima, ¡cuéntanos un poco sobre tus gustos e intereses!</p>
-            <div class="omitir">
-                <a class="link" href="/inicio">Omitir</a>
-            </div>
+            <p><%= mensajeIntro || 'Para personalizar tus recomendaciones de manera óptima, ¡cuéntanos un poco sobre tus gustos e intereses!' %></p>
+
+<% if (rutaOmitir) { %>
+    <div class="omitir">
+        <a class="link" href="<%= rutaOmitir %>">Omitir</a>
+    </div>
+<% } %>
+
             
             <div class="grid_pref">
-                <div class="optionpr" onclick="toggleSelection(this)">
-                    <div class="img_pref">
-                        <img src="../img/preferencias/peliculas.png" alt="Películas" />
-                    </div>
-                    <span>Películas</span>
-                </div>
-                <div class="optionpr" onclick="toggleSelection(this)">
-                    <div class="img_pref">
-                        <img src="../img/preferencias/fotografia.png" alt="Fotografía" />
-                    </div>
-                    <span>Fotografía</span>
-                </div>
-                <div class="optionpr" onclick="toggleSelection(this)">
-                    <div class="img_pref">
-                        <img src="../img/preferencias/naturaleza.png" alt="Naturaleza" />
-                    </div>
-                    <span>Naturaleza</span>
-                </div>
-                <div class="optionpr" onclick="toggleSelection(this)">
-                    <div class="img_pref">
-                        <img src="../img/preferencias/musica.png" alt="Música" />
-                    </div>  
-                    <span>Música</span>
-                </div>
-                <div class="optionpr" onclick="toggleSelection(this)">
-                    <div class="img_pref">
-                        <img src="../img/preferencias/videojuegos.png" alt="Videojuegos" />
-                    </div>
-                    <span>Videojuegos</span>
-                </div>
-                <div class="optionpr" onclick="toggleSelection(this)">
-                    <div class="img_pref">
-                        <img src="../img/preferencias/lectura.png" alt="Lectura" />
-                    </div> 
-                    <span>Lectura</span>
-                </div>
+                <%- include('partials/intereses', { intereses }) %>
             </div>
     
             <div class="text-center mt-4">
