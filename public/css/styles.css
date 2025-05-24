@@ -57,9 +57,11 @@ footer {
 
 .top-bar {
   text-align: center;
-  display: flex;
-  align-items: center;
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr; /* columnas: izquierda - centro - derecha */
+  align-items: center;
+  height: 104px;
 }
 .top-bar h1 {
   flex-grow: 1;
@@ -898,15 +900,20 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 }
 
 .titulo-habito {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr; /* columnas: izquierda - centro - derecha */
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  padding: 10px;
   text-align: center;
 }
+.titulo-habito .imagen-titulo {
+  display: flex;
+}
+.titulo-habito h1 {
+  font-size: 2rem;
+}
 .titulo-habito img {
-  width: 100px;
+  width: 50px;
   height: auto;
 }
 .titulo-habito .contenido-texto {
@@ -918,6 +925,9 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   display: flex;
   align-items: center;
   text-align: center;
+}
+.titulo-info h2 {
+  font-size: 1.5rem;
 }
 
 .text-advertencia {
@@ -954,6 +964,10 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 .informacion {
   border: 1px solid #1e62af;
   text-align: center;
+}
+.progreso p,
+.informacion p {
+  font-size: 1rem;
 }
 
 .input-fecha {
@@ -1059,7 +1073,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   color: black;
   margin-right: 10px;
   margin-left: 10px;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .calendario-grid {
@@ -1120,6 +1134,25 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 .option-semana-mes.active {
   background-color: #007bff; /* Color principal para opción activa */
   color: white;
+}
+
+.btn-graficas i, .btn-calendario i {
+  font-size: 2rem;
+}
+
+.seccion-graficas h2 {
+  font-size: 1.5rem;
+}
+
+.seccion-calendario h2 {
+  font-size: 1.5rem;
+}
+.seccion-calendario p {
+  font-size: 1rem;
+}
+
+.grafica h2 {
+  font-size: 1.5rem;
 }
 
 .botones-eliminar {

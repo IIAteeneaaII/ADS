@@ -11,14 +11,19 @@
 
 
 .titulo-habito{
-    display: flex;
+    .imagen-titulo{
+        display: flex;
+    }
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr; /* columnas: izquierda - centro - derecha */
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    padding: 10px;
     text-align: center;
+    h1{
+        font-size: 2rem;
+    }
     img {
-        width: 100px;
+        width: 50px;
         height: auto;
     }
     .contenido-texto {
@@ -30,6 +35,9 @@
     display: flex;
     align-items: center;
     text-align: center;
+    h2{
+        font-size: 1.5rem;
+    }
 }
 .text-advertencia{
     text-size-adjust: small;
@@ -67,6 +75,9 @@
 .informacion {
     border: 1px solid v.$mainColor-strong;
     text-align: center;
+    p{
+        font-size: 1rem;
+    }
 }
 
 .input-fecha {
@@ -181,7 +192,7 @@
     color: black;
     margin-right: 10px;
     margin-left: 10px;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .calendario-grid {
@@ -242,4 +253,31 @@
 .option-semana-mes.active {
     background-color: #007bff;  /* Color principal para opción activa */
     color: white;
+}
+
+.btn-graficas, .btn-calendario{
+    i{
+        font-size: 2rem;
+    }
+}
+
+.seccion-graficas{
+    h2{
+        font-size: 1.5rem;
+    }
+}
+
+.seccion-calendario{
+    h2{
+        font-size: 1.5rem;
+    }
+    p{
+        font-size: 1rem;
+    }
+}
+
+.grafica{
+    h2{
+        font-size: 1.5rem;
+    }
 }
