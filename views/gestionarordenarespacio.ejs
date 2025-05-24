@@ -5,145 +5,19 @@
     <title>Gestionar Ordenar Espacio Personal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('partials/allStyles') %>
-    <%- include('partials/allScripts') %>
-    <script src="/js/validarGestionarHabitos.js"></script>
 </head>
-
 <body class="form_habitos">
     <div class="container py-4">
-        <div class="top-bar">
-            <a href="javascript:history.back()" class="back-arrow">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-            <h1 class="mx-auto">Ordenar Espacio Personal</h1>
-        </div>
-
+        <%- include('partials/topBar', { title: 'Ordenar Espacio Personal' }) %>
         <div class="tab-content mt-4 texto-alternativo">
-            <form id="form-habito">
-                <input type="hidden" id="habitId" value="<%= habit ? habit.id : '' %>">
-
-                <div class="mb-3">
-                    <label for="description" class="form-label">Descripción*</label>
-                    <textarea class="form-control" id="description" name="description" rows="3"><%= habit ? habit.description : '' %></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Coloca tu meta*</label>
-                    <div class="d-flex align-items-center">
-                        <input type="number" class="form-control me-2" id="goal"  name="fieldValues[value]" value="<%= habit ? habit.fieldValues.value : 1 %>" min="1">
-                        <select class="form-control form-select me-2" name="fieldValues[unit]">
-                            <option value="min" <%= habit && habit.fieldValues.unit === 'min' ? "selected" : "" %>>minutos</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="startDate" class="form-label">Fecha de inicio*</label>
-                    <input type="text" class="form-control calendario" id="startDate" name="startDate" value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
-                </div>
-
-                <div class="mb-3">
-                    <input type="hidden" name="frequency[type]" value="weekly">
-                    <label class="form-label">Días de la semana*</label>
-                    <div class="d-flex flex-wrap gap-2">
-                        <% const days = habit?.frequency?.days || []; %>
-                        <% const allDays = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']; %>
-                        <% allDays.forEach(day => { %>
-                            <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>" id="<%= day %>" <%= days.includes(day) ? 'checked' : '' %>>
-                            <label class="btn btn-outline-secondary rounded-pill <%= days.includes(day) ? 'dia_selected' : '' %>" for="<%= day %>"><%= day.charAt(0).toUpperCase() + day.slice(1,3) %></label>
-                        <% }); %>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="reminder">¿Deseas recibir notificaciones?</label>
-                    <select class="form-control" name="reminder" id="reminder">
-                        <option value="">Selecciona una opción</option>
-                        <option value="yes" <%= habit && habit.reminder ? "selected" : "" %>>Sí</option>
-                        <option value="no" <%= habit && habit.reminder === false ? "selected" : "" %>>No</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Guardar hábito</button>
-            </form>
+            <% habitName = 'Ordenar Espacio Personal' %>
+            <% habitUrl = 'ordenarespacio'; %>
+            <% iconPath = '/img/gestorhabitos/ordenar.png' %>
+            <%- include('partials/habitForm', { habit, habitName }) %>
         </div>
     </div>
     <%- include('partials/allScripts') %>
-    <script>
-        new Pikaday({
-            field: document.getElementById('startDate'),
-            format: 'YYYY-MM-DD',
-            i18n: {
-                previousMonth: 'Mes anterior',
-                nextMonth: 'Mes siguiente',
-                months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-                weekdays: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
-                weekdaysShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']
-            },
-            toString(date) {
-                return date.toISOString().split('T')[0];
-            },
-            minDate: new Date()
-        });
-
-        document.getElementById('form-habito').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const formData = new FormData(this);
-            const id = document.getElementById('habitId').value;
-
-            const data = {
-                name: 'Ordenar Espacio Personal',
-                description: formData.get('description'),
-                frequency: {
-                    type: formData.get('frequency[type]'),
-                    days: formData.getAll('frequency[days][]')
-                },
-                icon: "../img/gestorhabitos/ordenar.png",
-                startDate: new Date(formData.get('startDate')).toISOString(),
-                fieldValues: {
-                    unit: formData.get('fieldValues[unit]'),
-                    value: formData.get('fieldValues[value]')
-                },
-                reminder: formData.get('reminder') === 'yes'
-            };
-
-            const url = id ? `/api/habit/${id}` : '/api/habit/personalizado';
-            const method = id ? 'PUT' : 'POST';
-
-            try {
-                const response = await fetch(url, {
-                    method,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (!response.ok) throw new Error('Error al guardar el hábito');
-
-                const result = await response.json();
-                const redirectId = id || result.habit.id;
-                // window.location.href = `/ordenarespacio/${redirectId}`;
-                mostrarAlerta({
-                        title: '¡Felicidades!',
-                        text: 'Tu hábito ha sido registrado exitosamente',
-                        imageUrl: '/img/sharki/feliz.png',
-                        redirectUrl: '/ordenarespacio/${redirectId}`',
-                        btnText: 'Aceptar'
-                });
-            } catch (error) {
-                console.error('Error al enviar el hábito:', error);
-                alert('Ocurrió un error al guardar el hábito.');
-            }
-        });
-
-        document.querySelectorAll('.btn-outline-secondary').forEach(btn => {
-            btn.addEventListener('click', () => {
-                btn.classList.toggle('dia_selected');
-            });
-        });
-    </script>
+    <script src="/js/validarGestionarHabitos.js"></script>
+    <%- include('partials/habitScript', { habitName, iconPath, habitUrl}) %>
 </body>
 </html>
