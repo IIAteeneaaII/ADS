@@ -23,11 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
   btnGraficas.addEventListener('click', () => {
     seccionGraficas.classList.remove('d-none');
     seccionCalendario.classList.add('d-none');
+    btnGraficas.classList.replace('btn-secondary', 'btn-primary');
+    btnCalendario.classList.replace('btn-primary', 'btn-secondary');
   });
 
   btnCalendario.addEventListener('click', () => {
     seccionCalendario.classList.remove('d-none');
     seccionGraficas.classList.add('d-none');
+    btnGraficas.classList.replace('btn-primary', 'btn-secondary');
+    btnCalendario.classList.replace('btn-secondary', 'btn-primary');
   });
 
   // Botones para cambiar entre semana y mes

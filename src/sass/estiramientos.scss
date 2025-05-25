@@ -193,7 +193,7 @@
     color: black;
     margin-right: 10px;
     margin-left: 10px;
-    font-size: 1.25rem;
+    font-size: 1.75rem;
 }
 
 .calendario-grid {
@@ -228,9 +228,37 @@
 }
 
 .clickable-subrayado {
-    text-decoration: underline;
+    position: relative;
+    display: inline-block;
     cursor: pointer;
+    color: #000;
 }
+
+.clickable-subrayado::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: v.$black;
+    animation: fadeUnderline 1.5s ease-in-out infinite;
+    border-radius: 1px;
+    opacity: 0;
+}
+
+@keyframes fadeUnderline {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 
 .option-semana-mes{
     border: 0.2rem solid #009394;
@@ -334,4 +362,17 @@
     padding: 1.5rem;
     background-color: v.$backgroundColor;
     z-index: 2;
+}
+
+.typing {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease-out forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
