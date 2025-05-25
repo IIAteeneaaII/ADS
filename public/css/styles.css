@@ -996,6 +996,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 .progreso,
 .informacion {
   border: 1px solid #1e62af;
+  border-radius: 1rem;
   text-align: center;
 }
 .progreso p,
@@ -1186,6 +1187,54 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 .grafica h2 {
   font-size: 1.5rem;
+}
+
+.fondo-animado {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Permite crecer si hay más contenido */
+  overflow-x: hidden; /* Solo oculta el scroll horizontal */
+}
+
+@keyframes animarFondo {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* Burbujas */
+.burbuja {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  background: #1e62af;
+  animation: subirBurbuja 8s linear infinite;
+  z-index: 1;
+}
+
+@keyframes subirBurbuja {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.2);
+    opacity: 0;
+  }
+}
+.recuadro {
+  position: relative;
+  margin-top: 3rem;
+  border-radius: 1rem;
+  border: 1px solid #1e62af;
+  padding: 1.5rem;
+  background-color: #ebfcff;
+  z-index: 2;
 }
 
 .botones-eliminar {

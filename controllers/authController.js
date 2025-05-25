@@ -246,10 +246,11 @@ exports.renderCalendar = async (req, res) => {
   const moods = await getMoodsByUser(userId);
 
   const moodsByDate = moods.reduce((acc, mood) => {
-    const dateStr = mood.date.toISOString().split("T")[0];
+    const localDate = new Date(mood.date);
+    const dateStr = localDate.toLocaleDateString('sv-SE', { timeZone: 'America/Mexico_City' });
     acc[dateStr] = mood.mood;
     return acc;
   }, {});
 
-  res.render("calendario_emociones", { moodsByDate }); // 👈 importante: nombre correcto
+  res.render("calendario_emociones", { moodsByDate }); 
 };
