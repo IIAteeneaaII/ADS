@@ -1,21 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-
-
-
-.icono-hover {
-  color: v.$black; 
-  transition: color 0.3s ease, transform 0.5s ease;
-}
-
-.icono-hover:hover {
-    color: v.$mainColor-strong;     
-    transform: scale(1.3); 
-    cursor: pointer;
-}
-
-
 ul {
   margin-left: 20px;
   padding-left: 10px;
@@ -53,11 +38,66 @@ ul li ul li {
 
 
 .contenedor-scroll {
-  background-color: v.$secondaryColor;
-  border: 1px solid v.$mainColor-strong; 
+  background-color: v.$white; 
+  border: none;
   border-radius: 12px;
   padding: 16px;
-  max-height: 500px;       
-  overflow-y: auto;      
-  box-shadow: 0 4px 12px v.$black; /*sombritaaa*/
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.196);
+  position: relative; // Necesario para la línea azul
+}
+
+
+//FLECHAS DESPLEGABLES DE CONTENIDO 
+.indice-item {
+  width: 100%;   
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;  
+  margin-bottom: 12px;
+  background: v.$white;
+  font-weight: 600;
+  color: v.$mainColor-strong;
+  box-shadow: v.$white;
+}
+.indice-item > i {
+  color: v.$colorSecondaryBtn;
+}
+
+
+
+.icono-circulo {
+  inline-size: 32px;    
+  block-size: 32px;      
+  display: inline-flex;      
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: v.$colorPrimariBtn;
+  color: v.$colorSecondaryBtn;
+  font-size: 16px;
+}
+
+.guia {
+  background: v.$white;
+  margin: 8px 0 20px 0;
+  border-radius: 6px;
+  color: v.$black;
+}
+
+.d-none {
+  display: none;
+}
+
+
+.contenedor-scroll::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, v.$mainColor-strong 0%, v.$colorSecondaryBtn 100%);
+  border-radius: 16px 16px 0 0;
 }
