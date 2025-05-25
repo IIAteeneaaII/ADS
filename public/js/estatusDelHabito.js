@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   const pathParts = window.location.pathname.split('/');
   const habitId = pathParts[2];
@@ -61,37 +62,33 @@ document.addEventListener('DOMContentLoaded', () => {
       return res.json();
     })
     .then(data => {
-  const completados = data.filter(log => log.status === 'completed');
+      const completados = data.filter(log => log.status === 'completed');
+      console.log('Logs del hábito (completados):', completados);
 
-  console.log('Logs del hábito (completados):', completados);
-
-  //unidades de la grafica
-  fetch(`/api/inicio/Units/${habitId}`, {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  })
-      .then(res => {
-      if (!res.ok) throw new Error('No se encontraron las unidades');
-      return res.json();
+      //Unidades de la grafica
+      return fetch(`/api/inicio/Units/${habitId}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }).then(res => {
+        if (!res.ok) throw new Error('No se encontraron las unidades');
+        return res.json().then(unidad => {
+          console.log('Unidad recibida:', unidad);
+          return { completados, unidad };
+        });
+      });
     })
-    .then(data => {
-  const Unit = data
-    
-
-  // Limpiar gráficas anteriores (por si no hay datos)
-  limpiarGrafica('graficaSemana');
-  limpiarGrafica('graficaMes');
-
-  // Renderizar en base a completados (puede estar vacío)
-  mostrarGrafica('graficaSemana', completados, 7,Unit);
-  mostrarGrafica('graficaMes', completados, 30,Unit);
-  renderizarCalendario(completados);
-    })
+    .then(({ completados, unidad }) => {
+      limpiarGrafica('graficaSemana');
+      limpiarGrafica('graficaMes');
+      mostrarGrafica('graficaSemana', completados, 7, unidad);
+      mostrarGrafica('graficaMes', completados, 30, unidad);
+      renderizarCalendario(completados);
     })
     .catch(err => {
-      console.error('Error al obtener logs del hábito:', err);
+      console.error('Error al cargar datos del hábito:', err);
+      // Swal.fire('Error', 'No se pudo cargar la información del hábito.', 'error');
     });
 });
 
@@ -99,9 +96,7 @@ function limpiarGrafica(canvasId) {
   const canvas = document.getElementById(canvasId);
   if (canvas) {
     const context = canvas.getContext('2d');
-    if (context) {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-    }
+    if (context) context.clearRect(0, 0, canvas.width, canvas.height);
     // También elimina el gráfico existente si Chart.js lo creó antes
     if (canvas._chartInstance) {
       canvas._chartInstance.destroy();
@@ -110,44 +105,46 @@ function limpiarGrafica(canvasId) {
   }
 }
 
-
-function mostrarGrafica(canvasId, datos, dias, units) {
+function mostrarGrafica(canvasId, datos, dias, unidad) {
   const fechaLimite = new Date();
   fechaLimite.setDate(fechaLimite.getDate() - dias);
-
 
   const agrupados = datos
     .filter(h => new Date(h.date) >= fechaLimite)
     .reduce((acc, h) => {
       const fecha = new Date(h.date).toISOString().split('T')[0]; // yyyy-mm-dd
       const duracion = Number(h.fieldValues?.value || 0);
-      const unidad = h.fieldValues?.unit || '';
 
-      if (!acc[fecha]) {
-        acc[fecha] = { total: 0, unit: units };
-      }
-      acc[fecha].total += duracion;
+      if (!acc[fecha]) acc[fecha] = 0;
+      acc[fecha] += duracion;
       return acc;
     }, {});
 
-  const datosGrafica = Object.entries(agrupados).map(([fecha, info]) => ({
+  const datosGrafica = Object.entries(agrupados).map(([fecha, valor]) => ({
     x: fecha,
-    y: info.total,
-    unit: units
+    y: valor,
+    unit: unidad
   }));
 
-  const unidadY = datosGrafica[0]?.unit || '';
-
+  const unidadY = unidad || '';
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
   const ctx = document.getElementById(canvasId)?.getContext('2d');
   if (!ctx) return;
 
-  new Chart(ctx, {
+     // 🎨 Crear un degradado para el color de las barras
+  const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  gradient.addColorStop(0, '#ffffff'); // Azul oscuro
+  gradient.addColorStop(1, '#80bdff'); // Azul claro
+  
+  const chart = new Chart(ctx, {
     type: 'bar',
     data: {
       datasets: [{
         label: `Duración (${unidadY})`,
         data: datosGrafica,
-        backgroundColor: '#007bff'
+        backgroundColor: gradient,
+        borderRadius: 8
       }]
     },
     options: {
@@ -155,11 +152,7 @@ function mostrarGrafica(canvasId, datos, dias, units) {
       plugins: {
         tooltip: {
           callbacks: {
-            label: function(context) {
-              const value = context.parsed.y;
-              const unit = context.raw.unit || '';
-              return `${value} ${unit}`;
-            }
+            label: context => `${context.parsed.y} ${context.raw.unit || ''}`
           }
         },
         legend: {
@@ -168,6 +161,17 @@ function mostrarGrafica(canvasId, datos, dias, units) {
         title: {
           display: true,
           text: 'Actividad del hábito'
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          color: '#333',
+          font: {
+            weight: 'bold'
+          },
+          formatter: function (value) {
+            return `${value.y}`;
+          }
         }
       },
       scales: {
@@ -184,22 +188,18 @@ function mostrarGrafica(canvasId, datos, dias, units) {
         },
         y: {
           beginAtZero: true,
-          title: {
-            display: true,
-            text: `Duración (${unidadY})`
-          },
+          title: { display: true, text: `Duración (${unidadY})` },
           ticks: {
-            callback: function(value) {
-              return `${value} ${unidadY}`;
-            }
+            callback: value => `${value} ${unidadY}`
           }
         }
       }
     }
   });
+  
+  // Guardar instancia para posible limpieza
+  if (canvas) canvas._chartInstance = chart;
 }
-
-
 
 function renderizarCalendario(datos) {
   const contenedor = document.getElementById('calendarioHabito');
@@ -269,5 +269,3 @@ function crearBurbuja() {
 
 // Crear burbujas periódicamente
 setInterval(crearBurbuja, 300);
-
-
