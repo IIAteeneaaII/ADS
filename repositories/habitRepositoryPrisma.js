@@ -304,3 +304,17 @@ exports.getHabitsLogsByHabitId = async (habitId) => {
     },
   });
 };
+
+
+exports.getHabitsUnit = async (habitId) => {
+  const habit = await prisma.userHabit.findUnique({
+    where: {
+      id: habitId
+    },
+    select: {
+      fieldValues: true
+    },
+  });
+
+  return habit?.fieldValues?.unit || null;
+};
