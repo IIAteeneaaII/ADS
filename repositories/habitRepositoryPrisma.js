@@ -318,3 +318,22 @@ exports.getHabitsUnit = async (habitId) => {
 
   return habit?.fieldValues?.unit || null;
 };
+
+exports.getUniqueTrackingDatesByUserId = async (userId) => {
+  const logs = await prisma.habitTrackingLog.findMany({
+    where: { userHabit: { userId } },
+    select: { date: true, status: true },
+    orderBy: { date: 'desc' }
+  });
+
+  const uniqueDates = new Map();
+
+  logs.forEach(log => {
+    const key = log.date.toISOString().split('T')[0]; // YYYY-MM-DD
+    if (!uniqueDates.has(key)) {
+      uniqueDates.set(key, log);
+    }
+  });
+
+  return Array.from(uniqueDates.values());
+};

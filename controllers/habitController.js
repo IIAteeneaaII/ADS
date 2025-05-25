@@ -128,9 +128,9 @@ exports.generateDailyHabitLog = async (req, res) => {
 
 exports.UpdateLog = async (req, res) => {
   const userId = req.user.id;
-  const { userHabitId, date, status_h } = req.body;
+  const { userHabitId, date, status } = req.body;
 
-  if (!userHabitId || !status_h) {
+  if (!userHabitId || !status) {
     return res.status(400).json({ error: 'Faltan datos obligatorios.' });
   }
 
@@ -208,5 +208,17 @@ exports.getHabitsUnitsController = async (req, res) => {
   } catch (error) {
     console.error('Error al obtener las unidades:', error);
     res.status(500).json({ message: 'Error al obtener las unidades' });
+  }
+};
+
+exports.getUniqueTrackingDates = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const logs = await habitRepo.getUniqueTrackingDatesByUserId(userId);
+    res.json(logs);
+  } catch (error) {
+    console.error('Error al obtener las fechas únicas de seguimiento:', error);
+    res.status(500).json({ message: 'Error al obtener fechas de seguimiento' });
   }
 };
