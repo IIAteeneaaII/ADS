@@ -14,91 +14,99 @@
 
 </head>
 <body>
-    <div class="container py-4">
-        <div class="top-bar">
-            <a href="/GestionarMisHabitos" class="back-arrow">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-            <div class="titulo-habito" id="tabs">
-                <div class="imagen-titulo">
-                    <img src="/img/gestorhabitos/correr.png" alt="Correr">
-                </div>
-                <div>
-                    <h1><%= habit.name %></h1>
-                </div>
-                <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
-                    <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='/GestionarCorrer/<%= habit.id %>';"></i>
-                    <i class="fas fa-trash-alt iconos-habitos" style="cursor: pointer;" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')"></i>
-                </div>
-            </div>
-        </div>
+    <div class="fondo-animado">
 
-        <div class="separator my-2"></div>
+        <div id="contenedor-burbujas"></div>
+        <div class="container py-4">
+            <div class="top-bar">
+                <a href="/GestionarMisHabitos" class="back-arrow">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                <div class="titulo-habito typing" id="tabs">
+                    <div class="imagen-titulo">
+                        <img src="/img/gestorhabitos/correr.png" alt="Correr">
+                    </div>
+                    <div>
+                        <h1><%= habit.name %></h1>
+                    </div>
+                    <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
+                        <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='/GestionarCorrer/<%= habit.id %>';"></i>
+                        <i class="fas fa-trash-alt iconos-habitos" style="cursor: pointer;" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')"></i>
+                    </div>
+                </div>
+            </div>
 
-        <div class="grid mb-4">
-            <div class="titulo-info">
-                <div class="w-100 texto-principal d-flex align-items-center justify-content-center" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#infoCollapse" 
-                    aria-expanded="false" 
-                    aria-controls="infoCollapse"
-                    style="cursor: pointer;">
-                    <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
-                    <h2 class="mb-0 clickable-subrayado">Descripción</h2>
+            <div class="separator my-2"></div>
+            <div class="recuadro typing">
+                <div class="grid mb-4">
+                    <div class="titulo-info">
+                        <div class="w-100 texto-principal d-flex align-items-center justify-content-center" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#infoCollapse" 
+                            aria-expanded="false" 
+                            aria-controls="infoCollapse"
+                            style="cursor: pointer;">
+                            <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
+                            <h2 class="mb-0 clickable-subrayado">Descripción</h2>
+                        </div>
+                    </div>
+                    <div id="infoCollapse" class="collapse mt-2">
+                        <div class="informacion">
+                            <p><%= habit.description %></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div id="infoCollapse" class="collapse mt-2">
-                <div class="informacion">
-                    <p><%= habit.description %></p>
-                </div>
-            </div>
-        </div>
 
-        <div class="text-center mb-4">
-            <button id="btn-graficas" class="btn btn-primary me-2 btn-graficas">
-                <i class="fas fa-chart-bar"></i>
-            </button>
-            <button id="btn-calendario" class="btn btn-secondary btn-calendario">
-                <i class="fas fa-calendar-alt"></i>
-            </button>
-        </div>
+                <div class="text-center mb-4">
+                    <button id="btn-graficas" class="btn btn-primary me-2 btn-graficas">
+                        <i class="fas fa-chart-bar"></i>
+                    </button>
+                    <button id="btn-calendario" class="btn btn-secondary btn-calendario">
+                        <i class="fas fa-calendar-alt"></i>
+                    </button>
+                </div>
 
-        <!-- Sección de gráficas -->
-        <div class="seccion-graficas" id="seccion-graficas">
-            <div>
-                <h2 class="text-center">Gráficas</h2>
-            </div>
-            <div class="text-center mb-3">
-                <button id="btn-semana" class="btn btn-primary me-2">
-                    Última<br>semana
-                </button>
-                <button id="btn-mes" class="btn btn-secondary">
-                    Último<br>mes
-                </button>
-            </div>
-            <div class="grid grafica" id="grafica">
-                <div class="tab-pane active" id="u-semana">
-                    <h2 class="text-center">Última semana</h2>
-                    <canvas id="graficaSemana"></canvas>
+                <!-- Sección de gráficas -->
+                <div class="seccion-graficas" id="seccion-graficas">
+                    <div>
+                        <h2 class="text-center">Gráficas</h2>
+                    </div>
+                    <div class="text-center mb-3">
+                        <button id="btn-semana" class="btn btn-primary me-2">
+                            Última<br>semana
+                        </button>
+                        <button id="btn-mes" class="btn btn-secondary">
+                            Último<br>mes
+                        </button>
+                    </div>
+                    <div class="grid grafica" id="grafica">
+                        <div class="tab-pane active" id="u-semana">
+                            <h2 class="text-center">Última semana</h2>
+                            <canvas id="graficaSemana"></canvas>
+                        </div>
+                        <div class="tab-pane d-none" id="u-mes">
+                            <h2 class="text-center">Último mes</h2>
+                            <canvas id="graficaMes"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-pane d-none" id="u-mes">
-                    <h2 class="text-center">Último mes</h2>
-                    <canvas id="graficaMes"></canvas>
-                </div>
-            </div>
-        </div>
 
-        <!-- Sección de calendario -->
-        <div id="seccion-calendario" class="seccion-calendario d-none">
-            <div class="grid calendario">
-                <div class="text-center">
-                    <h2>Calendario</h2>
-                    <p id="tituloMes" class="mb-3"></p>
-                    <div id="calendarioHabito" class="calendario-grid mx-auto"></div>
+                <!-- Sección de calendario -->
+                <div id="seccion-calendario" class="seccion-calendario d-none">
+                    <div class="grid calendario">
+                        <div class="text-center">
+                            <h2>Calendario</h2>
+                            <p id="tituloMes" class="mb-3"></p>
+                            <div id="calendarioHabito" class="calendario-grid mx-auto"></div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
+        
         </div>
     </div>
+    
 
     <script>
         function confirmarEliminacion(nombre, id) {

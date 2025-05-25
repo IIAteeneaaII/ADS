@@ -23,11 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
   btnGraficas.addEventListener('click', () => {
     seccionGraficas.classList.remove('d-none');
     seccionCalendario.classList.add('d-none');
+    btnGraficas.classList.replace('btn-secondary', 'btn-primary');
+    btnCalendario.classList.replace('btn-primary', 'btn-secondary');
   });
 
   btnCalendario.addEventListener('click', () => {
     seccionCalendario.classList.remove('d-none');
     seccionGraficas.classList.add('d-none');
+    btnGraficas.classList.replace('btn-primary', 'btn-secondary');
+    btnCalendario.classList.replace('btn-secondary', 'btn-primary');
   });
 
   // Botones para cambiar entre semana y mes
@@ -240,3 +244,30 @@ function renderizarCalendario(datos) {
     contenedor.appendChild(div);
   }
 }
+
+//Animaciones
+// Generador de burbujas dinámicas
+function crearBurbuja() {
+  const contenedor = document.getElementById('contenedor-burbujas');
+  const burbuja = document.createElement('div');
+  const tamaño = Math.random() * 20 + 10;
+
+  burbuja.classList.add('burbuja');
+  burbuja.style.width = `${tamaño}px`;
+  burbuja.style.height = `${tamaño}px`;
+  burbuja.style.left = `${Math.random() * 100}%`;
+  burbuja.style.animationDuration = `${Math.random() * 5 + 5}s`;
+  burbuja.style.opacity = Math.random();
+
+  contenedor.appendChild(burbuja);
+
+  // Eliminar burbuja cuando termine la animación
+  setTimeout(() => {
+    burbuja.remove();
+  }, 10000);
+}
+
+// Crear burbujas periódicamente
+setInterval(crearBurbuja, 300);
+
+

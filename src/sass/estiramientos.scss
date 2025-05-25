@@ -74,6 +74,7 @@
 .progreso,
 .informacion {
     border: 1px solid v.$mainColor-strong;
+    border-radius: 1rem;
     text-align: center;
     p{
         font-size: 1rem;
@@ -192,7 +193,7 @@
     color: black;
     margin-right: 10px;
     margin-left: 10px;
-    font-size: 1.25rem;
+    font-size: 1.75rem;
 }
 
 .calendario-grid {
@@ -227,9 +228,37 @@
 }
 
 .clickable-subrayado {
-    text-decoration: underline;
+    position: relative;
+    display: inline-block;
     cursor: pointer;
+    color: #000;
 }
+
+.clickable-subrayado::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: v.$black;
+    animation: fadeUnderline 1.5s ease-in-out infinite;
+    border-radius: 1px;
+    opacity: 0;
+}
+
+@keyframes fadeUnderline {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 
 .option-semana-mes{
     border: 0.2rem solid #009394;
@@ -279,5 +308,71 @@
 .grafica{
     h2{
         font-size: 1.5rem;
+    }
+}
+
+.fondo-animado {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Permite crecer si hay más contenido */
+//   background: linear-gradient(-90deg, v.$mainColor-strong, v.$backgroundColor, v.$backgroundColor, v.$mainColor-strong);
+//   animation: animarFondo 15s ease infinite;
+//   background-size: 400% 400%;
+  overflow-x: hidden; /* Solo oculta el scroll horizontal */
+}
+
+@keyframes animarFondo {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Burbujas */
+.burbuja {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  background: v.$mainColor-strong;
+  animation: subirBurbuja 8s linear infinite;
+  z-index: 1;
+}
+
+@keyframes subirBurbuja {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.recuadro{
+    position: relative;
+    margin-top: 3rem;
+    border-radius: 1rem;
+    border: 1px solid v.$mainColor-strong;
+    padding: 1.5rem;
+    background-color: v.$backgroundColor;
+    z-index: 2;
+}
+
+.typing {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease-out forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

@@ -15,8 +15,7 @@ overlay.addEventListener('click', cerrarMenu);
 const logoutModal = document.getElementById('logoutModal');
 
 logoutModal.addEventListener('hidden.bs.modal', () => {
-  // Mueve el foco fuera del modal para evitar el error
-  document.body.focus(); // o un botón visible fuera del modal
+  document.body.focus();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -59,8 +58,8 @@ async function cargarHabitos() {
 
     if (habitos.length === 0) {
       seccionHabitos.innerHTML = `
-        <p>Hmm, no hay ningún hábito establecido por el momento.<br>
-        Presiona el botón “Crear nuevo hábito” para crear tu primer hábito y comenzar a cumplir tus objetivos.</p>
+        <img src="/img/sharki/sinHabitos.png" alt="Sin hábitos" class="img-fluid mb-3" style="max-width: 300px;">
+        <p>Hmm, no hay ningún hábito establecido por el momento. Presiona el botón “Crear nuevo hábito” para crear tu primer hábito y comenzar a cumplir tus objetivos.</p>
       `;
     } else {
       habitos.forEach(habito => {
@@ -75,15 +74,19 @@ async function cargarHabitos() {
         const habitCard = document.createElement('div');
         habitCard.className = 'habit-card d-flex justify-content-between align-items-center p-3 flex-grow-1 shadow-sm';
 
-        const checkCircle = document.createElement('div');
-        checkCircle.className = 'check-circle';
+        const toggleLabel = document.createElement('label');
+        toggleLabel.className = 'switch';
 
-        let status = habito.logs.status === 'completed' ? 'completed' : 'pending';
-        console.log(habito.logs.status)
+        const toggleInput = document.createElement('input');
+        toggleInput.type = 'checkbox';
+        toggleInput.checked = habito.logs.status === 'completed';
 
-        if (status === 'completed') {
-          checkCircle.classList.add('complete');
-        }
+        const toggleSlider = document.createElement('span');
+        toggleSlider.className = 'slider round';
+
+        toggleLabel.appendChild(toggleInput);
+        toggleLabel.appendChild(toggleSlider);
+
 
         const cardContent = `
           <div class="d-flex flex-column">
@@ -97,22 +100,14 @@ async function cargarHabitos() {
         `;
 
         habitCard.innerHTML = cardContent;
-        habitCard.querySelector('.d-flex.align-items-center:last-child').appendChild(checkCircle);
+        habitCard.querySelector('.d-flex.align-items-center:last-child').appendChild(toggleLabel);
 
-        habitCard.addEventListener('click', (e) => {
-          if (e.target.classList.contains('check-circle')) return;
-          checkCircle.style.display = checkCircle.style.display === 'none' ? 'block' : 'none';
-        });
-
-        checkCircle.addEventListener('click', async function (e) {
+        toggleInput.addEventListener('change', async function (e) {
           e.stopPropagation();
-          status = status === 'completed' ? 'pending' : 'completed';
+          const status = toggleInput.checked ? 'completed' : 'pending';
           console.log(status)
           console.log(habito.id)
           console.log(today)
-          checkCircle.classList.toggle('complete');
-          checkCircle.classList.add('scale');
-          setTimeout(() => checkCircle.classList.remove('scale'), 150);
 
           try {
             const res = await fetch('/api/inicio/actualizarlogs', {

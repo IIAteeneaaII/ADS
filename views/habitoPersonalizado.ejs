@@ -3,39 +3,38 @@
 
 <head>
   <meta charset="UTF-8">
-  <title><%= habit ? habit.name : 'Hábito personalizado' %></title>
+  <title>
+    <%= habit ? habit.name : 'Hábito personalizado' %>
+  </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%- include('partials/allStyles') %>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/pikaday/plugins/pikaday.es.js"></script>
 </head>
 
 <body class="form_habitos">
   <div class="container py-4">
-    <div class="top-bar">
-      <a href="/gestionarHabitos" class="back-arrow"><i class="fas fa-chevron-left"></i></a>
-      <h1 class="mx-auto">Hábito personalizado</h1>
-    </div>
+    <%- include('partials/topBar', { title: 'Hábito Personalizado' }) %>
 
     <div class="tab-content mt-4 texto-alternativo">
-      <form id="form-habito">
+      <form id="form-habito" method="post" action="javascript:void(0);">
         <input type="hidden" id="habitId" value="<%= habit ? habit.id : '' %>">
 
         <div class="mb-3">
           <label for="name" class="form-label">Nombre del hábito*</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="Ej. Leer antes de dormir" value="<%= habit ? habit.name : '' %>">
+          <input type="text" class="form-control" id="name" name="name" placeholder="Ej. Leer antes de dormir"
+            value="<%= habit ? habit.name : '' %>">
         </div>
 
         <div class="mb-3">
           <label for="description" class="form-label">Descripción*</label>
-          <textarea class="form-control" id="description" name="description" rows="3"><%= habit ? habit.description : '' %></textarea>
+          <textarea class="form-control" id="description" name="description"
+            rows="3"><%= habit ? habit.description : '' %></textarea>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Tiempo a realizar al día (en minutos)*</label>
           <div class="d-flex align-items-center">
-            <input type="number" class="form-control me-2" name="fieldValues[value]" value="<%= habit ? habit.fieldValues?.value : 1 %>" min="1">
+            <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]"
+              value="<%= habit ? habit.fieldValues?.value : 1 %>" min="1">
             <span>min</span>
             <input type="hidden" name="fieldValues[unit]" value="min">
           </div>
@@ -43,21 +42,24 @@
 
         <div class="mb-3">
           <label for="startDate" class="form-label">Fecha de inicio*</label>
-          <input type="text" class="form-control calendario" id="startDate" name="startDate" value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
+          <input type="text" class="form-control calendario" id="startDate" name="startDate"
+            value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
         </div>
 
         <div class="mb-3">
           <input type="hidden" name="frequency[type]" value="weekly">
           <label class="form-label">Días de la semana*</label>
           <div class="d-flex flex-wrap gap-2">
-            <% const days = habit?.frequency?.days || []; %>
-            <% const allDays = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']; %>
-            <% allDays.forEach(day => { %>
-              <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>" id="<%= day %>" <%= days.includes(day) ? 'checked' : '' %>>
-              <label class="btn btn-outline-secondary rounded-pill <%= days.includes(day) ? 'dia_selected' : '' %>" for="<%= day %>">
-                <%= day.charAt(0).toUpperCase() + day.slice(1,3) %>
-              </label>
-            <% }); %>
+            <% const days=habit?.frequency?.days || []; %>
+              <% const allDays=['monday','tuesday','wednesday','thursday','friday','saturday','sunday']; %>
+                <% allDays.forEach(day=> { %>
+                  <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>" id="<%= day %>"
+                    <%=days.includes(day) ? 'checked' : '' %>>
+                  <label class="btn btn-outline-secondary rounded-pill <%= days.includes(day) ? 'dia_selected' : '' %>"
+                    for="<%= day %>">
+                    <%= day.charAt(0).toUpperCase() + day.slice(1,3) %>
+                  </label>
+                  <% }); %>
           </div>
         </div>
 
@@ -65,84 +67,148 @@
           <label class="form-label" for="reminder">¿Deseas recibir notificaciones?</label>
           <select class="form-control" name="reminder" id="reminder">
             <option value="">Selecciona una opción</option>
-            <option value="yes" <%= habit && habit.reminder ? 'selected' : '' %>>Sí</option>
-            <option value="no" <%= habit && habit.reminder === false ? 'selected' : '' %>>No</option>
+            <option value="yes" <%=habit && habit.reminder ? 'selected' : '' %>>Sí</option>
+            <option value="no" <%=habit && habit.reminder===false ? 'selected' : '' %>>No</option>
           </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Selecciona un icono*</label>
+          <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button"
+              id="iconDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <img id="selectedIconPreview" src="/img/tiposHabitos/<%= habit?.icon || 'personalizado.png' %>"
+                alt="Icono seleccionado" style="width: 24px; height: 24px; margin-right: 8px;">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="iconDropdown" id="iconDropdownMenu">
+              <% const icons=['personalizado.png', 'bienestar.png' , 'mental.png' , 'movimientoCorporal.png' ]; %>
+                <% icons.forEach(icon=> { %>
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center icon-option" href="#" data-icon="<%= icon %>">
+                      <img src="/img/tiposHabitos/<%= icon %>" alt="<%= icon %>"
+                        style="width: 24px; height: 24px; margin-right: 8px;">
+                      <%= icon.replace('.png', '' ) %>
+                    </a>
+                  </li>
+                  <% }); %>
+            </ul>
+          </div>
+          <input type="hidden" name="icon" id="iconInput" value="<%= habit?.icon || 'personalizado.png' %>">
         </div>
 
         <button type="submit" class="btn btn-primary">Guardar hábito</button>
       </form>
     </div>
   </div>
-
-  <script>
-    new Pikaday({
-      field: document.getElementById('startDate'),
-      format: 'YYYY-MM-DD',
-      i18n: {
-        previousMonth: 'Mes anterior',
-        nextMonth: 'Mes siguiente',
-        months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-        weekdays: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
-        weekdaysShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']
-      },
-      toString(date) {
-        return date.toISOString().split('T')[0];
-      },
-      minDate: new Date()
-    });
-
-    document.getElementById('form-habito').addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      const formData = new FormData(this);
-      const id = document.getElementById('habitId').value;
-
-      const data = {
-        name: formData.get('name'),
-        description: formData.get('description'),
-        frequency: {
-          type: formData.get('frequency[type]'),
-          days: formData.getAll('frequency[days][]')
+  <%- include('partials/allScripts') %>
+    <script src="/js/validarGestionarHabitos.js"></script>
+    <script>
+      new Pikaday({
+        field: document.getElementById('startDate'),
+        format: 'YYYY-MM-DD',
+        i18n: {
+          previousMonth: 'Mes anterior',
+          nextMonth: 'Mes siguiente',
+          months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+          weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+          weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
         },
-        icon: "../img/gestorhabitos/personalizado.png",
-        startDate: new Date(formData.get('startDate')).toISOString(),
-        fieldValues: {
-          unit: formData.get('fieldValues[unit]'),
-          value: formData.get('fieldValues[value]')
+        toString(date) {
+          return date.toISOString().split('T')[0];
         },
-        reminder: formData.get('reminder') === 'yes'
-      };
-
-      const url = id ? `/api/habit/${id}` : '/api/habit/personalizado';
-      const method = id ? 'PUT' : 'POST';
-
-      try {
-        const response = await fetch(url, {
-          method,
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          },
-          body: JSON.stringify(data)
-        });
-
-        if (!response.ok) throw new Error('Error al guardar el hábito');
-
-        const result = await response.json();
-        const redirectId = id || result.habit.id;
-        window.location.href = `/perso/${redirectId}`;
-      } catch (error) {
-        console.error('Error al enviar el hábito:', error);
-        alert('Ocurrió un error al guardar el hábito.');
-      }
-    });
-
-    document.querySelectorAll('.btn-outline-secondary').forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.classList.toggle('dia_selected');
+        minDate: new Date()
       });
-    });
-  </script>
+
+      document.getElementById('form-habito').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+          const formData = new FormData(this);
+  const id = document.getElementById('habitId').value;
+
+  const startDateRaw = formData.get('startDate');
+  let startDateISO = null;
+
+  if (startDateRaw) {
+    const startDateObj = new Date(startDateRaw);
+    if (!isNaN(startDateObj)) {
+      startDateISO = startDateObj.toISOString();
+    } else {
+      return alert('La fecha de inicio no es válida.');
+    }
+  } else {
+    return alert('Por favor selecciona una fecha de inicio.');
+  }
+
+        const data = {
+          name: formData.get('name'),
+          description: formData.get('description'),
+          frequency: {
+            type: formData.get('frequency[type]'),
+            days: formData.getAll('frequency[days][]')
+          },
+          icon: `/img/tiposHabitos/${formData.get('icon')}`,
+          startDate: new Date(formData.get('startDate')).toISOString(),
+          fieldValues: {
+            unit: formData.get('fieldValues[unit]'),
+            value: formData.get('fieldValues[value]')
+          },
+          reminder: formData.get('reminder') === 'yes'
+        };
+
+        const url = id ? `/api/habit/${id}` : '/api/habit/personalizado';
+        const method = id ? 'PUT' : 'POST';
+
+        try {
+          const response = await fetch(url, {
+            method,
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+          console.log('Respuesta del servidor:', result, response.status);
+
+          if (!response.ok) {
+            return mostrarAlerta({
+              title: 'Error',
+              text: result?.message,
+              imageUrl: '/img/sharki/triste.png',
+              redirectUrl: '/gestionarHabitos',
+              btnText: 'Aceptar'
+            });
+          }
+          const redirectId = id || result.habit.id;
+          mostrarAlerta({
+            title: '¡Hábito registrado!',
+            text: 'Tu hábito fue guardado correctamente.',
+            imageUrl: '/img/sharki/feliz.png',
+            redirectUrl: `/perso/${redirectId}`,
+            btnText: 'Aceptar'
+          });
+        } catch (error) {
+          console.error('Error al enviar el hábito:', error);
+          alert('Ocurrió un error al guardar el hábito.');
+        }
+      });
+
+      document.querySelectorAll('.btn-outline-secondary').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('dia_selected');
+        });
+      });
+      document.querySelectorAll('.icon-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+          e.preventDefault();
+          const icon = option.getAttribute('data-icon');
+          document.getElementById('iconInput').value = icon;
+          document.getElementById('selectedIconPreview').src = `/img/tiposHabitos/${icon}`;
+        });
+      });
+
+    </script>
+
 </body>
+
 </html>
