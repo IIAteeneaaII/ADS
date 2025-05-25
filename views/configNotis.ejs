@@ -7,6 +7,40 @@
   <link href="/css/styles.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <title>Actualizar Horarios de Notificación</title>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .back-arrow {
+      font-size: 1.5rem;
+      color: #000;
+      text-decoration: none;
+    }
+    .separator {
+      height: 1px;
+      background-color: #dee2e6;
+    }
+    form {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.1);
+    }
+    .form-label {
+      font-weight: 500;
+    }
+    .btn-primary {
+      width: 100%;
+      padding: 0.75rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+    }
+  </style>
 </head>
 <body>
   <div class="container py-4">
@@ -15,47 +49,46 @@
       <a href="/inicio" class="back-arrow">
         <i class="fas fa-chevron-left"></i>
       </a>
-      <h1 class="fw-bold">Actualizar notificaciones</h1>
+      <h1 class="fw-bold mb-0">Actualizar notificaciones</h1>
     </div>
-    <div class="separator my-2"></div>
+    <div class="separator my-3"></div>
 
     <form id="actualizarHorariosForm" method="POST" action="/ConfigurarNotificaciones">
-  <!-- Mañana -->
-  <div class="mb-3">
-    <label for="morningHour" class="form-label">Hora de la mañana</label>
-    <select class="form-select" name="morningHour" id="morningHour" required>
-      <option value="">Seleccione una hora</option>
-      <% [7, 8, 9, 10].forEach(h => { %>
-        <option value="<%= h %>" <%= h === morningHour ? 'selected' : '' %>><%= h %>:00</option>
-      <% }) %>
-    </select>
-  </div>
+      <!-- Mañana -->
+      <div class="mb-4">
+        <label for="morningHour" class="form-label">Hora de la mañana</label>
+        <select class="form-select" name="morningHour" id="morningHour" required>
+          <option value="">Seleccione una hora</option>
+          <% [7, 8, 9, 10].forEach(h => { %>
+            <option value="<%= h %>" <%= h === morningHour ? 'selected' : '' %>><%= h %>:00</option>
+          <% }) %>
+        </select>
+      </div>
 
-  <!-- Tarde -->
-  <div class="mb-3">
-    <label for="afternoonHour" class="form-label">Hora de la tarde</label>
-    <select class="form-select" name="afternoonHour" id="afternoonHour" required>
-      <option value="">Seleccione una hora</option>
-      <% [12, 13, 14, 15].forEach(h => { %>
-        <option value="<%= h %>" <%= h === afternoonHour ? 'selected' : '' %>><%= h %>:00</option>
-      <% }) %>
-    </select>
-  </div>
+      <!-- Tarde -->
+      <div class="mb-4">
+        <label for="afternoonHour" class="form-label">Hora de la tarde</label>
+        <select class="form-select" name="afternoonHour" id="afternoonHour" required>
+          <option value="">Seleccione una hora</option>
+          <% [12, 13, 14, 15].forEach(h => { %>
+            <option value="<%= h %>" <%= h === afternoonHour ? 'selected' : '' %>><%= h %>:00</option>
+          <% }) %>
+        </select>
+      </div>
 
-  <!-- Noche -->
-  <div class="mb-3">
-    <label for="nightHour" class="form-label">Hora de la noche</label>
-    <select class="form-select" name="nightHour" id="nightHour" required>
-      <option value="">Seleccione una hora</option>
-      <% [18, 19, 20, 21].forEach(h => { %>
-        <option value="<%= h %>" <%= h === nightHour ? 'selected' : '' %>><%= h %>:00</option>
-      <% }) %>
-    </select>
-  </div>
+      <!-- Noche -->
+      <div class="mb-4">
+        <label for="nightHour" class="form-label">Hora de la noche</label>
+        <select class="form-select" name="nightHour" id="nightHour" required>
+          <option value="">Seleccione una hora</option>
+          <% [18, 19, 20, 21].forEach(h => { %>
+            <option value="<%= h %>" <%= h === nightHour ? 'selected' : '' %>><%= h %>:00</option>
+          <% }) %>
+        </select>
+      </div>
 
-  <button type="submit" class="btn btn-primary">Guardar horarios</button>
-</form>
-
+      <button type="submit" class="btn btn-primary">Guardar horarios</button>
+    </form>
   </div>
 
   <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
