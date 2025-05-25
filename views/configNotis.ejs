@@ -30,12 +30,18 @@
     }
     .form-label {
       font-weight: 500;
+      display: block;
     }
     .btn-primary {
       width: 100%;
       padding: 0.75rem;
       font-weight: bold;
       border-radius: 0.5rem;
+    }
+    .center-image {
+      display: block;
+      margin: 0.5rem auto 1rem;
+      max-width: 80px;
     }
   </style>
 </head>
@@ -53,7 +59,8 @@
     <form id="actualizarHorariosForm" method="POST" action="/ConfigurarNotificaciones">
       <!-- Mañana -->
       <div class="mb-4">
-        <label for="morningHour" class="form-label">Hora de la mañana</label>
+        <label for="morningHour" class="form-label text-center">Hora de la mañana</label>
+        <img src="/img/dia.png" alt="Día" class="center-image" />
         <select class="form-select" name="morningHour" id="morningHour" required>
           <option value="">Seleccione una hora</option>
           <% [7, 8, 9, 10].forEach(h => { %>
@@ -64,7 +71,8 @@
 
       <!-- Tarde -->
       <div class="mb-4">
-        <label for="afternoonHour" class="form-label">Hora de la tarde</label>
+        <label for="afternoonHour" class="form-label text-center">Hora de la tarde</label>
+        <img src="/img/tarde.png" alt="Día" class="center-image" />
         <select class="form-select" name="afternoonHour" id="afternoonHour" required>
           <option value="">Seleccione una hora</option>
           <% [12, 13, 14, 15].forEach(h => { %>
@@ -75,7 +83,8 @@
 
       <!-- Noche -->
       <div class="mb-4">
-        <label for="nightHour" class="form-label">Hora de la noche</label>
+        <label for="nightHour" class="form-label text-center">Hora de la noche</label>
+        <img src="/img/noche.png" alt="Día" class="center-image" />
         <select class="form-select" name="nightHour" id="nightHour" required>
           <option value="">Seleccione una hora</option>
           <% [18, 19, 20, 21].forEach(h => { %>
