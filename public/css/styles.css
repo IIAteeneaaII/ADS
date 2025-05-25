@@ -1217,6 +1217,104 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   color: #1f2421;
 }
 
+.contenedor-scroll-info {
+  background-color: #ffffff;
+  border: 1px solid #1e62af;
+  border-radius: 12px;
+  padding: 16px;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px #1f2421; /*sombritaaa*/
+}
+
+.contenedor-scroll-info p {
+  color: #1f2421;
+  line-height: 1.6;
+  font-size: 15px;
+  text-align: justify;
+}
+
+.content {
+  padding: 30px 20px;
+  position: relative;
+}
+
+.feature-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1e62af 0%, #173454 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+.feature-card h3 {
+  color: #1e62af;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feature-card p {
+  color: #1f2421;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.feature-card-cierre {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card-cierre p {
+  color: #1f2421;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.contenedor-scroll-info h3 {
+  color: #1e62af;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .emocion-container {
   background: transparent;
   color: black;
