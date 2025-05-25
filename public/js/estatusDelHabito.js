@@ -61,14 +61,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log('Logs del hábito (completados):', completados);
 
+  //unidades de la grafica
+  fetch(`/api/inicio/Units/${habitId}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+      .then(res => {
+      if (!res.ok) throw new Error('No se encontraron las unidades');
+      return res.json();
+    })
+    .then(data => {
+  const Unit = data
+    
+
   // Limpiar gráficas anteriores (por si no hay datos)
   limpiarGrafica('graficaSemana');
   limpiarGrafica('graficaMes');
 
   // Renderizar en base a completados (puede estar vacío)
-  mostrarGrafica('graficaSemana', completados, 7);
-  mostrarGrafica('graficaMes', completados, 30);
+  mostrarGrafica('graficaSemana', completados, 7,Unit);
+  mostrarGrafica('graficaMes', completados, 30,Unit);
   renderizarCalendario(completados);
+    })
     })
     .catch(err => {
       console.error('Error al obtener logs del hábito:', err);
@@ -91,9 +107,10 @@ function limpiarGrafica(canvasId) {
 }
 
 
-function mostrarGrafica(canvasId, datos, dias) {
+function mostrarGrafica(canvasId, datos, dias, units) {
   const fechaLimite = new Date();
   fechaLimite.setDate(fechaLimite.getDate() - dias);
+
 
   const agrupados = datos
     .filter(h => new Date(h.date) >= fechaLimite)
@@ -103,7 +120,7 @@ function mostrarGrafica(canvasId, datos, dias) {
       const unidad = h.fieldValues?.unit || '';
 
       if (!acc[fecha]) {
-        acc[fecha] = { total: 0, unit: unidad };
+        acc[fecha] = { total: 0, unit: units };
       }
       acc[fecha].total += duracion;
       return acc;
@@ -112,7 +129,7 @@ function mostrarGrafica(canvasId, datos, dias) {
   const datosGrafica = Object.entries(agrupados).map(([fecha, info]) => ({
     x: fecha,
     y: info.total,
-    unit: info.unit
+    unit: units
   }));
 
   const unidadY = datosGrafica[0]?.unit || '';

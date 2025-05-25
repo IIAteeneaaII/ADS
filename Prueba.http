@@ -75,5 +75,9 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/inicio/24
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJQcnVlYmExMkBnbWFpbC5jb20iLCJ1c2VyTmFtZSI6InBydWViYSIsImlhdCI6MTc0Nzg5MTMyMCwiZXhwIjoxNzQ3ODk0OTIwfQ.gmzCqAbzxaicgHfYjkihaE-VicYdoX7dmZw1IfQutkc
+GET http://localhost:3000/api/inicio/20
+
+
+
+###
+GET http://localhost:3000/api/inicio/Units/24

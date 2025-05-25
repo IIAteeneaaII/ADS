@@ -183,7 +183,7 @@ exports.getHabitLogsById = async (req, res) => {
   const userId = req.user.id; // Para asegurarte que el usuario sea dueño
 
   try {
-    // Opcional: verifica que ese hábito pertenece al usuario
+    // Verifica que ese hábito pertenece al usuario
     const habit = await habitRepo.getUserHabitById(habitId);
     if (!habit || habit.userId !== userId) {
       return res.status(404).json({ message: 'Hábito no encontrado o no autorizado' });
@@ -195,5 +195,18 @@ exports.getHabitLogsById = async (req, res) => {
   } catch (error) {
     console.error('Error al obtener logs del hábito:', error);
     res.status(500).json({ message: 'Error al obtener logs del hábito' });
+  }
+};
+
+exports.getHabitsUnitsController = async (req, res) => {
+  const habitId = Number(req.params.habitId);
+
+  try {
+    const logs = await habitRepo.getHabitsUnit(habitId);
+
+    res.json(logs);
+  } catch (error) {
+    console.error('Error al obtener las unidades:', error);
+    res.status(500).json({ message: 'Error al obtener las unidades' });
   }
 };
