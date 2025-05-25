@@ -9,33 +9,47 @@
   <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
   <script src="../js/estadoanimo.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <title>Estado de ánimo</title>
+  <title>Guía de Usuario</title>
 </head>
 <body>
     <div class="container mt-5 pt-2">
         <div class="top-bar">
-        <a href="inicio.html" class="back-arrow">&lsaquo;</a>
-        <h1 class="mx-auto">Guía de usuario</h1>
+            <a href="inicio.html" class="back-arrow">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            <h1 class="fw-bold">Guía de usuario</h1>
         </div>
         <div class="contenedor-scroll">
+            
+            <div class="indice-item" onclick="toggleContenido(1)"> <!--------------------------------------- AQUI INICIA EL DIV DE FLECHA-->
+                <div class="item-body d-flex align-items-center gap-2">
+                        <span class="icono-circulo">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span>Pantalla Principal</span>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+            </div> <!-------------------------------------- AQUI ACABA EL DIV DE FLECHA-->
 
-            <section>
-            <h2  class="icono-hover">
-                <i class="fas fa-home me-2 guia-contenido" style="font-size: 1.2rem;"></i>
-                1. Pantalla principal
-            </h2>
-                <ul>
-                    <li>Visualiza tus hábitos activos según el momento del día: mañana, noche o todo el día.</li>
-                    <li>Marca hábitos completados y verás el cambio de color según tu progreso.</li>
-                    <li>Consulta tu estado de ánimo diario seleccionando entre: feliz, triste, enojado o neutral.</li>
-                    <li>Revisa tu racha de días cumplidos, notificaciones y recomendaciones personalizadas.</li>
-                </ul>
-            </section><br>
-            <section>
-            <h2  class="icono-hover">
-                <i class="fas fa-plus-circle me-2 guia-contenido" style="font-size: 1.2rem;""></i>
-                2. Agregar nuevos hábitos
-            </h2>
+            <div id="contenido-1" class="guia d-none">
+                    <ul>
+                        <li>Visualiza tus hábitos activos según el momento del día: mañana, noche o todo el día.</li>
+                        <li>Marca hábitos completados y verás el cambio de color según tu progreso.</li>
+                        <li>Consulta tu estado de ánimo diario seleccionando entre: feliz, triste, enojado o neutral.</li>
+                        <li>Revisa tu racha de días cumplidos, notificaciones y recomendaciones personalizadas.</li>
+                    </ul>
+            </div>
+
+            <div class="indice-item" onclick="toggleContenido(2)">
+            <div class="item-body d-flex align-items-center gap-2">
+                    <span class="icono-circulo">
+                        <i class="fas fa-plus-circle"></i>
+                    </span>
+                    <span> Agregar Nuevos Hábitos </span>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="contenido-2" class="guia d-none">
                 <ul>
                     <li>Toca “+ Crear nuevo hábito” para comenzar.</li>
                     <li>Elige una categoría:
@@ -55,48 +69,75 @@
                         </ul>
                     </li>
                 </ul>
-            </section><br>
-            <section>
-            <h2  class="icono-hover">
-                <i class="fas fa-check-square me-2 guia-contenido" style="font-size: 1.2rem;"></i>
-                3. Registrar progreso
-            </h2>
+            </div>
+
+            <div class="indice-item" onclick="toggleContenido(3)">
+            <div class="item-body d-flex align-items-center gap-2">
+                <span class="icono-circulo">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span> Registrar Progreso  </span>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="contenido-3" class="guia d-none">
                 <ul>
                     <li>En cada hábito podrás marcar si cumpliste el objetivo del día.</li>
                     <li>Usa esta función para llevar un seguimiento diario.</li>
                 </ul>
-            </section><br>
-            <section>
-            <h2  class="icono-hover">
-                <i class="fas fa-chart-bar me-2 guia-contenido" style="font-size: 1.2rem;"></i>
-                4. Ver estadísticas</h2>
+            </div>
+
+            <div class="indice-item" onclick="toggleContenido(4)">
+            <div class="item-body d-flex align-items-center gap-2">
+                <span class="icono-circulo">
+                    <i class="fas fa-chart-bar"></i>
+                </span>
+                <span> Ver Estadísticas </span>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="contenido-4" class="guia d-none">
                 <ul>
                     <li>Desliza hacia abajo en la pantalla principal para ver un gráfico con el porcentaje de hábitos completados.</li>
                     <li>Útil para conocer tu avance general por día.</li>
                 </ul>
-            </section><br>
-            <section>
-            <h2 class="icono-hover">
-                <i class="fas fa-user-edit me-2" style="font-size: 1.2rem;"></i> 
-                5. Actualizar perfil
-            </h2>
+            </div>
+
+            <div class="indice-item" onclick="toggleContenido(5)">
+            <div class="item-body d-flex align-items-center gap-2">
+                <span class="icono-circulo">
+                    <i class="fas fa-user-edit"></i>
+                </span>
+                <span> Actualizar perfil </span>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="contenido-5" class="guia d-none">
                 <ul>
                     <li>Accede al menú > Actualizar Perfil.</li>
                     <li>Puedes cambiar tu foto y nombre de usuario.</li>
                 </ul>
-            </section><br>
-            <section>
-            <h2  class="icono-hover">
-                <i class="fas fa-user-slash me-2 guia-contenido" style="font-size: 1.2rem;"></i> 
-                6. Eliminar cuenta
-            </h2>
+            </div>
+
+            <div class="indice-item" onclick="toggleContenido(6)">
+            <div class="item-body d-flex align-items-center gap-2">
+                <span class="icono-circulo">
+                    <i class="fas fa-user-slash"></i>
+                </span>
+                <span> Eliminar cuenta </span>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="contenido-6" class="guia d-none">
                 <ul>
                     <li>Ve a Configuración > Eliminar cuenta.</li>
                     <li>Se pedirá confirmar tu correo y contraseña.</li>
                     <li>Esta acción es permanente.</li>
                 </ul>
-            </section>
+            </div>
         </div>
     </div>
+    <script src="../js/guiadeusuario.js"></script>
+
 </body>
 </html>
