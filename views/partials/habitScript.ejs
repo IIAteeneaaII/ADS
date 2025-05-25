@@ -1,0 +1,82 @@
+<script>
+    new Pikaday({
+        field: document.getElementById('startDate'),
+        format: 'YYYY-MM-DD',
+        i18n: {
+            previousMonth: 'Mes anterior',
+            nextMonth: 'Mes siguiente',
+            months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+        },
+        toString(date) {
+            return date.toISOString().split('T')[0];
+        },
+        minDate: new Date()
+    });
+
+    document.getElementById('form-habito').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const id = document.getElementById('habitId').value;
+
+        const data = {
+            name: "<%= habitName %>",
+            description: formData.get('description'),
+            frequency: {
+                type: formData.get('frequency[type]'),
+                days: formData.getAll('frequency[days][]')
+            },
+            icon: "<%= iconPath %>",
+            startDate: new Date(formData.get('startDate')).toISOString(),
+            fieldValues: {
+                unit: formData.get('fieldValues[unit]'),
+                value: formData.get('fieldValues[value]')
+            },
+            reminder: formData.get('reminder') === 'yes'
+        };
+
+        const url = id ? `/api/habit/${id}` : '/api/habit/personalizado';
+        const method = id ? 'PUT' : 'POST';
+
+        try {
+            const response = await fetch(url, {
+                method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            if (!response.ok) {
+                return mostrarAlerta({
+                    title: 'Error',
+                    text: result?.message,
+                    imageUrl: '/img/sharki/triste.png',
+                    redirectUrl: '/gestionarHabitos',
+                    btnText: 'Aceptar'
+                });
+            }
+
+            mostrarAlerta({
+                title: '¡Hábito registrado!',
+                text: 'Tu hábito fue guardado correctamente.',
+                imageUrl: '/img/sharki/feliz.png',
+                redirectUrl: `/<%= habitUrl %>/${id || result.habit.id}`,
+                btnText: 'Aceptar'
+            });
+        } catch (error) {
+            console.error('Error al enviar el hábito:', error);
+            alert('Ocurrió un error al guardar el hábito.');
+        }
+    });
+
+    document.querySelectorAll('.btn-outline-secondary').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.classList.toggle('dia_selected');
+        });
+    });
+</script>

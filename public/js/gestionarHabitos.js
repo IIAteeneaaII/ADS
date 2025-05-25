@@ -2,7 +2,7 @@ const HABITOS = {
     movimiento: [
         { img: '/img/gestorhabitos/estiramiento.png', nombre: 'Estiramientos matutinos', link: '/GestionarEstiramientos' },
         { img: '/img/gestorhabitos/correr.png', nombre: 'Correr', link: '/GestionarCorrer' },
-        { img: '/img/gestorhabitos/bici.png', nombre: 'Andar en bicicleta', link: '/GestionarBici' },
+        { img: '/img/gestorhabitos/bici.png', nombre: 'Andar en bicicleta', link: '/GestionarBicicleta' },
         { img: '/img/gestorhabitos/saltar-la-cuerda.png', nombre: 'Saltar la cuerda', link: '/GestionarSaltarCuerda' }
     ],
     bienestar: [

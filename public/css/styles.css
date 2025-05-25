@@ -57,9 +57,11 @@ footer {
 
 .top-bar {
   text-align: center;
-  display: flex;
-  align-items: center;
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr; /* columnas: izquierda - centro - derecha */
+  align-items: center;
+  height: 104px;
 }
 .top-bar h1 {
   flex-grow: 1;
@@ -898,15 +900,20 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 }
 
 .titulo-habito {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr; /* columnas: izquierda - centro - derecha */
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  padding: 10px;
   text-align: center;
 }
+.titulo-habito .imagen-titulo {
+  display: flex;
+}
+.titulo-habito h1 {
+  font-size: 2rem;
+}
 .titulo-habito img {
-  width: 100px;
+  width: 50px;
   height: auto;
 }
 .titulo-habito .contenido-texto {
@@ -918,6 +925,9 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   display: flex;
   align-items: center;
   text-align: center;
+}
+.titulo-info h2 {
+  font-size: 1.5rem;
 }
 
 .text-advertencia {
@@ -954,6 +964,10 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 .informacion {
   border: 1px solid #1e62af;
   text-align: center;
+}
+.progreso p,
+.informacion p {
+  font-size: 1rem;
 }
 
 .input-fecha {
@@ -1059,7 +1073,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   color: black;
   margin-right: 10px;
   margin-left: 10px;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .calendario-grid {
@@ -1122,6 +1136,25 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   color: white;
 }
 
+.btn-graficas i, .btn-calendario i {
+  font-size: 2rem;
+}
+
+.seccion-graficas h2 {
+  font-size: 1.5rem;
+}
+
+.seccion-calendario h2 {
+  font-size: 1.5rem;
+}
+.seccion-calendario p {
+  font-size: 1rem;
+}
+
+.grafica h2 {
+  font-size: 1.5rem;
+}
+
 .botones-eliminar {
   text-align: center;
 }
@@ -1149,6 +1182,104 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 .contraseña-eliminar {
   font-family: "Segoe UI", serif;
   color: #1f2421;
+}
+
+.contenedor-scroll-info {
+  background-color: #ffffff;
+  border: 1px solid #1e62af;
+  border-radius: 12px;
+  padding: 16px;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px #1f2421; /*sombritaaa*/
+}
+
+.contenedor-scroll-info p {
+  color: #1f2421;
+  line-height: 1.6;
+  font-size: 15px;
+  text-align: justify;
+}
+
+.content {
+  padding: 30px 20px;
+  position: relative;
+}
+
+.feature-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1e62af 0%, #173454 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+.feature-card h3 {
+  color: #1e62af;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feature-card p {
+  color: #1f2421;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.feature-card-cierre {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card-cierre p {
+  color: #1f2421;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.contenedor-scroll-info h3 {
+  color: #1e62af;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .emocion-container {

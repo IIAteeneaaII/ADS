@@ -54,9 +54,12 @@ footer {
 
 .top-bar {
     text-align: center;
-    display: flex;
-    align-items: center;
+    // display: flex;
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr; /* columnas: izquierda - centro - derecha */
+    align-items: center;
+    height: 104px;
 
     h1 {
         flex-grow: 1;

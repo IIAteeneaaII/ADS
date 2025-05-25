@@ -45,7 +45,7 @@ const seccionHabitos = document.getElementById('seccion-de-habitos');
 
 async function cargarHabitos() {
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  today.setHours(1, 0, 0, 0);
   seccionHabitos.innerHTML = '';
 
   try {
@@ -78,8 +78,10 @@ async function cargarHabitos() {
         const checkCircle = document.createElement('div');
         checkCircle.className = 'check-circle';
 
-        let status = habito.logs.status === 'complete' ? 'complete' : 'pending';
-        if (status === 'complete') {
+        let status = habito.logs.status === 'completed' ? 'completed' : 'pending';
+        console.log(habito.logs.status)
+
+        if (status === 'completed') {
           checkCircle.classList.add('complete');
         }
 
@@ -104,7 +106,10 @@ async function cargarHabitos() {
 
         checkCircle.addEventListener('click', async function (e) {
           e.stopPropagation();
-          status = status === 'complete' ? 'pending' : 'complete';
+          status = status === 'completed' ? 'pending' : 'completed';
+          console.log(status)
+          console.log(habito.id)
+          console.log(today)
           checkCircle.classList.toggle('complete');
           checkCircle.classList.add('scale');
           setTimeout(() => checkCircle.classList.remove('scale'), 150);

@@ -141,7 +141,7 @@ exports.UpdateLog = async (req, res) => {
     const updatedLog = await habitRepo.UpdateStatus({
       userHabitId,
       date: today,
-      status: status_h
+      status: status
     });
 
     return res.status(200).json({ message: 'Estado actualizado', log: updatedLog });
@@ -178,23 +178,35 @@ exports.deleteHabit = async (req, res) => {
   }
 };
 
-exports.getCompletedHabitsWithFieldValues = async (req, res) => {
-  const userId = req.user.id;
+exports.getHabitLogsById = async (req, res) => {
+  const habitId = Number(req.params.habitId);
+  const userId = req.user.id; // Para asegurarte que el usuario sea dueño
 
   try {
-    const logs = await habitRepo.getCompletedHabitsForUser(userId);
+    // Verifica que ese hábito pertenece al usuario
+    const habit = await habitRepo.getUserHabitById(habitId);
+    if (!habit || habit.userId !== userId) {
+      return res.status(404).json({ message: 'Hábito no encontrado o no autorizado' });
+    }
 
-    const formatted = logs.map(log => ({
-      name: log.userHabit.name,
-      description: log.userHabit.description,
-      date: log.date,
-      value: log.fieldValues?.value || null,
-      unit: log.fieldValues?.unit || null
-    }));
+    const logs = await habitRepo.getHabitsLogsByHabitId(habitId);
 
-    res.json(formatted);
+    res.json(logs);
   } catch (error) {
-    console.error('Error al obtener hábitos completados:', error);
-    res.status(500).json({ message: 'Error al obtener hábitos completados' });
+    console.error('Error al obtener logs del hábito:', error);
+    res.status(500).json({ message: 'Error al obtener logs del hábito' });
+  }
+};
+
+exports.getHabitsUnitsController = async (req, res) => {
+  const habitId = Number(req.params.habitId);
+
+  try {
+    const logs = await habitRepo.getHabitsUnit(habitId);
+
+    res.json(logs);
+  } catch (error) {
+    console.error('Error al obtener las unidades:', error);
+    res.status(500).json({ message: 'Error al obtener las unidades' });
   }
 };

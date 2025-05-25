@@ -6,6 +6,7 @@ const {
   deleteHabit
 } = require('../controllers/habitController');
 const { validateCreateHabit } = require('../middlewares/validateCreateHabit');
+
 const { authMiddleware } = require('../middlewares/authMiddleware');
 
 // Crear hábito personalizado
@@ -16,5 +17,6 @@ router.put('/:id', authMiddleware, updateHabit);
 
 // Eliminar hábito
 router.delete('/:id', authMiddleware, deleteHabit);
+
 
 module.exports = router;

@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const habitName = document.querySelector('.titulo-habito h1')?.innerText;
+  const pathParts = window.location.pathname.split('/');
+  const habitId = pathParts[2];
+
   const token = localStorage.getItem('token');
 
   const seccionGraficas = document.getElementById('seccion-graficas');
@@ -44,46 +46,90 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Fetch y renderizado de datos
-  fetch('/api/inicio/completed/details', {
+  fetch(`/api/inicio/${habitId}`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`
     }
   })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error('No autorizado o hábito no encontrado');
+      return res.json();
+    })
     .then(data => {
-      const habitosFiltrados = data.filter(h => h.name === habitName);
-      console.log('Datos filtrados para el hábito:', habitosFiltrados);
-      mostrarGrafica('graficaSemana', habitosFiltrados, 7);
-      mostrarGrafica('graficaMes', habitosFiltrados, 30);
-      renderizarCalendario(habitosFiltrados);
+  const completados = data.filter(log => log.status === 'completed');
+
+  console.log('Logs del hábito (completados):', completados);
+
+  //unidades de la grafica
+  fetch(`/api/inicio/Units/${habitId}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+      .then(res => {
+      if (!res.ok) throw new Error('No se encontraron las unidades');
+      return res.json();
+    })
+    .then(data => {
+  const Unit = data
+    
+
+  // Limpiar gráficas anteriores (por si no hay datos)
+  limpiarGrafica('graficaSemana');
+  limpiarGrafica('graficaMes');
+
+  // Renderizar en base a completados (puede estar vacío)
+  mostrarGrafica('graficaSemana', completados, 7,Unit);
+  mostrarGrafica('graficaMes', completados, 30,Unit);
+  renderizarCalendario(completados);
+    })
     })
     .catch(err => {
-      console.error('Error al obtener hábitos completados:', err);
+      console.error('Error al obtener logs del hábito:', err);
     });
 });
 
-function mostrarGrafica(canvasId, datos, dias) {
+function limpiarGrafica(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  if (canvas) {
+    const context = canvas.getContext('2d');
+    if (context) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    // También elimina el gráfico existente si Chart.js lo creó antes
+    if (canvas._chartInstance) {
+      canvas._chartInstance.destroy();
+      canvas._chartInstance = null;
+    }
+  }
+}
+
+
+function mostrarGrafica(canvasId, datos, dias, units) {
   const fechaLimite = new Date();
   fechaLimite.setDate(fechaLimite.getDate() - dias);
 
-  // Agrupar por día
+
   const agrupados = datos
     .filter(h => new Date(h.date) >= fechaLimite)
     .reduce((acc, h) => {
       const fecha = new Date(h.date).toISOString().split('T')[0]; // yyyy-mm-dd
+      const duracion = Number(h.fieldValues?.value || 0);
+      const unidad = h.fieldValues?.unit || '';
+
       if (!acc[fecha]) {
-        acc[fecha] = { total: 0, unit: h.unit };
+        acc[fecha] = { total: 0, unit: units };
       }
-      acc[fecha].total += Number(h.value);
+      acc[fecha].total += duracion;
       return acc;
     }, {});
 
-  // Convertir a array para la gráfica
   const datosGrafica = Object.entries(agrupados).map(([fecha, info]) => ({
     x: fecha,
     y: info.total,
-    unit: info.unit
+    unit: units
   }));
 
   const unidadY = datosGrafica[0]?.unit || '';
@@ -148,6 +194,7 @@ function mostrarGrafica(canvasId, datos, dias) {
     }
   });
 }
+
 
 
 function renderizarCalendario(datos) {
