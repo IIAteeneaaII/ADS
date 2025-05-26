@@ -14,6 +14,8 @@
 </head>
 
 <body>
+    <div class="fondo-animado">
+        <div id="contenedor-burbujas"></div>
     <div class="container py-4">
         <div class="top-bar">
             <a href="/GestionarMisHabitos" class="back-arrow">
@@ -35,7 +37,7 @@
         </div>
 
         <div class="separator my-2"></div>
-
+<div class="recuadro typing">
         <div class="grid mb-4">
             <div class="titulo-info">
                 <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
@@ -64,19 +66,24 @@
         </div>
 
         <!-- Sección de gráficas -->
-        <div id="seccion-graficas">
+        <div class="seccion-graficas"id="seccion-graficas">
             <div>
                 <h2 class="text-center">Gráficas</h2>
             </div>
             <div class="text-center mb-3">
-                <button id="btn-semana" class="btn btn-primary me-2">Última
-                    semana</button>
-                <button id="btn-mes" class="btn btn-secondary">Último mes</button>
+                <button id="btn-semana" class="btn btn-primary me-2">
+                            Última<br>semana
+                        </button>
+                        <button id="btn-mes" class="btn btn-secondary">
+                            Último<br>mes
+                        </button>
             </div>
             <div class="grid grafica" id="grafica">
                 <div class="tab-pane active" id="u-semana">
                     <h2 class="text-center">Última semana</h2>
-                    <canvas id="graficaSemana"></canvas>
+                    <div style="width: 100%; height: 300px;">
+                                <canvas id="graficaSemana" style="width: 100%; height: 100%;"></canvas>
+                            </div>
                 </div>
                 <div class="tab-pane d-none" id="u-mes">
                     <h2 class="text-center">Último mes</h2>
@@ -86,7 +93,7 @@
         </div>
 
         <!-- Sección de calendario -->
-        <div id="seccion-calendario" class="d-none">
+        <div id="seccion-calendario" class="seccion-calendario d-none">
             <div class="grid calendario">
                 <div class="text-center">
                     <h2>Calendario</h2>
@@ -96,7 +103,8 @@
             </div>
         </div>
     </div>
-
+</div>
+</div>
     <script>
         function confirmarEliminacion(nombre, id) {
             Swal.fire({

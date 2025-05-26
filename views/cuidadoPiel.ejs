@@ -4,23 +4,29 @@
     <meta charset="UTF-8">
     <title>Cuidado de la Piel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pikaday/plugins/pikaday.es.js"></script>
-    <link href="/css/styles.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <%- include('partials/allStyles') %>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
+        <script src="/js/estatusDelHabito.js"></script>
 </head>
 <body>
-    <div class="container py-4">
+
+    <div class="fondo-animado">
+        <div id="contenedor-burbujas"></div>
+        <div class="container py-4">
         <div class="top-bar">
             <a href="/GestionarMisHabitos" class="back-arrow">&lsaquo;</a>
             <div class="titulo-habito" id="tabs">
-                <img src="/img/gestorhabitos/piel.png" alt="Piel">
-                <h1><%= habit.name %></h1>
+                <div class="imagen-titulo">
+                        <img src="/img/gestorhabitos/piel.png" alt="Correr">
+                    </div>
+                    <div>
+                        <h1>
+                            <%= habit.name %>
+                        </h1>
+                    </div>
                 <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
                     <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='/gestionarCuidadoPiel/<%= habit.id %>';"></i>
                     <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')" style="cursor: pointer;"></i>
@@ -29,8 +35,8 @@
         </div>
 
         <div class="separator my-2"></div>
-
-        <div class="grid mb-4">
+        <div class="recuadro typing">
+            <div class="grid mb-4">
             <div class="titulo-info">
                 <div class="w-100 texto-principal d-flex align-items-center justify-content-center" 
                     data-bs-toggle="collapse" 
@@ -50,20 +56,24 @@
         </div>
 
         <div class="text-center mb-4">
-            <button id="btn-graficas" class="btn btn-primary me-2" onclick="mostrarSeccion('graficas')">
-                <i class="fas fa-chart-bar"></i> Gráficas
-            </button>
-            <button id="btn-calendario" class="btn btn-secondary" onclick="mostrarSeccion('calendario')">
-                <i class="fas fa-calendar-alt"></i> Calendario
-            </button>
-        </div>
+                    <button id="btn-graficas" class="btn btn-primary me-2 btn-graficas">
+                        <i class="fas fa-chart-bar"></i>
+                    </button>
+                    <button id="btn-calendario" class="btn btn-secondary btn-calendario">
+                        <i class="fas fa-calendar-alt"></i>
+                    </button>
+                </div>
 
         <!-- Sección de gráficas -->
-        <div id="seccion-graficas">
+        <div id="seccion-graficas" class="seccion-graficas">
             <div><h2 class="text-center">Gráficas</h2></div>
             <div class="text-center mb-3">
-                <button id="btn-semana" class="btn btn-primary me-2" onclick="seleccionarPeriodo('u-semana')">Última semana</button>
-                <button id="btn-mes" class="btn btn-secondary" onclick="seleccionarPeriodo('u-mes')">Último mes</button>
+                <button id="btn-semana" class="btn btn-primary me-2">
+                            Última<br>semana
+                        </button>
+                        <button id="btn-mes" class="btn btn-secondary">
+                            Último<br>mes
+                        </button>
             </div>
             <div class="grid grafica" id="grafica">
                 <div class="tab-pane active" id="u-semana">
@@ -78,7 +88,7 @@
         </div>
 
         <!-- Sección de calendario -->
-        <div id="seccion-calendario" class="d-none">
+        <div id="seccion-calendario" class="seccion-calendario d-none">
             <div class="grid calendario">
                 <div class="text-center">
                     <h2>Calendario</h2>
@@ -87,7 +97,11 @@
                 </div>
             </div>
         </div>
+        </div>
+        
     </div>
+    </div>
+    
 
     <script>
         function confirmarEliminacion(nombre, id) {

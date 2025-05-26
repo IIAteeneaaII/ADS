@@ -32,12 +32,22 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Tiempo a realizar al día (en minutos)*</label>
+          <label class="form-label">Coloca tu meta*</label>
           <div class="d-flex align-items-center">
-            <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]"
-              value="<%= habit ? habit.fieldValues?.value : 1 %>" min="1">
-            <span>min</span>
-            <input type="hidden" name="fieldValues[unit]" value="min">
+            <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]" value="<%= habit ? habit.fieldValues?.value : 1 %>" min="1">
+            <select class="form-control form-select me-2" name="fieldValues[unit]">
+              <option value="minutos" selected>minutos</option>
+              <option value="kilometros" selected>kilometros</option>
+              <option value="horas" selected>horas</option>
+              <option value="repeticiones" selected>repeticiones</option>
+              <option value="cantidad" selected>cantidad</option>
+              <option value="pasos" selected>pasos</option>
+              <option value="paginas" selected>paginas</option>
+              <option value="porcentaje" selected>porcentaje</option>
+              <option value="peso" selected>peso</option>
+              <option value="dinero" selected>dinero</option>
+            </select>
+            <!-- <input type="hidden" name="fieldValues[unit]" value="min"> -->
           </div>
         </div>
 
@@ -140,11 +150,7 @@
           const startDateObj = new Date(startDateRaw);
           if (!isNaN(startDateObj)) {
             startDateISO = startDateObj.toISOString();
-          } else {
-            return alert('La fecha de inicio no es válida.');
           }
-        } else {
-          return alert('Por favor selecciona una fecha de inicio.');
         }
 
         const data = {
@@ -219,5 +225,4 @@
     </script>
 
 </body>
-
 </html>

@@ -1,6 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
   const validator = new JustValidate('#form-habito');
 
+  const nameField = document.querySelector('#name');
+  if (nameField && nameField.offsetParent !== null) {
+    validator.addField('#name', [
+      {
+        rule: 'required',
+        errorMessage: 'El nombre es obligatorio',
+      },
+    ]);
+  }
+  const iconInput = document.querySelector('#iconInput');
+if (iconInput && iconInput.offsetParent !== null) {
+  validator.addField('#iconInput', [
+    {
+      rule: 'required',
+      errorMessage: 'Selecciona un icono',
+    },
+  ]);
+}
   validator
     .addField('#description', [
       {
@@ -35,6 +53,12 @@ document.addEventListener('DOMContentLoaded', function () {
         errorMessage: 'Selecciona una opción',
       },
     ])
+    .addField('select[name="fieldValues[unit]"]', [
+      {
+        rule: 'required',
+        errorMessage: 'Selecciona una unidad de medida',
+      },
+    ])
     .addField('[name="frequency[days][]"]', [
       {
         validator: () => {
@@ -43,9 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         errorMessage: 'Selecciona al menos un día de la semana',
       },
-    ]);
+    ]),
+    
 
-  validator.onSuccess(function (event) {
+  validator.onSuccess(async function (event) {
     event.target.submit();
   });
 });
