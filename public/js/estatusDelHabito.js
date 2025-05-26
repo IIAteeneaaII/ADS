@@ -62,9 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return res.json();
     })
     .then(data => {
-      const completados = data.filter(log => log.status === 'completed');
+      console.log('Respuesta del backend:', data);
+      const { logs, frequency } = data;
+      const completados = logs.filter(log => log.status === 'completed');
       console.log('Logs del hábito (completados):', completados);
-
+      console.log('Frecuencia del hábito:', frequency);
       //Unidades de la grafica
       return fetch(`/api/inicio/Units/${habitId}`, {
         method: 'GET',
@@ -75,15 +77,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!res.ok) throw new Error('No se encontraron las unidades');
         return res.json().then(unidad => {
           console.log('Unidad recibida:', unidad);
-          return { completados, unidad };
+          return { completados, unidad, frequency };
         });
       });
     })
-    .then(({ completados, unidad }) => {
+    .then(({ completados, unidad, frequency }) => {
       limpiarGrafica('graficaSemana');
       limpiarGrafica('graficaMes');
-      mostrarGrafica('graficaSemana', completados, 7, unidad);
-      mostrarGrafica('graficaMes', completados, 30, unidad);
+      mostrarGrafica('graficaSemana', completados, 7, unidad, frequency);
+      mostrarGrafica('graficaMes', completados, 30, unidad, frequency);
       renderizarCalendario(completados);
     })
     .catch(err => {
@@ -97,7 +99,6 @@ function limpiarGrafica(canvasId) {
   if (canvas) {
     const context = canvas.getContext('2d');
     if (context) context.clearRect(0, 0, canvas.width, canvas.height);
-    // También elimina el gráfico existente si Chart.js lo creó antes
     if (canvas._chartInstance) {
       canvas._chartInstance.destroy();
       canvas._chartInstance = null;
@@ -105,38 +106,49 @@ function limpiarGrafica(canvasId) {
   }
 }
 
-function mostrarGrafica(canvasId, datos, dias, unidad) {
+function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia) {
+  
+  const fechaActual = new Date();
   const fechaLimite = new Date();
-  fechaLimite.setDate(fechaLimite.getDate() - dias);
+  fechaLimite.setDate(fechaActual.getDate() - dias);
 
-  const agrupados = datos
-    .filter(h => new Date(h.date) >= fechaLimite)
-    .reduce((acc, h) => {
-      const fecha = new Date(h.date).toISOString().split('T')[0]; // yyyy-mm-dd
-      const duracion = Number(h.fieldValues?.value || 0);
+  const diasPermitidos = frecuencia?.days?.map(d => d.toLowerCase()) || [];
+  const nombresDias = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
-      if (!acc[fecha]) acc[fecha] = 0;
-      acc[fecha] += duracion;
-      return acc;
-    }, {});
+  const fechasValidas = [];
+  for (let d = new Date(fechaLimite); d <= fechaActual; d.setDate(d.getDate() + 1)) {
+    const diaNombre = nombresDias[d.getUTCDay()];
+    if (diasPermitidos.includes(diaNombre)) {
+      fechasValidas.push(new Date(d)); // Clonar fecha
+    }
+  }
 
-  const datosGrafica = Object.entries(agrupados).map(([fecha, valor]) => ({
-    x: fecha,
-    y: valor,
-    unit: unidad
-  }));
+  const logsMap = datos.reduce((acc, h) => {
+    const fecha = new Date(h.date).toISOString().split('T')[0]; // yyyy-mm-dd
+    const valor = Number(h.fieldValues?.value || 0);
+    acc[fecha] = (acc[fecha] || 0) + valor;
+    return acc;
+  }, {});
+
+  const datosGrafica = fechasValidas.map(f => {
+    const fechaStr = f.toISOString().split('T')[0];
+    return {
+      x: fechaStr,
+      y: logsMap[fechaStr] || 0,
+      unit: unidad
+    };
+  });
 
   const unidadY = unidad || '';
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
-  const ctx = document.getElementById(canvasId)?.getContext('2d');
+  const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-     // 🎨 Crear un degradado para el color de las barras
   const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  gradient.addColorStop(0, '#ffffff'); // Azul oscuro
-  gradient.addColorStop(1, '#80bdff'); // Azul claro
-  
+  gradient.addColorStop(0, '#ffffff');
+  gradient.addColorStop(1, '#80bdff');
+
   const chart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -155,9 +167,7 @@ function mostrarGrafica(canvasId, datos, dias, unidad) {
             label: context => `${context.parsed.y} ${context.raw.unit || ''}`
           }
         },
-        legend: {
-          display: false
-        },
+        legend: { display: false },
         title: {
           display: true,
           text: 'Actividad del hábito'
@@ -166,12 +176,8 @@ function mostrarGrafica(canvasId, datos, dias, unidad) {
           anchor: 'end',
           align: 'top',
           color: '#333',
-          font: {
-            weight: 'bold'
-          },
-          formatter: function (value) {
-            return `${value.y}`;
-          }
+          font: { weight: 'bold' },
+          formatter: value => `${value.y}`
         }
       },
       scales: {
@@ -181,10 +187,7 @@ function mostrarGrafica(canvasId, datos, dias, unidad) {
             unit: dias === 7 ? 'day' : 'week',
             tooltipFormat: 'dd/MM/yyyy',
           },
-          title: {
-            display: true,
-            text: 'Fecha'
-          }
+          title: { display: true, text: 'Fecha' }
         },
         y: {
           beginAtZero: true,
@@ -196,10 +199,11 @@ function mostrarGrafica(canvasId, datos, dias, unidad) {
       }
     }
   });
-  
-  // Guardar instancia para posible limpieza
-  if (canvas) canvas._chartInstance = chart;
+
+  canvas._chartInstance = chart;
 }
+
+
 
 function renderizarCalendario(datos) {
   const contenedor = document.getElementById('calendarioHabito');

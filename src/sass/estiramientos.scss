@@ -1,7 +1,7 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.grid-opciones{
+.grid-opciones {
     display: grid;
     grid-auto-flow: column;
     //gap: 1rem; /* Espacio entre botones */
@@ -10,40 +10,49 @@
 }
 
 
-.titulo-habito{
-    .imagen-titulo{
+.titulo-habito {
+    .imagen-titulo {
         display: flex;
     }
+
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr; /* columnas: izquierda - centro - derecha */
+    grid-template-columns: 1fr 3fr 1fr;
+    /* columnas: izquierda - centro - derecha */
     justify-content: center;
     align-items: center;
     text-align: center;
-    h1{
+
+    h1 {
         font-size: 2rem;
     }
+
     img {
         width: 50px;
         height: auto;
     }
+
     .contenido-texto {
         flex: 1;
         padding: 0 15px;
     }
 }
-.titulo-info{
+
+.titulo-info {
     display: flex;
     align-items: center;
     text-align: center;
-    h2{
+
+    h2 {
         font-size: 1.5rem;
     }
 }
-.text-advertencia{
+
+.text-advertencia {
     text-size-adjust: small;
     display: none;
     color: rgb(252, 83, 83);
 }
+
 .tab-content {
     background-color: v.$backgroundColor;
     margin-top: 1.5rem;
@@ -76,7 +85,8 @@
     border: 1px solid v.$mainColor-strong;
     border-radius: 1rem;
     text-align: center;
-    p{
+
+    p {
         font-size: 1rem;
     }
 }
@@ -132,19 +142,19 @@
     color: v.$black;
     border: none;
     cursor: pointer;
-  
+
     i {
-      font-size: 24px;
-      color: gray;
-      transition: color 0.3s ease;
+        font-size: 24px;
+        color: gray;
+        transition: color 0.3s ease;
     }
-  
+
     &.selected i {
         color: v.$secondaryColor;
     }
-  }
+}
 
-  .btn-dias{
+.btn-dias {
     background-color: v.$mainColor-low;
     border: 2px solid v.$black;
     border-radius: 0.5rem;
@@ -167,29 +177,30 @@
     }
 }
 
-.resProgresobtn{
+.resProgresobtn {
     padding: 1rem;
 }
 
-.btn-progreso{
+.btn-progreso {
     margin: 0.30rem;
 }
 
-.texto-principal{
+.texto-principal {
     color: v.$black !important;
 }
 
-.texto-alternativo{
+.texto-alternativo {
     color: v.$black !important;
 }
 
-.grupo-iconos{
+.grupo-iconos {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
 }
-.iconos-habitos{
+
+.iconos-habitos {
     color: black;
     margin-right: 10px;
     margin-left: 10px;
@@ -251,16 +262,18 @@
     0% {
         opacity: 0;
     }
+
     50% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
     }
 }
 
 
-.option-semana-mes{
+.option-semana-mes {
     border: 0.2rem solid #009394;
     background-color: #009394;
     padding: 1px;
@@ -274,87 +287,96 @@
 
 /* Hover: cambia de color al pasar el cursor */
 .option-semana-mes:hover {
-    background-color: #e0e0e0; /* Color de fondo al pasar el mouse */
+    background-color: #e0e0e0;
+    /* Color de fondo al pasar el mouse */
     color: #333;
 }
 
 /* Activa: muestra cuál está seleccionada */
 .option-semana-mes.active {
-    background-color: #007bff;  /* Color principal para opción activa */
+    background-color: #007bff;
+    /* Color principal para opción activa */
     color: white;
 }
 
-.btn-graficas, .btn-calendario{
-    i{
+.btn-graficas,
+.btn-calendario {
+    i {
         font-size: 2rem;
     }
 }
 
-.seccion-graficas{
-    h2{
+.seccion-graficas {
+    h2 {
         font-size: 1.5rem;
     }
 }
 
-.seccion-calendario{
-    h2{
+.seccion-calendario {
+    h2 {
         font-size: 1.5rem;
     }
-    p{
+
+    p {
         font-size: 1rem;
     }
 }
 
-.grafica{
-    h2{
+.grafica {
+    h2 {
         font-size: 1.5rem;
     }
 }
 
 .fondo-animado {
-  position: relative;
-  width: 100%;
-  min-height: 100vh; /* Permite crecer si hay más contenido */
-//   background: linear-gradient(-90deg, v.$mainColor-strong, v.$backgroundColor, v.$backgroundColor, v.$mainColor-strong);
-//   animation: animarFondo 15s ease infinite;
-//   background-size: 400% 400%;
-  overflow-x: hidden; /* Solo oculta el scroll horizontal */
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    /* Permite crecer si hay más contenido */
+    //   background: linear-gradient(-90deg, v.$mainColor-strong, v.$backgroundColor, v.$backgroundColor, v.$mainColor-strong);
+    //   animation: animarFondo 15s ease infinite;
+    //   background-size: 400% 400%;
+    overflow-x: hidden;
+    /* Solo oculta el scroll horizontal */
 }
 
 @keyframes animarFondo {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Burbujas */
 .burbuja {
-  position: absolute;
-  bottom: 0;
-  border-radius: 50%;
-  background: v.$mainColor-strong;
-  animation: subirBurbuja 8s linear infinite;
-  z-index: 1;
+    position: absolute;
+    bottom: 0;
+    border-radius: 50%;
+    background: v.$mainColor-strong;
+    animation: subirBurbuja 8s linear infinite;
+    z-index: 1;
 }
 
 @keyframes subirBurbuja {
-  0% {
-    transform: translateY(0) scale(0.5);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) scale(1.2);
-    opacity: 0;
-  }
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+    }
 }
 
-.recuadro{
+.recuadro {
     position: relative;
     margin-top: 3rem;
     border-radius: 1rem;

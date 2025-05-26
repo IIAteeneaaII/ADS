@@ -934,7 +934,8 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 .titulo-habito {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr; /* columnas: izquierda - centro - derecha */
+  grid-template-columns: 1fr 3fr 1fr;
+  /* columnas: izquierda - centro - derecha */
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -1186,17 +1187,20 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 /* Hover: cambia de color al pasar el cursor */
 .option-semana-mes:hover {
-  background-color: #e0e0e0; /* Color de fondo al pasar el mouse */
+  background-color: #e0e0e0;
+  /* Color de fondo al pasar el mouse */
   color: #333;
 }
 
 /* Activa: muestra cuál está seleccionada */
 .option-semana-mes.active {
-  background-color: #007bff; /* Color principal para opción activa */
+  background-color: #007bff;
+  /* Color principal para opción activa */
   color: white;
 }
 
-.btn-graficas i, .btn-calendario i {
+.btn-graficas i,
+.btn-calendario i {
   font-size: 2rem;
 }
 
@@ -1218,8 +1222,10 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 .fondo-animado {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* Permite crecer si hay más contenido */
-  overflow-x: hidden; /* Solo oculta el scroll horizontal */
+  min-height: 100vh;
+  /* Permite crecer si hay más contenido */
+  overflow-x: hidden;
+  /* Solo oculta el scroll horizontal */
 }
 
 @keyframes animarFondo {
@@ -1625,14 +1631,6 @@ ul li ul {
 
 ul li ul li {
   font-size: 15px;
-}
-
-.container-md {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 28px;
-  gap: 10px;
 }
 
 .btn-primary, .btn-secondary {

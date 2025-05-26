@@ -191,7 +191,7 @@ exports.getHabitLogsById = async (req, res) => {
 
     const logs = await habitRepo.getHabitsLogsByHabitId(habitId);
 
-    res.json(logs);
+    res.json({ logs, frequency: habit.frequency });
   } catch (error) {
     console.error('Error al obtener logs del hábito:', error);
     res.status(500).json({ message: 'Error al obtener logs del hábito' });

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Correr</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <%- include('partials/allStyles') %>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
-    <script src="/js/estatusDelHabito.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
+        <script src="/js/estatusDelHabito.js"></script>
 
 </head>
+
 <body>
     <div class="fondo-animado">
 
@@ -27,11 +29,15 @@
                         <img src="/img/gestorhabitos/correr.png" alt="Correr">
                     </div>
                     <div>
-                        <h1><%= habit.name %></h1>
+                        <h1>
+                            <%= habit.name %>
+                        </h1>
                     </div>
                     <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
-                        <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='/GestionarCorrer/<%= habit.id %>';"></i>
-                        <i class="fas fa-trash-alt iconos-habitos" style="cursor: pointer;" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')"></i>
+                        <i class="fas fa-edit iconos-habitos" style="cursor: pointer;"
+                            onclick="location.href='/GestionarCorrer/<%= habit.id %>';"></i>
+                        <i class="fas fa-trash-alt iconos-habitos" style="cursor: pointer;"
+                            onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')"></i>
                     </div>
                 </div>
             </div>
@@ -40,19 +46,18 @@
             <div class="recuadro typing">
                 <div class="grid mb-4">
                     <div class="titulo-info">
-                        <div class="w-100 texto-principal d-flex align-items-center justify-content-center" 
-                            data-bs-toggle="collapse" 
-                            data-bs-target="#infoCollapse" 
-                            aria-expanded="false" 
-                            aria-controls="infoCollapse"
-                            style="cursor: pointer;">
+                        <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
+                            data-bs-toggle="collapse" data-bs-target="#infoCollapse" aria-expanded="false"
+                            aria-controls="infoCollapse" style="cursor: pointer;">
                             <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
                             <h2 class="mb-0 clickable-subrayado">Descripción</h2>
                         </div>
                     </div>
                     <div id="infoCollapse" class="collapse mt-2">
                         <div class="informacion">
-                            <p><%= habit.description %></p>
+                            <p>
+                                <%= habit.description %>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -82,7 +87,9 @@
                     <div class="grid grafica" id="grafica">
                         <div class="tab-pane active" id="u-semana">
                             <h2 class="text-center">Última semana</h2>
-                            <canvas id="graficaSemana"></canvas>
+                            <div style="width: 100%; height: 300px;">
+                                <canvas id="graficaSemana" style="width: 100%; height: 100%;"></canvas>
+                            </div>
                         </div>
                         <div class="tab-pane d-none" id="u-mes">
                             <h2 class="text-center">Último mes</h2>
@@ -103,10 +110,10 @@
                 </div>
 
             </div>
-        
+
         </div>
     </div>
-    
+
 
     <script>
         function confirmarEliminacion(nombre, id) {
@@ -138,4 +145,5 @@
         }
     </script>
 </body>
+
 </html>
