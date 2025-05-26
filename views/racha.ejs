@@ -11,23 +11,18 @@
 <body>
     <div class="container py-4">
 
-        <div class="top-bar">
-            <a onclick="location.href='/inicio';" class="back-arrow">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-            <h4 class="fw-bold">Días de Racha</h4>
-        </div>
+        <%- include('partials/topBar', { title: 'Días de Racha' }) %>
+            <div class="streak-container">
+                <img src="/img/animacion.gif" alt="animación" class="imagen-animada" id="shark">
 
-        <div class="streak-container">
-            <img src="/img/animacion.gif" alt="animación" class="imagen-animada" id="shark">
-
-            <div class="streak-number" id="streakDays">0</div>
-            <div class="streak-label">¡Días cumpliendo tus hábitos!</div>
-
-            <div class="message-box" id="message">
-                Cargando...
+                <div class="streak">
+                    <div class="streak-number" id="streakDays">0</div>
+                    <div class="streak-label">¡Días cumpliendo tus hábitos!</div>
+                </div>
+                <div class="message-box" id="message">
+                    Cargando...
+                </div>
             </div>
-        </div>
     </div>
     <script src="/js/racha.js"></script>
 </body>

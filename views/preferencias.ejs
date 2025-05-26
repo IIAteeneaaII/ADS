@@ -1,38 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title><%= tituloPagina || 'Selecciona tus intereses' %></title>
+    <title>
+        <%= tituloPagina || 'Selecciona tus intereses' %>
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('partials/allStyles') %>
     <%- include('partials/allScripts') %>
     <script src="/js/preferencias.js"></script>
 </head>
+
 <body>
     <div class="page_preferencias">
-        <div class="container_pr w-100">            
-            <h1 class="fw-bold"><%= tituloPrincipal || 'Preferencias' %></h1>
+        <div class="container_pr w-100">
+            <% if (!rutaOmitir) { %>
+            <%- include('partials/topBar', { title: '' }) %>
+            <% } %>
+            <h1 class="fw-bold">
+                <%= tituloPrincipal || 'Preferencias' %>
+            </h1>
 
-            <p><%= mensajeIntro || 'Para personalizar tus recomendaciones de manera óptima, ¡cuéntanos un poco sobre tus gustos e intereses!' %></p>
+            <p>
+                <%= mensajeIntro || 'Para personalizar tus recomendaciones de manera óptima, ¡cuéntanos un poco sobre tus gustos e intereses!'%>
+            </p>
 
-<% if (rutaOmitir) { %>
-    <div class="omitir">
-        <a class="link" href="<%= rutaOmitir %>">Omitir</a>
-    </div>
-<% } %>
+            <% if (rutaOmitir) { %>
+                <div class="omitir">
+                    <a class="link" href="<%= rutaOmitir %>">Omitir</a>
+                </div>
+                <% } %>
 
-            
-            <div class="grid_pref">
-                <%- include('partials/intereses', { intereses }) %>
-            </div>
-    
-            <div class="text-center mt-4">
-                <div class="counter mb-3" id="counter">Seleccionado 0/3</div>
-                <button class="button btn-primary px-4" id="nextBtn" disabled>Siguiente</button>
-            </div>
+
+                    <div class="grid_pref">
+                        <%- include('partials/intereses', { intereses }) %>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <div class="counter mb-3" id="counter">Seleccionado 0/3</div>
+                        <button class="button btn-primary px-4" id="nextBtn" disabled>Siguiente</button>
+                    </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/flashMessage.js"></script>
 </body>
+
 </html>

@@ -126,20 +126,21 @@ footer {
 }
 
 .btn-tertiary {
-    background-color: v.$mainColor-strong;
-    border: none;
-    border-radius: 5rem;
-    padding: 1rem;
+    background-color: transparent;
+    border: outset 2px v.$mainColor-strong;
+    border-radius: 20px 20px 50px 50px; 
+
+    padding: 0.1rem;
     color: v.$white;
 
     &:hover {
-        transform: scale(1.02);
-        background-color: v.$white;
+        transform: scale(1.1);
+        background-color: v.$secondaryColor-strong;;
         color: v.$secondaryColor;
     }
 
     &:focus {
-        // background-color: v.$secondaryColor-strong;
+        background-color: v.$secondaryColor-strong;
         border: none;
     }
 }
@@ -151,7 +152,6 @@ footer {
 }
 
 .just-validate-error-field {
-
     display: block;
 }
 .title{

@@ -7,7 +7,12 @@
   width: 100%;
   animation: fadeIn 1s ease-in; //anima al tiburon para q crezca en cuanto se entre a la pnatalla
 }
-
+.streak{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 .imagen-animada {
   width: 240px;
   height: auto;
@@ -26,14 +31,15 @@
 }
 
 .streak-label {
-  font-size: 26px;
+  font-size: 20px;
   color: v.$colorPrimariBtn;
   font-weight: bold;
   font-family: v.$special;
 }
 
 .message-box {
-  background-color: v.$colorPrimariBtn;
+  border: outset v.$mainColor-strong;
+  text-align: center;
   padding: 20px;
   border-radius: 12px;
   margin-top: 20px;
@@ -41,7 +47,6 @@
   color: v.$black;
   font-family: v.$text;
 }
-
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(30px); }

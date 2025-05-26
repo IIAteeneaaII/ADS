@@ -12,21 +12,10 @@
 </head>
 <body>
     <div class="container py-4">
-        <div class="top-bar"> 
-            <a href="javascript:history.back()" class="back-arrow">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-            <h1 class="fw-bold">Privacidad en Fin It</h1>
-        </div>
-
-        <div class="contenedor-scroll-info">
-
-            <p>En Fin It, la privacidad y seguridad de tu información son nuestra mayor prioridad.<br><br>
-
-                Tus datos son utilizados exclusivamente para brindarte recomendaciones personalizadas y ayudarte a alcanzar tus metas de salud. Nunca los compartimos con terceros ni los usamos con fines comerciales.<br><br>
-                
-                Contamos con medidas estrictas de protección de datos, y tú tienes el control total sobre lo que decides compartir y por cuánto tiempo.
-            </p>
+    <%- include('partials/topBar', { title: 'Privacidad en Fin It' }) %>
+    <div class="separator my-3"></div>
+        <div class="priv">
+            <img src="/img/sharki/privacidad.png" alt="Tiburon Hablando" class="img-fluid">
         </div>
     </div>
 </body>

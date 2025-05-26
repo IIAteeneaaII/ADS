@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%- include('partials/allStyles') %>
-  <title>Inicio</title>
+    <title>Inicio</title>
 </head>
 
 
@@ -50,12 +50,15 @@
           <div class="state">
             <p>¿Cómo te sientes el día de hoy?</p>
             <button class="btn-tertiary" onclick="location.href='/estadodeAnimo';">
-              <i class="fa-solid fa-face-meh-blank emoji" id="emoji-inicio"></i>
+              <span class="emoji" id="emoji-inicio">😄</span>
             </button>
+
+
           </div>
         </div>
         <div class="habit-toggle d-flex justify-content-center my-3">
           <button class="habit-tab" onclick="location.href='/gestionarMisHabitos'">Mis hábitos</button>
+            <div class="vertical-divider"></div>
           <button class="habit-tab" onclick="location.href='/gestionarHabitos'">
             Crear nuevo hábito
           </button>
@@ -66,7 +69,7 @@
         </div>
         <!-- Sección de hábitos -->
         <div class="habits_section mt-4" id="seccion-de-habitos">
-          
+
         </div>
       </div>
   </div>
@@ -94,12 +97,12 @@
 
   <!-- Bootstrap JS + lógica -->
   <%- include('partials/allScripts') %>
-  <script src="/js/inicio.js"></script>
-  <script>
-    document.getElementById('confirmarLogout').addEventListener('click', () => {
-      window.location.href = '/';
-    });
-  </script>
+    <script src="/js/inicio.js"></script>
+    <script>
+      document.getElementById('confirmarLogout').addEventListener('click', () => {
+        window.location.href = '/';
+      });
+    </script>
 </body>
 
 </html>

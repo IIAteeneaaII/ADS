@@ -122,18 +122,19 @@ footer {
 }
 
 .btn-tertiary {
-  background-color: #1e62af;
-  border: none;
-  border-radius: 5rem;
-  padding: 1rem;
+  background-color: transparent;
+  border: outset 2px #1e62af;
+  border-radius: 20px 20px 50px 50px;
+  padding: 0.1rem;
   color: #ffffff;
 }
 .btn-tertiary:hover {
-  transform: scale(1.02);
-  background-color: #ffffff;
+  transform: scale(1.1);
+  background-color: #2582eb;
   color: #bfddfe;
 }
 .btn-tertiary:focus {
+  background-color: #2582eb;
   border: none;
 }
 
@@ -285,6 +286,13 @@ input.check {
   border-radius: 50%;
 }
 
+.vertical-divider {
+  width: 2px;
+  border: outset 1px #1e62af;
+  align-self: stretch;
+  background-color: #1e62af;
+}
+
 .day_number {
   display: flex;
   flex-direction: column;
@@ -296,11 +304,11 @@ input.check {
   font-weight: bold;
 }
 .day_number .fecha_num {
+  border-radius: 20px 50px 20px 50px;
   margin-top: 0.25rem;
   padding: 0.3rem 0.75rem;
   color: #ffffff;
   background-color: #1e62af;
-  border-radius: 1rem;
 }
 
 .state {
@@ -519,9 +527,9 @@ input.check {
 
 .habit-toggle {
   background-color: #ffffff;
+  border: outset 2px #1e62af;
   border-radius: 9999px;
   display: inline-flex;
-  padding: 2px;
   margin: 1rem auto;
   position: relative;
   justify-content: space-between;
@@ -961,9 +969,6 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   align-items: center;
   text-align: center;
 }
-.titulo-info h2 {
-  font-size: 1.5rem;
-}
 
 .text-advertencia {
   text-size-adjust: small;
@@ -997,13 +1002,10 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 .progreso,
 .informacion {
-  border: 1px solid #1e62af;
-  border-radius: 1rem;
+  margin: 2rem 0 2rem 0;
+  border: 2px solid #1e62af;
+  border-radius: 0.8rem;
   text-align: center;
-}
-.progreso p,
-.informacion p {
-  font-size: 1rem;
 }
 
 .input-fecha {
@@ -1109,7 +1111,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   color: black;
   margin-right: 10px;
   margin-left: 10px;
-  font-size: 1.75rem;
+  font-size: 1.3rem;
 }
 
 .calendario-grid {
@@ -1202,18 +1204,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 .btn-graficas i,
 .btn-calendario i {
-  font-size: 2rem;
-}
-
-.seccion-graficas h2 {
-  font-size: 1.5rem;
-}
-
-.seccion-calendario h2 {
-  font-size: 1.5rem;
-}
-.seccion-calendario p {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .grafica h2 {
@@ -1779,6 +1770,13 @@ h1.actualizar {
   animation: fadeIn 1s ease-in;
 }
 
+.streak {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .imagen-animada {
   width: 240px;
   height: auto;
@@ -1797,14 +1795,15 @@ h1.actualizar {
 }
 
 .streak-label {
-  font-size: 26px;
+  font-size: 20px;
   color: #60a9fa;
   font-weight: bold;
   font-family: "Handlee", cursive;
 }
 
 .message-box {
-  background-color: #60a9fa;
+  border: outset #1e62af;
+  text-align: center;
   padding: 20px;
   border-radius: 12px;
   margin-top: 20px;
