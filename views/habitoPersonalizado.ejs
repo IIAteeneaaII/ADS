@@ -11,6 +11,7 @@
 </head>
 
 <body class="form_habitos">
+  <% const icons = ['personalizado.png', 'bienestar.png', 'mental.png', 'movimientoCorporal.png']; %>
   <div class="container py-4">
     <%- include('partials/topBar', { title: 'Hábito Personalizado' }) %>
 
@@ -46,27 +47,31 @@
             value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
         </div>
 
-        <div class="mb-3">
-          <label class="form-label">Selecciona un icono*</label>
-          <div class="dropdown">
-            <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button"
-              id="iconDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-              <img id="selectedIconPreview" src="/img/tiposHabitos/<%= habit?.icon || 'personalizado.png' %>"
-                alt="Icono seleccionado" style="width: 24px; height: 24px; margin-right: 8px;">
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="iconDropdown" id="iconDropdownMenu">
-              <% const icons=['personalizado.png', 'bienestar.png' , 'mental.png' , 'movimientoCorporal.png' ]; %>
-                <% icons.forEach(icon=> { %>
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center icon-option" href="#" data-icon="<%= icon %>">
-                      <img src="/img/tiposHabitos/<%= icon %>" alt="<%= icon %>"
-                        style="width: 24px; height: 24px; margin-right: 8px;">
-                      <%= icon.replace('.png', '' ) %>
-                    </a>
-                  </li>
-                  <% }); %>
-            </ul>
-          </div>
+<div class="mb-3">
+  <input type="hidden" name="frequency[type]" value="weekly">
+  <label class="form-label">Días de la semana*</label>
+  <div class="d-flex flex-wrap gap-2">
+    <% const days = habit?.frequency?.days || []; %>
+    <% const allDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']; %>
+    <% const dayTranslations = {
+         monday: 'Lun',
+         tuesday: 'Mar',
+         wednesday: 'Mie',
+         thursday: 'Jue',
+         friday: 'Vie',
+         saturday: 'Sab',
+         sunday: 'Dom'
+       }; %>
+    <% allDays.forEach(day => { %>
+      <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>" id="<%= day %>"
+        <%= days.includes(day) ? 'checked' : '' %>>
+      <label class="btn btn-outline-secondary rounded-pill <%= days.includes(day) ? 'dia_selected' : '' %>"
+        for="<%= day %>">
+        <%= dayTranslations[day] %>
+      </label>
+    <% }); %>
+  </div>
+</div> 
 
         <div class="mb-3">
           <label class="form-label" for="reminder">¿Deseas recibir notificaciones?</label>
@@ -85,8 +90,7 @@
                 alt="Icono seleccionado" style="width: 24px; height: 24px; margin-right: 8px;">
             </button>
             <ul class="dropdown-menu" aria-labelledby="iconDropdown" id="iconDropdownMenu">
-              <% const icons=['personalizado.png', 'bienestar.png' , 'mental.png' , 'movimientoCorporal.png' ]; %>
-                <% icons.forEach(icon=> { %>
+              <% icons.forEach(icon => { %>
                   <li>
                     <a class="dropdown-item d-flex align-items-center icon-option" href="#" data-icon="<%= icon %>">
                       <img src="/img/tiposHabitos/<%= icon %>" alt="<%= icon %>"
@@ -94,7 +98,7 @@
                       <%= icon.replace('.png', '' ) %>
                     </a>
                   </li>
-                  <% }); %>
+              <% }); %>
             </ul>
           </div>
           <input type="hidden" name="icon" id="iconInput" value="<%= habit?.icon || 'personalizado.png' %>">
@@ -126,22 +130,22 @@
       document.getElementById('form-habito').addEventListener('submit', async function (e) {
         e.preventDefault();
 
-          const formData = new FormData(this);
-  const id = document.getElementById('habitId').value;
+        const formData = new FormData(this);
+        const id = document.getElementById('habitId').value;
 
-  const startDateRaw = formData.get('startDate');
-  let startDateISO = null;
+        const startDateRaw = formData.get('startDate');
+        let startDateISO = null;
 
-  if (startDateRaw) {
-    const startDateObj = new Date(startDateRaw);
-    if (!isNaN(startDateObj)) {
-      startDateISO = startDateObj.toISOString();
-    } else {
-      return alert('La fecha de inicio no es válida.');
-    }
-  } else {
-    return alert('Por favor selecciona una fecha de inicio.');
-  }
+        if (startDateRaw) {
+          const startDateObj = new Date(startDateRaw);
+          if (!isNaN(startDateObj)) {
+            startDateISO = startDateObj.toISOString();
+          } else {
+            return alert('La fecha de inicio no es válida.');
+          }
+        } else {
+          return alert('Por favor selecciona una fecha de inicio.');
+        }
 
         const data = {
           name: formData.get('name'),
@@ -154,7 +158,7 @@
           startDate: new Date(formData.get('startDate')).toISOString(),
           fieldValues: {
             unit: formData.get('fieldValues[unit]'),
-            value: formData.get('fieldValues[value]')
+            value: formData.get('fieldValues[value]'),
           },
           reminder: formData.get('reminder') === 'yes'
         };
