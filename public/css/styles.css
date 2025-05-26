@@ -49,10 +49,11 @@ footer {
 }
 
 .separator {
-  border-top: 2px solid #bfddfe;
-  background-color: #bfddfe;
+  background: linear-gradient(90deg, #1e62af 0%, #173454 100%);
+  border-radius: 16px 16px 0 0;
   margin: 1rem 0;
   width: 100%;
+  height: 4px;
 }
 
 .top-bar {
@@ -1400,6 +1401,17 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+/* quienes somos flechas */
+.h3-flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.h3-flex i.fas {
+  margin-left: auto;
 }
 
 .emocion-container {
