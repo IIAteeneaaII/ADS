@@ -105,3 +105,14 @@
     justify-content: center;
     flex-shrink: 0;
 }
+
+
+/* quienes somos flechas */
+.h3-flex {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.h3-flex i.fas {
+    margin-left: auto;
+}

@@ -71,6 +71,12 @@ function renderHabits(habits) {
                 window.location.href = `/SaltarCuerda/${habito.id}`;
             } else if (habito.icon?.includes('personalizado')) {
                 window.location.href = `/perso/${habito.id}`;
+            } else if (habito.icon?.includes('bienestar')) {
+                window.location.href = `/perso/${habito.id}`;
+            } else if (habito.icon?.includes('mental')) {
+                window.location.href = `/perso/${habito.id}`;
+            } else if (habito.icon?.includes('movimiento')) {
+                window.location.href = `/perso/${habito.id}`;
             } else {
                 Swal.fire({
                     icon: 'warning',
