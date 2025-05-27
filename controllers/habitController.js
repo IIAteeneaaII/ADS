@@ -15,6 +15,13 @@ exports.createCustomHabit = async (req, res) => {
 
   try {
     const normalizedName = name.trim().toLowerCase();
+    const habits = await habitRepo.getAllUserHabits(userId);
+    // res.status(201).json({ message: 'pRUEBA', habit34534: habits[8] });
+
+    if(habits.length>=8)
+    {
+      return res.status(400).json({ message: 'No puedes tener mas de 8 habitos registrados al mismo tiempo.' });
+    }
     const existingHabit = await habitRepo.findUserHabitByName(userId, normalizedName);
     if (existingHabit) {
       // setFlashMessage(res, 'Ya tienes un hábito registrado con ese nombre', 'error');
