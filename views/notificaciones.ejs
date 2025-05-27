@@ -14,16 +14,16 @@
             <a onclick="location.href='/inicio';" class="back-arrow">
                 <i class="fas fa-chevron-left"></i>
             </a>
-            <h4 class="fw-bold">Notificaciones</h4>
+            <h1 class="fw-bold">Notificaciones</h1>
         </div>
+        <div class="separator my-2"></div>
         <div class="container-md pt-2">
-            <div class="habit-card mt-4" id="seccion-de-notificaciones">
+            <div class="notif-card mt-4" id="seccion-de-notificaciones">
                 <% if (notifications.length===0) { %>
                     <p>Hmm, no hay ninguna notificación por el momento.</p>
                     <% } else { %>
                         <% notifications.forEach(notification=> { %>
-                            <div
-                                class="notification-item mb-3 p-3 border rounded <%= notification.isRead ? 'bg-light' : 'bg-white' %>">
+                            <div class="notification-item mb-3 p-3 border rounded <%= notification.isRead ? 'bg-light' : 'bg-white' %>">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <strong>
                                         <%= notification.title %>
@@ -43,7 +43,7 @@
 
         </div>
     </div>
-
+    <script src="/js/notificaciones.js"></script>
     <!-- Bootstrap JS -->
     <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,0 +1,41 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.notif-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  color: #1f2421;
+  position: relative;
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        scale: 10%;
+    }
+    to {
+        opacity: 1;
+        scale: 100%;
+    }
+}
+.notification-item {
+    view-timeline-name: --reveal;
+    animation-name: show;
+    animation-fill-mode: both;
+    animation-timeline: --reveal;
+    animation-range: entry 25% cover 50%;
+    margin: 5px;
+}
+
+#seccion-de-notificaciones {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-bottom: 7rem; 
+}
+
+.notification-item.read {
+    background-color: #93c5fd !important;
+    transition: background-color 6s;
+}
