@@ -1,32 +1,40 @@
 const diasContainer = document.getElementById("diasCalendario");
 const nombreMes = document.getElementById("nombreMes");
 
-const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio",
-               "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+const meses = [
+  "enero", "febrero", "marzo", "abril", "mayo", "junio",
+  "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+];
 
 let fechaActual = new Date();
 
 function renderizarCalendario() {
   const year = fechaActual.getFullYear();
   const mes = fechaActual.getMonth();
-  const primerDia = new Date(year, mes, 1).getDay();
-  const diasEnMes = new Date(year, mes + 1, 0).getDate();
+
+  const primerDiaSemana = new Date(year, mes, 1).getDay(); // Día de la semana (0 = domingo)
+  const diasEnMes = new Date(year, mes + 1, 0).getDate(); // Días totales del mes
 
   diasContainer.innerHTML = "";
   nombreMes.textContent = `${meses[mes]} de ${year}`;
 
-  for (let i = 0; i < primerDia; i++) {
+  // Espacios vacíos antes del primer día del mes
+  for (let i = 0; i < primerDiaSemana; i++) {
     const espacio = document.createElement("div");
     espacio.classList.add("dia-vacio");
     diasContainer.appendChild(espacio);
   }
 
+  // Días del mes
   for (let dia = 1; dia <= diasEnMes; dia++) {
     const diaDiv = document.createElement("div");
     diaDiv.classList.add("dia");
 
+    // Construir fecha YYYY-MM-DD
     const diaStr = `${year}-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
-    const emocion = moodsFromServer[diaStr];  // Acceder directamente al objeto usando la fecha
+
+    // Obtener emoción si existe
+    const emocion = moodsFromServer[diaStr];
 
     const emojiSpan = document.createElement("span");
     emojiSpan.classList.add("emoji");
@@ -36,6 +44,7 @@ function renderizarCalendario() {
     numeroSpan.classList.add("numero-dia");
     numeroSpan.textContent = dia;
 
+    // Marcar hoy
     const hoy = new Date();
     const esHoy =
       dia === hoy.getDate() &&
@@ -48,7 +57,6 @@ function renderizarCalendario() {
 
     diaDiv.appendChild(emojiSpan);
     diaDiv.appendChild(numeroSpan);
-
     diasContainer.appendChild(diaDiv);
   }
 }
@@ -70,15 +78,4 @@ function cambiarMes(valor) {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderizarCalendario();
-
-  const btnSiguiente = document.querySelector(".btn-next-mes");
-  const btnAnterior = document.querySelector(".btn-prev-mes");
-
-  if (btnSiguiente) {
-    btnSiguiente.addEventListener("click", () => cambiarMes(1));
-  }
-
-  if (btnAnterior) {
-    btnAnterior.addEventListener("click", () => cambiarMes(-1));
-  }
 });
