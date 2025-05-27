@@ -19,8 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 botonGuardar.addEventListener('click', async function () {
     if (emocionSeleccionada) {
-      const hoy = new Date();
-      const fecha = hoy.toISOString().split('T')[0]; // YYYY-MM-DD
+      // Crear fecha a medianoche UTC real (sin offset de zona horaria)
+const hoy = new Date();
+const fechaUTC = new Date(Date.UTC(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()));
+const fecha = fechaUTC.toISOString();
 
       // Mapeo de emoción a enum
       const emocionesMap = {
