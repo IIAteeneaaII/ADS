@@ -123,15 +123,13 @@ function truncateDateToUTC(dateInput) {
 
 exports.findMoodByUserAndDate = async (userId, date) => {
   const normalizedDate = truncateDateToUTC(date);
-
- 
-  const isoDate = normalizedDate.toISOString(); 
+  console.log("Buscando mood de usuario", userId, "para la fecha:", normalizedDate.toISOString());
 
   return await prisma.mood.findUnique({
     where: {
       userId_date: {
         userId: userId,
-        date: isoDate,
+        date: normalizedDate,
       }
     }
   });

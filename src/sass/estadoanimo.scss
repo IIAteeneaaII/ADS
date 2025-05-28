@@ -45,7 +45,7 @@
   //calendario de emociones
 
   .calendario-container {
-    background: v.$mainColor-low;
+    background: v.$white;
     color: black;
     border-radius: 20px;
     padding: 1rem 2rem;
@@ -76,7 +76,7 @@
     min-height: 60px; 
   }
   .dia:hover {
-    background-color: v.$secondaryColor-strong;
+    background-color: v.$mainColor-low; 
     cursor: pointer;
   }
 
@@ -112,19 +112,23 @@
   
   .btn-prev-mes,
   .btn-next-mes {
-    font-size: 1.2rem;
+    font-size: 4.5rem;
+    color: v.$mainColor-low; 
     padding: 0.5rem 1rem;
     border: none;
-    background: #0061705f;
-    border-radius: 8px;
-    cursor: pointer;
+    background-color: transparent;
   }
-  
+
+    .nombreMes{
+    margin-top: 10%;
+    font-size: 1.2rem;
+    text-align: center;
+    }
+
   .dia-hoy {
-    /*border: 2px solid v.$secondaryColor-strong;
-    background-color: v.$gray-low;*/
+    background-color: v.$secondaryColor;
     font-weight: bold;
-    box-shadow: 0 0 5px rgba(26, 43, 61, 0.5);
+    box-shadow: 0 0 5px v.$mainColor-low;
     transition: all 0.3s ease;
   }
   

@@ -17,6 +17,12 @@
     border-radius: 50%;
 }
 
+.vertical-divider {
+    width: 2px;
+    border: outset 1px v.$mainColor-strong;
+    align-self: stretch;
+    background-color: v.$mainColor-strong;
+}
 
 .day_number {
     display: flex;
@@ -30,11 +36,12 @@
     }
 
     .fecha_num {
+        border-radius: 20px 50px 20px 50px;
         margin-top: 0.25rem;
         padding: 0.3rem 0.75rem;
         color: v.$white;
         background-color: v.$mainColor-strong;
-        border-radius: 1rem;
+        // border-radius: 1rem;
     }
 }
 
@@ -237,7 +244,7 @@
 .logout-btn {
     position: relative;
     width: 100%;
-
+    color: darken(red, 10%);
     i {
         position: absolute;
         left: 1rem;
@@ -245,10 +252,6 @@
         transform: translateY(-50%);
         width: 1.2rem;
         text-align: center;
-    }
-
-    &:hover {
-        color: darken(red, 10%);
     }
 }
 
@@ -273,10 +276,11 @@
 }
 
 .habit-toggle {
-    background-color: v.$white; // más suave
+    background-color: v.$white;
+    border: outset 2px v.$mainColor-strong;
     border-radius: 9999px;
     display: inline-flex;
-    padding: 2px;
+    // padding: 2px;
     margin: 1rem auto;
     position: relative;
     justify-content: space-between;
@@ -317,9 +321,11 @@
         }
     }
 }
-.habits_section{
+
+.habits_section {
     text-align: center;
 }
+
 .habit-icon {
     width: 40px;
     height: 40px;

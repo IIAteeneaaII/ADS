@@ -37,6 +37,11 @@ app.get('/Registro', (req, res) => {
     const { error } = req.query;
     res.render('registro', { error });
 });
+
+app.get('/Bienvenida', authMiddleware, (req, res) => {
+    res.render('bienvenida');
+});
+
 app.get('/OlvidarContrasena', (req, res) => {
     res.render('olvidarContrasena');
 });

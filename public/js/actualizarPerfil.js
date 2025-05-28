@@ -23,10 +23,13 @@ btnEditar.addEventListener("click", () => {
 btnGuardar.addEventListener("click", async () => {
   const nuevoNombre = inputNombre.value.trim();
   const errorMsg = document.getElementById("nombreError");
+  const nombreValido = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{6,}$/.test(nuevoNombre);
+
 
   iconoCamara.classList.add("d-none"); // se oculta la cámara
 
-  if (!nuevoNombre) {
+  if (!nombreValido) {
+    errorMsg.textContent = "Debe tener al menos 6 caracteres, solo se permiten letras y números (sin símbolos).";
     errorMsg.classList.remove("d-none");
     return;
   } else {

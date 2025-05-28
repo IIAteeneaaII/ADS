@@ -15,7 +15,7 @@
       <a href="/inicio" class="back-arrow">
           <i class="fas fa-chevron-left"></i>
       </a>
-      <h1 class="fw-bold">Actualizar perfil</h1>
+      <h1 class="fw-bold">Mi perfil</h1>
     </div>
     <div class="separator my-2"></div>
 
@@ -36,13 +36,21 @@
     </div>
 
     <div class="mb-3 perfil ms-3">
-      <h2><br>Mi perfil</h2>
+      <h4 style="text-align: center;"><br>Datos</h4>
+      <!-- Nombre del usuario -->
       <label for="nombreUsuario">Tu nombre:</label>
       <div class="position-relative d-flex flex-column">
         <span id="nombreUsuario" class="nombreColor"><%= user.userName %></span>
         <input type="text" id="inputNombreUsuario" class="form-control d-none mb-2" style="width: auto;">
         <small id="nombreError" class="text-danger d-none">El nombre no puede estar vacío</small>
-        <div class="d-flex justify-content-center mt-5">
+        <!-- Correo del usuario (solo visualización) -->
+        <label for="correoUsuario" class="mt-3">Tu correo:</label>
+        <div>
+          <span id="correoUsuario" class="nombreColor text-muted"><%= user.email %></span>
+        </div>
+        <p style="margin-top: 3rem; text-align: center;">Presiona el boton de "Editar perfil" para actualizar tu foto y nombre</p>
+        <!-- Botones -->
+        <div class="d-flex justify-content-center">
           <button id="btnEditar" class="btn btn-sm btn-secondary">Editar perfil</button>
           <button id="btnGuardar" class="btn btn-sm btn-primary d-none">Guardar</button>
         </div>
