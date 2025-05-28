@@ -2,6 +2,8 @@ const nombreElemento = document.getElementById('nombreUsuario');
 const inputNombre = document.getElementById("inputNombreUsuario");
 const btnEditar = document.getElementById("btnEditar");
 const btnGuardar = document.getElementById("btnGuardar");
+const btnCancelar = document.getElementById("btnCancelar");
+
 const fotoInput = document.getElementById("fotoInput");
 const imagenPerfil = document.querySelector(".perfil-foto");
 const iconoCamara = document.querySelector('.icono-camara');
@@ -17,7 +19,21 @@ btnEditar.addEventListener("click", () => {
 
   btnEditar.classList.add("d-none");
   btnGuardar.classList.remove("d-none");
+  btnCancelar.classList.remove("d-none");
   editando = true;
+});
+
+btnCancelar.addEventListener("click", () => {
+  // Restaurar estado original
+  inputNombre.classList.add("d-none");
+  nombreElemento.classList.remove("d-none");
+  iconoCamara.classList.add("d-none");
+  btnEditar.classList.remove("d-none");
+  btnGuardar.classList.add("d-none");
+  btnCancelar.classList.add("d-none");
+  editando = false;
+  // Limpiar errores
+  document.getElementById("nombreError").classList.add("d-none");
 });
 
 btnGuardar.addEventListener("click", async () => {
@@ -86,15 +102,15 @@ async function actualizarPerfil(nombre, foto) {
 
       nuevaFoto = null;
       editando = false;
-
       Swal.fire({
-        icon: 'success',
         title: '¡Perfil actualizado!',
         text: 'Los cambios se guardaron correctamente.',
+        imageUrl: '/img/sharki/feliz.png',
         confirmButtonText: 'Aceptar',
         customClass: { confirmButton: 'btn btn-primary' },
         buttonsStyling: false
       });
+
     } else {
       throw new Error(result.message || 'No se pudo actualizar el perfil');
     }
