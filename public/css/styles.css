@@ -222,15 +222,14 @@ main h2 {
 }
 
 .form-control {
+  background-color: #ffffff;
   border-radius: 0.5rem;
   padding: 0.75rem;
   border: 1px solid #bfddfe;
   color: #1f2421;
 }
 .form-control:focus {
-  background-color: #ebfcff !important;
   border-color: #bfddfe;
-  box-shadow: none;
   outline: none;
 }
 
@@ -1824,6 +1823,45 @@ h1.actualizar {
 }
 .form-habito .days-week {
   justify-content: center;
+}
+
+.form-control:focus {
+  background-color: #ffffff;
+  border-color: #1e62af;
+  box-shadow: 0 0 0 0.2rem rgba(147, 197, 253, 0.25);
+}
+
+.rs-outer,
+.rs-border {
+  border-color: #21bfd7;
+}
+
+.rs-bg-color {
+  background-color: #ebfcff;
+}
+
+.rs-range-color {
+  background-color: rgba(33, 191, 215, 0.5019607843) !important;
+  /* color del rango seleccionado */
+  border-color: rgba(33, 192, 215, 0.5019607843) !important;
+}
+
+.rs-path-color {
+  background-color: #fff !important;
+}
+
+.rs-handle {
+  background-color: #93c5fd !important;
+  border: 2px solid #1e62af !important;
+}
+
+.rs-tooltip {
+  font-weight: bolder;
+  color: #000;
+  background: transparent;
+  /* opcional: transparente si quieres manejarlo tú */
+  border: none;
+  font-size: 18px;
 }
 
 .streak-container {

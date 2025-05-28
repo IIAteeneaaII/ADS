@@ -1,0 +1,35 @@
+<% const habitCategories={ fisicos1: ['Correr', 'Andar en Bicicleta' ], fisicos2: ['Saltar la Cuerda'], leer:
+    ['Lectura'], hidratacion: ['Hidratación'], musica: ['Escuchar Música Relajante'], cuidado: ['Cuidado de la Piel'],
+    estiramientos: ['Estiramientos Matutinos'] }; %>
+    <% if (habitCategories.fisicos1.includes(habitName) ) { %>
+        <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>>minutos</option>
+        <option value="hrs" <%=habit && habit.fieldValues.unit==='hrs' ? "selected" : "" %>>horas</option>
+        <option value="km" <%=habit && habit.fieldValues.unit==='km' ? "selected" : "" %>>kilómetros</option>
+        <% } else if (habitCategories.fisicos2.includes(habitName)) { %>
+            <option value="saltos" <%=habit && habit.fieldValues.unit==='saltos' ? "selected" : "" %>>saltos</option>
+            <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>>minutos</option>
+            <% } else if (habitCategories.hidratacion.includes(habitName)){ %>
+                <option value="vasos" <%=habit && habit.fieldValues.unit==='vasos' ? "selected" : "" %>>vasos</option>
+                <% } else if (habitCategories.leer.includes(habitName)){ %>
+                    <option value="paginas" <%=habit && habit.fieldValues.unit==='paginas' ? "selected" : "" %>>paginas
+                    </option>
+                    <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>>minutos</option>
+                    <% } else if (habitCategories.musica.includes(habitName)){ %>
+                        <option value="canciones" <%=habit && habit.fieldValues.unit==='canciones' ? "selected" : "" %>
+                            >canciones</option>
+                        <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>>minutos
+                        </option>
+                        <% } else if (habitCategories.cuidado.includes(habitName)){ %>
+                            <option value="rutinas" <%=habit && habit.fieldValues.unit==='rutinas' ? "selected" : "" %>
+                                >rutinas</option>
+                            <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>>minutos
+                            </option>
+                            <% } else if (habitCategories.estiramientos.includes(habitName)){ %>
+                                <option value="ejercicios" <%=habit && habit.fieldValues.unit==='ejercicios'
+                                    ? "selected" : "" %>>ejercicios</option>
+                                <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>
+                                    >minutos</option>
+                                <% } else { %>
+                                    <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>
+                                        >minutos</option>
+                                    <% } %>

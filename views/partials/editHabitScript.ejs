@@ -17,9 +17,13 @@
                 });
 
                 if (response.ok) {
-                    Swal.fire('Eliminado', 'El hábito ha sido eliminado', 'success').then(() => {
-                        window.location.href = '/GestionarMisHabitos';
-                    });
+                    mostrarAlerta({
+    title: 'Eliminado',
+    text: 'El hábito ha sido eliminado',
+    imageUrl: '/img/sharki/feliz.png', // o la imagen que prefieras
+    redirectUrl: '/GestionarMisHabitos',
+    btnText: 'Aceptar'
+});
                 } else {
                     Swal.fire('Error', 'No se pudo eliminar el hábito', 'error');
                 }
