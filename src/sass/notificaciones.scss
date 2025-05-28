@@ -2,12 +2,14 @@
 @use 'base/mixins' as m;
 
 .notif-card {
-  background-color: #ffffff;
+  background-color: v.$backgroundColor;
   border-radius: 10px;
   color: #1f2421;
   position: relative;
   transition: box-shadow 0.3s;
   cursor: pointer;
+  width: 100%;
+
 }
 
 @keyframes show {
