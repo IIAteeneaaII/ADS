@@ -145,9 +145,10 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia) {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  gradient.addColorStop(0, '#ffffff');
-  gradient.addColorStop(1, '#80bdff');
+const getDataColors = opacity => {
+    const colors = ['#7448c2', '#21c0d7', '#d99e2b', '#cd3a81', '#9c99cc', '#e14eca', '#ffffff', '#ff0000', '#d6ff00', '#0038ff']
+    return colors.map(color => opacity ? `${color + opacity}` : color)
+}
 
   const chart = new Chart(ctx, {
     type: 'bar',
@@ -155,8 +156,11 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia) {
       datasets: [{
         label: `Duración (${unidadY})`,
         data: datosGrafica,
-        backgroundColor: gradient,
-        borderRadius: 8
+        backgroundColor: getDataColors(80)[1],
+        borderColor: getDataColors()[1],
+        borderWidth: 2,
+        fill: true,
+        pointBorderWidth: 5
       }]
     },
     options: {

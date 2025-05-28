@@ -1,0 +1,29 @@
+<script>
+    function confirmarEliminacion(nombre, id) {
+        Swal.fire({
+            title: '¿Eliminar hábito?',
+            text: `¿Estás seguro de que deseas eliminar "${nombre}"?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const response = await fetch(`/api/habit/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    Swal.fire('Eliminado', 'El hábito ha sido eliminado', 'success').then(() => {
+                        window.location.href = '/GestionarMisHabitos';
+                    });
+                } else {
+                    Swal.fire('Error', 'No se pudo eliminar el hábito', 'error');
+                }
+            }
+        });
+    }
+</script>
