@@ -52,8 +52,7 @@
 
 .tab-content {
     background-color: v.$backgroundColor;
-    margin-top: 1.5rem;
-
+    margin-top: 0 !important;
     .tab-pane {
         padding: 1rem;
         display: block;

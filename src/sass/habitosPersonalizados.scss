@@ -1,19 +1,13 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.form_habitos {
-    color: v.$mainColor-strong;
-
-    .btn-outline-secondary {
-        color: v.$white;
-        border-color: v.$mainColor-low;
-        background-color: v.$secondaryColor;
-        &:hover, &:focus, &:active{
-            color: #000;
-            border-color: v.$secondaryColor;
-            background-color: v.$mainColor-low;
-            transform: scale(1.1);
-        }
-
+.form-habito{
+    color: v.$black;
+    .form-label{
+        margin: 1rem 0 1rem 0;
+        font-weight: 600;
+    }
+    .days-week{
+        justify-content: center;
     }
 }

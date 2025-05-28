@@ -16,24 +16,24 @@
 <div class="separator my-2"></div>
 
 <div class="recuadro typing">
-    <div class="grid mb-4">
-        <div class="titulo-info">
-            <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
-                data-bs-toggle="collapse"
-                data-bs-target="#infoCollapse"
-                aria-expanded="false"
-                aria-controls="infoCollapse"
-                style="cursor: pointer;">
-                <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
-                <h2 class="mb-0 clickable-subrayado">Descripción</h2>
-            </div>
-        </div>
-        <div id="infoCollapse" class="collapse mt-2">
-            <div class="informacion">
-                <p><%= habit.description %></p>
-            </div>
+<div class="grid mb-4">
+    <div class="titulo-info">
+        <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
+            data-bs-toggle="collapse"
+            data-bs-target="#infoCollapse"
+            aria-expanded="true"
+            aria-controls="infoCollapse"
+            style="cursor: pointer;">
+            <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
+            <h2 class="mb-0 clickable-subrayado">Descripción</h2>
         </div>
     </div>
+    <div id="infoCollapse" class="collapse show mt-2">
+        <div class="informacion">
+            <p><%= habit.description %></p>
+        </div>
+    </div>
+</div>
 
     <div class="text-center mb-4">
         <button id="btn-graficas" class="btn btn-primary me-2 btn-graficas">

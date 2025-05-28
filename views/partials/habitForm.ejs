@@ -1,65 +1,65 @@
-<form id="form-habito" method="post" action="javascript:void(0);">
-    <input type="hidden" id="habitId" value="<%= habit ? habit.id : '' %>">
+<div class="separator"></div>
+<form class="form-habito" id="form-habito" method="post" action="javascript:void(0);">
+  <input type="hidden" id="habitId" value="<%= habit ? habit.id : '' %>">
 
-    <div class="mb-3">
-        <label for="description" class="form-label">Descripción*</label>
-        <textarea class="form-control" id="description" name="description" rows="3"><%= habit ? habit.description : '' %></textarea>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Coloca tu meta*</label>
-        <div class="d-flex align-items-center">
-            <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]" value="<%= habit ? habit.fieldValues.value : 1 %>" min="1">
-            <select class="form-control form-select me-2" name="fieldValues[unit]">
-                <% if (habitName === 'Correr') { %>
-                    <option value="min" <%= habit && habit.fieldValues.unit === 'min' ? "selected" : "" %>>minutos</option>
-                    <option value="km" <%= habit && habit.fieldValues.unit === 'km' ? "selected" : "" %>>kilómetros</option>
-                <% } else { %>
-                    <option value="min" selected>minutos</option>
-                <% } %>
-            </select>
-        </div>
-    </div>
-
-    <div class="mb-3">
-        <label for="startDate" class="form-label">Fecha de inicio*</label>
-        <input type="text" class="form-control calendario" id="startDate" name="startDate" value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
-    </div>
-
-<div class="mb-3">
-  <input type="hidden" name="frequency[type]" value="weekly">
-  <label class="form-label">Días de la semana*</label>
-  <div class="d-flex flex-wrap gap-2">
-    <% const days = habit?.frequency?.days || []; %>
-    <% const allDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']; %>
-    <% const dayTranslations = {
-         monday: 'Lun',
-         tuesday: 'Mar',
-         wednesday: 'Mie',
-         thursday: 'Jue',
-         friday: 'Vie',
-         saturday: 'Sab',
-         sunday: 'Dom'
-       }; %>
-    <% allDays.forEach(day => { %>
-      <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>" id="<%= day %>"
-        <%= days.includes(day) ? 'checked' : '' %>>
-      <label class="btn btn-outline-secondary rounded-pill <%= days.includes(day) ? 'dia_selected' : '' %>"
-        for="<%= day %>">
-        <%= dayTranslations[day] %>
-      </label>
-    <% }); %>
+  <div class="mb-3">
+    <label for="description" class="form-label">Descripción</label>
+    <textarea class="form-control" id="description" name="description"
+      rows="3"><%= habit ? habit.description : '' %></textarea>
   </div>
-</div> 
 
-    <div class="mb-3">
-        <label class="form-label" for="reminder">¿Deseas recibir notificaciones?</label>
-        <select class="form-control" name="reminder" id="reminder">
-            <option value="">Selecciona una opción</option>
-            <option value="yes" <%= habit && habit.reminder ? "selected" : "" %>>Sí</option>
-            <option value="no" <%= habit && habit.reminder === false ? "selected" : "" %>>No</option>
-        </select>
+  <div class="mb-3">
+    <label class="form-label">Indica tu meta</label>
+    <div class="d-flex align-items-center">
+      <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]"
+        value="<%= habit ? habit.fieldValues.value : 1 %>" min="1">
+      <select class="form-control form-select me-2" name="fieldValues[unit]">
+        <% if (habitName==='Correr' ) { %>
+          <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>>minutos</option>
+          <option value="km" <%=habit && habit.fieldValues.unit==='km' ? "selected" : "" %>>kilómetros</option>
+          <% } else { %>
+            <option value="min" selected>minutos</option>
+            <% } %>
+      </select>
     </div>
+  </div>
 
-    <button type="submit" class="btn btn-primary">Guardar hábito</button>
+  <div class="mb-3">
+    <label for="startDate" class="form-label">Fecha de inicio</label>
+    <input type="text" class="form-control calendario" id="startDate" name="startDate"
+      value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
+  </div>
+
+  <div class="mb-3">
+    <input type="hidden" name="frequency[type]" value="weekly">
+    <label class="form-label">Días de la semana</label>
+    <div class="days-week d-flex flex-wrap gap-2">
+      <% const days=habit?.frequency?.days || []; %>
+        <% const allDays=['monday', 'tuesday' , 'wednesday' , 'thursday' , 'friday' , 'saturday' , 'sunday' ]; %>
+          <% const dayTranslations={ monday: 'Lun' , tuesday: 'Mar' , wednesday: 'Mie' , thursday: 'Jue' , friday: 'Vie'
+            , saturday: 'Sab' , sunday: 'Dom' }; %>
+            <% allDays.forEach(day=> { %>
+              <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>" id="<%= day %>"
+                <%=days.includes(day) ? 'checked' : '' %>>
+              <label class="btn btn-outline-secondary rounded-pill <%= days.includes(day) ? 'dia_selected' : '' %>"
+                for="<%= day %>">
+                <%= dayTranslations[day] %>
+              </label>
+              <% }); %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="reminder">¿Deseas recibir notificaciones?</label>
+    <select class="form-control" name="reminder" id="reminder">
+      <option value="">Selecciona una opción</option>
+      <option value="yes" <%=habit && habit.reminder ? "selected" : "" %>>Sí</option>
+      <option value="no" <%=habit && habit.reminder===false ? "selected" : "" %>>No</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-lg rounded-pill" id="submitBtn">
+  <span class="spinner-border spinner-border-sm d-none" role="status" id="spinner"></span>
+  <span id="submitText">Guardar hábito</span>
+</button>
 </form>

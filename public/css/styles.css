@@ -976,7 +976,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 .tab-content {
   background-color: #ebfcff;
-  margin-top: 1.5rem;
+  margin-top: 0 !important;
 }
 .tab-content .tab-pane {
   padding: 1rem;
@@ -1451,7 +1451,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 }
 
 .calendario-container {
-  background: #93c5fd;
+  background: #ffffff;
   color: black;
   border-radius: 20px;
   padding: 1rem 2rem;
@@ -1483,7 +1483,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 }
 
 .dia:hover {
-  background-color: #2582eb;
+  background-color: #93c5fd;
   cursor: pointer;
 }
 
@@ -1519,19 +1519,23 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 .btn-prev-mes,
 .btn-next-mes {
-  font-size: 1.2rem;
+  font-size: 4.5rem;
+  color: #93c5fd;
   padding: 0.5rem 1rem;
   border: none;
-  background: rgba(0, 97, 112, 0.3725490196);
-  border-radius: 8px;
-  cursor: pointer;
+  background-color: transparent;
+}
+
+.nombreMes {
+  margin-top: 10%;
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 .dia-hoy {
-  /*border: 2px solid v.$secondaryColor-strong;
-  background-color: v.$gray-low;*/
+  background-color: #bfddfe;
   font-weight: bold;
-  box-shadow: 0 0 5px rgba(26, 43, 61, 0.5);
+  box-shadow: 0 0 5px #93c5fd;
   transition: all 0.3s ease;
 }
 
@@ -1701,6 +1705,70 @@ ul li ul li {
   border-radius: 16px 16px 0 0;
 }
 
+/* Tarjeta del slider */
+.card-item {
+  width: 300%;
+  max-width: 300px;
+  min-height: 350px;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.196);
+  text-align: center;
+}
+
+.user-image {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 20px;
+  padding: 4px;
+  object-fit: cover;
+}
+
+.user-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.user-profession {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 10px 0 20px;
+}
+
+/* Swiper Custom */
+.swiper {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-pagination-bullet {
+  background: #030728;
+  opacity: 0.4;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #030728;
+}
+
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
 h1.actualizar {
   font-family: "Segoe UI", serif;
   color: #1f2421;
@@ -1747,19 +1815,15 @@ h1.actualizar {
   margin-left: auto; /* Empuja el ícono al extremo derecho */
 }
 
-.form_habitos {
-  color: #1e62af;
+.form-habito {
+  color: #1f2421;
 }
-.form_habitos .btn-outline-secondary {
-  color: #ffffff;
-  border-color: #93c5fd;
-  background-color: #bfddfe;
+.form-habito .form-label {
+  margin: 1rem 0 1rem 0;
+  font-weight: 600;
 }
-.form_habitos .btn-outline-secondary:hover, .form_habitos .btn-outline-secondary:focus, .form_habitos .btn-outline-secondary:active {
-  color: #000;
-  border-color: #bfddfe;
-  background-color: #93c5fd;
-  transform: scale(1.1);
+.form-habito .days-week {
+  justify-content: center;
 }
 
 .streak-container {
