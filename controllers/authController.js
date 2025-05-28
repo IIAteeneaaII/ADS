@@ -246,9 +246,20 @@ exports.renderCalendar = async (req, res) => {
   const moods = await getMoodsByUser(userId);
 
   const moodsByDate = moods.reduce((acc, mood) => {
-    const localDate = new Date(mood.date);
-    const dateStr = localDate.toLocaleDateString('sv-SE', { timeZone: 'America/Mexico_City' });
-    acc[dateStr] = mood.mood;
+    const utcDate = new Date(mood.date); // Ya está en UTC a medianoche
+    const formatter = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'UTC',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    });
+
+    
+    // Obtener solo la parte de fecha local YYYY-MM-DD
+    const [{ value: year }, , { value: month }, , { value: day }] = formatter.formatToParts(utcDate);
+    const localDateStr = `${year}-${month}-${day}`;
+
+    acc[localDateStr] = mood.mood;
     return acc;
   }, {});
 
