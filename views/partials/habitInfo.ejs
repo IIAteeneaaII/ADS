@@ -6,14 +6,15 @@
     <div class="titulo-habito" id="tabs">
         <img src="<%= iconPath %>" alt="<%= habit.name %>">
         <h1><%= habit.name %></h1>
-        <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
-            <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='<%= editPath %>/<%= habit.id %>';"></i>
-            <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')" style="cursor: pointer;"></i>
-        </div>
     </div>
 </div>
 
 <div class="separator my-2"></div>
+
+<div class="grupo-iconos" data-habit-id="<%= habit.id %>">
+            <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='<%= editPath %>/<%= habit.id %>';"></i>
+            <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')" style="cursor: pointer;"></i>
+</div>
 
 <div class="recuadro typing">
 <div class="grid mb-4">
@@ -35,7 +36,10 @@
     </div>
 </div>
 
+    
+
     <div class="text-center mb-4">
+        
         <button id="btn-graficas" class="btn btn-primary me-2 btn-graficas">
             <i class="fas fa-chart-bar"></i>
         </button>

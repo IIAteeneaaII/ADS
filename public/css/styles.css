@@ -940,7 +940,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 .titulo-habito {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr;
   /* columnas: izquierda - centro - derecha */
   justify-content: center;
   align-items: center;
@@ -1000,9 +1000,14 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 .progreso,
 .informacion {
   margin: 2rem 0 2rem 0;
-  border: 2px solid #1e62af;
-  border-radius: 0.8rem;
+  border: 1px solid #1e62af;
+  border-radius: 1rem;
   text-align: center;
+}
+.progreso img,
+.informacion img {
+  width: 4rem;
+  height: auto;
 }
 
 .input-fecha {
@@ -1099,16 +1104,17 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 .grupo-iconos {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: row;
+  justify-content: right;
+  gap: 20px;
+  padding-top: 1rem;
 }
 
 .iconos-habitos {
   color: black;
   margin-right: 10px;
   margin-left: 10px;
-  font-size: 1.3rem;
+  font-size: 2rem;
 }
 
 .calendario-grid {
@@ -1250,7 +1256,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 }
 .recuadro {
   position: relative;
-  margin-top: 3rem;
+  margin-top: 2rem;
   border-radius: 1rem;
   border: 1px solid #1e62af;
   padding: 1.5rem;
