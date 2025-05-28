@@ -326,14 +326,30 @@ exports.getUniqueTrackingDatesByUserId = async (userId) => {
     orderBy: { date: 'desc' }
   });
 
-  const uniqueDates = new Map();
+  const groupedByDate = new Map();
 
   logs.forEach(log => {
-    const key = log.date.toISOString().split('T')[0]; // YYYY-MM-DD
-    if (!uniqueDates.has(key)) {
-      uniqueDates.set(key, log);
+    const key = log.date.toISOString().split('T')[0]; // Fecha en formato YYYY-MM-DD
+
+    if (!groupedByDate.has(key)) {
+      groupedByDate.set(key, []);
     }
+
+    groupedByDate.get(key).push(log.status);
   });
 
-  return Array.from(uniqueDates.values());
+  const resultado = [];
+
+  groupedByDate.forEach((statuses, date) => {
+    const todosCompletados = statuses.every(status => status === 'completed');
+
+    resultado.push({
+      date: new Date(date),
+      status: todosCompletados ? 'completed' : 'pending'
+    });
+  });
+
+  resultado.sort((a, b) => b.date - a.date);
+
+  return resultado;
 };

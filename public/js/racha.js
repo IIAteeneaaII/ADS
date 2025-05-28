@@ -25,15 +25,25 @@ async function obtenerFechasUnicasDeHabitos() {
   }
 }
 
+
 function calcularRacha(registros) {
   registros.sort((a, b) => new Date(a.dia) - new Date(b.dia));
 
   let racha = 0;
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0); 
+  //console.log('Fecha de hoy:', hoy.toISOString().split('T')[0]);
 
   for (let i = registros.length - 1; i >= 0; i--) {
+    const fecha = new Date(registros[i].dia);
+    fecha.setHours(0, 0, 0, 0); 
     if (registros[i].cumplido) {
       racha++;
-    } else {
+    } 
+    else if (fecha.getTime() === hoy.getTime()) {
+      continue;
+    } 
+    else {
       break; 
     }
   }
@@ -54,6 +64,7 @@ function animarContador(valorFinal, elemento, velocidad = 50) {
     elemento.innerText = contador;
   }, velocidad);
 }
+
 
 document.addEventListener('DOMContentLoaded', async () => {
   const registros = await obtenerFechasUnicasDeHabitos();
