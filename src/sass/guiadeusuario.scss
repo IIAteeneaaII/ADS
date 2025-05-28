@@ -101,3 +101,75 @@ ul li ul li {
   background: linear-gradient(90deg, v.$mainColor-strong 0%, v.$colorSecondaryBtn 100%);
   border-radius: 16px 16px 0 0;
 }
+
+
+
+
+
+/* Tarjeta del slider */
+.card-item {
+  width: 300%;
+  max-width: 300px;
+  min-height: 350px; // ⬅️ Aumenta este valor según lo que necesites
+  margin: auto;
+  background-color: v.$white; 
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.196);
+  text-align: center;
+}
+
+
+.user-image {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 20px;
+  padding: 4px;
+  object-fit: cover;
+}
+
+.user-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.user-profession {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 10px 0 20px;
+}
+
+
+
+/* Swiper Custom */
+.swiper {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-pagination-bullet {
+  background: #030728;
+  opacity: 0.4;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #030728;
+}
+
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
