@@ -1,0 +1,48 @@
+<!-- partials/habitLayout.ejs -->
+<div class="top-bar">
+    <a href="/GestionarMisHabitos" class="back-arrow">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+    <div class="titulo-habito" id="tabs">
+        <img src="<%= iconPath %>" alt="<%= habit.name %>">
+        <h1><%= habit.name %></h1>
+        <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
+            <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='<%= editPath %>/<%= habit.id %>';"></i>
+            <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')" style="cursor: pointer;"></i>
+        </div>
+    </div>
+</div>
+
+<div class="separator my-2"></div>
+
+<div class="recuadro typing">
+    <div class="grid mb-4">
+        <div class="titulo-info">
+            <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
+                data-bs-toggle="collapse"
+                data-bs-target="#infoCollapse"
+                aria-expanded="false"
+                aria-controls="infoCollapse"
+                style="cursor: pointer;">
+                <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
+                <h2 class="mb-0 clickable-subrayado">Descripción</h2>
+            </div>
+        </div>
+        <div id="infoCollapse" class="collapse mt-2">
+            <div class="informacion">
+                <p><%= habit.description %></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mb-4">
+        <button id="btn-graficas" class="btn btn-primary me-2 btn-graficas">
+            <i class="fas fa-chart-bar"></i>
+        </button>
+        <button id="btn-calendario" class="btn btn-secondary btn-calendario">
+            <i class="fas fa-calendar-alt"></i>
+        </button>
+    </div>
+
+    <%- include('graficasCalendario') %>
+</div>

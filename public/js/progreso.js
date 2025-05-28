@@ -126,7 +126,6 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia) {
         }
     }
 
-
     const logsMap = datos.reduce((acc, h) => {
         const fecha = new Date(h.date).toISOString().split('T')[0]; // yyyy-mm-dd
         const valor = Number(h.fieldValues?.value || 0);
@@ -248,3 +247,25 @@ function renderizarCalendario(datos) {
         contenedor.appendChild(div);
     }
 }
+function crearBurbuja() {
+    const contenedor = document.getElementById('contenedor-burbujas');
+    const burbuja = document.createElement('div');
+    const tamaño = Math.random() * 20 + 10;
+
+    burbuja.classList.add('burbuja');
+    burbuja.style.width = `${tamaño}px`;
+    burbuja.style.height = `${tamaño}px`;
+    burbuja.style.left = `${Math.random() * 100}%`;
+    burbuja.style.animationDuration = `${Math.random() * 5 + 5}s`;
+    burbuja.style.opacity = Math.random();
+
+    contenedor.appendChild(burbuja);
+
+    // Eliminar burbuja cuando termine la animación
+    setTimeout(() => {
+        burbuja.remove();
+    }, 10000);
+}
+
+// Crear burbujas periódicamente
+setInterval(crearBurbuja, 300);
