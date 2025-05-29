@@ -93,16 +93,10 @@ footer {
   font-weight: 500;
 }
 .btn-primary:hover {
-  color: #1f2421;
-  transform: scale(1.02);
-  background-color: #93c5fd;
-}
-.btn-primary:active {
   background-color: #93c5fd;
 }
 .btn-primary:focus {
   background-color: #93c5fd;
-  border: none;
 }
 
 .btn-secondary {
@@ -136,6 +130,26 @@ footer {
 .btn-tertiary:focus {
   background-color: #2582eb;
   border: none;
+}
+
+.btn-cancel {
+  background-color: #e9ecef;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+  color: #1f2421;
+  font-weight: 500;
+}
+.btn-cancel:hover {
+  color: #1f2421;
+  transform: scale(1.02);
+  background-color: #adb5bd;
+}
+.btn-cancel:active {
+  background-color: #adb5bd;
+}
+.btn-cancel:focus {
+  background-color: #adb5bd;
 }
 
 .just-validate-error-label {

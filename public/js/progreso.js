@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const pathParts = window.location.pathname.split('/');
     const habitId = pathParts[2];
@@ -13,14 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnMes = document.getElementById('btn-mes');
     const graficaSemana = document.getElementById('u-semana');
     const graficaMes = document.getElementById('u-mes');
+    const btnSemanaAnterior = document.getElementById('semana-anterior');
+    const btnSemanaSiguiente = document.getElementById('semana-siguiente');
+    const textoSemana = document.getElementById('rango-semana');
 
-    // Mostrar por defecto gráficas semanales
+    let semanaOffset = 0;
+    let datosCompletados = [];
+    let unidadActual = '';
+    let frecuenciaActual = null;
+
     seccionGraficas.classList.remove('d-none');
     seccionCalendario.classList.add('d-none');
     graficaSemana.classList.remove('d-none');
     graficaMes.classList.add('d-none');
 
-    // Botones para alternar sección
     btnGraficas.addEventListener('click', () => {
         seccionGraficas.classList.remove('d-none');
         seccionCalendario.classList.add('d-none');
@@ -35,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btnCalendario.classList.replace('btn-secondary', 'btn-primary');
     });
 
-    // Botones para cambiar entre semana y mes
     btnSemana.addEventListener('click', () => {
         graficaSemana.classList.remove('d-none');
         graficaMes.classList.add('d-none');
@@ -50,90 +54,97 @@ document.addEventListener('DOMContentLoaded', () => {
         btnMes.classList.replace('btn-secondary', 'btn-primary');
     });
 
-    // Fetch y renderizado de datos
+    btnSemanaAnterior.addEventListener('click', () => {
+        semanaOffset -= 1;
+        actualizarGraficaSemana();
+    });
+
+    btnSemanaSiguiente.addEventListener('click', () => {
+        semanaOffset += 1;
+        actualizarGraficaSemana();
+    });
+
     fetch(`/api/inicio/${habitId}`, {
         method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
+        headers: { 'Authorization': `Bearer ${token}` }
     })
         .then(res => {
             if (!res.ok) throw new Error('No autorizado o hábito no encontrado');
             return res.json();
         })
         .then(data => {
-            console.log('Respuesta del backend:', data);
             const { logs, frequency } = data;
             const completados = logs.filter(log => log.status === 'completed');
-            console.log('Logs del hábito (completados):', completados);
-            console.log('Frecuencia del hábito:', frequency);
-            //Unidades de la grafica
             return fetch(`/api/inicio/Units/${habitId}`, {
                 method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+                headers: { 'Authorization': `Bearer ${token}` }
             }).then(res => {
                 if (!res.ok) throw new Error('No se encontraron las unidades');
                 return res.json().then(unidad => {
-                    console.log('Unidad recibida:', unidad);
                     return { completados, unidad, frequency };
                 });
             });
         })
         .then(({ completados, unidad, frequency }) => {
-            limpiarGrafica('graficaSemana');
+            datosCompletados = completados;
+            unidadActual = unidad;
+            frecuenciaActual = frequency;
+
             limpiarGrafica('graficaMes');
-            mostrarGrafica('graficaSemana', completados, 7, unidad, frequency);
             mostrarGrafica('graficaMes', completados, 30, unidad, frequency);
-            renderizarCalendario(completados);
+            actualizarGraficaSemana();
+            // renderizarCalendario(completados);
         })
         .catch(err => {
             console.error('Error al cargar datos del hábito:', err);
-            // Swal.fire('Error', 'No se pudo cargar la información del hábito.', 'error');
         });
+
+    function actualizarGraficaSemana() {
+        const hoy = new Date();
+        const inicioSemana = new Date(hoy);
+        inicioSemana.setDate(hoy.getDate() - hoy.getDay() + (semanaOffset * 7));
+        const finSemana = new Date(inicioSemana);
+        finSemana.setDate(inicioSemana.getDate() + 6);
+
+        const rangoTexto = `${inicioSemana.toLocaleDateString()} - ${finSemana.toLocaleDateString()}`;
+        textoSemana.textContent = rangoTexto;
+
+        limpiarGrafica('graficaSemana');
+        mostrarGrafica('graficaSemana', datosCompletados, 7, unidadActual, frecuenciaActual, inicioSemana);
+    }
 });
 
 function limpiarGrafica(canvasId) {
     const canvas = document.getElementById(canvasId);
-    if (canvas) {
-        const context = canvas.getContext('2d');
-        if (context) context.clearRect(0, 0, canvas.width, canvas.height);
-        if (canvas._chartInstance) {
-            canvas._chartInstance.destroy();
-            canvas._chartInstance = null;
-        }
+    if (canvas && canvas._chartInstance) {
+        canvas._chartInstance.destroy();
+        canvas._chartInstance = null;
     }
 }
 
-function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia) {
-
-    const fechaActual = new Date();
-    const fechaLimite = new Date();
-    fechaLimite.setDate(fechaActual.getDate() - dias);
+function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = null) {
+    const fechaInicio = desdeFecha ? new Date(desdeFecha) : new Date();
+    const fechaFin = new Date(fechaInicio);
+    fechaFin.setDate(fechaInicio.getDate() + dias - 1);
 
     const diasPermitidos = frecuencia?.days?.map(d => d.toLowerCase()) || [];
     const nombresDias = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
     const fechasValidas = [];
-    const diasUnicos = new Set();
-
-    for (let d = new Date(fechaLimite); d <= fechaActual; d.setDate(d.getDate() + 1)) {
-        const diaNombre = nombresDias[d.getUTCDay()];
-        if (diasPermitidos.includes(diaNombre) && !diasUnicos.has(diaNombre)) {
-            fechasValidas.push(new Date(d));
-            diasUnicos.add(diaNombre);
-        }
+for (let d = new Date(fechaInicio); d <= fechaFin; d.setDate(d.getDate() + 1)) {
+    const diaNombre = nombresDias[d.getDay()];
+    if (diasPermitidos.includes(diaNombre)) {
+        fechasValidas.push(new Date(d.getFullYear(), d.getMonth(), d.getDate())); // clone por valor
     }
+}
 
     const logsMap = datos.reduce((acc, h) => {
-        const fecha = new Date(h.date).toISOString().split('T')[0]; // yyyy-mm-dd
+        const fecha = new Date(h.date).toISOString().split('T')[0];
         const valor = Number(h.fieldValues?.value || 0);
         acc[fecha] = (acc[fecha] || 0) + valor;
         return acc;
     }, {});
 
-    // Crear arrays de etiquetas y valores alineados según frecuencia
     const datosGrafica = fechasValidas.map(f => {
         const fechaStr = f.toISOString().split('T')[0];
         return {
@@ -142,27 +153,20 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia) {
             unit: unidad
         };
     });
-    console.log('Datos GRafica', datosGrafica)
 
-    const unidadY = unidad || '';
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const getDataColors = opacity => {
-        const colors = ['#7448c2', '#21c0d7', '#d99e2b', '#cd3a81', '#9c99cc', '#e14eca', '#ffffff', '#ff0000', '#d6ff00', '#0038ff']
-        return colors.map(color => opacity ? `${color + opacity}` : color)
-    }
-
     const chart = new Chart(ctx, {
         type: 'bar',
         data: {
             datasets: [{
-                label: `Duración (${unidadY})`,
+                label: `Duración (${unidad})`,
                 data: datosGrafica,
-                backgroundColor: getDataColors(80)[1],
-                borderColor: getDataColors()[1],
+                backgroundColor: '#21c0d780',
+                borderColor: '#21c0d7',
                 borderWidth: 2
             }]
         },
@@ -183,19 +187,15 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia) {
             scales: {
                 x: {
                     type: 'category',
-                    grid: {
-                        display: true,
-                        tickLength: 1
-                    },
                     ticks: {
-                        maxRotation: 90,   // <- fuerza rotación vertical
+                        maxRotation: 90,
                         minRotation: 90
                     },
                     title: { display: true, text: 'Fecha' }
                 },
                 y: {
                     beginAtZero: true,
-                    title: { display: true, text: `Duración (${unidadY})` }
+                    title: { display: true, text: `Duración (${unidad})` }
                 }
             }
         }
@@ -204,49 +204,22 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia) {
     canvas._chartInstance = chart;
 }
 
-function renderizarCalendario(datos) {
+function renderizarCalendario(completados) {
     const contenedor = document.getElementById('calendarioHabito');
+    if (!contenedor) return;
+
+    // Limpiar contenido previo
     contenedor.innerHTML = '';
 
-    const hoy = new Date();
-    const año = hoy.getFullYear();
-    const mes = hoy.getMonth();
-    const primerDia = new Date(año, mes, 1);
-    const ultimoDia = new Date(año, mes + 1, 0);
-    const diasMes = ultimoDia.getDate();
-    const primerDiaSemana = primerDia.getDay(); // 0 (domingo)
-
-    const fechasCompletadas = datos
-        .filter(h => {
-            const fecha = new Date(h.date);
-            return fecha.getFullYear() === año && fecha.getMonth() === mes;
-        })
-        .map(h => new Date(h.date).getDate());
-    console.log('Días completados en el mes:', fechasCompletadas);
-    // Título del mes
-    const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    document.getElementById('tituloMes').textContent = `${meses[mes]} ${año}`;
-
-    // Días vacíos antes del 1
-    const offset = primerDiaSemana === 0 ? 6 : primerDiaSemana - 1;
-    for (let i = 0; i < offset; i++) {
+    completados.forEach(log => {
+        const fecha = new Date(log.date).toISOString().split('T')[0];
         const div = document.createElement('div');
-        div.classList.add('dia-vacio');
+        div.textContent = fecha;
+        div.classList.add('dia-completado'); // Puedes definir estilo en tu CSS
         contenedor.appendChild(div);
-    }
-
-    // Días del mes
-    for (let i = 1; i <= diasMes; i++) {
-        const div = document.createElement('div');
-        div.classList.add('dia');
-        div.textContent = i;
-        if (fechasCompletadas.includes(i)) {
-            div.classList.add('completado');
-        }
-        contenedor.appendChild(div);
-    }
+    });
 }
+
 function crearBurbuja() {
     const contenedor = document.getElementById('contenedor-burbujas');
     const burbuja = document.createElement('div');

@@ -1,12 +1,19 @@
+<%- include('allScripts') %>
 <script>
     function confirmarEliminacion(nombre, id) {
         Swal.fire({
             title: '¿Eliminar hábito?',
             text: `¿Estás seguro de que deseas eliminar "${nombre}"?`,
-            icon: 'warning',
+            imageUrl: '/img/sharki/triste.png',
+            imageWidth: 250,
             showCancelButton: true,
             confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar'
+            cancelButtonText: 'Cancelar',
+            customClass: {
+            popup: 'swal-fullscreen animate-popup',
+                confirmButton: 'btn-primary',
+                cancelButton: 'btn-cancel '
+            },
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const response = await fetch(`/api/habit/${id}`, {
@@ -18,14 +25,20 @@
 
                 if (response.ok) {
                     mostrarAlerta({
-    title: 'Eliminado',
-    text: 'El hábito ha sido eliminado',
-    imageUrl: '/img/sharki/feliz.png', // o la imagen que prefieras
-    redirectUrl: '/GestionarMisHabitos',
-    btnText: 'Aceptar'
-});
+                        title: 'Eliminado',
+                        text: 'El hábito ha sido eliminado',
+                        imageUrl: '/img/sharki/triste.png', // o la imagen que prefieras
+                        redirectUrl: '/GestionarMisHabitos',
+                        btnText: 'Aceptar'
+                    });
                 } else {
-                    Swal.fire('Error', 'No se pudo eliminar el hábito', 'error');
+                    mostrarAlerta({
+                        title: 'Error',
+                        text: 'El hábito no pudo ser eliminado',
+                        imageUrl: '/img/sharki/curioso.png', // o la imagen que prefieras
+                        redirectUrl: '/GestionarMisHabitos',
+                        btnText: 'Aceptar'
+                    });
                 }
             }
         });
