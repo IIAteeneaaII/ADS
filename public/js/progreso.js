@@ -142,11 +142,26 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia) {
             unit: unidad
         };
     });
-    console.log('Datos GRafica', datosGrafica)
+    console.log('Datos Grafica', datosGrafica);
 
     const unidadY = unidad || '';
     const canvas = document.getElementById(canvasId);
+    
+    const hayDatos = datosGrafica.some(d => d.y > 0); 
+    const imgVacia = document.getElementById(canvasId === 'graficaSemana' ? 'imgSemanaVacia' : 'imgMesVacia'); 
+
     if (!canvas) return;
+
+    if(!hayDatos){
+        canvas.classList.add('d-none'); 
+        imgVacia.classList.remove('d-none'); 
+        return; 
+    }
+    else{
+        canvas.classList.remove('d-none'); 
+        imgVacia.classList.add('d-none'); 
+    }
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
