@@ -1,13 +1,57 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.form-habito{
+.form-habito {
     color: v.$black;
-    .form-label{
+
+    .form-label {
         margin: 1rem 0 1rem 0;
         font-weight: 600;
     }
-    .days-week{
+
+    .days-week {
         justify-content: center;
     }
+}
+
+.form-control {
+    &:focus {
+        background-color: v.$white;
+        border-color: v.$mainColor-strong;
+        box-shadow: 0 0 0 0.2rem rgba(v.$mainColor-low, 0.25);
+
+    }
+}
+
+.rs-outer,
+.rs-border {
+    border-color: #21bfd7;
+}
+
+.rs-bg-color {
+    background-color: v.$backgroundColor;
+}
+
+.rs-range-color {
+    background-color: #21bfd780 !important;
+    /* color del rango seleccionado */
+    border-color: #21c0d780 !important;
+}
+
+.rs-path-color {
+    background-color: #fff !important;
+}
+
+.rs-handle {
+    background-color: v.$mainColor-low !important;
+    border: 2px solid v.$mainColor-strong !important;
+}
+
+.rs-tooltip {
+    font-weight: bolder;
+    color: #000;
+    background: transparent;
+    /* opcional: transparente si quieres manejarlo tú */
+    border: none;
+    font-size: 18px;
 }

@@ -93,16 +93,10 @@ footer {
   font-weight: 500;
 }
 .btn-primary:hover {
-  color: #1f2421;
-  transform: scale(1.02);
-  background-color: #93c5fd;
-}
-.btn-primary:active {
   background-color: #93c5fd;
 }
 .btn-primary:focus {
   background-color: #93c5fd;
-  border: none;
 }
 
 .btn-secondary {
@@ -136,6 +130,26 @@ footer {
 .btn-tertiary:focus {
   background-color: #2582eb;
   border: none;
+}
+
+.btn-cancel {
+  background-color: #e9ecef;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.75rem;
+  color: #1f2421;
+  font-weight: 500;
+}
+.btn-cancel:hover {
+  color: #1f2421;
+  transform: scale(1.02);
+  background-color: #adb5bd;
+}
+.btn-cancel:active {
+  background-color: #adb5bd;
+}
+.btn-cancel:focus {
+  background-color: #adb5bd;
 }
 
 .just-validate-error-label {
@@ -222,15 +236,14 @@ main h2 {
 }
 
 .form-control {
+  background-color: #ffffff;
   border-radius: 0.5rem;
   padding: 0.75rem;
   border: 1px solid #bfddfe;
   color: #1f2421;
 }
 .form-control:focus {
-  background-color: #ebfcff !important;
   border-color: #bfddfe;
-  box-shadow: none;
   outline: none;
 }
 
@@ -941,7 +954,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 .titulo-habito {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr;
   /* columnas: izquierda - centro - derecha */
   justify-content: center;
   align-items: center;
@@ -1001,9 +1014,14 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 .progreso,
 .informacion {
   margin: 2rem 0 2rem 0;
-  border: 2px solid #1e62af;
-  border-radius: 0.8rem;
+  border: 1px solid #1e62af;
+  border-radius: 1rem;
   text-align: center;
+}
+.progreso img,
+.informacion img {
+  width: 4rem;
+  height: auto;
 }
 
 .input-fecha {
@@ -1100,16 +1118,17 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 
 .grupo-iconos {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: row;
+  justify-content: right;
+  gap: 20px;
+  padding-top: 1rem;
 }
 
 .iconos-habitos {
   color: black;
   margin-right: 10px;
   margin-left: 10px;
-  font-size: 1.3rem;
+  font-size: 2rem;
 }
 
 .calendario-grid {
@@ -1251,7 +1270,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 }
 .recuadro {
   position: relative;
-  margin-top: 3rem;
+  margin-top: 2rem;
   border-radius: 1rem;
   border: 1px solid #1e62af;
   padding: 1.5rem;
@@ -1824,6 +1843,45 @@ h1.actualizar {
 }
 .form-habito .days-week {
   justify-content: center;
+}
+
+.form-control:focus {
+  background-color: #ffffff;
+  border-color: #1e62af;
+  box-shadow: 0 0 0 0.2rem rgba(147, 197, 253, 0.25);
+}
+
+.rs-outer,
+.rs-border {
+  border-color: #21bfd7;
+}
+
+.rs-bg-color {
+  background-color: #ebfcff;
+}
+
+.rs-range-color {
+  background-color: rgba(33, 191, 215, 0.5019607843) !important;
+  /* color del rango seleccionado */
+  border-color: rgba(33, 192, 215, 0.5019607843) !important;
+}
+
+.rs-path-color {
+  background-color: #fff !important;
+}
+
+.rs-handle {
+  background-color: #93c5fd !important;
+  border: 2px solid #1e62af !important;
+}
+
+.rs-tooltip {
+  font-weight: bolder;
+  color: #000;
+  background: transparent;
+  /* opcional: transparente si quieres manejarlo tú */
+  border: none;
+  font-size: 18px;
 }
 
 .streak-container {

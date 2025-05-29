@@ -79,4 +79,94 @@
             btn.classList.toggle('dia_selected');
         });
     });
+
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const unitSelect = document.getElementById('unitSelect');
+        const numberInput = document.getElementById('goal-number');
+        const sliderContainer = document.getElementById('goal-slider');
+        const goal = document.getElementById('goal');
+        const hiddenSliderInput = document.getElementById('sliderHidden');
+
+        if (!unitSelect || !numberInput || !sliderContainer || !goal || !hiddenSliderInput) {
+            console.error("Faltan elementos del DOM necesarios para inicializar el slider");
+            return;
+        }
+        const getDataColors = opacity => {
+        const colors = ['#7448c2', '#21c0d7', '#d99e2b', '#cd3a81', '#9c99cc', '#e14eca', '#ffffff', '#ff0000', '#d6ff00', '#0038ff']
+        return colors.map(color => opacity ? `${color + opacity}` : color)
+        }
+        const initialValue = parseInt(hiddenSliderInput.value) || 30;
+
+        let slider = $("#circularSlider").roundSlider({
+            radius: 80,
+            min: 1,
+            max: 60,
+            value: initialValue,
+            width: 16,
+            handleSize: "+8",
+            handleShape: "round",
+            sliderType: "min-range",
+            editableTooltip: false,
+            tooltipFormat: e => `${e.value} min`,
+            change: e => hiddenSliderInput.value = e.value,
+            drag: e => hiddenSliderInput.value = e.value
+        }).data("roundSlider");
+
+        function updateSliderConfig(min, max, unitLabel) {
+            slider.option({
+                min: min,
+                max: max,
+                tooltipFormat: e => `${e.value} ${unitLabel}`
+            });
+
+            // Si el valor actual está fuera del nuevo rango, ajustarlo
+            let current = slider.getValue();
+            if (current < min) current = min;
+            if (current > max) current = max;
+
+            // Forzar re-render del tooltip
+            slider.setValue(current + 1);
+            setTimeout(() => slider.setValue(current), 10);
+
+            hiddenSliderInput.value = current;
+        }
+
+
+        function updateInputDisplay() {
+            const selectedUnit = unitSelect.value;
+
+            if (selectedUnit === 'min') {
+                updateSliderConfig(1, 60, 'min');
+                sliderContainer.classList.remove('d-none');
+                numberInput.classList.add('d-none');
+                hiddenSliderInput.name = 'fieldValues[value]';
+                goal.name = '';
+            } else if (selectedUnit === 'hrs') {
+                updateSliderConfig(1, 24, 'hrs');
+                sliderContainer.classList.remove('d-none');
+                numberInput.classList.add('d-none');
+                hiddenSliderInput.name = 'fieldValues[value]';
+                goal.name = '';
+            } else if (selectedUnit === 'km') {
+                updateSliderConfig(1, 1000, 'km');
+                sliderContainer.classList.remove('d-none');
+                numberInput.classList.add('d-none');
+                hiddenSliderInput.name = 'fieldValues[value]';
+                goal.name = '';
+            } else {
+                sliderContainer.classList.add('d-none');
+                numberInput.classList.remove('d-none');
+                goal.name = 'fieldValues[value]';
+                hiddenSliderInput.name = '';
+            }
+        }
+
+        unitSelect.addEventListener('change', updateInputDisplay);
+        updateInputDisplay();
+    });
+
 </script>

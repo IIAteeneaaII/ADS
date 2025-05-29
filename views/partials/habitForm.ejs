@@ -10,16 +10,18 @@
 
   <div class="mb-3">
     <label class="form-label">Indica tu meta</label>
-    <div class="d-flex align-items-center">
-      <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]"
-        value="<%= habit ? habit.fieldValues.value : 1 %>" min="1">
-      <select class="form-control form-select me-2" name="fieldValues[unit]">
-        <% if (habitName==='Correr' ) { %>
-          <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>>minutos</option>
-          <option value="km" <%=habit && habit.fieldValues.unit==='km' ? "selected" : "" %>>kilómetros</option>
-          <% } else { %>
-            <option value="min" selected>minutos</option>
-            <% } %>
+    <div class="d-flex align-items-center" id="goal-input-group">
+  <div id="goal-number" class="flex-fill">
+    <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]" value="<%= habit ? habit.fieldValues.value : 1 %>" min="1">
+  </div>
+
+  <div id="goal-slider" class="d-none">
+    <div id="circularSlider"></div>
+    <input type="hidden" id="sliderHidden" name="" value="<%= habit ? habit.fieldValues.value : 30 %>">
+  </div>
+
+  <select class="form-control form-select ms-2" id="unitSelect" name="fieldValues[unit]">
+        <%- include('unitSelect') %>
       </select>
     </div>
   </div>
