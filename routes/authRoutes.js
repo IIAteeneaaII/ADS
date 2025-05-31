@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { register, login, logout, recoverPassword, validateResetCode, resetPassword, deleteAccount, updateProfile, saveMood  } = require('../controllers/authController');
+const { register, login, logout,authentification, recoverPassword, validateResetCode, resetPassword, deleteAccount, updateProfile, saveMood  } = require('../controllers/authController');
 const { upload } = require('../utils/cloudinary');
 const { authMiddleware } = require('../middlewares/authMiddleware'); 
 const { validateRegister, validateLogin, validateDeleteAcc } = require('../middlewares/validateAuth');
@@ -9,6 +9,7 @@ router.post('/register', validateRegister, register);
 router.post('/login', validateLogin, login);
 router.post('/deleteAcc', validateDeleteAcc, deleteAccount);
 router.get('/logout', logout);
+router.post('/auth-email', authentification);
 router.post('/recover-password', recoverPassword);
 router.post('/validate-code', validateResetCode);
 router.post('/reset-password', resetPassword);
