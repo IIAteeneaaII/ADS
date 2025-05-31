@@ -147,7 +147,7 @@ exports.UpdateLog = async (req, res) => {
   try {
     const updatedLog = await habitRepo.UpdateStatus({
       userHabitId,
-      date: today,
+      date,
       status: status
     });
 

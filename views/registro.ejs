@@ -58,6 +58,19 @@
                                 </div>
                             </div>
 
+                            <!-- Código de verificación -->
+                            <div class="mb-3">
+                            <label for="codigo" class="form-label">Código de verificación*:</label>
+                            <div class="d-flex gap-2 flex-column flex-md-row align-items-start">
+                                <div class="w-100">
+                                <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Ingresa el código" />
+                                </div>
+                                <button type="button" id="btnCodigo" class="btn btn-outline-primary btn-sm mt-2 mt-md-0">Enviar código</button>
+                            </div>
+                            <div id="codigo-error" class="invalid-feedback d-block"></div>
+                            </div>
+
+
                             <!-- Términos -->
                             <div class="form-check">
                                 <input class="check" type="checkbox" id="terminosCheck" />
