@@ -168,7 +168,6 @@ exports.UpdateStatus = async ({ userHabitId, date, status }) => {
 
   // Si ya completó 21 días, crea notificación (o haz lógica para evitar notis repetidas)
   if (completedDaysCount >= 21) {
-    // OJO: quizá quieras validar que no exista ya esta notificación para no repetirla
     
     // Crear notificación:
     await prisma.notification.create({
