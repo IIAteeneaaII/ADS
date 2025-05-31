@@ -1996,11 +1996,4 @@ h1.actualizar {
   transition: background-color 6s;
 }
 
-
-.login-card{
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-
 /*# sourceMappingURL=styles.css.map */
