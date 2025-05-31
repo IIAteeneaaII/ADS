@@ -158,15 +158,14 @@ exports.UpdateStatus = async ({ userHabitId, date, status }) => {
     });
   }
 
-  // Ahora contamos los días completados para el hábito:
   const completedDaysCount = await prisma.habitTrackingLog.count({
     where: {
       userHabitId,
-      status: "completed" // ajusta al valor que uses para "completado"
+      status: "completed"
     }
   });
 
-  // Si ya completó 21 días, crea notificación (o haz lógica para evitar notis repetidas)
+  // Si ya completó 21 días, crea notificación
   if (completedDaysCount >= 21) {
     
     // Crear notificación:
