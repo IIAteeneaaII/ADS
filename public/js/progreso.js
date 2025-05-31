@@ -129,14 +129,16 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = 
 
     const diasPermitidos = frecuencia?.days?.map(d => d.toLowerCase()) || [];
     const nombresDias = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    const etiquetaDias = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']; 
 
     const fechasValidas = [];
-for (let d = new Date(fechaInicio); d <= fechaFin; d.setDate(d.getDate() + 1)) {
-    const diaNombre = nombresDias[d.getDay()];
-    if (diasPermitidos.includes(diaNombre)) {
-        fechasValidas.push(new Date(d.getFullYear(), d.getMonth(), d.getDate())); // clone por valor
+
+    for (let d = new Date(fechaInicio); d <= fechaFin; d.setDate(d.getDate() + 1)) {
+        const diaNombre = nombresDias[d.getDay()];
+        if (diasPermitidos.includes(diaNombre)) {
+            fechasValidas.push(new Date(d.getFullYear(), d.getMonth(), d.getDate())); // clone por valor
+        }
     }
-}
 
     const logsMap = datos.reduce((acc, h) => {
         const fecha = new Date(h.date).toISOString().split('T')[0];
@@ -148,7 +150,7 @@ for (let d = new Date(fechaInicio); d <= fechaFin; d.setDate(d.getDate() + 1)) {
     const datosGrafica = fechasValidas.map(f => {
         const fechaStr = f.toISOString().split('T')[0];
         return {
-            x: fechaStr,
+            x: etiquetaDias[f.getDay()],
             y: logsMap[fechaStr] || 0,
             unit: unidad
         };
@@ -175,6 +177,8 @@ for (let d = new Date(fechaInicio); d <= fechaFin; d.setDate(d.getDate() + 1)) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const maxY = Math.max(...datosGrafica.map(d => d.y));
+
     const chart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -189,6 +193,13 @@ for (let d = new Date(fechaInicio); d <= fechaFin; d.setDate(d.getDate() + 1)) {
         options: {
             responsive: true,
             plugins: {
+                datalabels: {
+                    anchor: 'center',
+                    align: 'center',
+                    font: { weight: 'bold' },
+                    color: '#000',
+                    formatter: value => value.y > 0 ? value.y : ''
+                },
                 tooltip: {
                     callbacks: {
                         label: context => `${context.raw.x}: ${context.raw.y} ${context.raw.unit || ''}`
@@ -204,17 +215,21 @@ for (let d = new Date(fechaInicio); d <= fechaFin; d.setDate(d.getDate() + 1)) {
                 x: {
                     type: 'category',
                     ticks: {
-                        maxRotation: 90,
-                        minRotation: 90
+                        maxRotation: 0,
+                        minRotation: 0
                     },
-                    title: { display: true, text: 'Fecha' }
+                    title: { display: true, text: 'Día de la semana' }
                 },
                 y: {
                     beginAtZero: true,
+                    ticks: {
+                        callback: (val) => (val === 0 || val === maxY ? val : '')
+                    },
                     title: { display: true, text: `Duración (${unidad})` }
                 }
             }
-        }
+        },
+        plugins: [ChartDataLabels]
     });
 
     canvas._chartInstance = chart;
