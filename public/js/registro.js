@@ -65,6 +65,12 @@ validator
       errorMessage: 'Debes aceptar los términos y condiciones',
     },
   ])
+  .addField('#codigo', [
+    {
+      rule: 'required',
+      errorMessage: 'El código de verificación es obligatorio',
+    },
+  ])
   .onSuccess((event) => {
     event.target.submit(); // <- aquí habilitas el envío real
   });
@@ -135,4 +141,58 @@ document.getElementById("togglePassword2").addEventListener("click", function ()
   input.type = isVisible ? "password" : "text";
   this.className = isVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
   this.dataset.visible = (!isVisible).toString();
+});
+
+const btnCodigo = document.getElementById('btnCodigo');
+const emailInput = document.getElementById('email');
+const codigoError = document.getElementById('codigo-error');
+
+function startResendTimer(seconds = 30) {
+  let remaining = seconds;
+  btnCodigo.disabled = true;
+  btnCodigo.textContent = `Reenviar en ${remaining}s`;
+
+  const timer = setInterval(() => {
+    remaining--;
+    btnCodigo.textContent = `Reenviar en ${remaining}s`;
+
+    if (remaining <= 0) {
+      clearInterval(timer);
+      btnCodigo.disabled = false;
+      btnCodigo.textContent = 'Reenviar código';
+    }
+  }, 1000);
+}
+
+btnCodigo.addEventListener('click', async () => {
+  const email = emailInput.value.trim();
+
+  if (!email) {
+    codigoError.textContent = 'Ingresa tu email primero';
+    codigoError.className = 'just-validate-error-label';
+    codigoError.style.display = 'block';
+    return;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    codigoError.textContent = 'Ingresa un email válido';
+    codigoError.className = 'just-validate-error-label';
+    codigoError.style.display = 'block';
+    return;
+  }
+
+  codigoError.style.display = 'none';
+  startResendTimer();
+  try {
+      const res = await fetch('/api/auth/auth-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+    } catch (error) {
+      console.log('No funca')
+    }
 });

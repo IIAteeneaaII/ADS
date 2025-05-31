@@ -158,6 +158,28 @@ exports.UpdateStatus = async ({ userHabitId, date, status }) => {
     });
   }
 
+  const completedDaysCount = await prisma.habitTrackingLog.count({
+    where: {
+      userHabitId,
+      status: "completed"
+    }
+  });
+
+  // Si ya completó 21 días, crea notificación
+  if (completedDaysCount >= 21) {
+    
+    // Crear notificación:
+    await prisma.notification.create({
+      data: {
+        userId: habito.userId,
+        title: "¡Felicidades!",
+        message: `Has completado 21 días seguidos del hábito: ${habito.name}`,
+        type: "habit-streak",
+        isRead: false,
+      }
+    });
+  }
+
   return log;
 };
 

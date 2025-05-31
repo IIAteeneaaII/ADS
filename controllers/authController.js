@@ -4,15 +4,22 @@ const jwt = require('jsonwebtoken');
 const userRepo = require('../repositories/userRepositoryPrisma');
 const { setFlashMessage } = require('../utils/flashMessage');
 const redis = require('../redisClient');
-const { sendRecoveryEmail } = require('../emailSender');
+const { sendRecoveryEmail, sendAuthEmail } = require('../emailSender');
 const { createOrUpdateJob } = require('../utils/jobManager');
 const { createResetCode } = userRepo;
-const { findValidResetCode, deleteResetCodeById, saveMood, findMoodByUserAndDate, getMoodsByUser } = userRepo;
+const { findValidResetCode, deleteResetCodeById, saveMood, findMoodByUserAndDate, getMoodsByUser,emailCodeExist } = userRepo;
 
 exports.register = async (req, res) => {
-  const { email, password, userName } = req.body;
+  const { email, password, userName, codigo } = req.body;
 
   try {
+    const resetCode = await findValidResetCode(codigo);
+
+    if (!resetCode || resetCode.email !== email) {
+      setFlashMessage(res, 'Código Invalido o expirado', 'error');
+      return res.redirect('/Registro');
+    }
+
     const exists = await userRepo.findByEmail(email);
     if (exists){
       setFlashMessage(res, 'El usuario ya existe', 'error');
@@ -31,6 +38,7 @@ exports.register = async (req, res) => {
     createOrUpdateJob(user.id, 'night', 21);
 
     setFlashMessage(res, '¡Registro exitoso! Ya puedes iniciar sesión.', 'success');
+    await userRepo.deleteResetCodesByEmail(email);
     res.redirect('/');
   } catch (err) {
     console.error(err);
@@ -68,7 +76,7 @@ exports.login = async (req, res) => {
       maxAge: 60 * 60 * 1000,
     });
     setFlashMessage(res, '¡Inicio de sesión éxitoso!.', 'success');
-    res.redirect('/Preferencias');
+    res.redirect('/Bienvenida');
   } catch (err) {
     console.error(err);
     setFlashMessage(res, 'Hubo un error en el servidor. Intenta más tarde', 'error');
@@ -114,6 +122,29 @@ exports.recoverPassword = async (req, res) => {
   await createResetCode(email, code);
   // Enviar el código por correo
   await sendRecoveryEmail(email, code);
+
+  res.status(200).json({ message: 'Código de verificación enviado' });
+};
+
+exports.authentification = async (req, res) => {
+  const { email } = req.body;
+
+  const code = Math.floor(100000 + Math.random() * 900000).toString(); // Código de 6 dígitos
+
+  console.log('Este es el email :' + email)
+
+  const resultado = await emailCodeExist(email)
+  if (resultado.length!=0) {
+    await userRepo.deleteResetCodesByEmail(email);
+  }
+
+  await createResetCode(email, code);
+  // Enviar el código por correo
+
+  console.log('Codigo creado')
+
+
+  await sendAuthEmail(email, code);
 
   res.status(200).json({ message: 'Código de verificación enviado' });
 };

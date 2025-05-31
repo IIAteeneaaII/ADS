@@ -284,6 +284,16 @@ input.check {
   accent-color: #93c5fd;
 }
 
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #e7faff;
+  /* tu fondo celeste */
+  overflow-x: hidden;
+}
+
 .container_inicio {
   padding: 1rem;
 }
@@ -589,6 +599,14 @@ input.check {
 }
 
 .habit-card {
+  width: 100%;
+  max-width: 95%;
+  height: 70px;
+  min-height: 60px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #ffffff;
   border-radius: 16px;
   color: #1f2421;
@@ -596,13 +614,16 @@ input.check {
   transition: box-shadow 0.3s;
   cursor: pointer;
 }
+.habit-card span {
+  font-size: 0.8rem;
+}
 
 .habit-value-badge {
   background-color: #ffffff;
-  padding: 6px 14px;
+  padding: 6px;
   border-radius: 20px;
+  font-weight: 600;
   margin-right: 14px;
-  font-size: 0.9rem;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -650,6 +671,50 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(18px);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  text-align: center;
+  font-size: 12px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bottom-nav button:active {
+  transform: scale(1.1);
+}
+
+.bottom-nav button i {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.bottom-nav button:focus {
+  outline: none;
+}
+
+.container-md {
+  padding-bottom: 80px;
+  /* Espacio para que el contenido no se oculte detrás del menú */
 }
 
 .container p {
@@ -1730,11 +1795,9 @@ ul li ul li {
   max-width: 300px;
   min-height: 350px;
   margin: auto;
-  background-color: #ffffff;
   border-radius: 12px;
   padding: 20px;
   margin-top: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.196);
   text-align: center;
 }
 

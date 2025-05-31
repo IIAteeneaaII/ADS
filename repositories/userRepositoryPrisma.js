@@ -62,6 +62,12 @@ exports.createResetCode = async (email, code) => {
   });
 };
 
+exports.emailCodeExist = async (email) => {
+  return await prisma.resetCode.findMany({
+    where: { email },
+  });
+};
+
 exports.findValidResetCode = async (code) => {
   return await prisma.resetCode.findFirst({
     where: {

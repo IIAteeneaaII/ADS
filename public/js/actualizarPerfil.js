@@ -106,6 +106,7 @@ async function actualizarPerfil(nombre, foto) {
         title: '¡Perfil actualizado!',
         text: 'Los cambios se guardaron correctamente.',
         imageUrl: '/img/sharki/feliz.png',
+        imageWidth: 250,
         confirmButtonText: 'Aceptar',
         customClass: { confirmButton: 'btn btn-primary' },
         buttonsStyling: false

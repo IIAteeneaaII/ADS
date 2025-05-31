@@ -102,24 +102,18 @@ ul li ul li {
   border-radius: 16px 16px 0 0;
 }
 
-
-
-
-
 /* Tarjeta del slider */
 .card-item {
   width: 300%;
   max-width: 300px;
-  min-height: 350px; // ⬅️ Aumenta este valor según lo que necesites
+  min-height: 350px;
   margin: auto;
-  background-color: v.$white; 
   border-radius: 12px;
   padding: 20px;
   margin-top: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.196);
+  // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.196);
   text-align: center;
 }
-
 
 .user-image {
   width: 250px;
