@@ -1795,11 +1795,9 @@ ul li ul li {
   max-width: 300px;
   min-height: 350px;
   margin: auto;
-  background-color: #ffffff;
   border-radius: 12px;
   padding: 20px;
   margin-top: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.196);
   text-align: center;
 }
 
