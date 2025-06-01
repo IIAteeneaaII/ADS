@@ -289,9 +289,6 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #e7faff;
-  /* tu fondo celeste */
-  overflow-x: hidden;
 }
 
 .container_inicio {
@@ -2020,7 +2017,6 @@ h1.actualizar {
   }
 }
 .notif-card {
-  background-color: #ebfcff;
   border-radius: 10px;
   color: #1f2421;
   position: relative;
@@ -2029,34 +2025,65 @@ h1.actualizar {
   width: 100%;
 }
 
-@keyframes show {
+@keyframes fadeInSlide {
   from {
     opacity: 0;
-    scale: 10%;
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
-    scale: 100%;
+    transform: translateY(0);
   }
 }
 .notification-item {
-  view-timeline-name: --reveal;
-  animation-name: show;
-  animation-fill-mode: both;
-  animation-timeline: --reveal;
-  animation-range: entry 25% cover 50%;
+  font-size: 0.6rem;
   margin: 5px;
+  padding: 0.3rem;
+  box-shadow: 0 0 3px #93c5fd;
+  animation: fadeInSlide 0.5s ease-out both;
+}
+.notification-item p {
+  font-size: 0.6rem;
 }
 
-#seccion-de-notificaciones {
+.seccion-de-notificaciones {
   max-height: 60vh;
   overflow-y: auto;
-  padding-bottom: 7rem;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #93c5fd transparent;
+}
+.seccion-de-notificaciones::-webkit-scrollbar {
+  width: 6px;
+}
+.seccion-de-notificaciones::-webkit-scrollbar-track {
+  background: transparent;
+}
+.seccion-de-notificaciones::-webkit-scrollbar-thumb {
+  background-color: #93c5fd;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
 }
 
 .notification-item.read {
-  background-color: #93c5fd !important;
-  transition: background-color 6s;
+  transition: background-color 10s;
+}
+
+.text-muted {
+  text-align: center;
+  margin: 0 1rem;
+  border-radius: 1rem;
+  background-color: #93c5fd;
+  color: #1e62af !important;
+  box-shadow: 0 0 2px #1e62af;
+}
+
+.notification-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #93c5fd;
 }
 
 /*# sourceMappingURL=styles.css.map */

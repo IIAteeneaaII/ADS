@@ -8,6 +8,7 @@ const { loadAllJobs } = require('./utils/jobManager');
 require('./utils/UploadHabitsPerDay');
 const { renderCalendar } = require('./controllers/authController');
 const { interesesPreferencias, interesesActividades } = require('./utils/interesesData');
+const { getHabitIcon } = require('./utils/habitIcons');
 
 const { getRecentNotifications, countUnreadNotifications, markAllAsRead, getNotificationsTime, updateNotificationHours } = require('./repositories/habitRepositoryPrisma');
 
@@ -112,8 +113,13 @@ app.get('/TerminosyCondiciones', (req, res) => {
 app.get('/Notificaciones', authMiddleware, async (req, res) => {
     const notifications = await getRecentNotifications(req.user.id);
     markAllAsRead(req.user.id);
+    
+    const notificationsIcon = notifications.map(n => ({
+    ...n,
+    icon: getHabitIcon(n.title)
+    }));
     res.render('notificaciones', {
-        notifications
+        notifications, notificationsIcon
     });
 });
 
