@@ -37,17 +37,11 @@
 
               <div class="mb-3">
                 <label for="contrasena" class="form-label">Contraseña*:</label>
-
-                <!-- Contenedor del input y el ícono -->
-                <div class="position-relative">
+                <div class="position-relative input-with-eye-container">
                   <input type="password" class="form-control pe-5" id="contrasena" name="password" placeholder="Ingresa tu contraseña">
-                  <i id="togglePassword" class="fa-solid fa-eye position-absolute"
-                    style="right: 15px; top: 0; bottom: 0; margin: auto 0; height: 100%; display: flex; align-items: center; cursor: pointer;"></i>
+                  <i id="togglePassword" class="fa-solid fa-eye" data-visible="false" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></i>
                 </div>
-
-                <!-- Aquí tu JS insertará el mensaje si es necesario -->
               </div>
-
 
               <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
