@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/css/styles.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <title>Actualizar Perfil</title>
 </head>
@@ -48,11 +49,11 @@
         <div>
           <span id="correoUsuario" class="nombreColor text-muted"><%= user.email %></span>
         </div>
-        <p style="margin-top: 3rem; text-align: center;">Presiona el boton de "Editar perfil" para actualizar tu foto y nombre</p>
+        <!-- <p style="margin-top: 3rem; text-align: center;">Presiona el boton de "Editar perfil" para actualizar tu foto y nombre</p> -->
         <!-- Botones -->
-        <div class="d-flex justify-content-center">
-          <button id="btnEditar" class="btn btn-sm btn-secondary">Editar perfil</button>
-          <button id="btnGuardar" class="btn btn-sm btn-primary d-none">Guardar</button>
+        <div class="d-flex justify-content-center botones-actualizar">
+          <button id="btnEditar" class="btn btn-sm btn-primary"><i class="fa-regular fa-pen-to-square"></i> Editar perfil</button>
+          <button id="btnGuardar" class="btn btn-sm btn-primary d-none">Guardar cambios</button>
           <button id="btnCancelar" class="btn btn-sm btn-secondary d-none ms-2">Cancelar</button>
         </div>
       </div>

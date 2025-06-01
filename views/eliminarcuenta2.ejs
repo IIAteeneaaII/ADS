@@ -57,6 +57,7 @@
 
   <!-- Bootstrap JS -->
   <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
     // Mostrar/ocultar contraseña
@@ -85,8 +86,22 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("contrasena").value;
 
+      // Quitar mensaje de error previo si existe
+      let errorMsg = document.getElementById('password-error-msg');
+      if (errorMsg) errorMsg.remove();
+
       if (!email || !password) {
-        alert("Por favor, completa todos los campos.");
+        // Mostrar mensaje debajo del campo contraseña
+        if (!password) {
+          const inputDiv = document.querySelector('.password-container .position-relative');
+          const msg = document.createElement('div');
+          msg.id = 'password-error-msg';
+          msg.style.color = '#2582eb';
+          msg.style.fontSize = '0.95em';
+          msg.style.marginTop = '0.25rem';
+          msg.textContent = 'Este campo es obligatorio';
+          inputDiv.appendChild(msg);
+        }
         return;
       }
 
@@ -106,15 +121,39 @@
 
           localStorage.removeItem('token');
           localStorage.removeItem('savedEmail');
-          alert("Cuenta eliminada correctamente.");
-          window.location.href = '/';
+          Swal.fire({
+            title: '¡Cuenta eliminada!',
+            text: 'Cuenta eliminada correctamente. Esperamos que vuelvas pronto.',
+            imageUrl: '/img/sharki/eliminar.png',
+            imageWidth: 250,
+            confirmButtonText: 'Aceptar',
+            customClass: { confirmButton: 'btn btn-primary' },
+            buttonsStyling: false
+          }).then(() => {
+            window.location.href = '/';
+          });
         } else {
           const error = await deleteResponse.json();
-          alert(`Error: ${error.message || "No se pudo eliminar la cuenta. Verifica tus datos."}`);
+          Swal.fire({
+            title: 'Error',
+            text: "No se pudo eliminar la cuenta. Verifica tus datos.",
+            imageUrl: '/img/sharki/lupa.png',
+            imageWidth: 250,
+            confirmButtonText: 'Aceptar',
+            customClass: { confirmButton: 'btn btn-primary' },
+            buttonsStyling: false
+          });
         }
       } catch (err) {
         console.error("Error al eliminar la cuenta:", err);
-        alert("Ocurrió un error inesperado. Intenta nuevamente.");
+        Swal.fire({
+          title: 'Error',
+          text: "Ocurrió un error inesperado. Intenta nuevamente.",
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+          customClass: { confirmButton: 'btn btn-primary' },
+          buttonsStyling: false
+        });
       }
     });
   </script>

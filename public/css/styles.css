@@ -1889,10 +1889,15 @@ h1.actualizar {
 
 .nombreColor {
   color: #1e62af !important;
+  font-weight: bold;
 }
 
 .icon-right {
   margin-left: auto; /* Empuja el ícono al extremo derecho */
+}
+
+.botones-actualizar {
+  margin-top: 1rem;
 }
 
 .form-habito {
