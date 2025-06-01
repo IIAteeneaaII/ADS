@@ -8,6 +8,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/css/styles.css" rel="stylesheet" />
+  <link rel="manifest" href="/manifest.json">
 
 </head>
 
@@ -37,8 +38,8 @@
 
               <div class="mb-3">
                 <label for="contrasena" class="form-label">Contraseña*:</label>
-                <div class="position-relative">
-                  <input type="password" class="form-control" id="contrasena" name="password" placeholder="Ingresa tu contraseña" />
+                <div class="position-relative input-with-eye-container">
+                  <input type="password" class="form-control pe-5" id="contrasena" name="password" placeholder="Ingresa tu contraseña">
                   <i id="togglePassword" class="fa-solid fa-eye" data-visible="false" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></i>
                 </div>
               </div>

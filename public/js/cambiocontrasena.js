@@ -16,14 +16,10 @@ if (form) {
         errorMessage: "Este campo es obligatorio",
       },
       {
-        rule: "password",
-        errorMessage: "Debe tener al menos 8 caracteres e incluir letras, números y un símbolo",
-      },
-      {
         validator: (value) => {
-          return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z\d\s])[^\s]{8,}$/.test(value);
+          return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*\-_])[A-Za-z\d!@#$%^&*\-_]{8,12}$/.test(value);
         },
-        errorMessage: "Formato inválido: usa letras, números y un símbolo (!$@%)",
+        errorMessage: "Debe tener entre 8 y 12 caracteres, incluir letras, números y al menos un símbolo (!@#$%^&*-_ )",
       },
     ])
     .addField("#confirmarContrasena", [

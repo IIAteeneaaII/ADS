@@ -17,8 +17,8 @@ validator
       errorMessage: 'No puede tener más de 20 caracteres',
     },
     {
-      rule: 'customRegexp', // Comprueba que solo contenga letras y números, sin símbolos
-      value: /^[a-zA-Z0-9]+$/,
+      rule: 'customRegexp', // Comprueba que solo contenga letras y números, sin símbolos, con espacipos permitidos
+      value: /^[a-zA-Z0-9 ]+$/,
       errorMessage: 'Solo se permiten letras y números (sin símbolos)',
     },
   ])
@@ -38,15 +38,14 @@ validator
       errorMessage: 'La contraseña es obligatoria',
     },
     {
-      rule: 'password',
-      errorMessage: 'Debe contener al menos una mayúscula, una minúscula, un número',
-    },
-    {
-      rule: 'minLength',
-      value: 8,
-      errorMessage: 'Debe tener al menos 8 caracteres',
+      validator: (value) => {
+        const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*\-_])[A-Za-z\d!@#$%^&*\-_]{8,12}$/;
+        return regex.test(value);
+      },
+      errorMessage: 'Debe tener entre 8 y 12 caracteres, incluir letras, números y al menos un símbolo (!@#$%^&*-_ ).',
     },
   ])
+
   .addField('#confirmarContrasena', [
     {
       rule: 'required',

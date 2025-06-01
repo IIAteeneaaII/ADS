@@ -94,21 +94,8 @@
       </form>
     </div>
   </div>
-<nav class="bottom-nav">
-  <button onclick="location.href='/inicio'">
-    <i class="fa-solid fa-house"></i>
-    <span>Inicio</span>
-  </button>
-  <button onclick="location.href='/gestionarMisHabitos'">
-    <i class="fa-solid fa-list-check"></i>
-    <span>Mis hábitos</span>
-  </button>
-  <button onclick="location.href='/gestionarHabitos'">
-    <i class="fa-solid fa-plus"></i>
-    <span>Nuevo Hábito</span>
-  </button>
-</nav>
-  <!-- Bootstrap JS + lógica -->
+
+  <%- include('partials/navBar')%>
   <%- include('partials/allScripts') %>
     <script src="/js/inicio.js"></script>
     <script>

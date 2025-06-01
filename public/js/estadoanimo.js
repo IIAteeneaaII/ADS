@@ -11,11 +11,26 @@ function seleccionarEmocion(elemento) {
 
   // Guardar la emoción seleccionada (leer el texto de la etiqueta)
   emocionSeleccionada = elemento.querySelector('.emotion-label').textContent.trim();
+
+    // Habilitar el botón y cambiar estilo
+  const botonGuardar = document.querySelector('.btn-save');
+  botonGuardar.disabled = false;
+  botonGuardar.style.backgroundColor = '#60a9fa'; 
+  botonGuardar.style.color = '#f8f9fa';           
+  botonGuardar.style.cursor = 'pointer';
+  botonGuardar.style.transition = 'background-color 0.3s ease';
 }
 
 // Esperar a que el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
   const botonGuardar = document.querySelector('.btn-save');
+
+    // Estado inicial del botón
+  botonGuardar.disabled = true;
+  botonGuardar.style.backgroundColor = '#bfddfe'; 
+  botonGuardar.style.color = '#f8f9fa';
+  botonGuardar.style.cursor = 'not-allowed';
+  botonGuardar.style.transition = 'background-color 0.3s ease';
 
 botonGuardar.addEventListener('click', async function () {
     if (emocionSeleccionada) {
