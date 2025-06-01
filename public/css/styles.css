@@ -1184,9 +1184,9 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
 .grupo-iconos {
   display: flex;
   flex-direction: row;
-  justify-content: right;
-  gap: 20px;
-  padding-top: 1rem;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 1rem;
 }
 
 .iconos-habitos {
@@ -1355,6 +1355,26 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
     transform: translateY(0);
   }
 }
+.btn-outline-primary-mine {
+  background-color: #93c5fd;
+  border-radius: 0.4rem;
+  padding: 0.3rem;
+  margin: 0.7rem;
+  font-weight: 1rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.btn-outline-primary-mine.selected {
+  background-color: #1e62af;
+  color: #ffffff;
+  border-color: #1e62af;
+}
+.btn-outline-primary-mine:hover:not(.selected) {
+  background-color: #bfddfe;
+}
+
 .botones-eliminar {
   text-align: center;
 }
@@ -1945,6 +1965,87 @@ h1.actualizar {
   /* opcional: transparente si quieres manejarlo tú */
   border: none;
   font-size: 18px;
+}
+
+#linearSlider {
+  -webkit-appearance: none;
+  width: 180px; /* ajusta el ancho según lo necesites */
+  height: 10px;
+  background: #e0f7fa; /* color base celeste clarito */
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s;
+  position: relative;
+}
+
+/* Pista del slider */
+#linearSlider::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #00c2d7, #8ed1f4);
+}
+
+#linearSlider::-moz-range-track {
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #00c2d7, #8ed1f4);
+}
+
+/* Pulgar del slider */
+#linearSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #00c2d7; /* color borde como el circular */
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s, border 0.3s;
+  position: relative;
+  margin-top: -5px; /* centra el pulgar */
+}
+
+#linearSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #00c2d7;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Indicador de valor */
+#linearSliderValue {
+  display: inline-block;
+  margin-left: 10px;
+  font-weight: bold;
+  color: #00c2d7; /* celeste intenso como en la imagen */
+  font-size: 1.1em;
+}
+
+/* Contenedor general del roundSlider */
+#circularSlider .rs-range-color {
+  background: linear-gradient(90deg, #00c2d7, #8ed1f4); /* gradiente similar al lineal */
+}
+
+#circularSlider .rs-path-color {
+  background: #e0f7fa; /* color base celeste clarito */
+}
+
+#circularSlider .rs-handle {
+  background: #ffffff; /* pulgar blanco */
+  border: 3px solid #00c2d7; /* borde celeste intenso */
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); /* sombra sutil */
+}
+
+/* Texto del tooltip */
+#circularSlider .rs-tooltip-text {
+  color: #00c2d7;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 .streak-container {

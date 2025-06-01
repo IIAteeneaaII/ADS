@@ -42,6 +42,12 @@
     <div id="circularSlider"></div>
     <input type="hidden" id="sliderHidden" name="" value="<%= habit ? habit.fieldValues.value : 30 %>">
   </div>
+
+  <div id="linear-slider-container" class="d-none">
+    <input type="range" id="linearSlider" min="1" max="100" value="1" />
+    <span id="linearSliderValue">1</span>
+  </div>
+
             <!-- <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]" value="<%= habit ? habit.fieldValues?.value : 1 %>" min="1"> -->
             <select class="form-control form-select ms-2" id="unitSelect" name="fieldValues[unit]">
               <option value="min" selected>minutos</option>
@@ -70,7 +76,7 @@
 <div class="mb-3">
   <input type="hidden" name="frequency[type]" value="weekly">
   <label class="form-label">Días de la semana</label>
-  <div class="d-flex flex-wrap gap-2">
+  <div class="days-week d-flex flex-wrap gap-2">
     <% const days = habit?.frequency?.days || []; %>
     <% const allDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']; %>
     <% const dayTranslations = {
@@ -84,7 +90,7 @@
        }; %>
     <% allDays.forEach(day => { %>
       <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>" id="<%= day %>"
-        <%= days.includes(day) ? 'checked' : '' %>>
+        <%=days.includes(day) ? 'checked' : '' %>>
       <label class="btn btn-outline-secondary rounded-pill <%= days.includes(day) ? 'dia_selected' : '' %>"
         for="<%= day %>">
         <%= dayTranslations[day] %>
@@ -124,7 +130,7 @@
           <input type="hidden" name="icon" id="iconInput" value="<%= habit?.icon || 'personalizado.png' %>">
         </div>
 
-        <button type="submit" class="btn btn-primary">Guardar hábito</button>
+        <button type="submit" class="btn btn-primary justify-content-center">Guardar hábito</button>
       </form>
     </div>
   </div>
@@ -235,89 +241,113 @@
     </script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-        const unitSelect = document.getElementById('unitSelect');
-        const numberInput = document.getElementById('goal-number');
-        const sliderContainer = document.getElementById('goal-slider');
-        const goal = document.getElementById('goal');
-        const hiddenSliderInput = document.getElementById('sliderHidden');
+  const unitSelect = document.getElementById('unitSelect');
+  const numberInput = document.getElementById('goal-number');
+  const sliderContainer = document.getElementById('goal-slider');
+  const linearSliderContainer = document.getElementById('linear-slider-container');
+  const linearSlider = document.getElementById('linearSlider');
+  const linearSliderValue = document.getElementById('linearSliderValue');
+  const goal = document.getElementById('goal');
+  const hiddenSliderInput = document.getElementById('sliderHidden');
 
-        if (!unitSelect || !numberInput || !sliderContainer || !goal || !hiddenSliderInput) {
-            console.error("Faltan elementos del DOM necesarios para inicializar el slider");
-            return;
-        }
-        const getDataColors = opacity => {
-        const colors = ['#7448c2', '#21c0d7', '#d99e2b', '#cd3a81', '#9c99cc', '#e14eca', '#ffffff', '#ff0000', '#d6ff00', '#0038ff']
-        return colors.map(color => opacity ? `${color + opacity}` : color)
-        }
-        const initialValue = parseInt(hiddenSliderInput.value) || 30;
+  const initialValue = parseInt(hiddenSliderInput.value) || 30;
 
-        let slider = $("#circularSlider").roundSlider({
-            radius: 80,
-            min: 1,
-            max: 60,
-            value: initialValue,
-            width: 16,
-            handleSize: "+8",
-            handleShape: "round",
-            sliderType: "min-range",
-            editableTooltip: false,
-            tooltipFormat: e => `${e.value} min`,
-            change: e => hiddenSliderInput.value = e.value,
-            drag: e => hiddenSliderInput.value = e.value
-        }).data("roundSlider");
+  // Slider circular
+  const slider1 = $("#circularSlider").roundSlider({
+    radius: 80,
+    min: 1,
+    max: 60,
+    value: initialValue,
+    width: 16,
+    handleSize: "+8",
+    handleShape: "round",
+    sliderType: "min-range",
+    editableTooltip: false,
+    tooltipFormat: e => `${e.value} min`,
+    change: e => hiddenSliderInput.value = e.value,
+    drag: e => hiddenSliderInput.value = e.value
+  }).data("roundSlider");
 
-        function updateSliderConfig(min, max, unitLabel) {
-            slider.option({
-                min: min,
-                max: max,
-                tooltipFormat: e => `${e.value} ${unitLabel}`
-            });
+  // Slider lineal (inicial)
+  let slider2 = {
+    min: 1,
+    max: 100,
+    unitLabel: '',
+    update: (min, max, unitLabel) => {
+      linearSlider.min = min;
+      linearSlider.max = max;
+      linearSlider.value = min;
+      linearSliderValue.textContent = `${min} ${unitLabel}`;
+      hiddenSliderInput.value = min;
+      slider2.unitLabel = unitLabel;
+    },
+    initEvents: () => {
+      linearSlider.oninput = () => {
+        linearSliderValue.textContent = `${linearSlider.value} ${slider2.unitLabel}`;
+        hiddenSliderInput.value = linearSlider.value;
+      };
+    }
+  };
+  slider2.initEvents();
 
-            // Si el valor actual está fuera del nuevo rango, ajustarlo
-            let current = slider.getValue();
-            if (current < min) current = min;
-            if (current > max) current = max;
-
-            // Forzar re-render del tooltip
-            slider.setValue(current + 1);
-            setTimeout(() => slider.setValue(current), 10);
-
-            hiddenSliderInput.value = current;
-        }
-
-
-        function updateInputDisplay() {
-            const selectedUnit = unitSelect.value;
-
-            if (selectedUnit === 'min') {
-                updateSliderConfig(1, 60, 'min');
-                sliderContainer.classList.remove('d-none');
-                numberInput.classList.add('d-none');
-                hiddenSliderInput.name = 'fieldValues[value]';
-                goal.name = '';
-            } else if (selectedUnit === 'hrs') {
-                updateSliderConfig(1, 24, 'hrs');
-                sliderContainer.classList.remove('d-none');
-                numberInput.classList.add('d-none');
-                hiddenSliderInput.name = 'fieldValues[value]';
-                goal.name = '';
-            } else if (selectedUnit === 'km') {
-                updateSliderConfig(1, 1000, 'km');
-                sliderContainer.classList.remove('d-none');
-                numberInput.classList.add('d-none');
-                hiddenSliderInput.name = 'fieldValues[value]';
-                goal.name = '';
-            } else {
-                sliderContainer.classList.add('d-none');
-                numberInput.classList.remove('d-none');
-                goal.name = 'fieldValues[value]';
-                hiddenSliderInput.name = '';
-            }
-        }
-
-        unitSelect.addEventListener('change', updateInputDisplay);
-        updateInputDisplay();
+  // Función para actualizar el slider circular
+  const updateSlider1 = (min, max, unitLabel) => {
+    slider1.option({
+      min: min,
+      max: max,
+      tooltipFormat: e => `${e.value} ${unitLabel}`
     });
+    let current = slider1.getValue();
+    if (current < min) current = min;
+    if (current > max) current = max;
+    slider1.setValue(current + 1);
+    setTimeout(() => slider1.setValue(current), 10);
+    hiddenSliderInput.value = current;
+  };
+
+  // Muestra el slider correspondiente y lo configura
+  function updateInputDisplay() {
+    const selectedUnit = unitSelect.value;
+
+    if (['min', 'hrs', 'km'].includes(selectedUnit)) {
+      // Slider circular
+      let max = selectedUnit === 'min' ? 60 : selectedUnit === 'hrs' ? 24 : 1000;
+      updateSlider1(1, max, selectedUnit);
+      sliderContainer.classList.remove('d-none');
+      linearSliderContainer.classList.add('d-none');
+      numberInput.classList.add('d-none');
+      hiddenSliderInput.name = 'fieldValues[value]';
+      goal.name = '';
+    } else if (['repeticiones', 'ejercicios', 'paginas', 'rutinas', 'vasos', 'canciones'].includes(selectedUnit)) {
+      // Slider lineal
+      let max = 100;
+      if (selectedUnit === 'repeticiones') max = 25;
+      if (selectedUnit === 'ejercicios') max = 15;
+      if (selectedUnit === 'paginas') max = 100;
+      if (selectedUnit === 'rutinas') max = 10;
+      if (selectedUnit === 'vasos') max = 15;
+      if (selectedUnit === 'canciones') max = 20;
+      // Otros rangos aquí...
+
+      slider2.update(1, max, selectedUnit);
+      sliderContainer.classList.add('d-none');
+      linearSliderContainer.classList.remove('d-none');
+      numberInput.classList.add('d-none');
+      hiddenSliderInput.name = 'fieldValues[value]';
+      goal.name = '';
+    } else {
+      // Campo numérico
+      sliderContainer.classList.add('d-none');
+      linearSliderContainer.classList.add('d-none');
+      numberInput.classList.remove('d-none');
+      hiddenSliderInput.name = '';
+      goal.name = 'fieldValues[value]';
+    }
+  }
+
+  unitSelect.addEventListener('change', updateInputDisplay);
+  updateInputDisplay();
+});
 
 </script>
 </body>
