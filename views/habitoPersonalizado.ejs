@@ -27,6 +27,9 @@
 
         <div class="mb-3">
           <label for="description" class="form-label">Descripción</label>
+          <label for="description" class="form-label">Descripción
+            <%- include('helpButton', { mensaje: 'La <strong>descripción</strong> sirve para explicar más sobre el hábito.', tipo: 'info'}) %>
+          </label>
 
           <textarea class="form-control" id="description" name="description"
             rows="3"><%= habit ? habit.description : '' %></textarea>
@@ -122,6 +125,10 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Selecciona un icono</label>
+          <label class="form-label" for="reminder">Selecciona un icono
+            <%- include('helpButton', { mensaje: 'Los <strong>iconos</strong> ayudarán al usuario a reconocer el hábito  <strong> Selecciona un icono</strong>) .', tipo: 'info'}) %> 
+          </label>
+  
           <div class="dropdown">
             <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button"
               id="iconDropdown" data-bs-toggle="dropdown" aria-expanded="false">
