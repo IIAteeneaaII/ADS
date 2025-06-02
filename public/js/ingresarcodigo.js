@@ -13,7 +13,7 @@ if (form) {
       Swal.fire({
         title: "Campos vacíos",
         text: "Por favor completa todos los campos.",
-        imageUrl: "/img/sharki/advertencia.png",
+        imageUrl: "/img/sharki/lupa.png",
         imageWidth: 250,
         confirmButtonText: "Aceptar",
         customClass: { confirmButton: 'btn btn-primary' },
