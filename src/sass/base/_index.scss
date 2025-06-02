@@ -84,23 +84,31 @@ footer {
     }
 }
 
-.btn-primary {
+.btn-primary, .btn-days {
     background-color: v.$colorPrimariBtn;
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
     color: v.$white;
     font-weight: 500;
-    // border: solid 2px v.$mainColor-strong;
+    cursor: pointer;
     &:hover {
-        // color: v.$black;
-        // transform: scale(1.02);
-        background-color: v.$mainColor-low;
+        background-color: v.$mainColor-strong;
     }
     &:focus {
-        background-color: v.$mainColor-low;
+        background-color: v.$mainColor-strong;
     }
 }
+.btn-days{
+    border: solid 2px v.$mainColor-strong;
+    padding: 0.3rem;
+}
+
+.btn-check:checked + .btn-days {
+    background-color: v.$mainColor-strong;
+    color: v.$white; 
+}
+
 
 .btn-secondary {
     background-color: v.$colorSecondaryBtn;

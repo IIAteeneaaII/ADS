@@ -40,8 +40,16 @@
     <label for="startDate" class="form-label">Fecha de inicio
       <%- include('helpButton', { mensaje: 'Selecciona una <strong>fecha de inicio</strong> del cual partira el hábito.', tipo: 'info'}) %>
     </label>
-    <input type="text" class="form-control calendario" id="startDate" name="startDate"
-      value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
+                  <div class="d-flex align-items-center gap-2 text-center">
+                <input type="text" id="startDate" name="startDate" class="visually-hidden"
+                  value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
+                <button type="button" id="calendarButton" class="btn btn-outline-primary">
+                  <i class="fa fa-calendar"></i>
+                </button>
+                <span id="selectedDateText" class="fw-bold">
+                  <%= habit ? habit.startDate.toISOString().split('T')[0] : 'Sin seleccionar' %>
+                </span>
+              </div>
   </div>
 
   <div class="mb-3">
@@ -49,7 +57,7 @@
     <label class="form-label">Días de la semana
       <%- include('helpButton', { mensaje: 'Los <strong>días de la semana</strong> son los días en los que se tienen planeado realizar el hábito a cualquier hora del día.', tipo: 'info'}) %>
     </label>
-    <div class="days-week d-flex flex-wrap gap-2">
+    <div class="days-week d-flex flex-wrap">
       <% const days=habit?.frequency?.days || []; %>
         <% const allDays=['monday', 'tuesday' , 'wednesday' , 'thursday' , 'friday' , 'saturday' , 'sunday' ]; %>
           <% const dayTranslations={ monday: 'Lun' , tuesday: 'Mar' , wednesday: 'Mie' , thursday: 'Jue' , friday: 'Vie'
@@ -57,7 +65,7 @@
             <% allDays.forEach(day=> { %>
               <input type="checkbox" class="btn-check" name="frequency[days][]" value="<%= day %>" id="<%= day %>"
                 <%=days.includes(day) ? 'checked' : '' %>>
-              <label class="btn btn-outline-secondary rounded-pill <%= days.includes(day) ? 'dia_selected' : '' %>"
+              <label class="btn-days <%= days.includes(day) ? 'dia_selected' : '' %>"
                 for="<%= day %>">
                 <%= dayTranslations[day] %>
               </label>

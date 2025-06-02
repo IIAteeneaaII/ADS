@@ -84,19 +84,30 @@ footer {
   transform: scale(1.1);
 }
 
-.btn-primary {
+.btn-primary, .btn-days {
   background-color: #60a9fa;
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
   color: #ffffff;
   font-weight: 500;
+  cursor: pointer;
 }
-.btn-primary:hover {
-  background-color: #93c5fd;
+.btn-primary:hover, .btn-days:hover {
+  background-color: #1e62af;
 }
-.btn-primary:focus {
-  background-color: #93c5fd;
+.btn-primary:focus, .btn-days:focus {
+  background-color: #1e62af;
+}
+
+.btn-days {
+  border: solid 2px #1e62af;
+  padding: 0.3rem;
+}
+
+.btn-check:checked + .btn-days {
+  background-color: #1e62af;
+  color: #ffffff;
 }
 
 .btn-secondary {
@@ -1923,8 +1934,39 @@ h1.actualizar {
   margin: 1rem 0 1rem 0;
   font-weight: 600;
 }
-.form-habito .days-week {
+
+.days-week {
+  gap: 0.2rem;
   justify-content: center;
+}
+
+.pika-single {
+  z-index: 9999 !important;
+  position: absolute !important;
+}
+
+.pika-single .pika-table td.is-selected {
+  background-color: #93c5fd !important; /* Naranja */
+  color: #fff !important;
+  border-radius: 1rem;
+}
+
+.pika-single .pika-table td.is-today {
+  color: #93c5fd !important; /* Naranja oscuro */
+  font-weight: bold;
+  border-radius: 1rem;
+}
+
+.pika-single .pika-table td:hover:not(.is-selected) {
+  background-color: #1e62af !important;
+  border-radius: 1rem;
+}
+
+.form_habitos,
+.container,
+.tab-content {
+  overflow: visible !important;
+  position: relative;
 }
 
 .form-control:focus {

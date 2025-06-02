@@ -1,19 +1,30 @@
 <script>
-    new Pikaday({
-        field: document.getElementById('startDate'),
-        format: 'YYYY-MM-DD',
-        i18n: {
-            previousMonth: 'Mes anterior',
-            nextMonth: 'Mes siguiente',
-            months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
-        },
-        toString(date) {
-            return date.toISOString().split('T')[0];
-        },
-        minDate: new Date()
-    });
+document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('startDate');
+            const button = document.getElementById('calendarButton');
+            const dateDisplay = document.getElementById('selectedDateText');
+
+            const picker = new Pikaday({
+              field: input,
+              format: 'YYYY-MM-DD',
+              i18n: {
+                previousMonth: 'Mes anterior',
+                nextMonth: 'Mes siguiente',
+                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+              },
+              minDate: new Date(),
+              onSelect: function (date) {
+                const formatted = date.toISOString().split('T')[0];
+                dateDisplay.textContent = formatted;
+              }
+            });
+
+            button.addEventListener('click', () => {
+              picker.show();
+            });
+          });
 
     document.getElementById('form-habito').addEventListener('submit', async function (e) {
         e.preventDefault();
@@ -74,7 +85,7 @@
         }
     });
 
-    document.querySelectorAll('.btn-outline-secondary').forEach(btn => {
+    document.querySelectorAll('.btn-days').forEach(btn => {
         btn.addEventListener('click', () => {
             btn.classList.toggle('dia_selected');
         });
