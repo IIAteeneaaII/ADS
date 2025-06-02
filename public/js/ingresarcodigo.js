@@ -1,3 +1,4 @@
+
 const form = document.getElementById("formCodigo");
 const btnReenviar = document.getElementById("btnReenviarCodigo");
 
@@ -9,7 +10,16 @@ if (form) {
     const email = sessionStorage.getItem("recoveryEmail");
 
     if (codigo === "" || !email) {
-      Swal.fire("Campos vacíos", "Por favor completa todos los campos.", "warning");
+      Swal.fire({
+        title: "Campos vacíos",
+        text: "Por favor completa todos los campos.",
+        imageUrl: "/img/sharki/lupa.png",
+        imageWidth: 250,
+        confirmButtonText: "Aceptar",
+        customClass: { confirmButton: 'btn btn-primary' },
+        buttonsStyling: false
+      });
+
       return;
     }
 
@@ -24,17 +34,40 @@ if (form) {
 
       if (res.ok) {
         Swal.fire({
-          icon: 'success',
-          title: 'Código válido',
-          text: 'El código es correcto, ahora puedes cambiar tu contraseña.',
+            title: "¡Código válido!",
+            text: "El código es correcto, ahora puedes cambiar tu contraseña.",
+            imageUrl: "/img/sharki/feliz.png",
+            imageWidth: 250,
+            confirmButtonText: "Continuar",
+            customClass: { confirmButton: 'btn btn-primary' },
+            buttonsStyling: false
         }).then(() => {
-          window.location.href = '/cambiocontrasena';
+        window.location.href = '/cambiocontrasena';
         });
+
       } else {
-        Swal.fire('Error', data.message || 'Código inválido o expirado', 'error');
+            Swal.fire({
+                title: "Error",
+                text: data.message || "Código inválido o expirado",
+                imageUrl: "/img/sharki/lupa.png",
+                imageWidth: 250,
+                confirmButtonText: "Aceptar",
+                customClass: { confirmButton: 'btn btn-primary' },
+                buttonsStyling: false
+            });
+
       }
     } catch (error) {
-      Swal.fire('Error', 'Hubo un error validando el código', 'error');
+        Swal.fire({
+            title: "Error",
+            text: "Hubo un error validando el código.",
+            imageUrl: "/img/sharki/lupa.png",
+            imageWidth: 250,
+            confirmButtonText: "Aceptar",
+            customClass: { confirmButton: 'btn btn-primary' },
+            buttonsStyling: false
+        });
+
     }
   });
 }
@@ -44,7 +77,16 @@ if (btnReenviar) {
     const email = sessionStorage.getItem("recoveryEmail");
 
     if (!email) {
-      Swal.fire("Error", "No se encontró el correo. Vuelve a iniciar el proceso.", "error");
+        Swal.fire({
+            title: "Error",
+            text: "No se encontró el correo. Vuelve a iniciar el proceso.",
+            imageUrl: "/img/sharki/lupa.png",
+            imageWidth: 250,
+            confirmButtonText: "Aceptar",
+            customClass: { confirmButton: 'btn btn-primary' },
+            buttonsStyling: false
+        });
+
       return;
     }
 
@@ -59,12 +101,39 @@ if (btnReenviar) {
       const data = await res.json();
 
       if (res.ok) {
-        Swal.fire("Código reenviado", "Revisa tu correo electrónico.", "success");
+        Swal.fire({
+            title: "¡Código reenviado!",
+            text: "Revisa tu correo electrónico.",
+            imageUrl: "/img/sharki/feliz.png",
+            imageWidth: 250,
+            confirmButtonText: "Aceptar",
+            customClass: { confirmButton: 'btn btn-primary' },
+            buttonsStyling: false
+        });
+
       } else {
-        Swal.fire("Error", data.message || "No se pudo reenviar el código.", "error");
+        Swal.fire({
+            title: "Error",
+            text: data.message || "No se pudo reenviar el código.",
+            imageUrl: "/img/sharki/lupa.png",
+            imageWidth: 250,
+            confirmButtonText: "Aceptar",
+            customClass: { confirmButton: 'btn btn-primary' },
+            buttonsStyling: false
+        });
+
       }
     } catch (error) {
-      Swal.fire("Error", "Hubo un problema al reenviar el código.", "error");
+        Swal.fire({
+            title: "Error",
+            text: "Hubo un problema al reenviar el código.",
+            imageUrl: "/img/sharki/lupa.png",
+            imageWidth: 250,
+            confirmButtonText: "Aceptar",
+            customClass: { confirmButton: 'btn btn-primary' },
+            buttonsStyling: false
+        });
+
     } finally {
       // Habilitar botón después de 30 segundos
       setTimeout(() => {

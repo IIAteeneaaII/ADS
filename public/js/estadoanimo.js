@@ -51,16 +51,17 @@ const fecha = fechaUTC.toISOString();
 
       if (!moodEnum) {
         return Swal.fire({
-          icon: 'error',
           title: 'Error',
           text: 'Emoción no válida.',
+          imageUrl: '/img/sharki/lupa.png',
+          imageWidth: 250,
           confirmButtonText: 'Aceptar',
-          customClass: {
-            confirmButton: 'btn-secondary'
-          },
+          customClass: { confirmButton: 'btn btn-primary' },
           buttonsStyling: false
         });
       }
+
+      
 
       try {
         // ENVÍA LA EMOCIÓN AL BACKEND
@@ -80,51 +81,47 @@ const fecha = fechaUTC.toISOString();
 
         if (response.ok) {
           Swal.fire({
-            icon: 'success',
-            title: 'Guardado',
+            title: '¡Guardado!',
             text: `Has seleccionado: ${emocionSeleccionada}`,
+            imageUrl: '/img/sharki/feliz.png',
+            imageWidth: 250,
             confirmButtonText: 'Aceptar',
-            customClass: {
-              confirmButton: 'btn-secondary'
-            },
+            customClass: { confirmButton: 'btn btn-primary' },
             buttonsStyling: false
           });
         } else {
           Swal.fire({
-            icon: 'error',
             title: 'Error',
             text: result.error || 'Error al guardar tu estado de ánimo.',
+            imageUrl: '/img/sharki/lupa.png',
+            imageWidth: 250,
             confirmButtonText: 'Aceptar',
-            customClass: {
-              confirmButton: 'btn-secondary'
-            },
+            customClass: { confirmButton: 'btn btn-primary' },
             buttonsStyling: false
           });
         }
 
       } catch (error) {
         console.error(error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error de conexión',
-          text: 'No se pudo conectar con el servidor.',
-          confirmButtonText: 'Aceptar',
-          customClass: {
-            confirmButton: 'btn-secondary'
-          },
-          buttonsStyling: false
-        });
+          Swal.fire({
+            title: 'Error de conexión',
+            text: 'No se pudo conectar con el servidor.',
+            imageUrl: '/img/sharki/lupa.png',
+            imageWidth: 250,
+            confirmButtonText: 'Aceptar',
+            customClass: { confirmButton: 'btn btn-primary' },
+            buttonsStyling: false
+          });
       }
 
     } else {
       Swal.fire({
-        icon: 'warning',
         title: 'No se seleccionó una emoción',
         text: 'Por favor selecciona una emoción antes de guardar.',
+        imageUrl: '/img/sharki/lupa.png',
+        imageWidth: 250,
         confirmButtonText: 'Aceptar',
-        customClass: {
-          confirmButton: 'btn-secondary'
-        },
+        customClass: { confirmButton: 'btn btn-primary' },
         buttonsStyling: false
       });
     }
