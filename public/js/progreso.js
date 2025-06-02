@@ -196,9 +196,10 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = 
                 datalabels: {
                     anchor: 'center',
                     align: 'center',
+                    rotation: -90, // rotar texto de abajo hacia arriba
                     font: { weight: 'bold' },
                     color: '#000',
-                    formatter: value => value.y > 0 ? value.y : ''
+                    formatter: value => value.y > 0 ? value.y : null
                 },
                 tooltip: {
                     callbacks: {
@@ -223,7 +224,7 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = 
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        callback: (val) => (val === 0 || val === maxY ? val : '')
+                        callback: val => (val === 0 || val === maxY ? val : '')
                     },
                     title: { display: true, text: `Duración (${unidad})` }
                 }
