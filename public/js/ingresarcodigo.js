@@ -10,7 +10,16 @@ if (form) {
     const email = sessionStorage.getItem("recoveryEmail");
 
     if (codigo === "" || !email) {
-      Swal.fire("Campos vacíos", "Por favor completa todos los campos.", "warning");
+      Swal.fire({
+        title: "Campos vacíos",
+        text: "Por favor completa todos los campos.",
+        imageUrl: "/img/sharki/advertencia.png",
+        imageWidth: 250,
+        confirmButtonText: "Aceptar",
+        customClass: { confirmButton: 'btn btn-primary' },
+        buttonsStyling: false
+      });
+
       return;
     }
 
