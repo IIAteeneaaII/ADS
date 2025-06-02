@@ -1907,6 +1907,15 @@ h1.actualizar {
   margin-top: 1rem;
 }
 
+.text-muted-perfil {
+  text-align: center;
+  margin: 0 1rem;
+  border-radius: 1rem;
+  background-color: #93c5fd;
+  color: #1e62af !important;
+  box-shadow: 0 0 2px #1e62af;
+}
+
 .form-habito {
   color: #1f2421;
 }
