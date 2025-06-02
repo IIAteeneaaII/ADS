@@ -289,6 +289,11 @@ input.check {
   margin-bottom: 33px;
 }
 
+.input-with-eye-container-max {
+  max-height: 80px;
+  margin-bottom: 25px;
+}
+
 body,
 html {
   height: 100%;
@@ -1580,6 +1585,11 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   margin-top: 2rem;
   background-color: #bfddfe;
   color: #ffffff;
+}
+
+.btn-save, .btn-secondary:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .emotion-option .emotion-icon.selected {

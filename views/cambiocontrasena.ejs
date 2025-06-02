@@ -21,25 +21,24 @@
           <main>
             <form id="formCodigo" autocomplete="off">
 
-             <!-- Contraseña nueva -->
-            <div class="mb-3">
-              <label for="nuevaContrasena" class="form-label">Contraseña nueva:</label>
-              <div class="position-relative d-flex align-items-center">
-                <input type="password" class="form-control pe-2" id="nuevaContrasena" name="nuevaContrasena" placeholder="Ingresa tu contraseña" required />
-                <i class="fa-solid fa-eye ms-2 text-muted fs-5" id="togglePassword3" style="cursor: pointer; position: absolute; right: 1rem; width: 1.2rem;"></i>
+              <!-- Contraseña nueva -->
+              <div class="mb-3">
+                <label for="nuevaContrasena" class="form-label">Contraseña nueva:</label>
+                <div class="d-block position-relative input-with-eye-container-max">
+                  <input type="password" class="form-control" id="nuevaContrasena" name="nuevaContrasena" placeholder="Ingresa tu contraseña"/>
+                  <i class="fa-solid fa-eye" id="togglePassword3" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></i>
+                </div>
+                
               </div>
-              <div id="error-nueva" class="text-danger small mt-1"></div> <!-- Aquí va el mensaje -->
-            </div>
             
-            <!-- Confirmar nueva -->
-            <div class="mb-3">
-              <label for="confirmarContrasena" class="form-label">Confirmar nueva:</label>
-              <div class="position-relative d-flex align-items-center">
-                <input type="password" class="form-control pe-2" id="confirmarContrasena" name="confirmarContrasena" placeholder="Confirma tu contraseña" required />
-                <i class="fa-solid fa-eye ms-2 text-muted fs-5" id="togglePassword4" style="cursor: pointer; position: absolute; right: 1rem; width: 1.2rem;"></i>
+              <!-- Confirmar nueva -->
+              <div class="mb-3">
+                <label for="confirmarContrasena" class="form-label">Confirmar nueva:</label>
+                <div class="d-block position-relative input-with-eye-container">
+                  <input type="password" class="form-control pe-2" id="confirmarContrasena" name="confirmarContrasena" placeholder="Confirma tu contraseña"/>
+                  <i class="fa-solid fa-eye" id="togglePassword4" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></i>
+                </div>
               </div>
-              <div id="error-confirmar" class="text-danger small mt-1"></div> <!-- Aquí va el mensaje -->
-            </div>
 
 
               <div class="d-grid gap-2">
