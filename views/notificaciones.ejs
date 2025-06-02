@@ -9,10 +9,10 @@
 </head>
 
 <body>
-    <div class="container pt-2">
+    <div class="container-md pt-2">
     <%- include('partials/topBar', { title: 'Notificaciones' }) %>
     <div class="separator my-2"></div>
-    <div class="container-md pt-2">
+
     <div class="notif-card seccion-de-notificaciones mt-4" id="seccion-de-notificaciones">
     <% if (notifications.length === 0) { %>
         <p>Hmm, no hay ninguna notificación por el momento.</p>
