@@ -1,13 +1,7 @@
 const form = document.getElementById("formCodigo");
 
 if (form) {
-  const validator = new JustValidate("#formCodigo", {
-    errorFieldCssClass: "is-invalid",
-    errorLabelStyle: {
-      color: "#dc3545",
-      fontSize: "0.875em",
-    },
-  });
+  const validator = new JustValidate("#formCodigo");
 
   validator
     .addField("#nuevaContrasena", [

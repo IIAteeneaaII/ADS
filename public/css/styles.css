@@ -289,6 +289,11 @@ input.check {
   margin-bottom: 33px;
 }
 
+.input-with-eye-container-max {
+  max-height: 80px;
+  margin-bottom: 25px;
+}
+
 body,
 html {
   height: 100%;
