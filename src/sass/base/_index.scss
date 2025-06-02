@@ -103,11 +103,11 @@ footer {
 }
 
 .btn-secondary {
-    background-color: v.$secondaryColor;
+    background-color: v.$colorSecondaryBtn;
     border: none;
     border-radius: 1rem;
     padding: 0.75rem;
-    color: v.$colorPrimariBtn;
+    color: v.$white;
 
     &:hover {
         transform: scale(1.02);
