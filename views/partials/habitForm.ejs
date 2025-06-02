@@ -20,6 +20,11 @@
     <input type="hidden" id="sliderHidden" name="" value="<%= habit ? habit.fieldValues.value : 30 %>">
   </div>
 
+  <div id="linear-slider-container" class="d-none">
+    <input type="range" id="linearSlider" min="1" max="100" value="1" />
+    <span id="linearSliderValue">1</span>
+  </div>
+
   <select class="form-control form-select ms-2" id="unitSelect" name="fieldValues[unit]">
         <%- include('unitSelect') %>
       </select>
@@ -60,7 +65,7 @@
     </select>
   </div>
 
-  <button type="submit" class="btn btn-primary btn-lg rounded-pill" id="submitBtn">
+  <button type="submit" class="btn btn-primary btn-lg rounded-pill justify-content-center" id="submitBtn">
   <span class="spinner-border spinner-border-sm d-none" role="status" id="spinner"></span>
   <span id="submitText">Guardar hábito</span>
 </button>

@@ -1,0 +1,15 @@
+{
+  "name": "Fin It",
+  "short_name": "Fin It",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/img/logo.png",
+      "sizes": "131x103",
+      "type": "image/png"
+    }
+  ]
+}

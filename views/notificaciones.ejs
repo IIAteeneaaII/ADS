@@ -9,45 +9,35 @@
 </head>
 
 <body>
-    <div class="container mt-5 pt-2">
-        <div class="top-bar">
-            <a onclick="location.href='/inicio';" class="back-arrow">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-            <h1 class="fw-bold">Notificaciones</h1>
-        </div>
-        <div class="separator my-2"></div>
-        <div class="container-md pt-2">
-            <div class="notif-card mt-4" id="seccion-de-notificaciones">
-                <% if (notifications.length===0) { %>
-                    <p>Hmm, no hay ninguna notificación por el momento.</p>
-                    <% } else { %>
-                        <% notifications.forEach(notification=> { %>
-                            <div class="notification-item mb-3 p-3 border rounded <%= notification.isRead ? 'bg-light' : 'bg-white' %>">
-                                <!-- Título -->
-                                <strong class="d-block mb-1">
-                                <%= notification.title %>
-                                </strong>
+    <div class="container-md pt-2">
+    <%- include('partials/topBar', { title: 'Notificaciones' }) %>
+    <div class="separator my-2"></div>
 
-                                <!-- Fecha -->
-                                <small class="text-muted d-block mb-2">
-                                <%= new Date(notification.createdAt).toLocaleString('es-MX') %>
-                                </small>
+    <div class="notif-card seccion-de-notificaciones mt-4" id="seccion-de-notificaciones">
+    <% if (notifications.length === 0) { %>
+        <p>Hmm, no hay ninguna notificación por el momento.</p>
+    <% } else { %>
 
-                                <!-- Descripción -->
-                                <p class="mb-0 text-secondary">
-                                <%= notification.message %>
-                                </p>
-                            </div>
-                            <% }) %>
-                                <% } %>
+    <% notifications.forEach((notification, index) => { %>
+        <div class="notification-item mb-3 d-flex <%= notification.isRead ? 'bg-light' : 'bg-white' %>">
+            <div class="me-2">
+                <img src="/img/gestorhabitos/<%= notificationsIcon[index].icon %>" alt="icono <%= notification.title %>">
             </div>
+            <div>
+                <strong class="d-block mb-1"><%= notification.title %></strong>
+                <small class="text-muted d-block mb-2"><%= new Date(notification.createdAt).toLocaleString('es-MX') %></small>
+                <p class="mb-0 text-secondary"><%= notification.message %></p>
+            </div>
+        </div>
+    <% }) %>
 
+<% } %>
 
         </div>
     </div>
+</div>
+
     <script src="/js/notificaciones.js"></script>
-    <!-- Bootstrap JS -->
     <script src="../bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
 </body>
 

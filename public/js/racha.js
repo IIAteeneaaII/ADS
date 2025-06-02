@@ -25,32 +25,27 @@ async function obtenerFechasUnicasDeHabitos() {
   }
 }
 
-
 function calcularRacha(registros) {
   registros.sort((a, b) => new Date(a.dia) - new Date(b.dia));
 
   let racha = 0;
   const hoy = new Date();
-  hoy.setHours(0, 0, 0, 0); 
-  //console.log('Fecha de hoy:', hoy.toISOString().split('T')[0]);
+  hoy.setHours(0, 0, 0, 0);
 
   for (let i = registros.length - 1; i >= 0; i--) {
     const fecha = new Date(registros[i].dia);
-    fecha.setHours(0, 0, 0, 0); 
+    fecha.setHours(0, 0, 0, 0);
     if (registros[i].cumplido) {
       racha++;
-    } 
-    else if (fecha.getTime() === hoy.getTime()) {
+    } else if (fecha.getTime() === hoy.getTime()) {
       continue;
-    } 
-    else {
-      break; 
+    } else {
+      break;
     }
   }
 
   return racha;
 }
-
 
 function animarContador(valorFinal, elemento, velocidad = 50) {
   let contador = 0;
@@ -65,6 +60,20 @@ function animarContador(valorFinal, elemento, velocidad = 50) {
   }, velocidad);
 }
 
+function obtenerUltimos7Dias() {
+  const dias = [];
+  const nombres = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'];
+  const hoy = new Date();
+  for (let i = 6; i >= 0; i--) {
+    const fecha = new Date(hoy);
+    fecha.setDate(hoy.getDate() - i);
+    dias.push({
+      fecha: fecha.toISOString().split('T')[0],
+      nombre: nombres[fecha.getDay()]
+    });
+  }
+  return dias;
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
   const registros = await obtenerFechasUnicasDeHabitos();
@@ -72,7 +81,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const streakElement = document.getElementById('streakDays');
   const messageElement = document.getElementById('message');
+  const daysRow = document.getElementById('daysRow');
 
   animarContador(rachaActual, streakElement);
-  messageElement.innerText = `¡Felicidades por cumplir tus hábitos durante ${rachaActual} día${rachaActual !== 1 ? 's' : ''} seguidos!`;
+
+  //  Mostrar mensaje de felicitación
+  messageElement.innerText = rachaActual > 0
+    ? `¡Felicidades por cumplir tus hábitos durante ${rachaActual} día${rachaActual !== 1 ? 's' : ''} seguidos!`
+    : `¡Aún estás a tiempo de empezar tu racha hoy!`;
+
+  //  Mostrar los últimos 7 días
+  const ultimosDias = obtenerUltimos7Dias();
+
+  ultimosDias.forEach(dia => {
+    const cumplido = registros.find(r =>
+      new Date(r.dia).toISOString().split('T')[0] === dia.fecha && r.cumplido
+    );
+
+    const div = document.createElement('div');
+    div.classList.add('day-box');
+    if (cumplido) div.classList.add('checked');
+    div.innerHTML = `${dia.nombre} ${cumplido ? '<i class="fas fa-check"></i>' : ''}`;
+    daysRow.appendChild(div);
+  });
 });

@@ -41,8 +41,13 @@ h1.actualizar {
 
 .nombreColor {
   color: v.$mainColor-strong !important;
+  font-weight: bold;
 }
 
 .icon-right {
     margin-left: auto; /* Empuja el ícono al extremo derecho */
+}
+
+.botones-actualizar {
+    margin-top: 1rem;
 }

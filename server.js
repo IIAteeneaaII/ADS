@@ -8,6 +8,7 @@ const { loadAllJobs } = require('./utils/jobManager');
 require('./utils/UploadHabitsPerDay');
 const { renderCalendar } = require('./controllers/authController');
 const { interesesPreferencias, interesesActividades } = require('./utils/interesesData');
+const { getHabitIcon } = require('./utils/habitIcons');
 
 const { getRecentNotifications, countUnreadNotifications, markAllAsRead, getNotificationsTime, updateNotificationHours } = require('./repositories/habitRepositoryPrisma');
 
@@ -81,20 +82,30 @@ app.get('/Actividades', authMiddleware, (req, res) => {
 });
 
 app.get('/Inicio', authMiddleware, async (req, res) => {
-    const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
-    const user = await prisma.user.findUnique({
-        where: { id: req.user.id },
-        select: {
-            userName: true,
-            profilePic: true
-        }
-    });
+  const user = await prisma.user.findUnique({
+    where: { id: req.user.id },
+    select: {
+      userName: true,
+      profilePic: true,
+      bienvenidaMostrada: true
+    }
+  });
 
-    res.render('inicio', {
-        userName: user.userName,
-        profilePic: user.profilePic,
-        unreadNotifications
+  if (!user.bienvenidaMostrada) {
+    await prisma.user.update({
+      where: { id: req.user.id },
+      data: { bienvenidaMostrada: true }
     });
+    return res.redirect('/Bienvenida');
+  }
+
+  const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
+
+  res.render('inicio', {
+    userName: user.userName,
+    profilePic: user.profilePic,
+    unreadNotifications
+  });
 });
 
 app.get('/EstadoDeAnimo', authMiddleware, (req, res) => {
@@ -112,8 +123,13 @@ app.get('/TerminosyCondiciones', (req, res) => {
 app.get('/Notificaciones', authMiddleware, async (req, res) => {
     const notifications = await getRecentNotifications(req.user.id);
     markAllAsRead(req.user.id);
+    
+    const notificationsIcon = notifications.map(n => ({
+    ...n,
+    icon: getHabitIcon(n.title)
+    }));
     res.render('notificaciones', {
-        notifications
+        notifications, notificationsIcon
     });
 });
 

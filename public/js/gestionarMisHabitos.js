@@ -39,8 +39,7 @@ function renderHabits(habits) {
 
         const habitCard = document.createElement('div');
         habitCard.className = 'card_gestionar';
-        habitCard.style.color = '#000';
-        habitCard.style.cursor = 'pointer';
+        // habitCard.style.font-size = '';
 
         habitCard.addEventListener('click', () => {
             const nombre = habito.name.toLowerCase();
@@ -91,15 +90,17 @@ function renderHabits(habits) {
 
         cardContent.innerHTML = `
             <div class="d-flex align-items-center">
-                <span class="fw-bold">${habito.name}</span>
+                <span class="fw-bold nameHabit">${habito.name}</span>
             </div>
             <div class="d-flex align-items-center">
                 <span style="
+                    text-align: center;
                     background-color: white;
-                    padding: 4px 12px;
-                    border-radius: 20px;
-                    font-weight: 500;
+                    padding: 3px;
+                    border-radius: 10px;
+                    font-weight: 600;
                     margin-right: 12px;
+                    font-size: 0.8rem;
                 ">
                     ${habito.fieldValues?.value ?? ''} ${habito.fieldValues?.unit ?? ''}
                 </span>

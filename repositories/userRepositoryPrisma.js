@@ -62,6 +62,7 @@ exports.createResetCode = async (email, code) => {
   });
 };
 
+
 exports.emailCodeExist = async (email) => {
   return await prisma.resetCode.findMany({
     where: { email },
@@ -73,8 +74,11 @@ exports.findValidResetCode = async (code) => {
     where: {
       code,
       expiresAt: {
-        gte: new Date(), // Código aún no expirado
+        gte: new Date(),
       },
+    },
+    orderBy: {
+      createdAt: 'desc', // Busca el más reciente en caso de duplicados
     },
   });
 };
@@ -88,6 +92,20 @@ exports.deleteResetCodeById = async (id) => {
 exports.deleteResetCodesByEmail = async (email) => {
   return await prisma.resetCode.deleteMany({
     where: { email },
+  });
+};
+
+exports.invalidateResetCodesByEmail = async (email) => {
+  return await prisma.resetCode.updateMany({
+    where: {
+      email,
+      expiresAt: {
+        gte: new Date(), // Solo los que aún no expiraron
+      },
+    },
+    data: {
+      expiresAt: new Date(), // Los haces expirar ahora
+    },
   });
 };
 

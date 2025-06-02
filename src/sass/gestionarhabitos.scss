@@ -40,10 +40,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 0.5rem;
     flex-grow: 1;
+    font-size: 0.8rem;
 }
 
+.nameHabit{
+    padding-right: 0.5rem;
+}
 .grid_habitos {
     background-color: transparent !important;
     display: flex;

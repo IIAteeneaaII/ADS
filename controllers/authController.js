@@ -76,7 +76,7 @@ exports.login = async (req, res) => {
       maxAge: 60 * 60 * 1000,
     });
     setFlashMessage(res, '¡Inicio de sesión éxitoso!.', 'success');
-    res.redirect('/Bienvenida');
+    res.redirect('/Inicio');
   } catch (err) {
     console.error(err);
     setFlashMessage(res, 'Hubo un error en el servidor. Intenta más tarde', 'error');
@@ -117,10 +117,11 @@ exports.recoverPassword = async (req, res) => {
   const user = await userRepo.findByEmail(email);
   if (!user) return res.status(404).json({ message: 'Email not found' });
 
+  await userRepo.invalidateResetCodesByEmail(email);
+
   const code = Math.floor(100000 + Math.random() * 900000).toString(); // Código de 6 dígitos
 
-  await createResetCode(email, code);
-  // Enviar el código por correo
+  await userRepo.createResetCode(email, code);
   await sendRecoveryEmail(email, code);
 
   res.status(200).json({ message: 'Código de verificación enviado' });

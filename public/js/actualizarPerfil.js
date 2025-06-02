@@ -37,15 +37,16 @@ btnCancelar.addEventListener("click", () => {
 });
 
 btnGuardar.addEventListener("click", async () => {
+  btnCancelar.classList.add("d-none");
   const nuevoNombre = inputNombre.value.trim();
   const errorMsg = document.getElementById("nombreError");
-  const nombreValido = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{6,}$/.test(nuevoNombre);
+  const nombreValido = /^[A-Za-z\d\s]{6,20}$/.test(nuevoNombre);
 
 
   iconoCamara.classList.add("d-none"); // se oculta la cámara
 
   if (!nombreValido) {
-    errorMsg.textContent = "Debe tener al menos 6 caracteres, solo se permiten letras y números (sin símbolos).";
+    errorMsg.textContent = "Debe tener entre 6 y 20 caracteres, solo se permiten letras y números (sin símbolos).";
     errorMsg.classList.remove("d-none");
     return;
   } else {
