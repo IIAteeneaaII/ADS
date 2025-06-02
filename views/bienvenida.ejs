@@ -3,23 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="/css/styles.css" rel="stylesheet" />
-  <link rel="manifest" href="/manifest.json">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-  <script src="/js/estadoanimo.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <title>Bienvenida</title>
+  <%- include('partials/allStyles') %>
+  <title>Bienvenidx</title>
 </head>
 
 <body>
-  <div class="container mt-5 pt-2">
-    <div class="top-bar d-flex align-items-center mb-4">
-      <a href="/inicio">
-        <i class="fas fa-chevron-left me-3"></i>
-      </a>
+  <div class="container-md">
+    <div class="top-bar d-flex align-items-center">
       <h1 class="fw-bold mb-0">¡Ya eres parte de Fin It! </h1>
     </div>
 
@@ -29,39 +19,35 @@
         <div class="swiper-slide">
           <div class="card-item">
             <img src="/img/sharki/neutral.png" alt="User Image" class="user-image">
-            <h2 class="user-name">Nuevos Hábitos</h2>
-            <p class="user-profession">Podrás crear nuevos hábitos en las distintas categorías que hay en Fin It.</p>
+            <h2 class="welcome-text">Definir Hábitos</h2>
+            <p class="user-profession">Podrás crear hábitos de alguna de las categorías que hay en Fin It.</p>
           </div>
         </div>
 
         <div class="swiper-slide">
           <div class="card-item">
-            <img src="/img/sharki/corriendo.png" alt="User Image" class="user-image">
-            <h2 class="user-name">Movimiento Corporal</h2>
-            <p class="user-profession">Podrás hacer estiramientos corporales, correr, andar en bicicleta o saltar la cuerda.</p>
+            <img src="/img/sharki/neutral.png" alt="User Image" class="user-image">
+            <h2 class="welcome-text">Define tu meta</h2>
+            <p class="user-profession">Listos para establecer tus objetivos e ir de la mano contigo.</p>
           </div>
         </div>
 
         <div class="swiper-slide">
           <div class="card-item">
-            <img src="/img/sharki/musica.png" alt="User Image" class="user-image">
-            <h2 class="user-name">Salud mental</h2>
-            <p class="user-profession">Podrás ordenar tu espacio personal, leer, meditar o escuchar música relajante.</p>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="card-item">
-            <img src="/img/sharki/durmiendo.png" alt="User Image" class="user-image">
-            <h2 class="user-name">Bienestar</h2>
-            <p class="user-profession">Podrás mejorar tu sueño, hacer desintoxicación digital o cuidar tu piel.</p>
+            <div class="wel-habits d-flex justify-content-center align-items-center flex-wrap">
+              <img src="/img/sharki/corriendo.png" class="wel-img" alt="Movimiento Corporal">
+              <img src="/img/sharki/musica.png" class="wel-img" alt="Salud mental">
+              <img src="/img/sharki/durmiendo.png" class="wel-img" alt="Bienestar">
+            </div>
+            <h2 class="welcome-text">Hábitos</h2>
+            <p class="user-profession">Correr, escuchar música, horas de sueño; son algunos de los hábitos que puedes establecer</p>
           </div>
         </div>
 
         <div class="swiper-slide">
           <div class="card-item">
             <img src="/img/preferencias/tiburegistrando.png" alt="User Image" class="user-image">
-            <h2 class="user-name">Progreso</h2>
+            <h2 class="welcome-text">Progreso</h2>
             <p class="user-profession">Podrás registrar el progreso de tus hábitos para visualizar tus avances.</p>
           </div>
         </div>
@@ -69,16 +55,21 @@
         <div class="swiper-slide">
           <div class="card-item">
             <img src="/img/preferencias/tibuemocion.png" alt="User Image" class="user-image">
-            <h2 class="user-name">Emociones</h2>
+            <h2 class="welcome-text">Emociones</h2>
             <p class="user-profession">Podrás contarnos cómo te sientes cada día.</p>
           </div>
         </div>
-
       </div>
+      
 
       <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev sw-navPrev"></div>
+      <div class="swiper-button-next sw-navNex"></div>
+    </div>
+    <div class="text-center mt-4">
+      <button id="continuarBtn" class="continuarBtn btn-primary" onclick="window.location.href='/inicio'">
+        Continuar
+      </button>
     </div>
   </div>
 
