@@ -1787,68 +1787,6 @@ ul li ul li {
   border-radius: 16px 16px 0 0;
 }
 
-/* Tarjeta del slider */
-.card-item {
-  width: 300%;
-  max-width: 300px;
-  min-height: 350px;
-  margin: auto;
-  border-radius: 12px;
-  padding: 20px;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.user-image {
-  width: 250px;
-  height: 250px;
-  margin-bottom: 20px;
-  padding: 4px;
-  object-fit: cover;
-}
-
-.user-name {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.user-profession {
-  font-size: 1.1rem;
-  color: #333;
-  margin: 10px 0 20px;
-}
-
-/* Swiper Custom */
-.swiper {
-  width: 100%;
-  padding: 20px 0;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-}
-
-.swiper-pagination-bullet {
-  background: #030728;
-  opacity: 0.4;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  color: #030728;
-}
-
-@media (max-width: 768px) {
-  .swiper-button-prev,
-  .swiper-button-next {
-    display: none;
-  }
-}
 h1.actualizar {
   font-family: "Segoe UI", serif;
   color: #1f2421;
@@ -2090,6 +2028,117 @@ h1.actualizar {
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid #93c5fd;
+}
+
+/* Tarjeta del slider */
+.card-item {
+  opacity: 0;
+  width: 300%;
+  max-width: 300px;
+  min-height: 350px;
+  margin: auto;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.card-item.fade-in {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.user-image {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 5px;
+  padding: 4px;
+  object-fit: cover;
+}
+
+.user-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.user-profession {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 10px 0 20px;
+}
+
+/* Swiper Custom */
+.swiper {
+  width: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-pagination-bullet {
+  background: #93c5fd;
+  opacity: 0.4;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.sw-navPrev,
+.sw-navNex {
+  color: #1e62af;
+  font-size: 17px !important;
+  width: 30px !important;
+  height: 30px !important;
+  font-weight: bold;
+}
+.sw-navPrev::after,
+.sw-navNex::after {
+  font-size: 17px !important;
+}
+
+.sw-navNex {
+  padding-right: 1.5rem;
+}
+
+.sw-navPrev {
+  padding-left: 1.5rem;
+}
+
+.welcome-text {
+  color: #1e62af;
+}
+
+.continuarBtn {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.continuarBtn.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wel-habits {
+  padding: 0;
+}
+
+.wel-img {
+  width: 45%;
+  height: 45%;
 }
 
 /*# sourceMappingURL=styles.css.map */

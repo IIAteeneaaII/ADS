@@ -1,0 +1,117 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+/* Tarjeta del slider */
+.card-item {
+    opacity: 0;
+    width: 300%;
+    max-width: 300px;
+    min-height: 350px;
+    margin: auto;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.196);
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-item.fade-in {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.user-image {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 5px;
+    padding: 4px;
+    object-fit: cover;
+}
+
+.user-name {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.user-profession {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 10px 0 20px;
+}
+
+
+
+/* Swiper Custom */
+.swiper {
+    width: 100%;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.swiper-pagination-bullet {
+    background: v.$mainColor-low;
+    opacity: 0.4;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+.sw-navPrev,
+.sw-navNex {
+    color: v.$mainColor-strong;
+    font-size: 17px !important;
+    width: 30px !important;
+    height: 30px !important;
+    font-weight: bold;
+
+    &::after {
+        font-size: 17px !important;
+    }
+}
+
+.sw-navNex {
+    padding-right: 1.5rem;
+}
+
+.sw-navPrev {
+    padding-left: 1.5rem;
+}
+
+.welcome-text {
+    color: v.$mainColor-strong;
+}
+
+.continuarBtn {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.continuarBtn.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.wel-habits
+{
+    padding: 0;
+}
+.wel-img{
+    width: 45%;
+    height: 45%;
+}

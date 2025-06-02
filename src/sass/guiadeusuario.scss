@@ -21,21 +21,11 @@ ul li ul li {
     font-size: 15px;
 }
 
-// .container-md {
-//     display: flex;             
-//     justify-content: center;    
-//     align-items: center;        
-//     margin-top: 28px;          
-//     gap: 10px;             
-// }
-
-
 .btn-primary, .btn-secondary {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 8px;
 }
-
 
 .contenedor-scroll {
   background-color: v.$white; 
@@ -46,7 +36,6 @@ ul li ul li {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.196);
   position: relative; // Necesario para la línea azul
 }
-
 
 //FLECHAS DESPLEGABLES DE CONTENIDO 
 .indice-item {
@@ -64,8 +53,6 @@ ul li ul li {
 .indice-item > i {
   color: v.$colorSecondaryBtn;
 }
-
-
 
 .icono-circulo {
   inline-size: 32px;    
@@ -90,7 +77,6 @@ ul li ul li {
   display: none;
 }
 
-
 .contenedor-scroll::before {
   content: "";
   position: absolute;
@@ -100,70 +86,4 @@ ul li ul li {
   height: 4px;
   background: linear-gradient(90deg, v.$mainColor-strong 0%, v.$colorSecondaryBtn 100%);
   border-radius: 16px 16px 0 0;
-}
-
-/* Tarjeta del slider */
-.card-item {
-  width: 300%;
-  max-width: 300px;
-  min-height: 350px;
-  margin: auto;
-  border-radius: 12px;
-  padding: 20px;
-  margin-top: 20px;
-  // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.196);
-  text-align: center;
-}
-
-.user-image {
-  width: 250px;
-  height: 250px;
-  margin-bottom: 20px;
-  padding: 4px;
-  object-fit: cover;
-}
-
-.user-name {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.user-profession {
-  font-size: 1.1rem;
-  color: #333;
-  margin: 10px 0 20px;
-}
-
-
-
-/* Swiper Custom */
-.swiper {
-  width: 100%;
-  padding: 20px 0;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-}
-
-.swiper-pagination-bullet {
-  background: #030728;
-  opacity: 0.4;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  color: #030728;
-}
-
-@media (max-width: 768px) {
-  .swiper-button-prev,
-  .swiper-button-next {
-    display: none;
-  }
 }
