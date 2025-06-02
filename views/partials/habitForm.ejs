@@ -4,14 +4,16 @@
 
   <div class="mb-3">
     <label for="description" class="form-label">Descripción
-      <%- include('helpButton', { mensaje: 'La <strong>descripción</strong> sirve para explicar más sobre el hábito.', tipo: 'warning'}) %>
+      <%- include('helpButton', { mensaje: 'La <strong>descripción</strong> sirve para explicar más sobre el hábito.', tipo: 'info'}) %>
     </label>
     <textarea class="form-control" id="description" name="description"
       rows="3"><%= habit ? habit.description : '' %></textarea>
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Indica tu meta</label>
+    <label class="form-label">Indica tu meta
+      <%- include('helpButton', { mensaje: 'Mediante tu <strong>meta</strong> podras establecer tus objetivos en un hábito.', tipo: 'info'}) %>
+    </label>
     <div class="d-flex align-items-center" id="goal-input-group">
       <div id="goal-number" class="flex-fill">
         <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]"
@@ -35,14 +37,18 @@
   </div>
 
   <div class="mb-3">
-    <label for="startDate" class="form-label">Fecha de inicio</label>
+    <label for="startDate" class="form-label">Fecha de inicio
+      <%- include('helpButton', { mensaje: 'Selecciona una <strong>fecha de inicio</strong> del cual partira el hábito.', tipo: 'info'}) %>
+    </label>
     <input type="text" class="form-control calendario" id="startDate" name="startDate"
       value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
   </div>
 
   <div class="mb-3">
     <input type="hidden" name="frequency[type]" value="weekly">
-    <label class="form-label">Días de la semana</label>
+    <label class="form-label">Días de la semana
+      <%- include('helpButton', { mensaje: 'Los <strong>días de la semana</strong> son los días en los que se tienen planeado realizar el hábito a cualquier hora del día.', tipo: 'info'}) %>
+    </label>
     <div class="days-week d-flex flex-wrap gap-2">
       <% const days=habit?.frequency?.days || []; %>
         <% const allDays=['monday', 'tuesday' , 'wednesday' , 'thursday' , 'friday' , 'saturday' , 'sunday' ]; %>
@@ -60,7 +66,9 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="reminder">¿Deseas recibir notificaciones?</label>
+    <label class="form-label" for="reminder">¿Deseas recibir notificaciones?
+      <%- include('helpButton', { mensaje: 'Las <strong>notificaciones</strong> permitiran recordar al usuario que debe de cumplir con el hábito (con 3 horarios diferentes que podrá modificar en <strong> Configurar notificaciones</strong>) .', tipo: 'info'}) %>
+    </label>
     <select class="form-control" name="reminder" id="reminder">
       <option value="">Selecciona una opción</option>
       <option value="yes" <%=habit && habit.reminder ? "selected" : "" %>>Sí</option>
