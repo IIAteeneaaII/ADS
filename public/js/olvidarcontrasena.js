@@ -29,27 +29,44 @@ validator
         const data = await response.json();
 
         if (!response.ok) {
-          Swal.fire("Error", data.message || "Hubo un problema al enviar el código.", "error");
+          Swal.fire({
+          title: "Error",
+          text: "Hubo un problema al enviar el código.",
+          imageUrl: "/img/sharki/lupa.png",
+          imageWidth: 250,
+          confirmButtonText: "Aceptar",
+          customClass: { confirmButton: 'btn btn-primary' },
+          buttonsStyling: false
+          });
           return;
         }
 
         // Mostrar mensaje de éxito y redirigir
-        Swal.fire({
-          icon: "success",
-          title: "Código enviado",
-          text: "Se ha enviado un código a tu correo para recuperar la cuenta.",
-          confirmButtonText: "Aceptar",
-          customClass: {
-            confirmButton: 'btn-primary',
-          },
-        }).then(() => {
+      Swal.fire({
+          title: '¡Código enviado!',
+          text: 'Se ha enviado un código a tu correo para recuperar la cuenta.',
+          imageUrl: '../img/sharki/feliz.png',
+          imageWidth: 250,
+          confirmButtonText: 'Aceptar',
+          customClass: { confirmButton: 'btn btn-primary' },
+          buttonsStyling: false
+      }).then(() => {
           sessionStorage.setItem("recoveryEmail", correo);
           window.location.href = "/ingresarcodigo";
         });
       })
       .catch((err) => {
         console.error(err);
-        Swal.fire("Error", "Hubo un error al comunicarse con el servidor.", "error");
+        Swal.fire({
+          title: "Error",
+          text: "Hubo un error al comunicarse con el servidor.",
+          imageUrl: "/img/sharki/lupa.png",
+          imageWidth: 250,
+          confirmButtonText: "Aceptar",
+          customClass: { confirmButton: 'btn btn-primary' },
+          buttonsStyling: false
+        });
+
       });
   });
 
