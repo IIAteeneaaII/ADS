@@ -12,12 +12,14 @@
   width: 100%;    
   box-sizing: border-box;
 }
+
 .emotion-option {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin: 1rem 0;
     cursor: pointer;
+    width: fit-content;
   }
   
   .emotion-icon {
