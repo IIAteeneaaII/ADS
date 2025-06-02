@@ -3,7 +3,12 @@
   <input type="hidden" id="habitId" value="<%= habit ? habit.id : '' %>">
 
   <div class="mb-3">
-    <label for="description" class="form-label">Descripción</label>
+    <label for="description" class="form-label">Descripción
+        <button type="button" class="btn btn-sm btn-outline-info ms-2"
+    onclick="showInfoModal('La <strong>descripción</strong> sirve para explicar más sobre el hábito.', 'info')">
+    <i class="fas fa-question-circle"></i>
+  </button>
+    </label>
     <textarea class="form-control" id="description" name="description"
       rows="3"><%= habit ? habit.description : '' %></textarea>
   </div>
@@ -70,3 +75,5 @@
   <span id="submitText">Guardar hábito</span>
 </button>
 </form>
+
+<%- include('modalInfo') %>
