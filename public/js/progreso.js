@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             limpiarGrafica('graficaMes');
             mostrarGrafica('graficaMes', completados, 30, unidad, frequency);
             actualizarGraficaSemana();
-            // renderizarCalendario(completados);
+            renderizarCalendario(completados);
         })
         .catch(err => {
             console.error('Error al cargar datos del hábito:', err);
@@ -237,19 +237,53 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = 
 
 function renderizarCalendario(completados) {
     const contenedor = document.getElementById('calendarioHabito');
-    if (!contenedor) return;
+    const tituloMes = document.getElementById('tituloMes');
+    if (!contenedor || !tituloMes) return;
 
     // Limpiar contenido previo
     contenedor.innerHTML = '';
 
-    completados.forEach(log => {
-        const fecha = new Date(log.date).toISOString().split('T')[0];
+    // Obtener fecha actual
+    const hoy = new Date();
+    const año = hoy.getFullYear();
+    const mes = hoy.getMonth(); // 0 = enero
+    const primerDiaMes = new Date(año, mes, 1);
+    const ultimoDiaMes = new Date(año, mes + 1, 0);
+    const diasEnMes = ultimoDiaMes.getDate();
+    const diaSemanaInicio = primerDiaMes.getDay(); // 0 (domingo) a 6 (sábado)
+
+    // Mostrar nombre del mes
+    const nombreMeses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    tituloMes.textContent = `${nombreMeses[mes]} ${año}`;
+
+    // Crear set de fechas completadas para acceso rápido
+    const fechasCompletadas = new Set(
+        completados.map(log => new Date(log.date).toISOString().split('T')[0])
+    );
+
+    // Agregar espacios vacíos antes del primer día (si no empieza en domingo)
+    for (let i = 0; i < diaSemanaInicio; i++) {
+        const espacio = document.createElement('div');
+        espacio.classList.add('dia');
+        contenedor.appendChild(espacio);
+    }
+
+    // Crear los días del mes
+    for (let dia = 1; dia <= diasEnMes; dia++) {
+        const fecha = new Date(año, mes, dia).toISOString().split('T')[0];
         const div = document.createElement('div');
-        div.textContent = fecha;
-        div.classList.add('dia-completado'); // Puedes definir estilo en tu CSS
+        div.classList.add('dia');
+        div.textContent = dia;
+
+        if (fechasCompletadas.has(fecha)) {
+            div.classList.add('dia-completado');
+        }
+
         contenedor.appendChild(div);
-    });
+    }
 }
+
 
 function crearBurbuja() {
     const contenedor = document.getElementById('contenedor-burbujas');
