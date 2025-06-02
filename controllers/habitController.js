@@ -229,3 +229,27 @@ exports.getUniqueTrackingDates = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener fechas de seguimiento' });
   }
 };
+
+// lo de la racha
+exports.renderRacha = async (req, res) => {
+  const userId = req.session.userId;
+  const logs = await habitRepo.getLast7DaysHabitLogs(userId);
+
+  const today = new Date();
+  const racha = [];
+
+  for (let i = 6; i >= 0; i--) {
+    const day = new Date(today);
+    day.setDate(today.getDate() - i);
+    const dayStr = day.toDateString();
+
+    const log = logs.find(l => new Date(l.date).toDateString() === dayStr);
+
+    racha.push({
+      label: day.toLocaleDateString('es-MX', { weekday: 'short' }).toUpperCase(), // ej. LUN
+      completed: log?.status === 'done' // ajusta si tu estado tiene otro nombre
+    });
+  }
+
+  res.render('racha', { racha });
+};

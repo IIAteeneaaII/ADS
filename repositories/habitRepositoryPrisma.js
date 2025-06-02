@@ -375,3 +375,29 @@ exports.getUniqueTrackingDatesByUserId = async (userId) => {
 
   return resultado;
 };
+
+// lo de los días de racha
+exports.getLast7DaysHabitLogs = async (userId) => {
+  const today = new Date();
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(today.getDate() - 6);
+
+  return await prisma.habitTrackingLog.findMany({
+    where: {
+      userHabit: {
+        userId: userId
+      },
+      date: {
+        gte: sevenDaysAgo,
+        lte: today
+      }
+    },
+    select: {
+      date: true,
+      status: true
+    },
+    orderBy: {
+      date: 'asc'
+    }
+  });
+};
