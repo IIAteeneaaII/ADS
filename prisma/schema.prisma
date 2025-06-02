@@ -27,6 +27,7 @@ model User {
   profilePic     String?
   notifications  Notification[]
   moods          Mood[]
+  bienvenidaMostrada  Boolean @default(false)
 }
 
 model Notification {

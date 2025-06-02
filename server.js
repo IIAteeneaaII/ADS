@@ -82,20 +82,30 @@ app.get('/Actividades', authMiddleware, (req, res) => {
 });
 
 app.get('/Inicio', authMiddleware, async (req, res) => {
-    const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
-    const user = await prisma.user.findUnique({
-        where: { id: req.user.id },
-        select: {
-            userName: true,
-            profilePic: true
-        }
-    });
+  const user = await prisma.user.findUnique({
+    where: { id: req.user.id },
+    select: {
+      userName: true,
+      profilePic: true,
+      bienvenidaMostrada: true
+    }
+  });
 
-    res.render('inicio', {
-        userName: user.userName,
-        profilePic: user.profilePic,
-        unreadNotifications
+  if (!user.bienvenidaMostrada) {
+    await prisma.user.update({
+      where: { id: req.user.id },
+      data: { bienvenidaMostrada: true }
     });
+    return res.redirect('/Bienvenida');
+  }
+
+  const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
+
+  res.render('inicio', {
+    userName: user.userName,
+    profilePic: user.profilePic,
+    unreadNotifications
+  });
 });
 
 app.get('/EstadoDeAnimo', authMiddleware, (req, res) => {
