@@ -194,42 +194,37 @@
 });
 
   function showInfoModal(message, type = 'info') {
-    const modal = document.getElementById('infoModal');
-    const modalTitle = document.getElementById('infoModalTitle');
-    const modalBody = document.getElementById('infoModalBody');
-    const modalIcon = document.getElementById('infoModalIcon');
+  try {
+    document.body.focus(); // evita conflicto con aria-hidden
+  } catch (e) {}
 
-    const types = {
-      info: {
-        title: 'Información',
-        icon: 'fas fa-info-circle',
-        color: 'text-info'
-      },
-      warning: {
-        title: 'Advertencia',
-        icon: 'fas fa-exclamation-triangle',
-        color: 'text-warning'
-      },
-      success: {
-        title: 'Éxito',
-        icon: 'fas fa-check-circle',
-        color: 'text-success'
-      },
-      error: {
-        title: 'Error',
-        icon: 'fas fa-times-circle',
-        color: 'text-danger'
-      }
-    };
+  const modal = document.getElementById('infoModal');
+  const modalTitle = document.getElementById('infoModalTitle');
+  const modalBody = document.getElementById('infoModalBody');
+  const modalIcon = document.getElementById('infoModalIcon');
 
-    const selected = types[type] || types.info;
+  const types = {
+    info: { title: 'Información', icon: 'fas fa-info-circle', color: 'text-info' },
+    warning: { title: 'Advertencia', icon: 'fas fa-exclamation-triangle', color: 'text-warning' },
+    success: { title: 'Éxito', icon: 'fas fa-check-circle', color: 'text-success' },
+    error: { title: 'Error', icon: 'fas fa-times-circle', color: 'text-danger' }
+  };
 
-    
-    modalTitle.textContent = selected.title;
-    modalBody.innerHTML = message;
-    modalIcon.className = selected.icon + ' ' + selected.color;
+  const selected = types[type] || types.info;
 
+  modalTitle.textContent = selected.title;
+  modalBody.innerHTML = message;
+  modalIcon.className = `${selected.icon} ${selected.color}`;
+
+  setTimeout(() => {
     const bootstrapModal = new bootstrap.Modal(modal);
     bootstrapModal.show();
-  }
+  }, 0);
+}
+
+function closeInfoModal() {
+  document.activeElement.blur(); // quita el foco
+  const modal = bootstrap.Modal.getInstance(document.getElementById('infoModal'));
+  if (modal) modal.hide();
+}
 </script>

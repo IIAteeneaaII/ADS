@@ -136,3 +136,14 @@
   font-weight: bold;
   font-size: 1.1em;
 }
+
+.btn-outline-info {
+  background-color: v.$backgroundColor;
+  margin-left: 0.5rem;
+  padding: 0 !important;
+  border:none !important;  
+  &:hover{
+    background-color: transparent !important;
+    color: v.$mainColor-strong !important;
+  }
+}
