@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <!-- partials/habitLayout.ejs -->
 <div class="top-bar">
     <a href="/GestionarMisHabitos" class="back-arrow">
@@ -11,19 +13,15 @@
 
 <div class="separator my-2"></div>
 
-<div class="grupo-iconos" data-habit-id="<%= habit.id %>">
+<div class="recuadro typing">
+    <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
             <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='<%= editPath %>/<%= habit.id %>';"></i>
             <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')" style="cursor: pointer;"></i>
-</div>
-
-<div class="recuadro typing">
-<div class="grid mb-4">
+    </div>
+    <div class="grid mb-4">
     <div class="titulo-info">
         <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
-            data-bs-toggle="collapse"
-            data-bs-target="#infoCollapse"
-            aria-expanded="true"
-            aria-controls="infoCollapse"
+            id="descripcionToggle"
             style="cursor: pointer;">
             <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
             <h2 class="mb-0 clickable-subrayado">Descripción</h2>
@@ -31,10 +29,12 @@
     </div>
     <div id="infoCollapse" class="collapse show mt-2">
         <div class="informacion">
-            <p><%= habit.description %></p>
+        <p><%= habit.description %></p>
         </div>
     </div>
-</div>
+    </div>
+
+
 
     
 

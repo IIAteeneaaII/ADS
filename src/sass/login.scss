@@ -123,3 +123,8 @@ main {
 input.check {
   accent-color: v.$mainColor-low; // el color que quieras cuando esté marcado
 }
+
+.input-with-eye-container {
+    max-height: 50px; 
+    margin-bottom: 33px;
+}

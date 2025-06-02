@@ -273,3 +273,17 @@ function crearBurbuja() {
 
 // Crear burbujas periódicamente
 setInterval(crearBurbuja, 300);
+
+
+//Despliegue de descripcion
+document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('descripcionToggle');
+    const collapseElement = document.getElementById('infoCollapse');
+    const collapseInstance = new bootstrap.Collapse(collapseElement, {
+      toggle: false // no lo abra automáticamente
+    });
+
+    toggle.addEventListener('click', function () {
+      collapseInstance.toggle();
+    });
+  });

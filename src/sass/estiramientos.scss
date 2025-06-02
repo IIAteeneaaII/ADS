@@ -193,9 +193,10 @@
 .grupo-iconos {
     display: flex;
     flex-direction: row;
-    justify-content: right;
-    gap: 20px;
-    padding-top: 1rem;
+    justify-content: center;
+    gap: 10px;
+    
+    padding-bottom: 1rem;
 }
 
 .iconos-habitos {
@@ -379,4 +380,27 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.btn-outline-primary-mine{
+    background-color: v.$mainColor-low;
+    border-radius: 0.4rem;
+    padding: 0.3rem;
+    margin: 0.7rem;
+    font-weight: 1rem;
+    color: v.$white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+
+    &.selected {
+        background-color: v.$mainColor-strong;
+        color: v.$white;
+        border-color: v.$mainColor-strong;
+    }
+
+    &:hover:not(.selected) {
+        background-color: v.$secondaryColor;
+    }
+
 }
