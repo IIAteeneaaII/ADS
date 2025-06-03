@@ -7,71 +7,77 @@
             </a>
             <h4 class="fw-bold">Menú</h4>
         </div>
-<!-- Sección de foto de perfil -->
-    <div class="profile-section text-center mt-3">
-        <img src="<%= profilePic %>" alt="Foto de perfil" class="profile-img mb-2" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
-        <h5 class="username mt-2">
-        <%= userName %>
-        </h5>
-    </div>
+        <!-- Sección de foto de perfil -->
+        <div class="profile-section text-center mt-4">
+            <img src="<%= profilePic %>" alt="Foto de perfil" class="profile-img mb-2"
+                style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+            <h5 class="username mt-2">
+                <%= userName %>
+            </h5>
+        </div>
+        <!-- <div class="separator"></div> -->
         <div class="d-grid mt-3">
             <button class="menu-btn" onclick="location.href='/actualizarPerfil';">
-                <div class="item-body d-flex align-items-center gap-2">
-                   <span class="icono-circulo" style="margin-left: -8px;">
-                            <i class="fas fa-user-edit"></i>
-                        </span>
-                        <span>Mi perfil</span>
+                <div class="item-body d-flex align-items-center gap-3">
+                    <span class="icono-circulo" style="margin-left: -8px;">
+                        <i class="fas fa-user-edit"></i>
+                    </span>
+                    <span>Mi perfil</span>
                 </div>
             </button>
 
-            <button class="menu-btn" onclick="location.href='/Actividades';">
-                <div class="item-body d-flex align-items-center gap-2">
-                   <span class="icono-circulo" style="margin-left: -8px;">
-                            <i class="fas fa-sliders-h"></i>
-                        </span>
-                        <span>Editar Preferencias</span>
-                </div>
-            </button>
             <button class="menu-btn" onclick="location.href='/ConfigurarNotificaciones';">
-                <div class="item-body d-flex align-items-center gap-2">
-                   <span class="icono-circulo" style="margin-left: -8px;">
-                            <i class="fas fa-bell"></i>
-                        </span>
-                        <span>Configurar notificaciones</span>
+                <div class="item-body d-flex align-items-center gap-3">
+                    <span class="icono-circulo" style="margin-left: -8px;">
+                        <i class="fas fa-bell"></i>
+                    </span>
+                    <span>Configurar notificaciones</span>
                 </div>
             </button>
             <button class="menu-btn" onclick="location.href='/guiadeUsuario';">
-                <div class="item-body d-flex align-items-center gap-2">
-                   <span class="icono-circulo" style="margin-left: -8px;">
-                            <i class="fas fa-book-open"></i>
-                        </span>
-                        <span>Guía de usuario</span>
+                <div class="item-body d-flex align-items-center gap-3">
+                    <span class="icono-circulo" style="margin-left: -8px;">
+                        <i class="fas fa-book-open"></i>
+                    </span>
+                    <span>Guía de usuario</span>
                 </div>
             </button>
             <button class="menu-btn" onclick="location.href='/quienesSomos';">
-                <div class="item-body d-flex align-items-center gap-2">
-                   <span class="icono-circulo" style="margin-left: -8px;">
-                            <i class="fas fa-users"></i>
-                        </span>
-                        <span>¿Quiénes somos?</span>
+                <div class="item-body d-flex align-items-center gap-3">
+                    <span class="icono-circulo" style="margin-left: -8px;">
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <span>¿Quiénes somos?</span>
                 </div>
             </button>
             <button class="menu-btn" onclick="location.href='/privacidad';">
-                <div class="item-body d-flex align-items-center gap-2">
-                   <span class="icono-circulo" style="margin-left: -8px;">
-                            <i class="fas fa-shield-alt"></i>
-                        </span>
-                        <span>Términos y privacidad</span>
+                <div class="item-body d-flex align-items-center gap-3">
+                    <span class="icono-circulo" style="margin-left: -8px;">
+                        <i class="fas fa-shield-alt"></i>
+                    </span>
+                    <span>Términos y privacidad</span>
                 </div>
             </button>
         </div>
     </div>
     <div class="sidebar-content-bottom">
-        <button class="btn logout-btn " data-bs-toggle="modal" data-bs-target="#logoutModal">
-            <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+        <button class="logout-btn " data-bs-toggle="modal" data-bs-target="#logoutModal">
+            <div class="item-body d-flex align-items-center gap-3">
+                <div class="iconos-btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <span class="fw-bold">Cerrar sesión</span>
+            </div>
+
         </button>
-        <button class="btn logout-btn" onclick="location.href='/eliminarcuenta';">
-            <i class="fas fa-user-slash"></i> Eliminar cuenta
+        <button class="logout-btn" onclick="location.href='/eliminarcuenta';">
+            <div class="item-body d-flex align-items-center gap-3">
+                <span class="iconos-btn-logout">
+                    <i class="fas fa-user-slash"></i>
+                </span>
+                <span class="fw-bold">Eliminar cuenta</span>
+            </div>
+
         </button>
     </div>
 </div>

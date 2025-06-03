@@ -94,6 +94,19 @@ html {
     margin-top: 5px;
 }
 
+.iconos-btn-logout{
+    background-color: red;
+    inline-size: 32px;
+    block-size: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: v.$white;
+    font-size: 15px;
+
+}
+
 .calendar-dot.active {
     border: 2px solid v.$black;
 }
@@ -166,12 +179,11 @@ html {
     transition: background-color 0.3s ease;
 
     i {
-        position: absolute;
-        left: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1.2rem;
-        text-align: center;
+  font-size: 1.2rem;
+  width: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
     }
 
     &:hover {
@@ -242,6 +254,7 @@ html {
     padding: 0.75rem;
     display: flex;
     justify-content: space-between;
+    border-bottom: 2px solid v.$secondaryColor-strong;
 
     .icons i {
         margin-left: 10px;
@@ -252,15 +265,18 @@ html {
 .logout-btn {
     position: relative;
     width: 100%;
-    color: darken(red, 10%);
-
+    background-color: transparent;
+    border: none;
+    margin-top: 0.75rem;
+    &:hover{
+        color: darken(red, 10%);
+    }
     i {
-        position: absolute;
-        left: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
+        font-size: 1.2rem;
         width: 1.2rem;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
