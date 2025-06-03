@@ -100,23 +100,23 @@ async function cargarHabitos() {
         toggleLabel.appendChild(toggleInput);
         toggleLabel.appendChild(toggleSlider);
 
-        const cardContent = `
-          <div class="d-flex flex-column">
-            <span class="fw-bold">${habito.name}</span>
-          </div>
-          <div class="d-flex align-items-center">
-            <span class="habit-value-badge">
-              ${habito.fieldValues?.value ?? ""} ${
-          habito.fieldValues?.unit ?? ""
-        }
-            </span>
-          </div>
-        `;
+const cardContent = `
+  <div class="d-flex justify-content-between align-items-center w-100">
+    <div class="habit-info">
+      <span class="fw-bold">${habito.name}</span>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <span class="habit-value-badge">${habito.fieldValues?.value ?? ""} ${habito.fieldValues?.unit ?? ""}</span>
+      <div class="switch-container"></div>
+    </div>
+  </div>
+`;
+
+
 
         habitCard.innerHTML = cardContent;
-        habitCard
-          .querySelector(".d-flex.align-items-center:last-child")
-          .appendChild(toggleLabel);
+habitCard.querySelector(".switch-container").appendChild(toggleLabel);
+
 
         toggleInput.addEventListener("change", async function (e) {
           e.stopPropagation();
