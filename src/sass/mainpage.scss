@@ -94,7 +94,7 @@ html {
     margin-top: 5px;
 }
 
-.iconos-btn-logout{
+.iconos-btn-logout {
     background-color: red;
     inline-size: 32px;
     block-size: 32px;
@@ -179,11 +179,11 @@ html {
     transition: background-color 0.3s ease;
 
     i {
-  font-size: 1.2rem;
-  width: 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+        font-size: 1.2rem;
+        width: 1.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     &:hover {
@@ -268,9 +268,11 @@ html {
     background-color: transparent;
     border: none;
     margin-top: 0.75rem;
-    &:hover{
+
+    &:hover {
         color: darken(red, 10%);
     }
+
     i {
         font-size: 1.2rem;
         width: 1.2rem;
@@ -430,7 +432,8 @@ input:checked+.slider {
 input:checked+.slider:before {
     transform: translateX(12px);
 }
-.habit-info{
+
+.habit-info {
     max-width: 65%;
     word-break: break-word;
 }
@@ -460,7 +463,8 @@ input:checked+.slider:before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    &:active{
+
+    &:active {
         transform: scale(1.1);
     }
 }
@@ -477,4 +481,48 @@ input:checked+.slider:before {
 .container-md {
     padding-bottom: 80px;
     /* Espacio para que el contenido no se oculte detrás del menú */
+}
+
+.grafica-container {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem auto;
+    position: relative;
+    //   display: inline-block;
+    pointer-events: none; // permite clics a través si es necesario
+
+    canvas {
+        display: block;
+    }
+}
+
+.grafica-porcentaje {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-weight: 600;
+    font-size: 0.7rem;
+    color: v.$black;
+    pointer-events: none;
+}
+
+.leyenda-grafica {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+
+    .item {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    .cuadro-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+    }
 }
