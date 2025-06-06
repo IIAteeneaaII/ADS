@@ -26,22 +26,21 @@ async function obtenerFechasUnicasDeHabitos() {
 }
 
 function calcularRacha(registros) {
-  registros.sort((a, b) => new Date(a.dia) - new Date(b.dia));
+  // Ordena y filtra solo los días cumplidos
+  const fechasCumplidas = new Set(
+    registros
+      .filter(r => r.cumplido)
+      .map(r => new Date(r.dia).toISOString().split('T')[0])
+  );
 
   let racha = 0;
-  const hoy = new Date();
-  hoy.setHours(0, 0, 0, 0);
+  let fecha = new Date();
+  fecha.setHours(0, 0, 0, 0);
 
-  for (let i = registros.length - 1; i >= 0; i--) {
-    const fecha = new Date(registros[i].dia);
-    fecha.setHours(0, 0, 0, 0);
-    if (registros[i].cumplido) {
-      racha++;
-    } else if (fecha.getTime() === hoy.getTime()) {
-      continue;
-    } else {
-      break;
-    }
+  // Cuenta hacia atrás mientras haya días consecutivos cumplidos
+  while (fechasCumplidas.has(fecha.toISOString().split('T')[0])) {
+    racha++;
+    fecha.setDate(fecha.getDate() - 1);
   }
 
   return racha;
@@ -60,16 +59,21 @@ function animarContador(valorFinal, elemento, velocidad = 50) {
   }, velocidad);
 }
 
-function obtenerUltimos7Dias() {
-  const dias = [];
-  const nombres = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'];
+function obtenerSemanaActual() {
   const hoy = new Date();
-  for (let i = 6; i >= 0; i--) {
-    const fecha = new Date(hoy);
-    fecha.setDate(hoy.getDate() - i);
+  const diaSemana = hoy.getDay(); // 0 (domingo) a 6 (sábado)
+  const lunes = new Date(hoy);
+  lunes.setDate(hoy.getDate() - ((diaSemana + 6) % 7)); // ajusta para que inicie en lunes
+
+  const dias = [];
+  const nombres = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];
+
+  for (let i = 0; i < 7; i++) {
+    const fecha = new Date(lunes);
+    fecha.setDate(lunes.getDate() + i);
     dias.push({
       fecha: fecha.toISOString().split('T')[0],
-      nombre: nombres[fecha.getDay()]
+      nombre: nombres[i]
     });
   }
   return dias;
@@ -85,15 +89,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   animarContador(rachaActual, streakElement);
 
-  //  Mostrar mensaje de felicitación
+  // Mostrar mensaje de felicitación
   messageElement.innerText = rachaActual > 0
     ? `¡Felicidades por cumplir tus hábitos durante ${rachaActual} día${rachaActual !== 1 ? 's' : ''} seguidos!`
     : `¡Aún estás a tiempo de empezar tu racha hoy!`;
 
-  //  Mostrar los últimos 7 días
-  const ultimosDias = obtenerUltimos7Dias();
+  // Mostrar la semana actual de lunes a domingo
+  const semana = obtenerSemanaActual();
 
-  ultimosDias.forEach(dia => {
+  semana.forEach(dia => {
     const cumplido = registros.find(r =>
       new Date(r.dia).toISOString().split('T')[0] === dia.fecha && r.cumplido
     );
