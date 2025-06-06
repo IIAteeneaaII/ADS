@@ -84,27 +84,38 @@ footer {
   transform: scale(1.1);
 }
 
-.btn-primary {
+.btn-primary, .btn-days {
   background-color: #60a9fa;
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
   color: #ffffff;
   font-weight: 500;
+  cursor: pointer;
 }
-.btn-primary:hover {
-  background-color: #93c5fd;
+.btn-primary:hover, .btn-days:hover {
+  background-color: #1e62af;
 }
-.btn-primary:focus {
-  background-color: #93c5fd;
+.btn-primary:focus, .btn-days:focus {
+  background-color: #1e62af;
+}
+
+.btn-days {
+  border: solid 2px #1e62af;
+  padding: 0.3rem;
+}
+
+.btn-check:checked + .btn-days {
+  background-color: #1e62af;
+  color: #ffffff;
 }
 
 .btn-secondary {
-  background-color: #bfddfe;
+  background-color: #173454;
   border: none;
   border-radius: 1rem;
   padding: 0.75rem;
-  color: #60a9fa;
+  color: #ffffff;
 }
 .btn-secondary:hover {
   transform: scale(1.02);
@@ -289,6 +300,11 @@ input.check {
   margin-bottom: 33px;
 }
 
+.input-with-eye-container-max {
+  max-height: 80px;
+  margin-bottom: 25px;
+}
+
 body,
 html {
   height: 100%;
@@ -374,6 +390,18 @@ html {
   margin-top: 5px;
 }
 
+.iconos-btn-logout {
+  background-color: red;
+  inline-size: 32px;
+  block-size: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 15px;
+}
+
 .calendar-dot.active {
   border: 2px solid #1f2421;
 }
@@ -443,12 +471,11 @@ html {
   transition: background-color 0.3s ease;
 }
 .menu-btn i {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
+  font-size: 1.2rem;
   width: 1.2rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .menu-btn:hover {
   color: #2582eb;
@@ -511,6 +538,7 @@ html {
   padding: 0.75rem;
   display: flex;
   justify-content: space-between;
+  border-bottom: 2px solid #2582eb;
 }
 .top-bar-menu .icons i {
   margin-left: 10px;
@@ -520,15 +548,19 @@ html {
 .logout-btn {
   position: relative;
   width: 100%;
+  background-color: transparent;
+  border: none;
+  margin-top: 0.75rem;
+}
+.logout-btn:hover {
   color: #cc0000;
 }
 .logout-btn i {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
+  font-size: 1.2rem;
   width: 1.2rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .time-buttons {
@@ -601,12 +633,12 @@ html {
   max-width: 95%;
   height: 70px;
   min-height: 60px;
-  padding: 20px;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #ffffff;
-  border-radius: 16px;
+  border-radius: 15px;
   color: #1f2421;
   position: relative;
   transition: box-shadow 0.3s;
@@ -628,8 +660,8 @@ html {
 .switch {
   position: relative;
   display: inline-block;
-  width: 42px;
-  height: 24px;
+  width: 28px;
+  height: 16px;
   margin-left: 10px;
 }
 
@@ -648,16 +680,16 @@ html {
   bottom: 0;
   background-color: #adb5bd;
   transition: 0.4s;
-  border-radius: 24px;
+  border-radius: 20px;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
+  height: 12px;
+  width: 12px;
+  left: 2px;
+  bottom: 2px;
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
@@ -668,7 +700,12 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(18px);
+  transform: translateX(12px);
+}
+
+.habit-info {
+  max-width: 65%;
+  word-break: break-word;
 }
 
 .bottom-nav {
@@ -1556,6 +1593,7 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   gap: 1rem;
   margin: 1rem 0;
   cursor: pointer;
+  width: fit-content;
 }
 
 .emotion-icon {
@@ -1579,6 +1617,11 @@ body.no-scroll.swal2-no-backdrop.swal2-shown,
   margin-top: 2rem;
   background-color: #bfddfe;
   color: #ffffff;
+}
+
+.btn-save, .btn-secondary:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .emotion-option .emotion-icon.selected {
@@ -1896,6 +1939,15 @@ h1.actualizar {
   margin-top: 1rem;
 }
 
+.text-muted-perfil {
+  text-align: center;
+  margin: 0 1rem;
+  border-radius: 1rem;
+  background-color: #93c5fd;
+  color: #1e62af !important;
+  box-shadow: 0 0 2px #1e62af;
+}
+
 .form-habito {
   color: #1f2421;
 }
@@ -1903,8 +1955,39 @@ h1.actualizar {
   margin: 1rem 0 1rem 0;
   font-weight: 600;
 }
-.form-habito .days-week {
+
+.days-week {
+  gap: 0.2rem;
   justify-content: center;
+}
+
+.pika-single {
+  z-index: 9999 !important;
+  position: absolute !important;
+}
+
+.pika-single .pika-table td.is-selected {
+  background-color: #93c5fd !important; /* Naranja */
+  color: #fff !important;
+  border-radius: 1rem;
+}
+
+.pika-single .pika-table td.is-today {
+  color: #93c5fd !important; /* Naranja oscuro */
+  font-weight: bold;
+  border-radius: 1rem;
+}
+
+.pika-single .pika-table td:hover:not(.is-selected) {
+  background-color: #1e62af !important;
+  border-radius: 1rem;
+}
+
+.form_habitos,
+.container,
+.tab-content {
+  overflow: visible !important;
+  position: relative;
 }
 
 .form-control:focus {
@@ -2027,6 +2110,17 @@ h1.actualizar {
   font-size: 1.1em;
 }
 
+.btn-outline-info {
+  background-color: #ebfcff;
+  margin-left: 0.5rem;
+  padding: 0 !important;
+  border: none !important;
+}
+.btn-outline-info:hover {
+  background-color: transparent !important;
+  color: #1e62af !important;
+}
+
 .streak-container {
   max-width: 400px;
   width: 100%;
@@ -2099,6 +2193,61 @@ h1.actualizar {
     width: 140px;
   }
 }
+.streak-container {
+  text-align: center;
+}
+
+.imagen-animada {
+  max-width: 150px;
+  margin: 0 auto 20px;
+}
+
+.streak-number {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.streak-label {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.days-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.day-box {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  width: 42px;
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.day-box.checked {
+  background-color: #fb9715;
+  color: #000;
+}
+
+.day-box.checked i {
+  font-size: 18px;
+  margin-top: 4px;
+}
+
+.message-box {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
 .notif-card {
   border-radius: 10px;
   color: #1f2421;

@@ -1,13 +1,7 @@
 const form = document.getElementById("formCodigo");
 
 if (form) {
-  const validator = new JustValidate("#formCodigo", {
-    errorFieldCssClass: "is-invalid",
-    errorLabelStyle: {
-      color: "#dc3545",
-      fontSize: "0.875em",
-    },
-  });
+  const validator = new JustValidate("#formCodigo");
 
   validator
     .addField("#nuevaContrasena", [
@@ -62,19 +56,29 @@ if (form) {
           return Swal.fire("Error", data.message || "No se pudo cambiar la contraseña", "error");
         }
 
-        Swal.fire({
-          icon: "success",
-          title: "Contraseña cambiada",
-          text: "Tu nueva contraseña ha sido registrada.",
-          confirmButtonText: "Iniciar sesión",
-          customClass: { confirmButton: "btn-primary" },
-        }).then(() => {
+      Swal.fire({
+        title: "¡Contraseña cambiada!",
+        text: "Tu nueva contraseña ha sido registrada. Inicia sesión.",
+        imageUrl: "/img/sharki/feliz.png",
+        imageWidth: 250,
+        confirmButtonText: "Aceptar",
+        customClass: { confirmButton: 'btn btn-primary' },
+        buttonsStyling: false
+      }).then(() => {
           sessionStorage.removeItem("recoveryEmail");
           window.location.href = "/";
         });
       } catch (error) {
         console.error(error);
-        Swal.fire("Error", "No se pudo conectar con el servidor", "error");
+        Swal.fire({
+        title: "Error",
+        text: "No se pudo conectar con el servidor.",
+        imageUrl: "/img/sharki/lupa.png",
+        imageWidth: 250,
+        confirmButtonText: "Aceptar",
+        customClass: { confirmButton: 'btn btn-primary' },
+        buttonsStyling: false
+        });
       }
     });
 }

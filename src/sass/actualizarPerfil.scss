@@ -51,3 +51,12 @@ h1.actualizar {
 .botones-actualizar {
     margin-top: 1rem;
 }
+
+.text-muted-perfil {
+    text-align: center;
+    margin: 0 1rem;
+    border-radius: 1rem;
+    background-color: v.$mainColor-low;
+    color: v.$mainColor-strong !important;
+    box-shadow: 0 0 2px v.$mainColor-strong;
+}

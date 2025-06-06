@@ -1,6 +1,7 @@
 <% const habitCategories={ fisicos1: ['Correr', 'Andar en Bicicleta' ], fisicos2: ['Saltar la Cuerda'], leer:
     ['Lectura'], hidratacion: ['Hidratación'], musica: ['Escuchar Música Relajante'], cuidado: ['Cuidado de la Piel'],
-    estiramientos: ['Estiramientos Matutinos'] }; %>
+    estiramientos: ['Estiramientos Matutinos'],
+    dormir: ['Dormir', 'Horas de Dormir'] }; %>
     <% if (habitCategories.fisicos1.includes(habitName) ) { %>
         <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>>minutos</option>
         <option value="hrs" <%=habit && habit.fieldValues.unit==='hrs' ? "selected" : "" %>>horas</option>
@@ -29,6 +30,9 @@
                                     ? "selected" : "" %>>ejercicios</option>
                                 <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>
                                     >minutos</option>
+                                <% } else if (habitCategories.dormir.includes(habitName)){ %>
+                                    <option value="hrs" <%=habit && habit.fieldValues.unit==='hrs' ? "selected" : "" %>>horas</option>
+                                    <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>>minutos</option>
                                 <% } else { %>
                                     <option value="min" <%=habit && habit.fieldValues.unit==='min' ? "selected" : "" %>
                                         >minutos</option>

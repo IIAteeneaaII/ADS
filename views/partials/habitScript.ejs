@@ -1,19 +1,30 @@
 <script>
-    new Pikaday({
-        field: document.getElementById('startDate'),
-        format: 'YYYY-MM-DD',
-        i18n: {
-            previousMonth: 'Mes anterior',
-            nextMonth: 'Mes siguiente',
-            months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
-        },
-        toString(date) {
-            return date.toISOString().split('T')[0];
-        },
-        minDate: new Date()
-    });
+document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('startDate');
+            const button = document.getElementById('calendarButton');
+            const dateDisplay = document.getElementById('selectedDateText');
+
+            const picker = new Pikaday({
+              field: input,
+              format: 'YYYY-MM-DD',
+              i18n: {
+                previousMonth: 'Mes anterior',
+                nextMonth: 'Mes siguiente',
+                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+              },
+              minDate: new Date(),
+              onSelect: function (date) {
+                const formatted = date.toISOString().split('T')[0];
+                dateDisplay.textContent = formatted;
+              }
+            });
+
+            button.addEventListener('click', () => {
+              picker.show();
+            });
+          });
 
     document.getElementById('form-habito').addEventListener('submit', async function (e) {
         e.preventDefault();
@@ -74,7 +85,7 @@
         }
     });
 
-    document.querySelectorAll('.btn-outline-secondary').forEach(btn => {
+    document.querySelectorAll('.btn-days').forEach(btn => {
         btn.addEventListener('click', () => {
             btn.classList.toggle('dia_selected');
         });
@@ -193,4 +204,38 @@
   updateInputDisplay();
 });
 
+  function showInfoModal(message, type = 'info') {
+  try {
+    document.body.focus(); // evita conflicto con aria-hidden
+  } catch (e) {}
+
+  const modal = document.getElementById('infoModal');
+  const modalTitle = document.getElementById('infoModalTitle');
+  const modalBody = document.getElementById('infoModalBody');
+  const modalIcon = document.getElementById('infoModalIcon');
+
+  const types = {
+    info: { title: 'Información', icon: 'fas fa-info-circle', color: 'text-info' },
+    warning: { title: 'Advertencia', icon: 'fas fa-exclamation-triangle', color: 'text-warning' },
+    success: { title: 'Éxito', icon: 'fas fa-check-circle', color: 'text-success' },
+    error: { title: 'Error', icon: 'fas fa-times-circle', color: 'text-danger' }
+  };
+
+  const selected = types[type] || types.info;
+
+  modalTitle.textContent = selected.title;
+  modalBody.innerHTML = message;
+  modalIcon.className = `${selected.icon} ${selected.color}`;
+
+  setTimeout(() => {
+    const bootstrapModal = new bootstrap.Modal(modal);
+    bootstrapModal.show();
+  }, 0);
+}
+
+function closeInfoModal() {
+  document.activeElement.blur(); // quita el foco
+  const modal = bootstrap.Modal.getInstance(document.getElementById('infoModal'));
+  if (modal) modal.hide();
+}
 </script>

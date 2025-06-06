@@ -4,39 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ingresar Código - Fin It</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-  <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="/css/styles.css" rel="stylesheet" />
+    <%- include('partials/allStyles') %>
 </head>
 
 <body>
-  <div class="login-wrapper">
-    <!-- Imagen de fondo -->
-    <div class="hero-img">
-      <img src="/img/backgroundImg.png" class="img" alt="Fin It" />
-    </div>
-
-    <!-- Tarjeta de ingreso de código -->
-    <div class="login-card position-relative">
-      <img src="/img/tiburon.gif" alt="Tiburón" class="shark-random" />
-      <div class="login-box w-100">
-        <h1>FIN IT</h1>
+      <div class="container-md mt-5">
+        <h1 class="text-center text-dark mb-3 fw-bold">FIN IT</h1>
 
         <div class="wrapp">
-          <header class="text-center mb-4">
-            <div class="container_logo">
-              <img src="/img/fin_negro.png" class="img-fluid" alt="Logo" style="max-width: 90px">
-
-            </div>
-          </header>
-
           <main>
             <h2 class="text-center mb-4">Ingresar Código</h2>
-
             <form id="formCodigo" autocomplete="off">
               <div class="mb-3">
-                <label for="codigo" class="form-label">Código de verificación:</label>
-                <input type="text" class="form-control" id="codigo" placeholder="######" required />
+                <label for="codigo" class="form-label mb-3">Código de verificación:
+                  <%- include('partials/helpButton', { mensaje: 'El codigo de verificación tiene una duración de 10 minutos !Tomalo con calma¡', tipo: 'warning'}) %>
+                </label>
+                <input type="text" class="form-control" id="codigo" placeholder="######"/>
               </div>
 
               <div class="d-grid gap-2">
@@ -45,18 +28,16 @@
             </form>
 
             <div class="text-end mt-3">
-              <p class="mb-1">¿No recibiste el código?</p>
+              <p class="mt-3 mb-3">¿No recibiste el código?</p>
               <button type="button" class="btn btn-secondary" id="btnReenviarCodigo">Reenviar código</button>
             </div>
           </main>
         </div>
-      </div>
-    </div>
   </div>
 
+<%- include('partials/modalInfo') %>
   <!-- Scripts -->
-  <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <%- include('partials/allScripts') %>
   <script src="/js/ingresarcodigo.js"></script>
 </body>
 </html>
