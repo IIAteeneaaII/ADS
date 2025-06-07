@@ -15,7 +15,9 @@
         </header>
         <div class="separator"></div>
         <main>
-            <p>Primero selecciona la categoría y posteriormente el hábito a escoger</p>
+            <p>Primero selecciona la categoría y posteriormente el hábito a escoger
+                <%- include('partials/helpButton', { mensaje: 'Con forme se establezcan hábitos, se irán eliminando de la lista. Solo se pueden establecer un máximo 8 hábito a la vez ', tipo: 'info'}) %>
+            </p>
             <div class="grid_habitos habitos">
                 <div class="option" onclick="mostrarHabitos('movimiento')">
                     <img src="/img/gestorhabitos/movimiento.png" alt="movimiento_corporal" />
@@ -34,7 +36,7 @@
             <!-- Contenedor donde se mostrarán los hábitos -->
             <div id="habitos-container" class="grid habitos mt-4"></div>
 
-            <div class="btn_personalizados">
+            <div class="btn_personalizados text-center">
                 <button onclick="location.href='/personalizado';" class="btn-primary">
                     Habito personalizado
                 </button>
@@ -42,7 +44,9 @@
         </main>
     </div>
 
+    <%- include('partials/modalInfo') %>
     <%- include('partials/navBar')%>
+    <%- include('partials/allScripts') %>
     <script src="/js/gestionarHabitos.js"></script>
 </body>
 
