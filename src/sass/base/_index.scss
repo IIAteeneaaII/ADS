@@ -6,6 +6,7 @@
 html {
     box-sizing: border-box;
     // font-size: 62.5%;
+    // scroll-behavior: smooth;
 }
 
 *,
@@ -119,11 +120,11 @@ footer {
 
     &:hover {
         transform: scale(1.02);
-        background-color: v.$secondaryColor-strong;
+        background-color: v.$mainColor-strong;
     }
 
     &:focus {
-        background-color: v.$secondaryColor-strong;
+        background-color: v.$mainColor-strong;
         border: none;
     }
 }
@@ -176,7 +177,7 @@ footer {
 }
 
 .just-validate-error-field {
-    display: block;
+    // display: block;
 }
 .title{
     padding-top: 0.5rem;

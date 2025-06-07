@@ -13,8 +13,10 @@ const rutasImagen = {
 function obtenerRutaImagen(tipo) {
     return rutasImagen[tipo] || '/img/sharki/neutral.png';
 }
-document.body.classList.add('no-scroll');
+
 if (flashMessage) {
+    document.body.classList.add('no-scroll');  // Agregar solo cuando hay un mensaje
+
     Swal.fire({
         title: flashType === 'error' ? 'Error' : 'Éxito',
         imageUrl: obtenerRutaImagen(flashType),
