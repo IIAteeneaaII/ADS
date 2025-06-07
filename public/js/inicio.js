@@ -12,22 +12,14 @@ function cerrarMenu() {
   overlay.classList.remove("active");
 }
 overlay.addEventListener("click", cerrarMenu);
-const logoutModal = document.getElementById("logoutModal");
 
+const logoutModal = document.getElementById("logoutModal");
 logoutModal.addEventListener("hidden.bs.modal", () => {
   document.body.focus();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const dias = [
-    "Domingo",
-    "Lunes",
-    "Martes",
-    "Miércoles",
-    "Jueves",
-    "Viernes",
-    "Sábado",
-  ];
+  const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
   const hoy = new Date();
   const diaTexto = dias[hoy.getDay()];
   const numero = hoy.getDate();
@@ -38,21 +30,80 @@ document.addEventListener("DOMContentLoaded", () => {
   if (diaSemana && numeroDia) {
     diaSemana.textContent = diaTexto;
     numeroDia.textContent = numero;
-  } else {
+      } else {
     console.warn(
       "No se encontraron los elementos con IDs 'diaSemana' o 'numeroDia'"
     );
   }
 
-  const botonTodoElDia = document.querySelector(
-    ".time-buttons button:nth-child(4)"
-  );
-  if (botonTodoElDia) {
-    botonTodoElDia.click();
-  }
+  const botonTodoElDia = document.querySelector(".time-buttons button:nth-child(4)");
+  if (botonTodoElDia) botonTodoElDia.click();
 });
 
 const seccionHabitos = document.getElementById("seccion-de-habitos");
+let habitosGlobales = [];
+let grafica;
+
+function actualizarGraficaProgreso(habitos) {
+  const total = habitos.length;
+  const completados = habitos.filter(h => h.logs.status === "completed").length;
+  const pendientes = total - completados;
+  const porcentaje = Math.round((completados / total) * 100);
+
+  const ctx = document.getElementById("graficaProgreso").getContext("2d");
+  const centro = document.getElementById("porcentajeCentro");
+  centro.textContent = porcentaje === 100 ? "🎉" : `${porcentaje}%`;
+
+
+  if (grafica) grafica.destroy();
+
+  const colores = ["#21c0d780", "#21c0d720"];
+
+  grafica = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Completado", "Pendiente"],
+      datasets: [{
+        data: [completados, pendientes],
+        backgroundColor: colores,
+        borderWidth: 2,
+        borderColor: '#21c0d7'
+      }]
+    },
+    options: {
+      cutout: "70%",
+      animation: {
+        animateRotate: true,
+        animateScale: true
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.label}: ${ctx.raw} hábitos`
+          }
+        }
+      }
+    }
+  });
+
+  // Leyenda personalizada
+  const leyendaContenedor = document.getElementById("grafica-leyenda");
+  leyendaContenedor.innerHTML = `
+    <div class="item">
+      <div class="cuadro-color" style="background-color: ${colores[0]}"></div>
+      Completado (${completados})
+    </div>
+    <div class="item">
+      <div class="cuadro-color" style="background-color: ${colores[1]}"></div>
+      Pendiente (${pendientes})
+    </div>
+  `;
+}
+
+
 
 async function cargarHabitos() {
   const today = new Date();
@@ -67,11 +118,12 @@ async function cargarHabitos() {
     });
 
     const habitos = await response.json();
+    habitosGlobales = habitos;
 
     if (habitos.length === 0) {
       seccionHabitos.innerHTML = `
         <img src="/img/sharki/sinHabitos.png" alt="Sin hábitos" class="img-fluid mb-3" style="max-width: 300px;">
-        <p>Hmm, no hay ningún hábito establecido por el momento. Presiona el botón “Crear nuevo hábito” para crear tu primer hábito y comenzar a cumplir tus objetivos.</p>
+        <p>No hay hábitos establecidos por el momento. Presiona “Crear nuevo hábito”.</p>
       `;
     } else {
       habitos.forEach((habito) => {
@@ -84,8 +136,7 @@ async function cargarHabitos() {
         habitIcon.classList.add("habit-icon");
 
         const habitCard = document.createElement("div");
-        habitCard.className =
-          "habit-card";
+        habitCard.className = "habit-card";
 
         const toggleLabel = document.createElement("label");
         toggleLabel.className = "switch";
@@ -100,36 +151,29 @@ async function cargarHabitos() {
         toggleLabel.appendChild(toggleInput);
         toggleLabel.appendChild(toggleSlider);
 
-const cardContent = `
-  <div class="d-flex justify-content-between align-items-center w-100">
-    <div class="habit-info">
-      <span class="fw-bold">${habito.name}</span>
-    </div>
-    <div class="d-flex align-items-center gap-2">
-      <span class="habit-value-badge">${habito.fieldValues?.value ?? ""} ${habito.fieldValues?.unit ?? ""}</span>
-      <div class="switch-container"></div>
-    </div>
-  </div>
-`;
-
-
-
+        const cardContent = `
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="habit-info">
+              <span class="fw-bold">${habito.name}</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="habit-value-badge">${habito.fieldValues?.value ?? ""} ${habito.fieldValues?.unit ?? ""}</span>
+              <div class="switch-container"></div>
+            </div>
+          </div>
+        `;
         habitCard.innerHTML = cardContent;
-habitCard.querySelector(".switch-container").appendChild(toggleLabel);
-
+        habitCard.querySelector(".switch-container").appendChild(toggleLabel);
 
         toggleInput.addEventListener("change", async function (e) {
           e.stopPropagation();
           const status = toggleInput.checked ? "completed" : "pending";
 
-          // Mostrar animación de carga
           Swal.fire({
             title: "Cargando...",
             text: "Guardando el estado del hábito en la nube",
             allowOutsideClick: false,
-            didOpen: () => {
-              Swal.showLoading();
-            },
+            didOpen: () => Swal.showLoading(),
           });
 
           try {
@@ -148,10 +192,8 @@ habitCard.querySelector(".switch-container").appendChild(toggleLabel);
 
             const result = await res.json();
 
-            // Esperar 1.5 segundos para simular carga
             setTimeout(() => {
-              Swal.close(); // Cierra la alerta de carga
-
+              Swal.close();
               if (!res.ok) {
                 Swal.fire({
                   icon: "error",
@@ -159,19 +201,20 @@ habitCard.querySelector(".switch-container").appendChild(toggleLabel);
                   text: result.error || "Hubo un error al actualizar el hábito",
                 });
               } else {
+                habito.logs.status = status;
+                actualizarGraficaProgreso(habitosGlobales);
+
                 Swal.fire({
                   icon: "success",
                   title: "¡Éxito!",
                   text: "El hábito se actualizó correctamente",
-                  timer: 1000,
+                  timer: 1500,
                   showConfirmButton: false,
                 });
               }
             }, 1000);
           } catch (error) {
             console.error("Error actualizando el estado del hábito:", error);
-
-            // También simula un pequeño retraso en caso de error
             setTimeout(() => {
               Swal.close();
               Swal.fire({
@@ -187,6 +230,8 @@ habitCard.querySelector(".switch-container").appendChild(toggleLabel);
         habitContainer.appendChild(habitCard);
         seccionHabitos.appendChild(habitContainer);
       });
+
+      actualizarGraficaProgreso(habitos);
     }
   } catch (error) {
     console.error("Error cargando hábitos:", error);
@@ -194,17 +239,13 @@ habitCard.querySelector(".switch-container").appendChild(toggleLabel);
   }
 }
 
-// Llamar a la función de carga de hábitos cuando la página se carga
 window.addEventListener("load", cargarHabitos);
 
-//  Logout: borrar cookies y token, redirigir al login
 document.getElementById("confirmarLogout").addEventListener("click", () => {
-  // Borra todas las cookies accesibles desde JavaScript
   document.cookie.split(";").forEach((cookie) => {
     const name = cookie.split("=")[0].trim();
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
   });
-  // Elimina el token JWT del almacenamiento local
   localStorage.removeItem("token");
   window.location.href = "/";
 });

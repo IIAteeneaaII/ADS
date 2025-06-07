@@ -56,6 +56,15 @@
 
           </div>
         </div>
+
+        <h5 class="text-center">Hábitos completados </h5>
+        <div class="grafica-container">
+          <canvas id="graficaProgreso" width="100" height="100"></canvas>
+          <div id="porcentajeCentro" class="grafica-porcentaje"></div>
+        </div>
+        <div id="grafica-leyenda" class="leyenda-grafica mt-2 text-center"></div>
+        <div class="separator" style="margin: 1.75rem auto; width: 60%;"></div>
+
         <div class="habitos_titulo">
           <h2>Habitos de hoy</h2>
         </div>
@@ -87,14 +96,16 @@
   </div>
 
   <%- include('partials/navBar')%>
-  <%- include('partials/allScripts') %>
-  <script src="/js/flashMessage.js"></script>
-  <script src="/js/inicio.js"></script>
-  <script>
-    document.getElementById('confirmarLogout').addEventListener('click', () => {
-      window.location.href = '/';
-    });
-  </script>
+    <%- include('partials/allScripts') %>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
+      <script src="/js/flashMessage.js"></script>
+      <script src="/js/inicio.js"></script>
+      <script>
+        document.getElementById('confirmarLogout').addEventListener('click', () => {
+          window.location.href = '/';
+        });
+      </script>
 </body>
 
 </html>

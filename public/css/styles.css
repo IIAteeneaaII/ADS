@@ -752,6 +752,46 @@ input:checked + .slider:before {
   /* Espacio para que el contenido no se oculte detrás del menú */
 }
 
+.grafica-container {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem auto;
+  position: relative;
+  pointer-events: none;
+}
+.grafica-container canvas {
+  display: block;
+}
+
+.grafica-porcentaje {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-weight: 600;
+  font-size: 0.7rem;
+  color: #1f2421;
+  pointer-events: none;
+}
+
+.leyenda-grafica {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+}
+.leyenda-grafica .item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.leyenda-grafica .cuadro-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
 .container p {
   font-size: 0.8rem;
   margin-bottom: 1rem;
@@ -920,7 +960,6 @@ input:checked + .slider:before {
 }
 
 .no-scroll {
-  overflow: hidden !important;
   height: 100% !important;
   position: fixed !important;
   width: 100% !important;
