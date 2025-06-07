@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const seccionCalendario = document.getElementById('seccion-calendario');
     const btnGraficas = document.getElementById('btn-graficas');
     const btnCalendario = document.getElementById('btn-calendario');
-    const btnSemana = document.getElementById('btn-semana');
-    const btnMes = document.getElementById('btn-mes');
+    // const btnSemana = document.getElementById('btn-semana');
+    // const btnMes = document.getElementById('btn-mes');
     const graficaSemana = document.getElementById('u-semana');
-    const graficaMes = document.getElementById('u-mes');
+    // const graficaMes = document.getElementById('u-mes');
     const btnSemanaAnterior = document.getElementById('semana-anterior');
     const btnSemanaSiguiente = document.getElementById('semana-siguiente');
     const textoSemana = document.getElementById('rango-semana');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     seccionGraficas.classList.remove('d-none');
     seccionCalendario.classList.add('d-none');
     graficaSemana.classList.remove('d-none');
-    graficaMes.classList.add('d-none');
+    // graficaMes.classList.add('d-none');
 
     btnGraficas.addEventListener('click', () => {
         seccionGraficas.classList.remove('d-none');
@@ -40,19 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
         btnCalendario.classList.replace('btn-secondary', 'btn-primary');
     });
 
-    btnSemana.addEventListener('click', () => {
-        graficaSemana.classList.remove('d-none');
-        graficaMes.classList.add('d-none');
-        btnSemana.classList.replace('btn-secondary', 'btn-primary');
-        btnMes.classList.replace('btn-primary', 'btn-secondary');
-    });
+    // btnSemana.addEventListener('click', () => {
+    //     graficaSemana.classList.remove('d-none');
+    //     graficaMes.classList.add('d-none');
+    //     btnSemana.classList.replace('btn-secondary', 'btn-primary');
+    //     btnMes.classList.replace('btn-primary', 'btn-secondary');
+    // });
 
-    btnMes.addEventListener('click', () => {
-        graficaSemana.classList.add('d-none');
-        graficaMes.classList.remove('d-none');
-        btnSemana.classList.replace('btn-primary', 'btn-secondary');
-        btnMes.classList.replace('btn-secondary', 'btn-primary');
-    });
+    // btnMes.addEventListener('click', () => {
+    //     graficaSemana.classList.add('d-none');
+    //     graficaMes.classList.remove('d-none');
+    //     btnSemana.classList.replace('btn-primary', 'btn-secondary');
+    //     btnMes.classList.replace('btn-secondary', 'btn-primary');
+    // });
 
     btnSemanaAnterior.addEventListener('click', () => {
         semanaOffset -= 1;
