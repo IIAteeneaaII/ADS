@@ -1,6 +1,7 @@
 const btnMenu = document.getElementById("btnMenu");
 const menuLateral = document.getElementById("menuLateral");
 const overlay = document.getElementById("overlay");
+const contenedorGrafica = document.getElementById("contenedor-grafica");
 
 btnMenu.addEventListener("click", () => {
   menuLateral.classList.add("active");
@@ -52,12 +53,12 @@ function actualizarGraficaProgreso(habitos) {
 
   const ctx = document.getElementById("graficaProgreso").getContext("2d");
   const centro = document.getElementById("porcentajeCentro");
-  centro.textContent = porcentaje === 100 ? "🎉" : `${porcentaje}%`;
+  centro.textContent = `${porcentaje}%`;
 
 
   if (grafica) grafica.destroy();
 
-  const colores = ["#21c0d780", "#21c0d720"];
+  const colores = ["#60a9fa","#93c5fd"];
 
   grafica = new Chart(ctx, {
     type: "doughnut",
@@ -67,7 +68,7 @@ function actualizarGraficaProgreso(habitos) {
         data: [completados, pendientes],
         backgroundColor: colores,
         borderWidth: 2,
-        borderColor: '#21c0d7'
+        borderColor: '#1e62af'
       }]
     },
     options: {
@@ -125,7 +126,20 @@ async function cargarHabitos() {
         <img src="/img/sharki/sinHabitos.png" alt="Sin hábitos" class="img-fluid mb-3" style="max-width: 300px;">
         <p>No hay hábitos establecidos por el momento. Presiona “Crear nuevo hábito”.</p>
       `;
+      contenedorGrafica.innerHTML = "";
     } else {
+        contenedorGrafica.innerHTML = `
+    <h5 class="text-center">Hábitos completados</h5>
+    <div class="grafica-layout">
+      <div class="grafica-container">
+        <canvas id="graficaProgreso" width="150" height="150"></canvas>
+        <div id="porcentajeCentro" class="grafica-porcentaje"></div>
+      </div>
+      <div id="grafica-leyenda" class="leyenda-grafica"></div>
+    </div>
+    <div class="separator" style="margin: 1.75rem auto; width: 100%;"></div>
+  `;
+
       habitos.forEach((habito) => {
         const habitContainer = document.createElement("div");
         habitContainer.className = "d-flex align-items-center mb-3 px-2";

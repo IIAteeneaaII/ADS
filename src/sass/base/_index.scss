@@ -47,7 +47,8 @@ footer {
 }
 
 .separator {
-    background: linear-gradient(90deg, v.$mainColor-strong 0%, v.$colorSecondaryBtn 100%);
+    // background: linear-gradient(90deg, v.$mainColor-strong 0%, v.$colorSecondaryBtn 100%);
+    background: #1e62af;
     border-radius: 16px 16px 0 0;
     margin: 1rem 0;
     width: 100%; 

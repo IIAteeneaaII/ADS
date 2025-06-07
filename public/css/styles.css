@@ -49,7 +49,7 @@ footer {
 }
 
 .separator {
-  background: linear-gradient(90deg, #1e62af 0%, #173454 100%);
+  background: #1e62af;
   border-radius: 16px 16px 0 0;
   margin: 1rem 0;
   width: 100%;
@@ -609,6 +609,14 @@ html {
   margin-bottom: 0.25rem;
 }
 
+.habits_section {
+  text-align: center;
+}
+.habits_section p {
+  text-align: center;
+  padding: 0 4rem;
+}
+
 .habitos_titulo {
   text-align: center;
   color: #1f2421;
@@ -791,14 +799,26 @@ input:checked + .slider:before {
 }
 
 .grafica-container {
+  margin: 0;
+  /* Asegura que no tenga espacio extra */
+  padding: 0;
   width: 80px;
   height: 80px;
-  margin: 0 auto 1rem auto;
   position: relative;
-  pointer-events: none;
 }
 .grafica-container canvas {
   display: block;
+}
+
+.grafica-layout {
+  display: flex;
+  align-items: center;
+  /* Centra verticalmente */
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  /* Para pantallas pequeñas */
+  margin-top: 1rem;
 }
 
 .grafica-porcentaje {
@@ -815,7 +835,9 @@ input:checked + .slider:before {
 
 .leyenda-grafica {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  text-align: left;
   gap: 1rem;
   font-size: 0.75rem;
 }
@@ -825,8 +847,9 @@ input:checked + .slider:before {
   gap: 0.3rem;
 }
 .leyenda-grafica .cuadro-color {
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
   border-radius: 3px;
 }
 
