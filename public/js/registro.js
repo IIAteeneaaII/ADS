@@ -75,7 +75,7 @@ validator
   });
 
   const shark = document.querySelector(".shark-random");
-const card = document.querySelector(".login-card");
+  const card = document.querySelector(".login-card");
 
 if (!shark || !card) {
   console.error("No se encontró el tiburón o la tarjeta de login.");
@@ -145,6 +145,31 @@ document.getElementById("togglePassword2").addEventListener("click", function ()
 const btnCodigo = document.getElementById('btnCodigo');
 const emailInput = document.getElementById('email');
 const codigoError = document.getElementById('codigo-error');
+
+emailInput.addEventListener('input', () => {
+  const email = emailInput.value.trim();
+  const esValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  if (esValido) {
+    if (btnCodigo.style.display === 'none') {
+      btnCodigo.style.display = 'block';
+      btnCodigo.style.opacity = 0;
+      requestAnimationFrame(() => {
+        btnCodigo.style.opacity = 1;
+      });
+    }
+  } else {
+    btnCodigo.style.opacity = 0;
+    btnCodigo.addEventListener(
+      'transitionend',
+      () => {
+        btnCodigo.style.display = 'none';
+      },
+      { once: true }
+    );
+  }
+});
+
 
 function startResendTimer(seconds = 30) {
   let remaining = seconds;
