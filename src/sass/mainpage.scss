@@ -291,6 +291,14 @@ html {
     }
 }
 
+.habits_section{
+    text-align: center;
+    p{
+        text-align: center;
+        padding: 0 4rem;
+    }
+}
+
 .habitos_titulo {
     text-align: center;
     color: v.$black;
@@ -484,16 +492,27 @@ input:checked+.slider:before {
 }
 
 .grafica-container {
+    margin: 0;
+    /* Asegura que no tenga espacio extra */
+    padding: 0;
     width: 80px;
     height: 80px;
-    margin: 0 auto 1rem auto;
     position: relative;
-    //   display: inline-block;
-    pointer-events: none; // permite clics a través si es necesario
 
     canvas {
         display: block;
     }
+}
+
+.grafica-layout {
+    display: flex;
+    align-items: center;
+    /* Centra verticalmente */
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    /* Para pantallas pequeñas */
+    margin-top: 1rem;
 }
 
 .grafica-porcentaje {
@@ -510,7 +529,9 @@ input:checked+.slider:before {
 
 .leyenda-grafica {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    text-align: left;
     gap: 1rem;
     font-size: 0.75rem;
 
@@ -521,8 +542,9 @@ input:checked+.slider:before {
     }
 
     .cuadro-color {
-        width: 12px;
-        height: 12px;
+        width: 15px;
+        height: 15px;
+        margin-right: 8px;
         border-radius: 3px;
     }
 }

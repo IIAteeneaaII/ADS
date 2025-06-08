@@ -13,185 +13,213 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
     <script src="/js/estatusDelHabito.js"></script>
+    <script src="/js/modal.js"></script>
 </head>
 
 <body>
   <div class="fondo-animado">
-    <div id="contenedor-burbujas"></div>
-    <div class="container py-4">
-      <div class="top-bar">
-        <a href="/GestionarMisHabitos" class="back-arrow">
-          <i class="fas fa-chevron-left"></i>
-        </a>
 
-        <div class="titulo-habito typing" id="tabs">
-          <img src="/img/gestorhabitos/personalizado.png" alt="Personalizado">
-          <h1>
-            <%= habit.name %>
-          </h1>
+    <% if (habit && habit.completedDays>= 21) { %>
+      <div class="alert alert-success d-flex align-items-center justify-content-between mb-4 shadow rounded px-4 py-3">
+        <div class="d-flex align-items-center">
+          <img src="/img/sharki/feliz.png" alt="Felicidades" style="width: 60px; height: auto;" class="me-3">
+          <div>
+            <h4 class="mb-1">¡Felicidades!</h4>
+            <p class="mb-0">Has completado este hábito por <strong>
+                <%= habit.completedDays %>
+              </strong> días. ¡Sigue así!</p>
+          </div>
         </div>
+        <i class="fa-solid fa-trophy fa-2x text-warning"></i>
       </div>
-      <div class="separator my-2"></div>
-      <div class="recuadro typing">
-        <% if (habit) { %>
-            <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
-              <i class="fas fa-edit iconos-habitos"
-                onclick="location.href='/habitopersonalizado/<%= habit.id %>/editar';"></i>
-              <i class="fas fa-trash-alt iconos-habitos"
-                onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')"></i>
-            </div>
-            <% } %>
+      <% } %>
 
-            <div class="grid mb-4">
-              <div class="titulo-info">
-                  <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
-                      id="descripcionToggle"
-                      style="cursor: pointer;">
+        <div id="contenedor-burbujas"></div>
+        <div class="container py-4">
+          <div class="top-bar">
+            <a href="/GestionarMisHabitos" class="back-arrow">
+              <i class="fas fa-chevron-left"></i>
+            </a>
+
+            <div class="titulo-habito typing" id="tabs">
+              <img src="/img/gestorhabitos/personalizado.png" alt="Personalizado">
+              <h1>
+                <%= habit.name %>
+              </h1>
+            </div>
+          </div>
+          <div class="separator my-2"></div>
+          <div class="recuadro typing">
+            <% if (habit) { %>
+              <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
+                <i class="fas fa-edit iconos-habitos"
+                  onclick="location.href='/habitopersonalizado/<%= habit.id %>/editar';"></i>
+                <i class="fas fa-trash-alt iconos-habitos"
+                  onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')"></i>
+              </div>
+              <% } %>
+
+                <div class="grid mb-4">
+                  <div class="titulo-info">
+                    <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
+                      id="descripcionToggle" style="cursor: pointer;">
                       <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
                       <h2 class="mb-0 clickable-subrayado">Descripción</h2>
+                    </div>
                   </div>
-              </div>
-              <div id="infoCollapse" class="collapse show mt-2">
-                  <div class="informacion">
-                  <p>
-                    <%= habit ? habit.description : 'No hay descripción aún.' %>
-                  </p>
+                  <div id="infoCollapse" class="collapse show mt-2">
+                    <div class="informacion">
+                      <p>
+                        <%= habit ? habit.description : 'No hay descripción aún.' %>
+                      </p>
+                    </div>
                   </div>
-              </div>
-            </div>
+                </div>
 
-        <div class="text-center mb-4">
-            <button id="btn-graficas" class="btn btn-primary me-2 btn-graficas">
-                <i class="fas fa-chart-bar"></i>
-            </button>
-            <button id="btn-calendario" class="btn btn-secondary btn-calendario">
-                <i class="fas fa-calendar-alt"></i>
-            </button>
-        </div>
+                <div class="text-center mb-4">
+                  <button id="btn-graficas" class="btn btn-primary me-2 btn-graficas">
+                    <i class="fas fa-chart-bar"></i>
+                  </button>
+                  <button id="btn-calendario" class="btn btn-secondary btn-calendario">
+                    <i class="fas fa-calendar-alt"></i>
+                  </button>
+                </div>
 
-        <div id="seccion-graficas" class="seccion-graficas">
-    <div>
-        <h2 class="text-center">Gráficas</h2>
-    </div>
-    <div class="text-center mb-3">
-        <button id="btn-semana" class="btn btn-primary me-2">Última<br>semana</button>
-        <button id="btn-mes" class="btn btn-secondary">Último<br>mes</button>
-    </div>
-    <div class="grid grafica" id="grafica">
-        <div class="tab-pane active" id="u-semana">
-            <h2 class="text-center">Última semana</h2>
-            <div class="d-flex justify-content-between align-items-center my-3">
-                <button id="semana-anterior" class="btn btn-outline-primary-mine btn-sm"><i class="fa-solid fa-arrow-left"></i></button>
-                <span id="rango-semana" class="fw-bold"></span>
-                <button id="semana-siguiente" class="btn btn-outline-primary-mine btn-sm"><i class="fa-solid fa-arrow-right"></i></button>
-            </div>
+                <div id="seccion-graficas" class="seccion-graficas">
+                  <div>
+                    <h2 class="text-center">Gráficas
+                      <%- include('partials/helpButton', {
+                        mensaje: 'Las <strong>gráficas</strong> muestran tu progreso semanal del habito.' , tipo: 'info'
+                        }) %>
+                    </h2>
+                  </div>
+                  <div class="text-center mb-3">
+                    <!-- <button id="btn-semana" class="btn btn-primary me-2">Última<br>semana</button>
+        <button id="btn-mes" class="btn btn-secondary">Último<br>mes</button> -->
+                  </div>
+                  <div class="grid grafica" id="grafica">
+                    <div class="tab-pane active" id="u-semana">
+                      <h2 class="text-center">Última semana</h2>
+                      <div class="d-flex justify-content-between align-items-center my-3">
+                        <button id="semana-anterior" class="btn btn-outline-primary-mine btn-sm"><i
+                            class="fa-solid fa-arrow-left"></i></button>
+                        <span id="rango-semana" class="fw-bold"></span>
+                        <button id="semana-siguiente" class="btn btn-outline-primary-mine btn-sm"><i
+                            class="fa-solid fa-arrow-right"></i></button>
+                      </div>
 
-            <canvas id="graficaSemana" height="300px"></canvas>
-            <div id="imgSemanaVacia" class="text-center d-none">
-                <img src="/img/sharki/triste.png" alt="Sin registros" style="max-width: 300px;">
-                <p>No hay registros para mostrar la gráfica.</p>
-            </div>
-        </div>
-        <div class="tab-pane d-none" id="u-mes">
+                      <canvas id="graficaSemana" height="300px"></canvas>
+                      <div id="imgSemanaVacia" class="text-center d-none">
+                        <img src="/img/sharki/triste.png" alt="Sin registros" style="max-width: 300px;">
+                        <p>No hay registros para mostrar la gráfica.</p>
+                      </div>
+                    </div>
+                    <!-- <div class="tab-pane d-none" id="u-mes">
             <h2 class="text-center">Último mes</h2>
             <canvas id="graficaMes"></canvas>
             <div id="imgMesVacia" class="text-center d-none">
                 <img src="/img/sharki/triste.png" alt="Sin registros" style="max-width: 300px;">
                 <p>No hay registros para mostrar la gráfica.</p>
             </div>
-        </div>
-    </div>
-</div>
+        </div> -->
+                  </div>
+                </div>
 
-        <div id="seccion-calendario" class="seccion-calendario d-none">
-          <div class="grid calendario">
-            <div class="text-center">
-              <h2>Calendario</h2>
-              <p id="tituloMes" class="mb-3"></p>
-              <div id="calendarioHabito" class="calendario-grid mx-auto"></div>
-            </div>
+                <div id="seccion-calendario" class="seccion-calendario d-none">
+                  <div class="grid calendario">
+                    <div class="text-center">
+                      <h2>Calendario
+                        <%- include('partials/helpButton', {
+                          mensaje: 'El <strong>calendario</strong> muestra los dias en los que has cumplido con el habito (estos estan marcados en color verde).'
+                          , tipo: 'info' }) %>
+                      </h2>
+                      <p id="tituloMes" class="mb-3"></p>
+                      <div id="calendarioHabito" class="calendario-grid mx-auto"></div>
+                    </div>
+                  </div>
+                </div>
           </div>
         </div>
-      </div>
-    </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
-<script>
-    function confirmarEliminacion(nombre, id) {
+
+  <%- include('partials/modalInfo') %>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+    <script>
+      function confirmarEliminacion(nombre, id) {
         Swal.fire({
-            title: '¿Eliminar hábito?',
-            text: `¿Estás seguro de que deseas eliminar "${nombre}"?`,
-            imageUrl: '/img/sharki/triste.png',
-            imageWidth: 250,
-            showCancelButton: true,
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar',
-            customClass: {
+          title: '¿Eliminar hábito?',
+          text: `¿Estás seguro de que deseas eliminar "${nombre}"?`,
+          imageUrl: '/img/sharki/triste.png',
+          imageWidth: 250,
+          showCancelButton: true,
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar',
+          customClass: {
             popup: 'swal-fullscreen animate-popup',
-                confirmButton: 'btn-primary',
-                cancelButton: 'btn-cancel '
-            },
+            confirmButton: 'btn-primary',
+            cancelButton: 'btn-cancel '
+          },
         }).then(async (result) => {
-            if (result.isConfirmed) {
-                const response = await fetch(`/api/habit/${id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
+          if (result.isConfirmed) {
+            const response = await fetch(`/api/habit/${id}`, {
+              method: 'DELETE',
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+              }
+            });
 
-                if (response.ok) {
-                    mostrarAlerta({
-                        title: 'Eliminado',
-                        text: 'El hábito ha sido eliminado',
-                        imageUrl: '/img/sharki/triste.png', // o la imagen que prefieras
-                        redirectUrl: '/GestionarMisHabitos',
-                        btnText: 'Aceptar'
-                    });
-                } else {
-                    mostrarAlerta({
-                        title: 'Error',
-                        text: 'El hábito no pudo ser eliminado',
-                        imageUrl: '/img/sharki/curioso.png', // o la imagen que prefieras
-                        redirectUrl: '/GestionarMisHabitos',
-                        btnText: 'Aceptar'
-                    });
-                }
+            if (response.ok) {
+              mostrarAlerta({
+                title: 'Eliminado',
+                text: 'El hábito ha sido eliminado',
+                imageUrl: '/img/sharki/triste.png', // o la imagen que prefieras
+                redirectUrl: '/GestionarMisHabitos',
+                btnText: 'Aceptar'
+              });
+            } else {
+              mostrarAlerta({
+                title: 'Error',
+                text: 'El hábito no pudo ser eliminado',
+                imageUrl: '/img/sharki/curioso.png', // o la imagen que prefieras
+                redirectUrl: '/GestionarMisHabitos',
+                btnText: 'Aceptar'
+              });
             }
+          }
         });
-    }
+      }
 
-    function mostrarAlerta({ title, text, imageUrl, redirectUrl, btnText }) {
-    document.body.classList.add('no-scroll');
-    console.log('Lanzando alerta...');
+      function mostrarAlerta({ title, text, imageUrl, redirectUrl, btnText }) {
+        document.body.classList.add('no-scroll');
+        console.log('Lanzando alerta...');
 
-    Swal.fire({
-        title: title,
-        text: text,
-        imageUrl: imageUrl,
-        imageWidth: 250,
-        // imageHeight: 250,
-        background: '#ffffff',
-        showConfirmButton: true,
-        confirmButtonText: btnText,
-        customClass: {
+        Swal.fire({
+          title: title,
+          text: text,
+          imageUrl: imageUrl,
+          imageWidth: 250,
+          // imageHeight: 250,
+          background: '#ffffff',
+          showConfirmButton: true,
+          confirmButtonText: btnText,
+          customClass: {
             popup: 'swal-fullscreen animate-popup',
             confirmButton: 'btn-primary mt-4'
-        },
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        backdrop: true,
-        focusConfirm: false
-    }).then((result) => {
-        console.log('SweetAlert cerrado con:', result);
-        document.body.classList.remove('no-scroll');
-        if (redirectUrl) {
+          },
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          backdrop: true,
+          focusConfirm: false
+        }).then((result) => {
+          console.log('SweetAlert cerrado con:', result);
+          document.body.classList.remove('no-scroll');
+          if (redirectUrl) {
             window.location.href = redirectUrl;
-        }
-    });
-}
-</script>
+          }
+        });
+      }
+    </script>
 
 </body>
 

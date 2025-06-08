@@ -7,7 +7,7 @@
       <%- include('helpButton', { mensaje: 'La <strong>descripción</strong> sirve para explicar más sobre el hábito.', tipo: 'info'}) %>
     </label>
     <textarea class="form-control" id="description" name="description"
-      rows="3"><%= habit ? habit.description : '' %></textarea>
+      rows="3" maxlength="50"><%= habit ? habit.description : '' %></textarea>
   </div>
 
   <div class="mb-3">

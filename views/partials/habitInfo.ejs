@@ -19,24 +19,21 @@
             <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')" style="cursor: pointer;"></i>
     </div>
     <div class="grid mb-4">
-    <div class="titulo-info">
-        <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
-            id="descripcionToggle"
-            style="cursor: pointer;">
-            <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
-            <h2 class="mb-0 clickable-subrayado">Descripción</h2>
+        <div class="titulo-info">
+            <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
+                id="descripcionToggle"
+                style="cursor: pointer;">
+                <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
+                <h2 class="mb-0 clickable-subrayado">Descripción</h2>
+            </div>
+        </div>
+        <div id="infoCollapse" class="collapse show mt-2">
+            <div class="informacion">
+            <p><%= habit.description %></p>
+            </div>
         </div>
     </div>
-    <div id="infoCollapse" class="collapse show mt-2">
-        <div class="informacion">
-        <p><%= habit.description %></p>
-        </div>
-    </div>
-    </div>
 
-
-
-    
 
     <div class="text-center mb-4">
         
@@ -50,3 +47,4 @@
 
     <%- include('graficasCalendario') %>
 </div>
+

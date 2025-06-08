@@ -1,13 +1,11 @@
 function mostrarAlerta({ title, text, imageUrl, redirectUrl, btnText }) {
-    document.body.classList.add('no-scroll');
     console.log('Lanzando alerta...');
-
+    
     Swal.fire({
         title: title,
         text: text,
         imageUrl: imageUrl,
         imageWidth: 250,
-        // imageHeight: 250,
         background: '#ffffff',
         showConfirmButton: true,
         confirmButtonText: btnText,
@@ -21,9 +19,15 @@ function mostrarAlerta({ title, text, imageUrl, redirectUrl, btnText }) {
         focusConfirm: false
     }).then((result) => {
         console.log('SweetAlert cerrado con:', result);
+        
         document.body.classList.remove('no-scroll');
+
         if (redirectUrl) {
             window.location.href = redirectUrl;
         }
     });
+
+    setTimeout(() => {
+        document.body.classList.add('no-scroll');
+    }, 100);
 }

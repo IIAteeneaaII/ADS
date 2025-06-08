@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%- include('partials/allStyles') %>
-    <title>Registro Fin It</title>
+        <title>Registro Fin It</title>
 </head>
 
 <body>
@@ -14,60 +14,65 @@
             <img src="/img/backgroundImg.png" class="img" alt="Fin It" />
         </div>
 
-    <div class="login-card position-relative">
-        <img src="/img/tiburon.gif" alt="Tiburón" class="shark-random" />
-        <div class="login-box w-100">
-            <div class="wrapp">
-                <header class="text-center ">
-                    <div class="container_logo">
-                    </div>
-                </header>
+        <div class="login-card log-reg position-relative">
+            <img src="/img/tiburon.gif" alt="Tiburón" class="shark-random" />
+            <div class="login-box w-100">
+                <h1>Registro</h1>
+                <div class="wrapp">
+                    <header class="text-center ">
+                        <div class="container_logo">
+                        </div>
+                    </header>
 
-                <main>
-                    <h2 class="text-center mb-4">Registro</h2>
+                    <main>
                         <form id="formRegistro" autocomplete="off" action="/api/auth/register" method="POST">
                             <!-- Usuario -->
                             <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre de usuario*:</label>
-                                <input type="text" class="form-control" id="userName" name="userName"
+                                <label for="nombre" class="form-label">Nombre de usuario:</label>
+                                <input type="text" class="form-control form-reg" id="userName" name="userName"
                                     placeholder="Ingresa tu usuario" />
                             </div>
 
                             <!-- Correo -->
                             <div class="mb-3">
-                                <label for="correo" class="form-label">Correo electrónico*:</label>
-                                <input type="email" class="form-control" id="email" name="email"
+                                <label for="correo" class="form-label">Correo electrónico:</label>
+                                <input type="email" class="form-control form-reg" id="email" name="email"
                                     placeholder="tucorreo@gmail.com" />
                             </div>
 
                             <!-- Contraseña -->
                             <div class="mb-3">
-                                <label for="contrasena" class="form-label">Contraseña*:</label>
-                                <div class="d-block position-relative input-with-eye-container-max">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" />
-                                    <i id="togglePassword" class="fa-solid fa-eye" data-visible="false" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></i>
+                                <label for="password" class="form-label">Contraseña:</label>
+                                <div class="input-with-eye-container">
+                                    <input type="password" class="form-control form-reg" id="password" name="password"
+                                        placeholder="Ingresa tu contraseña" />
+                                    <i id="togglePassword" class="fa-solid fa-eye" data-visible="false"></i>
                                 </div>
                             </div>
 
                             <!-- Confirmar contraseña -->
                             <div class="mb-3">
-                                <label for="confirmarContrasena" class="form-label">Confirmar contraseña*:</label>
-                                <div class="d-block position-relative input-with-eye-container">
-                                    <input type="password" class="form-control" id="confirmarContrasena" name="confirmarContrasena" placeholder="Confirma tu contraseña" />
-                                    <i id="togglePassword2" class="fa-solid fa-eye" data-visible="false" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></i>
+                                <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
+                                <div class="input-with-eye-container">
+                                    <input type="password" class="form-control form-reg" id="confirmarContrasena"
+                                        name="confirmarContrasena" placeholder="Confirma tu contraseña" />
+                                    <i id="togglePassword2" class="fa-solid fa-eye" data-visible="false"></i>
                                 </div>
                             </div>
 
                             <!-- Código de verificación -->
                             <div class="mb-3">
-                            <label for="codigo" class="form-label">Código de verificación*:</label>
-                            <div class="d-flex gap-2 flex-column flex-md-row align-items-start">
-                                <div class="w-100">
-                                <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Ingresa el código" />
+                                <label for="codigo" class="form-label">Código de verificación:</label>
+                                <div class="d-flex gap-2 flex-column flex-md-row">
+                                    <div class="w-100">
+                                        <input type="text" class="form-control form-reg" id="codigo" name="codigo"
+                                            placeholder="Ingresa el código" />
+                                    </div>
+                                    <button type="button" id="btnCodigo"
+                                        class="btnCodigo btn-outline-primary btn-sm mt-md-0"
+                                        style="display: none;">Enviar código</button>
                                 </div>
-                                <button type="button" id="btnCodigo" class="btn btn-outline-primary btn-sm mt-2 mt-md-0">Enviar código</button>
-                            </div>
-                            <div id="codigo-error" class="invalid-feedback d-block"></div>
+                                <div id="codigo-error" class="invalid-feedback d-block"></div>
                             </div>
 
 
@@ -81,21 +86,22 @@
 
                             <!-- Botones -->
                             <div class="registroBtn">
-                                <button type="submit" class="btn-primary">Registrarse</button>
-                                <button type="button" class="btn-secondary" id="btn-cancelar" onclick="history.back()">Cancelar</button>
+                                <button type="submit" class="reg-btn btn-primary">Registrarse</button>
+                                <button type="button" class="reg-btn btn-secondary" id="btn-cancelar"
+                                    onclick="history.back()">Cancelar</button>
                             </div>
                         </form>
 
                         <p class="text-end mt-2">
                             ¿Ya tienes cuenta? <a class="link" href="/">Inicia sesión</a>
                         </p>
-                </main>
+                    </main>
+                </div>
             </div>
         </div>
-    </div>
-    <%- include('partials/allScripts') %>
-    <script src="/js/registro.js"></script>
-    <script src="/js/flashMessage.js"></script>
+        <%- include('partials/allScripts') %>
+            <script src="/js/registro.js"></script>
+            <script src="/js/flashMessage.js"></script>
 
 </body>
 

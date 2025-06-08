@@ -78,3 +78,97 @@
     border-radius: 50%;
     border: 2px solid v.$mainColor-low;
 }
+
+.center-image {
+    display: block;
+    margin: 0.5rem auto 1rem;
+    max-width: 80px;
+    background-color: white;
+    border-radius: 42rem;
+    padding: 0.1rem;
+}
+
+.actualizarHorarios {
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+}
+
+.form-label {
+    // color: v.$mainColor-strong;
+}
+
+.infoHoraNoti h5 {
+    margin: 1rem 0;
+    font-weight: normal;
+    font-size: 1rem;
+    text-align: justify;
+}
+
+/* Cambiar el color del borde y el fondo */
+.select2-container--default .select2-selection--single {
+    border: 2px solid v.$mainColor-low;
+    background-color: v.$white;
+    border-radius: 10px;
+    height: 40px;
+}
+
+/* Cambiar el color de la opción seleccionada */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: v.$black;
+}
+
+/* Cambiar el color y el tamaño de la flecha */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    border-color: v.$black;
+    color: v.$black;
+    background-color: v.$mainColor-low;
+}
+
+/* Modificar la lista de opciones cuando se abre el select */
+.select2-results__option {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 0.5rem;
+}
+
+.select2-results__option[aria-selected="true"] {
+    background-color: v.$mainColor-strong !important;
+    color: white;
+}
+
+/* Eliminar borde y contorno en el campo de búsqueda de Select2 */
+.select2-search__field {
+    border: 1px solid #ccc !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 0.5rem;
+}
+
+/* Si quieres un borde más delgado cuando se enfoca el campo de búsqueda */
+.select2-search__field:focus {
+    border: 1px solid v.$mainColor-low !important;
+}
+
+.select2-dropdown {
+    border: 1px solid v.$mainColor-low !important;
+    border-radius: 1rem;
+    border-radius: 0.5rem;
+}
+.select2-container--default .select2-selection--single {
+    background-color: v.$white !important;
+    border: 1px solid v.$mainColor-low !important;
+    border-radius: 4px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    background-image: url("data:image/svg+xml,%3Csvg fill='black' xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    display: none;  
+}
+

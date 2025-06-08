@@ -3,11 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="/css/styles.css" rel="stylesheet" />
-  <link rel="manifest" href="/manifest.json">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <%- include('partials/allStyles') %>
   <title>Actualizar Perfil</title>
 </head>
 <body>
@@ -23,13 +19,13 @@
 
     <!-- Sección del perfil -->
     <div class="mb-3 text-center">
-      <div class="perfil-foto-container">
-        <img 
-          id="imagenPerfil" 
-          src="<%= user.profilePic || '/img/fotoPerfil.png' %>" 
-          alt="Foto de perfil" 
-          class="perfil-foto"
-        >
+      <div class="perfil-foto-container position-relative d-inline-block">
+        <img id="imagenPerfil" src="<%= user.profilePic || '/img/fotoPerfil.png' %>" 
+          alt="Foto de perfil" class="perfil-foto">
+
+          <button id="btnEditar" class="icono-editar-perfil" aria-label="Editar perfil">
+            <i class="fas fa-pen"></i>
+          </button>  
         <label for="fotoInput" class="icono-camara d-none">
           <i class="fas fa-camera fa-sm"></i>
         </label>
@@ -38,7 +34,12 @@
     </div>
 
     <div class="mb-3 perfil ms-3">
-      <h4 style="text-align: center;"><br>Datos</h4>
+      <h4 class="text-center mb-4">Datos
+        <%- include('partials/helpButton', { mensaje: 'Presiona el ícono de <strong>lápiz</strong> en la esquina inferior derecha de la foto de perfil para poder:' + '<ul>' + 
+          '<li>Editar tu foto de perfil</li>' + 
+          '<li>Cambiar tu nombre de usuario</li>'+
+          '</ul>', tipo: 'info'}) %>
+      </h4>
       <!-- Nombre del usuario -->
       <label for="nombreUsuario">Tu nombre:</label>
       <div class="position-relative d-flex flex-column">
@@ -50,20 +51,21 @@
         <div>
           <span id="correoUsuario" class="nombreColor"><%= user.email %></span>
         </div>
-        <!-- <p style="margin-top: 3rem; text-align: center;">Presiona el boton de "Editar perfil" para actualizar tu foto y nombre</p> -->
-        <!-- Botones -->
+    
         <div class="d-flex justify-content-center botones-actualizar">
-          <button id="btnEditar" class="btn btn-sm btn-primary"><i class="fa-regular fa-pen-to-square"></i> Editar perfil</button>
+          <!-- <button id="btnEditar" class="btn btn-sm btn-primary"><i class="fa-regular fa-pen-to-square"></i> Editar perfil</button> -->
           <button id="btnGuardar" class="btn btn-sm btn-primary d-none">Guardar cambios</button>
           <button id="btnCancelar" class="btn btn-sm btn-secondary d-none ms-2">Cancelar</button>
         </div>
       </div>
     </div>
-
-    <script src="/js/actualizarPerfil.js"></script>
-    <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </div>
+
+  <%- include('partials/modalInfo') %>
+  <script src="/js/modal.js"></script>
+  <script src="/js/actualizarPerfil.js"></script>
+  <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
 
