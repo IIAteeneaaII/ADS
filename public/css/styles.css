@@ -2558,5 +2558,10 @@ h1.actualizar {
   width: 45%;
   height: 45%;
 }
+.link-activo {
+  color: rgb(70, 102, 173) !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+}
 
 /*# sourceMappingURL=styles.css.map */
