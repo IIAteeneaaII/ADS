@@ -2282,6 +2282,11 @@ h1.actualizar {
   margin-top: 4px;
 }
 
+.day-box.hoy {
+  border: 2px solid #000000;
+  border-radius: 8px;
+}
+
 .message-box {
   margin-top: 20px;
   font-size: 16px;
@@ -2557,11 +2562,6 @@ h1.actualizar {
 .wel-img {
   width: 45%;
   height: 45%;
-}
-.link-activo {
-  color: rgb(70, 102, 173) !important;
-  text-decoration: underline !important;
-  font-weight: bold !important;
 }
 
 /*# sourceMappingURL=styles.css.map */
