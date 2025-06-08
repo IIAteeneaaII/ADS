@@ -12,56 +12,56 @@
     <!--SCSS EN ELIMINARCUENTA2.SCSS-->
 </head>
 <body>
-    <div class="container py-4">
+    <div class="container mt-5 pt-2">
         <div class="top-bar"> 
             <a href="/inicio" class="back-arrow">
                 <i class="fas fa-chevron-left"></i>
             </a>
             <h1 class="fw-bold">¿Quiénes somos?</h1>
         </div>
-
-        <div class="feature-card fade-in">
-            <h3 class="h3-flex" onclick="toggleContenido(1)">
-                <div class="icon">
-                    <img src="/img/tibInfo.png" alt="DevSharks">
+        <div class="contenedor-scroll">
+            <div class="indice-item" onclick="toggleContenido(1)">
+                <div class="item-body d-flex align-items-center gap-2">
+                    <span class="icono-circulo">
+                        <i class="fa-solid fa-people-group"></i>
+                    </span>
+                    <span>DevSharks Team</span>
                 </div>
-                DevSharks Team
                 <i class="fas fa-chevron-down"></i>
-            </h3>
-
-            <div id="contenido-1" class="guia d-none">
-                <p>En <strong>DevSharks</strong>, somos un equipo de desarrolladores apasionados por la tecnología y la innovación. Hemos creado <strong>Fin It</strong>, una aplicación web diseñada para ayudarte a <strong>registrar y gestionar tus hábitos</strong> de manera sencilla y eficiente, con el objetivo de mejorar tu bienestar físico, mental y emocional.</p>
             </div>
-        </div>
+            <div id="contenido-1" class="guia d-none" style="text-align: center;">
+                En <strong>DevSharks</strong>, somos un equipo de desarrolladores apasionados por la tecnología y la innovación. Hemos creado <strong>Fin It</strong>, una aplicación web diseñada para ayudarte a <strong>registrar y gestionar tus hábitos</strong> de manera sencilla y eficiente, con el objetivo de mejorar tu bienestar físico, mental y emocional.
+            </div>
 
-        <div class="feature-card fade-in">
-            <h3 class="h3-flex" onclick="toggleContenido(2)">
-                <div class="icon">
-                    <img src="/img/tibInfo.png" alt="DevSharks">
+            <div class="indice-item" onclick="toggleContenido(2)">
+                <div class="item-body d-flex align-items-center gap-2">
+                    <span class="icono-circulo">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </span>
+                    <span>Nuestra Misión</span>
                 </div>
-                Nuestra Misión
                 <i class="fas fa-chevron-down"></i>
-            </h3>
-            <div id="contenido-2" class="guia d-none">
-                <p>Como equipo de <strong>DevSharks</strong>, creemos en el poder de los hábitos saludables y cómo estos pueden transformar vidas. Nuestra misión es proporcionar una herramienta accesible y fácil de usar que permita a los usuarios llevar un seguimiento de sus rutinas diarias, establecer metas personales y alcanzar sus objetivos de bienestar.</p>
             </div>
-        </div>
+            <div id="contenido-2" class="guia d-none" style="text-align: center;">
+                Como equipo de <strong>DevSharks</strong>, creemos en el poder de los hábitos saludables y cómo estos pueden transformar vidas. Nuestra misión es proporcionar una herramienta accesible y fácil de usar que permita a los usuarios llevar un seguimiento de sus rutinas diarias, establecer metas personales y alcanzar sus objetivos de bienestar.
+            </div>
 
-        <div class="feature-card fade-in">
-            <h3 class="h3-flex" onclick="toggleContenido(3)">
-                <div class="icon">
-                    <img src="/img/tibInfo.png" alt="DevSharks">
+            <div class="indice-item" onclick="toggleContenido(3)">
+                <div class="item-body d-flex align-items-center gap-2">
+                    <span class="icono-circulo">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </span>
+                    <span>Tu Privacidad es importante</span>
                 </div>
-                Tu Privacidad es Importante
                 <i class="fas fa-chevron-down"></i>
-            </h3>
-            <div id="contenido-3" class="guia d-none">
-                <p>Además, valoramos tu privacidad y nos comprometemos a proteger tu información personal. Nunca compartimos tus datos sin tu consentimiento, y siempre trabajamos para ofrecerte la mejor experiencia posible mientras usas nuestra aplicación.</p>
             </div>
-        </div>
-
-        <div class="feature-card-cierre fade-in">
-            <p>Gracias por elegirnos y confiar en nosotros para acompañarte en tu camino hacia una vida más saludable y equilibrada.</p>
+            <div id="contenido-3" class="guia d-none" style="text-align: center;">
+                Además, valoramos tu privacidad y nos comprometemos a proteger tu información personal. Nunca compartimos tus datos sin tu consentimiento, y siempre trabajamos para ofrecerte la mejor experiencia posible mientras usas nuestra aplicación.
+            </div>
+            <div class="feature-card-cierre fade-in">
+                Gracias por elegirnos y confiar en nosotros para acompañarte en tu camino hacia una vida más saludable y equilibrada.
+            </div>
+            
         </div>
     </div>
     <script>
