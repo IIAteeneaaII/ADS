@@ -3,62 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="/bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="/css/styles.css" rel="stylesheet" />
-  <link rel="manifest" href="/manifest.json">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <title>Actualizar Horarios de Notificación</title>
-  <style>
-    .top-bar {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .back-arrow {
-      font-size: 1.5rem;
-      color: #000;
-      text-decoration: none;
-    }
-    form {
-      background: #fff;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.05);
-    }
-    .form-label {
-      font-weight: 500;
-      display: block;
-    }
-    .btn-primary {
-      width: 100%;
-      padding: 0.75rem;
-      font-weight: bold;
-      border-radius: 0.5rem;
-    }
-    .center-image {
-      display: block;
-      margin: 0.5rem auto 1rem;
-      max-width: 80px;
-    }
-  </style>
+  
+  <%- include('partials/allStyles') %>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+  <title>Horarios de Notificaciones</title>
 </head>
 <body>
   <div class="container py-4">
     <!-- Título principal -->
-    <div class="top-bar mb-3"> 
-      <a href="/inicio" class="back-arrow">
-        <i class="fas fa-chevron-left"></i>
-      </a>
-      <h1 class="fw-bold mb-0">Configurar horarios notificaciones</h1>
-    </div>
+    <%- include('partials/topBar', { title: 'Configurar horarios de notificaciones' }) %>
     <div class="separator my-2"></div>
-
-    <form id="actualizarHorariosForm" method="POST" action="/ConfigurarNotificaciones">
+    <div class="infoHoraNoti">
+      <h5>Los horarios seleccionados para cada hora, son el momento en que se te recordará que tienes un hábito por cumplir.
+        <%- include('partials/helpButton', {
+                  mensaje: 'Puedes desactivar las <strong>notificaciones</strong> de un hábito, durante su registro o al editar su información.', tipo: 'info' }) %>
+      </h5>
+    </div>
+    
+    <form class="actualizarHorarios" id="actualizarHorariosForm" method="POST" action="/ConfigurarNotificaciones">
       <!-- Mañana -->
-      <div class="mb-4">
-        <label for="morningHour" class="form-label text-center">Hora de la mañana</label>
+      <div class="mb-4 text-center pt-5">
+        <label for="morningHour" class="form-label text-center fw-bold">Hora de la mañana</label>
         <img src="/img/dia.png" alt="Día" class="center-image" />
-        <select class="form-select" name="morningHour" id="morningHour" required>
+        <select name="morningHour" id="morningHour" class="form-select select2">
           <option value="">Seleccione una hora</option>
           <% [7, 8, 9, 10].forEach(h => { %>
             <option value="<%= h %>" <%= h === morningHour ? 'selected' : '' %>><%= h %>:00</option>
@@ -67,10 +34,10 @@
       </div>
 
       <!-- Tarde -->
-      <div class="mb-4">
-        <label for="afternoonHour" class="form-label text-center">Hora de la tarde</label>
+      <div class="mb-4 text-center">
+        <label for="afternoonHour" class="form-label text-center fw-bold">Hora de la tarde</label>
         <img src="/img/tarde.png" alt="Día" class="center-image" />
-        <select class="form-select" name="afternoonHour" id="afternoonHour" required>
+        <select name="afternoonHour" id="afternoonHour" class="form-select select2">
           <option value="">Seleccione una hora</option>
           <% [12, 13, 14, 15].forEach(h => { %>
             <option value="<%= h %>" <%= h === afternoonHour ? 'selected' : '' %>><%= h %>:00</option>
@@ -79,10 +46,10 @@
       </div>
 
       <!-- Noche -->
-      <div class="mb-4">
-        <label for="nightHour" class="form-label text-center">Hora de la noche</label>
+      <div class="mb-4 text-center">
+        <label for="nightHour" class="form-label text-center fw-bold">Hora de la noche</label>
         <img src="/img/noche.png" alt="Día" class="center-image" />
-        <select class="form-select" name="nightHour" id="nightHour" required>
+        <select name="nightHour" id="nightHour" class="form-select select2">
           <option value="">Seleccione una hora</option>
           <% [18, 19, 20, 21].forEach(h => { %>
             <option value="<%= h %>" <%= h === nightHour ? 'selected' : '' %>><%= h %>:00</option>
@@ -90,11 +57,30 @@
         </select>
       </div>
 
-      <button type="submit" class="btn btn-primary">Guardar horarios</button>
+      <div class="text-center pt-2">
+        <button type="submit" class="btn btn-primary">Guardar horarios</button>
+      </div>
     </form>
   </div>
 
-  <script src="/bootstrap-5.0.2/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <%- include('partials/modalInfo') %>
+  <%- include('partials/allScripts') %>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+  <script>
+$(document).ready(function () {
+  $('.select2').select2({
+    placeholder: "Seleccione una hora",
+    minimumResultsForSearch: Infinity,
+    language: {
+      noResults: function () {
+        return "No se encontraron resultados";
+      }
+    }
+  });
+});
+  </script>
 </body>
 </html>
