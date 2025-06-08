@@ -244,11 +244,24 @@ app.get('/perso/:id', authMiddleware, async (req, res) => {
             where: {
                 id: habitId,
                 userId: userId
+            },
+            include: {
+                logs: true
             }
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('perso', { habit }); // ver gráficas
+
+        const completedLogs = habit.logs.filter(
+            (log) => log.status.toLowerCase() === 'completed'
+        );
+
+        res.render('perso', { 
+            habit: {
+                ...habit,
+                completedDays: completedLogs.length
+            } 
+        }); // ver gráficas
     } catch (error) {
         console.error('Error al cargar el hábito personalizado:', error);
         res.status(500).send('Error al cargar el hábito');
