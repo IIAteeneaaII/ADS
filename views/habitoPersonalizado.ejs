@@ -129,8 +129,8 @@
                   mensaje: 'Las <strong>notificaciones</strong> permitiran recordar al usuario que debe de cumplir con el hábito (con 3 horarios diferentes que podrá modificar en <strong> Configurar notificaciones</strong>) .'
                   , tipo: 'info' }) %>
               </label>
-              <select class="form-control" name="reminder" id="reminder">
-                <option value="">Selecciona una opción</option>
+              <select class="form-control form-select" name="reminder" id="reminder">
+                <!-- <option value="">Selecciona una opción</option> -->
                 <option value="yes" <%=habit && habit.reminder ? 'selected' : '' %>>Sí</option>
                 <option value="no" <%=habit && habit.reminder===false ? 'selected' : '' %>>No</option>
               </select>
