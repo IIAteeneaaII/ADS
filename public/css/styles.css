@@ -2014,18 +2014,21 @@ h1.actualizar {
   border-radius: 50%;
   margin-top: 1rem;
   object-fit: cover;
+  box-shadow: 0 0 4px 2px #1e62af; /* azul suave difuminado */
 }
 
 .icono-camara {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 5px;
+  right: 5px;
   background-color: white;
   border-radius: 50%;
-  padding: 8px;
+  padding: 5px 9px;
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   transition: background-color 0.2s ease;
+  font-size: 14px;
+  border: 1px solid #60a9fa;
 }
 
 .icono-camara:hover {
@@ -2056,6 +2059,23 @@ h1.actualizar {
   background-color: #93c5fd;
   color: #1e62af !important;
   box-shadow: 0 0 2px #1e62af;
+}
+
+.icono-editar-perfil {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: #ffffff;
+  border: 1px solid #60a9fa;
+  border-radius: 50%;
+  padding: 5px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.icono-editar-perfil i {
+  color: #1f2421;
 }
 
 .form-habito {
