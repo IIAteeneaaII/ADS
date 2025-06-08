@@ -4,7 +4,7 @@ validator
   .addField('#userName', [
     {
       rule: 'required',
-      errorMessage: 'El nombre de usuario es obligatorio',
+      errorMessage: 'Este campo es obligatorio',
     },
     {
       rule: 'minLength',
@@ -25,7 +25,7 @@ validator
   .addField('#email', [
     {
       rule: 'required',
-      errorMessage: 'El correo es obligatorio',
+      errorMessage: 'Este campo es obligatorio',
     },
     {
       rule: 'email',
@@ -35,7 +35,7 @@ validator
   .addField('#password', [
     {
       rule: 'required',
-      errorMessage: 'La contraseña es obligatoria',
+      errorMessage: 'Este campo es obligatorio',
     },
     {
       validator: (value) => {
