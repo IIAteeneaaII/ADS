@@ -5,31 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eliminar cuenta</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="../bootstrap-5.0.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../css/styles.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container py-4">
-        <div class="top-bar"> 
-            <a href="/inicio" class="back-arrow">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-            <h1 class="fw-bold">Eliminar cuenta</h1>
-        </div>
+  <div class="container py-4">
+    <div class="top-bar"> 
+      <a href="/inicio" class="back-arrow">
+        <i class="fas fa-chevron-left"></i>
+      </a>
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h1 class="fw-bold mb-0">Eliminar cuenta</h1>
+        <button
+            type="button"
+            class="btn btn-sm btn-outline-info help-button ms-3"
+            onclick="showInfoModal('Esta opción <strong>eliminará tu cuenta</strong> de forma permanente.', 'info')">
+            <i class="fas fa-question-circle"></i>
+        </button>
+</div>
 
-        <div class="contenedor-scroll-info">
-            <h3>¿Estas seguro que deseas eliminar tu cuenta?</h3>
-            <p>Esta acción es permanente y no se puede deshacer. Toda tu información y datos serán eliminados.</p>
-            <div class="separator my-3"></div>
-        
-            <div class="container-md botones-eliminar">
-                <button type="button" class="btn-primary" onclick="location.href='/eliminarcuenta1';">Continuar</button>
-                <button type="button" class="btn-secondary" onclick="location.href='/inicio';">Cancelar</button>
-                
-            </div>
-            <img src="/img/sharki/triste.png" alt="DevSharks">
-        </div>
     </div>
+    <div class="separator my-3"></div>
+    <div class="contenedor-scroll-info">
+      <h3 class="text-center">¿Estás seguro que deseas eliminar tu cuenta?</h3>
+      <p class="text-center">Esta acción es permanente y no se puede deshacer. Toda tu información y datos serán eliminados.</p>
+      <img src="/img/sharki/triste.png" alt="DevSharks">
+      <div class="container-md botones-eliminar">
+        <button type="button" class="reg-btn btn-primary" onclick="location.href='/eliminarcuenta1';">Continuar</button>
+        <button type="button" class="reg-btn btn-secondary" onclick="location.href='/inicio';">Cancelar</button>
+      </div>
+    </div>
+  </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i id="infoModalIcon" class="fas fa-info-circle me-2 text-info"></i>
+          <h5 class="modal-title" id="infoModalTitle">Información</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body" id="infoModalBody"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeInfoModal()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/modal.js"></script>
 </body>
 </html>

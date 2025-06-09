@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("infoModal");
+  const modal = document.getElementById("infoModal");
 
+  if (modal) {
     modal.addEventListener("hide.bs.modal", () => {
-        // Quitar el foco activamente del modal
-        if (document.activeElement && modal.contains(document.activeElement)) {
-            document.activeElement.blur();
-            // O mover a un elemento fuera del modal
-            const focusTarget = document.getElementById("correo") || document.body;
-            focusTarget.focus();
-        }
+      if (document.activeElement && modal.contains(document.activeElement)) {
+        document.activeElement.blur();
+        const focusTarget = document.getElementById("correo") || document.body;
+        focusTarget.focus();
+      }
     });
+  }
 });
 
 window.showInfoModal = function(message, type = 'info') {
@@ -32,17 +32,15 @@ window.showInfoModal = function(message, type = 'info') {
   modalIcon.className = `${selected.icon} ${selected.color}`;
 
   const bootstrapModal = new bootstrap.Modal(modal, {
-    backdrop: 'static', // evita cierre al hacer clic fuera
-    keyboard: false     // evita cierre con la tecla Escape
+    backdrop: 'static',
+    keyboard: false
   });
 
   bootstrapModal.show();
 };
-
 
 window.closeInfoModal = function () {
   const modalElement = document.getElementById('infoModal');
   const modalInstance = bootstrap.Modal.getInstance(modalElement);
   if (modalInstance) modalInstance.hide();
 };
-

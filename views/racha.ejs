@@ -25,7 +25,10 @@
 
       <div class="streak">
         <div class="streak-number" id="streakDays">0</div>
-        <div class="streak-label">¡Días cumpliendo tus hábitos!</div>
+        <div class="streak-label">¡Días cumpliendo tus hábitos! 
+          <%- include('partials/helpButton', {
+                  mensaje: 'Completa al menos un hábito para extender tu racha.', tipo: 'info' }) %>
+        </div>
       </div>
 
       <!-- Aquí va el mensaje dinámico -->
@@ -34,7 +37,8 @@
       
     </div>
   </div>
-
+  <%- include('partials/modalInfo') %>
+  <%- include('partials/allScripts') %>
   <script src="/js/racha.js"></script>
 </body>
 

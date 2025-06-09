@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Mostrar la semana actual de lunes a domingo
   const semana = obtenerSemanaActual();
+  const hoyStr = new Date().toISOString().split('T')[0];
 
   semana.forEach(dia => {
     const cumplido = registros.find(r =>
@@ -105,6 +106,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const div = document.createElement('div');
     div.classList.add('day-box');
     if (cumplido) div.classList.add('checked');
+    if (dia.fecha === hoyStr) div.classList.add('hoy');
+    
     div.innerHTML = `${dia.nombre} ${cumplido ? '<i class="fas fa-check"></i>' : ''}`;
     daysRow.appendChild(div);
   });

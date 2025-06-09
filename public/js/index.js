@@ -4,7 +4,7 @@ validator
   .addField('#correo', [
     {
       rule: 'required',
-      errorMessage: 'El correo es obligatorio',
+      errorMessage: 'Este campo es obligatorio',
     },
     {
       rule: 'email',
@@ -14,7 +14,7 @@ validator
   .addField('#contrasena', [
     {
       rule: 'required',
-      errorMessage: 'La contraseña es obligatoria',
+      errorMessage: 'Este campo es obligatorio',
     },
   ])
   .onSuccess((event) => {

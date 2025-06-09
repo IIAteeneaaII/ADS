@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%- include('partials/allStyles') %>
   <%- include('partials/allScripts') %>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 <script> const USER_ID = <%= user.id %>;</script>
   <script src="/js/estadoanimo.js"></script>
 
@@ -20,6 +21,12 @@
       <a href="/calendario_emociones" class="back-arrow"><i class="fas fa-calendar-alt" style="font-size: 1.5rem;"></i></a>
     </div>
     <div class="separator my-3"></div>
+    <div class="infoHoraNoti">
+      <h5>Registra cómo te sientes hoy para llevar un seguimiento de tu estado de ánimo. Después de guardar, podrás consultar tu historial en el calendario de emociones.
+        <%- include('partials/helpButton', {
+                  mensaje: 'Si lo necesitas, puedes actualizar tu estado de ánimo en cualquier momento presionando nuevamente el botón <strong>Guardar</strong>.', tipo: 'info' }) %>
+      </h5>
+    </div>
     <h4 class="mx-auto mt-3 text-center">¿Cómo estás?</h4>
     <div class="emocion-container mt-5">
       <div class="emotion-option" onclick="seleccionarEmocion(this)" id="feliz">
@@ -45,5 +52,8 @@
       <button class="btn btn-secondary w-100 btn-save">Guardar</button>
     </div>
   </div>
+  <%- include('partials/modalInfo') %>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </body>
 </html>
