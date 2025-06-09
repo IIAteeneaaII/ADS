@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <%- include('partials/allStyles') %>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
   <title>Horarios de Notificaciones</title>
 </head>
 <body>
@@ -22,10 +21,10 @@
     
     <form class="actualizarHorarios" id="actualizarHorariosForm" method="POST" action="/ConfigurarNotificaciones">
       <!-- Mañana -->
-      <div class="mb-4 text-center pt-5">
+      <div class="mb-4 text-center pt-3">
         <label for="morningHour" class="form-label text-center fw-bold">Hora de la mañana</label>
         <img src="/img/dia.png" alt="Día" class="center-image" />
-        <select name="morningHour" id="morningHour" class="form-select select2">
+        <select name="morningHour" id="morningHour" class="select2">
           <option value="">Seleccione una hora</option>
           <% [7, 8, 9, 10].forEach(h => { %>
             <option value="<%= h %>" <%= h === morningHour ? 'selected' : '' %>><%= h %>:00</option>
@@ -37,7 +36,7 @@
       <div class="mb-4 text-center">
         <label for="afternoonHour" class="form-label text-center fw-bold">Hora de la tarde</label>
         <img src="/img/tarde.png" alt="Día" class="center-image" />
-        <select name="afternoonHour" id="afternoonHour" class="form-select select2">
+        <select name="afternoonHour" id="afternoonHour" class="select2">
           <option value="">Seleccione una hora</option>
           <% [12, 13, 14, 15].forEach(h => { %>
             <option value="<%= h %>" <%= h === afternoonHour ? 'selected' : '' %>><%= h %>:00</option>
@@ -49,7 +48,7 @@
       <div class="mb-4 text-center">
         <label for="nightHour" class="form-label text-center fw-bold">Hora de la noche</label>
         <img src="/img/noche.png" alt="Día" class="center-image" />
-        <select name="nightHour" id="nightHour" class="form-select select2">
+        <select name="nightHour" id="nightHour" class="select2">
           <option value="">Seleccione una hora</option>
           <% [18, 19, 20, 21].forEach(h => { %>
             <option value="<%= h %>" <%= h === nightHour ? 'selected' : '' %>><%= h %>:00</option>

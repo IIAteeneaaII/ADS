@@ -108,22 +108,30 @@
 
 /* Cambiar el color del borde y el fondo */
 .select2-container--default .select2-selection--single {
-    border: 2px solid v.$mainColor-low;
-    background-color: v.$white;
+    width: 100% !important; /* Se ajusta al 100% del contenedor */
+    max-width: 400px; /* O un máximo específico si es necesario */
+    height: 50px;  /* Ajuste de altura */
+    font-size: 16px;  /* Tamaño del texto */
     border-radius: 10px;
-    height: 40px;
+    background-color: #fff;
+    border: 2px solid #ccc;
 }
 
 /* Cambiar el color de la opción seleccionada */
 .select2-container--default .select2-selection--single .select2-selection__rendered {
     color: v.$black;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+    text-align: center;
 }
 
 /* Cambiar el color y el tamaño de la flecha */
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     border-color: v.$black;
     color: v.$black;
-    background-color: v.$mainColor-low;
+    background-color: v.$secondaryColor;
 }
 
 /* Modificar la lista de opciones cuando se abre el select */
@@ -152,14 +160,22 @@
 }
 
 .select2-dropdown {
-    border: 1px solid v.$mainColor-low !important;
-    border-radius: 1rem;
-    border-radius: 0.5rem;
+    border: 1px solid v.$secondaryColor !important;
+    // border-radius: 1rem;
 }
 .select2-container--default .select2-selection--single {
     background-color: v.$white !important;
-    border: 1px solid v.$mainColor-low !important;
-    border-radius: 4px !important;
+    border: 1px solid v.$secondaryColor !important;
+    border-radius: 0.5rem !important;
+    height: 50px;
+    // margin-left: 1rem;
+}
+.custom-select2{
+    width: 50%;
+    .select2-container{
+     width: 100% !important;  /* Asegúrate de que el contenedor sea flexible */
+    max-width: 400px;
+    }
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
@@ -167,8 +183,21 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 14px;
+    top: 0px;
+    right: 0px;
+    width: 23px;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
     display: none;  
 }
 
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 50px !important;
+    border-radius: 4px;
+}
+
+.select2-container--open .select2-dropdown--below {
+    border-top: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}

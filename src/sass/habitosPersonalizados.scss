@@ -164,6 +164,13 @@
   font-size: 1.1em;
 }
 
+.sliderContent{
+  width: 70%;
+}
+#goal-input-group{
+  gap: 1rem;
+}
+
 .btn-outline-info {
   background-color: v.$backgroundColor;
   margin-left: 0.5rem;
@@ -174,3 +181,22 @@
     color: v.$mainColor-strong !important;
   }
 }
+
+.goal-input{
+  width: 75%;
+}
+.camapanaNotis {
+  font-size: 1.5rem;
+}
+.btn-dated{
+  color: v.$colorPrimariBtn !important;
+  &:focus{
+    color:v.$mainColor-strong !important;
+    box-shadow: none;
+  }
+}
+
+.selectedDate{
+  margin-left: 2rem;
+}
+

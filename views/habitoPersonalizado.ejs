@@ -36,8 +36,8 @@
                   %>
               </label>
 
-              <textarea class="form-control" id="description" name="description"
-                rows="3"><%= habit ? habit.description : '' %></textarea>
+              <textarea class="form-control" id="description" name="description" placeholder="Ej. Cada día leer 10 páginas de mi libro favorito"
+                rows="3" maxlength="120"><%= habit ? habit.description : '' %></textarea>
             </div>
 
             <div class="mb-3">
@@ -46,9 +46,9 @@
                   mensaje: 'Mediante tu <strong>meta</strong> podras establecer tus objetivos en un hábito.' ,
                   tipo: 'info' }) %>
               </label>
-              <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center" id="goal-input-group">
                 <div id="goal-number" class="flex-fill">
-                  <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]"
+                  <input type="number" class="form-control goal-input me-2" id="goal" name="fieldValues[value]"
                     value="<%= habit ? habit.fieldValues.value : 1 %>" min="1">
                 </div>
 
@@ -63,37 +63,43 @@
                 </div>
 
                 <!-- <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]" value="<%= habit ? habit.fieldValues?.value : 1 %>" min="1"> -->
-                <select class="form-control form-select ms-2" id="unitSelect" name="fieldValues[unit]">
-                  <option value="min" selected>minutos</option>
-                  <option value="km" selected>kilometros</option>
-                  <option value="hrs" selected>horas</option>
-                  <option value="repeticiones" selected>repeticiones</option>
-                  <option value="ejercicios" selected>ejercicios</option>
-                  <option value="pasos" selected>pasos</option>
-                  <option value="paginas" selected>paginas</option>
-                  <option value="rutinas" selected>rutinas</option>
-                  <option value="vasos" selected>vasos</option>
-                  <option value="saltos" selected>saltos</option>
-                  <option value="pesos" selected>pesos</option>
-                  <option value="canciones" selected>canciones</option>
-                </select>
+                <div class="custom-select2">
+                  <div id="sliderValueDisplay" class="fw-bold text-center mb-2 d-none"></div>
+<% const unidades = ['min', 'km', 'hrs', 'repeticiones', 'ejercicios', 'pasos', 'paginas', 'rutinas', 'vasos', 'saltos', 'pesos', 'canciones']; %>
+<% const unidadActual = habit ? habit.fieldValues.unit : 'min'; %>
+<% const etiquetas = {
+  min: 'minutos', km: 'kilometros', hrs: 'horas',
+  repeticiones: 'repeticiones', ejercicios: 'ejercicios', pasos: 'pasos',
+  paginas: 'paginas', rutinas: 'rutinas', vasos: 'vasos',
+  saltos: 'saltos', pesos: 'pesos', canciones: 'canciones'
+}; %>
+
+<select class="form-control form-select ms-2" id="unitSelect" name="fieldValues[unit]">
+  <% unidades.forEach(unidad => { %>
+    <option value="<%= unidad %>" <%= unidad === unidadActual ? 'selected' : '' %>>
+      <%= etiquetas[unidad] %>
+    </option>
+  <% }) %>
+</select>
+                </div>
+
                 <!-- <input type="hidden" name="fieldValues[unit]" value="min"> -->
               </div>
             </div>
 
-            <div class="mb-3">
+            <div class="mt-4 mb-4 d-flex flex-column align-items-center text-center">
               <label for="startDate" class="form-label">Fecha de inicio
                 <%- include('partials/helpButton', {
                   mensaje: 'Selecciona una <strong>fecha de inicio</strong> del cual partira el hábito.' , tipo: 'info'
                   }) %>
               </label>
-              <div class="d-flex align-items-center gap-2 text-center">
+              <div class="mt-2 d-flex align-items-center gap-2 text-center">
                 <input type="text" id="startDate" name="startDate" class="visually-hidden"
                   value="<%= habit ? habit.startDate.toISOString().split('T')[0] : '' %>">
-                <button type="button" id="calendarButton" class="btn btn-outline-primary">
+                <button type="button" id="calendarButton" class="btn btn-dated btn-outline-primary">
                   <i class="fa fa-calendar"></i>
                 </button>
-                <span id="selectedDateText" class="fw-bold">
+                <span id="selectedDateText" class="selectedDate fw-bold">
                   <%= habit ? habit.startDate.toISOString().split('T')[0] : 'Sin seleccionar' %>
                 </span>
               </div>
@@ -107,7 +113,7 @@
                   mensaje: 'Los <strong>días de la semana</strong> son los días en los que se tienen planeado realizar el hábito a cualquier hora del día.'
                   , tipo: 'info' }) %>
               </label>
-              <div class="days-week d-flex flex-wrap">
+              <div class="days-week d-flex flex-wrap mt-2 mb-3">
                 <% const days=habit?.frequency?.days || []; %>
                   <% const allDays=['monday', 'tuesday' , 'wednesday' , 'thursday' , 'friday' , 'saturday' , 'sunday' ];
                     %>
@@ -123,19 +129,20 @@
               </div>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label" for="reminder">¿Deseas recibir notificaciones?
+            <div class="mt-3 mb-3 d-flex flex-column align-items-center text-center">
+              <label class="form-label">¿Deseas recibir notificaciones?
                 <%- include('partials/helpButton', {
-                  mensaje: 'Las <strong>notificaciones</strong> permitiran recordar al usuario que debe de cumplir con el hábito (con 3 horarios diferentes que podrá modificar en <strong> Configurar notificaciones</strong>) .'
-                  , tipo: 'info' }) %>
+                  mensaje: 'Las <strong>notificaciones</strong> permitirán recordar al usuario...',
+                  tipo: 'info'
+                }) %>
               </label>
-              <select class="form-control" name="reminder" id="reminder">
-                <option value="">Selecciona una opción</option>
-                <option value="yes" <%=habit && habit.reminder ? 'selected' : '' %>>Sí</option>
-                <option value="no" <%=habit && habit.reminder===false ? 'selected' : '' %>>No</option>
-              </select>
+              <button type="button" id="toggleReminder" class="btn btn-dated camapanaNotis">
+                <i id="bellIcon" class="fa <%= habit && habit.reminder ? 'fa-bell' : 'fa-bell-slash' %>"></i>
+              </button>
+              <input type="hidden" id="reminderInput" name="reminder" value="<%= habit && habit.reminder ? 'yes' : 'no' %>">
             </div>
-            <div class="mb-3">
+
+            <div class="mt-3 mb-3 d-flex flex-column align-items-center text-center">
               <label class="form-label" for="reminder">Selecciona un icono
                 <%- include('partials/helpButton', {
                   mensaje: 'Los <strong>iconos</strong> ayudarán al usuario a reconocer el tipo de hábito  <strong> Selecciona un icono</strong>) .'
@@ -143,10 +150,10 @@
               </label>
 
               <div class="dropdown text-center">
-                <button class="btn-outline-primary dropdown-toggle d-flex align-items-center text-center" type="button"
+                <button class="mt-2 mb-2 btn-outline-primary dropdown-toggle d-flex align-items-center text-center" type="button"
                   id="iconDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                   <img id="selectedIconPreview" src="/img/tiposHabitos/personalizado.png" alt="Icono seleccionado"
-                    style="width: 24px; height: 24px; margin-right: 8px;">
+                    style="width: 30px; height: 30px; margin-right: 8px;">
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="iconDropdown" id="iconDropdownMenu">
                   <% icons.forEach(icon=> { %>
@@ -163,7 +170,7 @@
               <input type="hidden" name="icon" id="iconInput" value="<%= habit?.icon?.replace('/img/tiposHabitos/', '') || 'personalizado.png' %>">
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary justify-content-center">Guardar hábito</button>
+              <button type="submit" class="btn-primary justify-content-center">Guardar hábito</button>
             </div>
 
           </form>
@@ -173,232 +180,317 @@
     <%- include('partials/modalInfo') %>
 
       <%- include('partials/allScripts') %>
-        <script src="/js/validarGestionarHabitos.js"></script>
-        <script>
-          document.addEventListener('DOMContentLoaded', () => {
-            const input = document.getElementById('startDate');
-            const button = document.getElementById('calendarButton');
-            const dateDisplay = document.getElementById('selectedDateText');
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+      <script src="/js/validarGestionarHabitos.js"></script>
+      <script>
+        
+        document.addEventListener('DOMContentLoaded', () => {
+          const input = document.getElementById('startDate');
+          const button = document.getElementById('calendarButton');
+          const dateDisplay = document.getElementById('selectedDateText');
 
-            const picker = new Pikaday({
-              field: input,
-              format: 'YYYY-MM-DD',
-              i18n: {
-                previousMonth: 'Mes anterior',
-                nextMonth: 'Mes siguiente',
-                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
-              },
-              minDate: new Date(),
-              onSelect: function (date) {
-                const formatted = date.toISOString().split('T')[0];
-                dateDisplay.textContent = formatted;
+          $(document).ready(function () {
+            $('.select2').select2({
+              placeholder: "Seleccione una hora",
+              // minimumResultsForSearch: Infinity,
+              language: {
+                noResults: function () {
+                  return "No se encontraron resultados";
+                }
               }
-            });
-
-            button.addEventListener('click', () => {
-              picker.show();
             });
           });
 
-          document.getElementById('form-habito').addEventListener('submit', async function (e) {
-            e.preventDefault();
+        const bellButton = document.getElementById('toggleReminder');
+        const bellIcon = document.getElementById('bellIcon');
+        const reminderInput = document.getElementById('reminderInput');
 
-            const formData = new FormData(this);
-            const id = document.getElementById('habitId').value;
-
-            const startDateRaw = formData.get('startDate');
-            let startDateISO = null;
-
-            if (startDateRaw) {
-              const startDateObj = new Date(startDateRaw);
-              if (!isNaN(startDateObj)) {
-                startDateISO = startDateObj.toISOString();
-              }
+        if (bellButton) {
+          bellButton.addEventListener('click', () => {
+            const isActive = reminderInput.value === 'yes';
+            if (isActive) {
+              bellIcon.classList.remove('fa-bell');
+              bellIcon.classList.add('fa-bell-slash');
+              reminderInput.value = 'no';
+            } else {
+              bellIcon.classList.remove('fa-bell-slash');
+              bellIcon.classList.add('fa-bell');
+              reminderInput.value = 'yes';
             }
+          });
+        }
 
-            const data = {
-              name: formData.get('name'),
-              description: formData.get('description'),
-              frequency: {
-                type: formData.get('frequency[type]'),
-                days: formData.getAll('frequency[days][]')
+        const picker = new Pikaday({
+          field: input,
+          format: 'YYYY-MM-DD',
+          i18n: {
+            previousMonth: 'Mes anterior',
+            nextMonth: 'Mes siguiente',
+            months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            weekdays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+          },
+          minDate: new Date(),
+          onSelect: function (date) {
+            const formatted = date.toISOString().split('T')[0];
+            dateDisplay.textContent = formatted;
+          }
+        });
+
+      button.addEventListener('click', () => {
+          picker.show();
+        });
+      });
+
+        document.getElementById('form-habito').addEventListener('submit-form-validado', async function (e) {
+          e.preventDefault();
+
+          const formData = new FormData(this);
+          const id = document.getElementById('habitId').value;
+
+          const rawDate = formData.get('startDate');
+          let startDateISO = null;
+
+          if (rawDate) {
+            const dateObj = new Date(rawDate);
+            if (!isNaN(dateObj.getTime())) {
+              startDateISO = dateObj.toISOString();
+            } else {
+              console.warn('Fecha inválida:', rawDate);
+            }
+          } else {
+            console.warn('No se seleccionó fecha');
+          }
+
+          const data = {
+            name: formData.get('name'),
+            description: formData.get('description'),
+            frequency: {
+              type: formData.get('frequency[type]'),
+              days: formData.getAll('frequency[days][]')
+            },
+            icon: `/img/tiposHabitos/${formData.get('icon')}`,
+            startDate: startDateISO,
+            fieldValues: {
+              unit: formData.get('fieldValues[unit]'),
+              value: formData.get('fieldValues[value]'),
+            },
+            reminder: formData.get('reminder') === 'yes'
+          };
+
+          const url = id ? `/api/habit/${id}` : '/api/habit/personalizado';
+          const method = id ? 'PUT' : 'POST';
+
+          try {
+            const response = await fetch(url, {
+              method,
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`
               },
-              icon: `/img/tiposHabitos/${formData.get('icon')}`,
-              startDate: new Date(formData.get('startDate')).toISOString(),
-              fieldValues: {
-                unit: formData.get('fieldValues[unit]'),
-                value: formData.get('fieldValues[value]'),
-              },
-              reminder: formData.get('reminder') === 'yes'
-            };
+              body: JSON.stringify(data)
+            });
 
-            const url = id ? `/api/habit/${id}` : '/api/habit/personalizado';
-            const method = id ? 'PUT' : 'POST';
+            const result = await response.json();
+            console.log('Respuesta del servidor:', result, response.status);
 
-            try {
-              const response = await fetch(url, {
-                method,
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-                body: JSON.stringify(data)
-              });
-
-              const result = await response.json();
-              console.log('Respuesta del servidor:', result, response.status);
-
-              if (!response.ok) {
-                return mostrarAlerta({
-                  title: 'Error',
-                  text: result?.message,
-                  imageUrl: '/img/sharki/triste.png',
-                  redirectUrl: '/gestionarHabitos',
-                  btnText: 'Aceptar'
-                });
-              }
-              const redirectId = id || result.habit.id;
-              mostrarAlerta({
-                title: '¡Hábito registrado!',
-                text: 'Tu hábito fue guardado correctamente.',
-                imageUrl: '/img/sharki/feliz.png',
-                redirectUrl: `/perso/${redirectId}`,
+            if (!response.ok) {
+              return mostrarAlerta({
+                title: 'Error',
+                text: result?.message,
+                imageUrl: '/img/sharki/triste.png',
+                redirectUrl: '/gestionarHabitos',
                 btnText: 'Aceptar'
               });
-            } catch (error) {
-              console.error('Error al enviar el hábito:', error);
-              alert('Ocurrió un error al guardar el hábito.');
             }
-          });
-
-          document.querySelectorAll('.btn-days').forEach(btn => {
-            btn.addEventListener('click', () => {
-              btn.classList.toggle('dia_selected');
+            const redirectId = id || result.habit.id;
+            mostrarAlerta({
+              title: '¡Hábito registrado!',
+              text: 'Tu hábito fue guardado correctamente.',
+              imageUrl: '/img/sharki/feliz.png',
+              redirectUrl: `/perso/${redirectId}`,
+              btnText: 'Aceptar'
             });
+          } catch (error) {
+            console.error('Error al enviar el hábito:', error);
+            alert('Ocurrió un error al guardar el hábito.');
+          }
+        });
+
+        document.querySelectorAll('.btn-days').forEach(btn => {
+          btn.addEventListener('click', () => {
+            btn.classList.toggle('dia_selected');
           });
-          document.querySelectorAll('.icon-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-              e.preventDefault();
-              const icon = option.getAttribute('data-icon');
-              document.getElementById('iconInput').value = icon;
-              document.getElementById('selectedIconPreview').src = `/img/tiposHabitos/${icon}`;
-            });
+        });
+        document.querySelectorAll('.icon-option').forEach(option => {
+          option.addEventListener('click', (e) => {
+            e.preventDefault();
+            const icon = option.getAttribute('data-icon');
+            document.getElementById('iconInput').value = icon;
+            document.getElementById('selectedIconPreview').src = `/img/tiposHabitos/${icon}`;
           });
+        });
 
-        </script>
-        <script>
-          document.addEventListener('DOMContentLoaded', () => {
-            const unitSelect = document.getElementById('unitSelect');
-            const numberInput = document.getElementById('goal-number');
-            const sliderContainer = document.getElementById('goal-slider');
-            const linearSliderContainer = document.getElementById('linear-slider-container');
-            const linearSlider = document.getElementById('linearSlider');
-            const linearSliderValue = document.getElementById('linearSliderValue');
-            const goal = document.getElementById('goal');
-            const hiddenSliderInput = document.getElementById('sliderHidden');
+      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const unitSelect = document.getElementById('unitSelect');
+          const numberInput = document.getElementById('goal-number');
+          const sliderContainer = document.getElementById('goal-slider');
+          const linearSliderContainer = document.getElementById('linear-slider-container');
+          const linearSlider = document.getElementById('linearSlider');
+          const linearSliderValue = document.getElementById('linearSliderValue');
+          const goal = document.getElementById('goal');
+          const hiddenSliderInput = document.getElementById('sliderHidden');
 
-            const initialValue = parseInt(hiddenSliderInput.value) || 30;
+          const initialValue = parseInt(hiddenSliderInput.value) || 30;
 
-            // Slider circular
-            const slider1 = $("#circularSlider").roundSlider({
-              radius: 80,
-              min: 1,
-              max: 60,
-              value: initialValue,
-              width: 16,
-              handleSize: "+8",
-              handleShape: "round",
-              sliderType: "min-range",
-              editableTooltip: false,
-              tooltipFormat: e => `${e.value} min`,
-              change: e => hiddenSliderInput.value = e.value,
-              drag: e => hiddenSliderInput.value = e.value
-            }).data("roundSlider");
+          // Slider circular
+          const slider1 = $("#circularSlider").roundSlider({
+            radius: 60,
+            min: 1,
+            max: 60,
+            value: initialValue,
+            width: 10,
+            handleSize: "+8",
+            handleShape: "round",
+            sliderType: "min-range",
+            editableTooltip: false,
+            // tooltipFormat: e => `${e.value} min`,
+            tooltipFormat: () => '', // oculta el valor dentro del slider
 
-            // Slider lineal (inicial)
-            let slider2 = {
-              min: 1,
-              max: 100,
-              unitLabel: '',
-              update: (min, max, unitLabel) => {
-                linearSlider.min = min;
-                linearSlider.max = max;
-                linearSlider.value = min;
-                linearSliderValue.textContent = `${min} ${unitLabel}`;
-                hiddenSliderInput.value = min;
-                slider2.unitLabel = unitLabel;
-              },
-              initEvents: () => {
-                linearSlider.oninput = () => {
-                  linearSliderValue.textContent = `${linearSlider.value} ${slider2.unitLabel}`;
-                  hiddenSliderInput.value = linearSlider.value;
-                };
-              }
-            };
-            slider2.initEvents();
+          change: e => {
+            hiddenSliderInput.value = e.value;
+            updateSliderValueDisplay(e.value);
+          },
+          drag: e => {
+            hiddenSliderInput.value = e.value;
+            updateSliderValueDisplay(e.value);
+          }
+          }).data("roundSlider");
 
-            // Función para actualizar el slider circular
-            const updateSlider1 = (min, max, unitLabel) => {
-              slider1.option({
-                min: min,
-                max: max,
-                tooltipFormat: e => `${e.value} ${unitLabel}`
-              });
-              let current = slider1.getValue();
+          // Slider lineal (inicial)
+          let slider2 = {
+            min: 1,
+            max: 100,
+            unitLabel: '',
+            update: (min, max, unitLabel) => {
+              linearSlider.min = min;
+              linearSlider.max = max;
+              let current = parseInt(hiddenSliderInput.value) || min;
               if (current < min) current = min;
               if (current > max) current = max;
-              slider1.setValue(current + 1);
-              setTimeout(() => slider1.setValue(current), 10);
+
+              linearSlider.value = current;
+              linearSliderValue.textContent = `${current} ${unitLabel}`;
               hiddenSliderInput.value = current;
-            };
-
-            // Muestra el slider correspondiente y lo configura
-            function updateInputDisplay() {
-              const selectedUnit = unitSelect.value;
-
-              if (['min', 'hrs', 'km'].includes(selectedUnit)) {
-                // Slider circular
-                let max = selectedUnit === 'min' ? 60 : selectedUnit === 'hrs' ? 24 : 1000;
-                updateSlider1(1, max, selectedUnit);
-                sliderContainer.classList.remove('d-none');
-                linearSliderContainer.classList.add('d-none');
-                numberInput.classList.add('d-none');
-                hiddenSliderInput.name = 'fieldValues[value]';
-                goal.name = '';
-              } else if (['repeticiones', 'ejercicios', 'paginas', 'rutinas', 'vasos', 'canciones'].includes(selectedUnit)) {
-                // Slider lineal
-                let max = 100;
-                if (selectedUnit === 'repeticiones') max = 25;
-                if (selectedUnit === 'ejercicios') max = 15;
-                if (selectedUnit === 'paginas') max = 100;
-                if (selectedUnit === 'rutinas') max = 10;
-                if (selectedUnit === 'vasos') max = 15;
-                if (selectedUnit === 'canciones') max = 20;
-                // Otros rangos aquí...
-
-                slider2.update(1, max, selectedUnit);
-                sliderContainer.classList.add('d-none');
-                linearSliderContainer.classList.remove('d-none');
-                numberInput.classList.add('d-none');
-                hiddenSliderInput.name = 'fieldValues[value]';
-                goal.name = '';
-              } else {
-                // Campo numérico
-                sliderContainer.classList.add('d-none');
-                linearSliderContainer.classList.add('d-none');
-                numberInput.classList.remove('d-none');
-                hiddenSliderInput.name = '';
-                goal.name = 'fieldValues[value]';
-              }
+              slider2.unitLabel = unitLabel;
+            },
+            initEvents: () => {
+              linearSlider.oninput = () => {
+                linearSliderValue.textContent = `${linearSlider.value} ${slider2.unitLabel}`;
+                hiddenSliderInput.value = linearSlider.value;
+              };
             }
+          };
+          slider2.initEvents();
 
-            unitSelect.addEventListener('change', updateInputDisplay);
-            updateInputDisplay();
-          });
+          // Función para actualizar el slider circular
+          const updateSlider1 = (min, max, unitLabel) => {
+            slider1.option({
+              min: min,
+              max: max,
+              tooltipFormat: () => ''
+            });
+let current = parseInt(hiddenSliderInput.value) || min;
+if (current < min) current = min;
+if (current > max) current = max;
 
-        </script>
+            slider1.setValue(current + 1);
+            setTimeout(() => slider1.setValue(current), 10);
+            hiddenSliderInput.value = current;
+            updateSliderValueDisplay(current);
+          };
+
+          // Muestra el slider correspondiente y lo configura
+          function updateInputDisplay() {
+            const selectedUnit = unitSelect.value;
+
+            if (['min', 'hrs', 'km', 'pasos', 'pesos'].includes(selectedUnit)) {
+              // Slider circular
+              let max = 60;
+              if (selectedUnit === 'min') max = 60;
+              else if (selectedUnit === 'hrs') max = 24;
+              else if (selectedUnit === 'km') max = 1000;
+              else if (selectedUnit === 'pasos') max = 20000;
+              else if (selectedUnit === 'pesos') max = 50000;
+
+              updateSlider1(1, max, selectedUnit);
+              sliderContainer.classList.remove('d-none');
+              linearSliderContainer.classList.add('d-none');
+              numberInput.classList.add('d-none');
+              hiddenSliderInput.name = 'fieldValues[value]';
+              goal.name = '';
+
+              let initialValue = parseInt(hiddenSliderInput.value);
+              if (isNaN(initialValue) || initialValue < 1) initialValue = 1;
+
+                document.getElementById('sliderValueDisplay').classList.remove('d-none');
+
+              const currentValue = parseInt(hiddenSliderInput.value) || 1;
+              updateSliderValueDisplay(currentValue);
+
+
+            } else if (['repeticiones', 'ejercicios', 'paginas', 'rutinas', 'vasos', 'canciones', 'saltos'].includes(selectedUnit)) {
+              // Slider lineal
+              document.getElementById('sliderValueDisplay').classList.add('d-none');
+              let max = 100;
+              if (selectedUnit === 'repeticiones') max = 25;
+              if (selectedUnit === 'ejercicios') max = 15;
+              if (selectedUnit === 'paginas') max = 100;
+              if (selectedUnit === 'rutinas') max = 10;
+              if (selectedUnit === 'vasos') max = 15;
+              if (selectedUnit === 'canciones') max = 20;
+              if (selectedUnit === 'saltos') max = 500;
+
+              slider2.update(1, max, selectedUnit);
+              sliderContainer.classList.add('d-none');
+              linearSliderContainer.classList.remove('d-none');
+              numberInput.classList.add('d-none');
+              hiddenSliderInput.name = 'fieldValues[value]';
+              goal.name = '';
+
+            } else {
+              // Campo numérico
+              sliderContainer.classList.add('d-none');
+              linearSliderContainer.classList.add('d-none');
+              numberInput.classList.remove('d-none');
+              hiddenSliderInput.name = '';
+              goal.name = 'fieldValues[value]';
+            }
+          }
+
+
+          unitSelect.addEventListener('change', updateInputDisplay);
+          updateInputDisplay();
+          
+          function updateSliderValueDisplay(value) {
+            const unit = document.getElementById('unitSelect')?.value || '';
+            const display = document.getElementById('sliderValueDisplay');
+            if (display) {
+              let formattedValue = value;
+            if (unit === 'pesos') {
+              formattedValue = `$${value}`;
+            } else {
+              formattedValue = `${value}`;
+            }
+              display.textContent = formattedValue;
+            }
+          }
+
+        });
+
+      </script>
 </body>
 
 </html>

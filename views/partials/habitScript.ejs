@@ -26,27 +26,42 @@ document.addEventListener('DOMContentLoaded', () => {
             });
           });
 
-    document.getElementById('form-habito').addEventListener('submit', async function (e) {
-        e.preventDefault();
+          document.getElementById('form-habito').addEventListener('submit-form-validado', async function (e) {
+            e.preventDefault();
 
-        const formData = new FormData(this);
-        const id = document.getElementById('habitId').value;
+            const formData = new FormData(this);
+            const id = document.getElementById('habitId').value;
 
-        const data = {
-            name: "<%= habitName %>",
-            description: formData.get('description'),
-            frequency: {
+            const rawDate = formData.get('startDate');
+            let startDateISO = null;
+
+            if (rawDate) {
+              const dateObj = new Date(rawDate);
+              if (!isNaN(dateObj.getTime())) {
+                startDateISO = dateObj.toISOString();
+              } else {
+                console.warn('Fecha inválida:', rawDate);
+              }
+            } else {
+              console.warn('No se seleccionó fecha');
+            }
+
+            const data = {
+              name: formData.get('name'),
+              description: formData.get('description'),
+              frequency: {
                 type: formData.get('frequency[type]'),
                 days: formData.getAll('frequency[days][]')
-            },
-            icon: "<%= iconPath %>",
-            startDate: new Date(formData.get('startDate')).toISOString(),
-            fieldValues: {
+              },
+              icon: `/img/tiposHabitos/${formData.get('icon')}`,
+              startDate: startDateISO,
+              fieldValues: {
                 unit: formData.get('fieldValues[unit]'),
-                value: formData.get('fieldValues[value]')
-            },
-            reminder: formData.get('reminder') === 'yes'
-        };
+                value: formData.get('fieldValues[value]'),
+              },
+              reminder: formData.get('reminder') === 'yes'
+            };
+
 
         const url = id ? `/api/habit/${id}` : '/api/habit/personalizado';
         const method = id ? 'PUT' : 'POST';
@@ -109,18 +124,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Slider circular
   const slider1 = $("#circularSlider").roundSlider({
-    radius: 80,
+    radius: 60,
     min: 1,
     max: 60,
     value: initialValue,
-    width: 16,
+    width: 10,
     handleSize: "+8",
     handleShape: "round",
     sliderType: "min-range",
     editableTooltip: false,
-    tooltipFormat: e => `${e.value} min`,
-    change: e => hiddenSliderInput.value = e.value,
-    drag: e => hiddenSliderInput.value = e.value
+    tooltipFormat: () => '', // oculta el valor dentro del slider
+
+    change: e => {
+      hiddenSliderInput.value = e.value;
+      updateSliderValueDisplay(e.value);
+    },
+    drag: e => {
+      hiddenSliderInput.value = e.value;
+      updateSliderValueDisplay(e.value);
+    }
   }).data("roundSlider");
 
   // Slider lineal (inicial)
@@ -131,9 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
     update: (min, max, unitLabel) => {
       linearSlider.min = min;
       linearSlider.max = max;
-      linearSlider.value = min;
-      linearSliderValue.textContent = `${min} ${unitLabel}`;
-      hiddenSliderInput.value = min;
+      let current = parseInt(hiddenSliderInput.value) || min;
+      if (current < min) current = min;
+      if (current > max) current = max;
+
+      linearSlider.value = current;
+      linearSliderValue.textContent = `${current} ${unitLabel}`;
+      hiddenSliderInput.value = current;
       slider2.unitLabel = unitLabel;
     },
     initEvents: () => {
@@ -150,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     slider1.option({
       min: min,
       max: max,
-      tooltipFormat: e => `${e.value} ${unitLabel}`
+      tooltipFormat: () => ''
     });
     let current = slider1.getValue();
     if (current < min) current = min;
@@ -161,49 +187,71 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Muestra el slider correspondiente y lo configura
-  function updateInputDisplay() {
-    const selectedUnit = unitSelect.value;
+function updateInputDisplay() {
+  const selectedUnit = unitSelect.value;
 
-    if (['min', 'hrs', 'km'].includes(selectedUnit)) {
-      // Slider circular
-      let max = selectedUnit === 'min' ? 60 : selectedUnit === 'hrs' ? 24 : 1000;
-      updateSlider1(1, max, selectedUnit);
-      sliderContainer.classList.remove('d-none');
-      linearSliderContainer.classList.add('d-none');
-      numberInput.classList.add('d-none');
-      hiddenSliderInput.name = 'fieldValues[value]';
-      goal.name = '';
-    } else if (['repeticiones', 'ejercicios', 'paginas', 'rutinas', 'vasos', 'canciones'].includes(selectedUnit)) {
-      // Slider lineal
-      let max = 100;
-      if (selectedUnit === 'repeticiones') max = 25;
-      if (selectedUnit === 'ejercicios') max = 15;
-      if (selectedUnit === 'paginas') max = 100;
-      if (selectedUnit === 'rutinas') max = 10;
-      if (selectedUnit === 'vasos') max = 15;
-      if (selectedUnit === 'canciones') max = 20;
-      // Otros rangos aquí...
+  if (['min', 'hrs', 'km', 'pasos', 'pesos'].includes(selectedUnit)) {
+    // Slider circular
+    let max = 60;
+    if (selectedUnit === 'min') max = 60;
+    else if (selectedUnit === 'hrs') max = 24;
+    else if (selectedUnit === 'km') max = 1000;
+    else if (selectedUnit === 'pasos') max = 20000;
+    else if (selectedUnit === 'pesos') max = 50000;
 
-      slider2.update(1, max, selectedUnit);
-      sliderContainer.classList.add('d-none');
-      linearSliderContainer.classList.remove('d-none');
-      numberInput.classList.add('d-none');
-      hiddenSliderInput.name = 'fieldValues[value]';
-      goal.name = '';
-    } else {
-      // Campo numérico
-      sliderContainer.classList.add('d-none');
-      linearSliderContainer.classList.add('d-none');
-      numberInput.classList.remove('d-none');
-      hiddenSliderInput.name = '';
-      goal.name = 'fieldValues[value]';
-    }
+    updateSlider1(1, max, selectedUnit);
+    sliderContainer.classList.remove('d-none');
+    linearSliderContainer.classList.add('d-none');
+    numberInput.classList.add('d-none');
+    hiddenSliderInput.name = 'fieldValues[value]';
+    goal.name = '';
+
+  } else if (['repeticiones', 'ejercicios', 'paginas', 'rutinas', 'vasos', 'canciones', 'saltos'].includes(selectedUnit)) {
+    // Slider lineal
+    let max = 100;
+    if (selectedUnit === 'repeticiones') max = 25;
+    if (selectedUnit === 'ejercicios') max = 15;
+    if (selectedUnit === 'paginas') max = 100;
+    if (selectedUnit === 'rutinas') max = 10;
+    if (selectedUnit === 'vasos') max = 15;
+    if (selectedUnit === 'canciones') max = 20;
+    if (selectedUnit === 'saltos') max = 500;
+
+    slider2.update(1, max, selectedUnit);
+    sliderContainer.classList.add('d-none');
+    linearSliderContainer.classList.remove('d-none');
+    numberInput.classList.add('d-none');
+    hiddenSliderInput.name = 'fieldValues[value]';
+    goal.name = '';
+  } else {
+    // Campo numérico normal
+    sliderContainer.classList.add('d-none');
+    linearSliderContainer.classList.add('d-none');
+    numberInput.classList.remove('d-none');
+    hiddenSliderInput.name = '';
+    goal.name = 'fieldValues[value]';
   }
+}
 
   unitSelect.addEventListener('change', updateInputDisplay);
   updateInputDisplay();
+    function updateSliderValueDisplay(value) {
+    const unit = document.getElementById('unitSelect')?.value || '';
+    const display = document.getElementById('sliderValueDisplay');
+    if (display) {
+      let formattedValue = value;
+    if (unit === 'pesos') {
+      formattedValue = `$${value}`;
+    } else {
+      formattedValue = `${value}`;
+    }
+      display.textContent = formattedValue;
+    }
+  }
+  updateSliderValueDisplay(hiddenSliderInput.value);
 });
 
+  
   function showInfoModal(message, type = 'info') {
   try {
     document.body.focus(); // evita conflicto con aria-hidden

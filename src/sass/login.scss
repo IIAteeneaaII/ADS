@@ -78,8 +78,8 @@ main {
 }
 
 .btn-outline-primary {
-    background-color: v.$backgroundColor;
-    border: 2px solid v.$secondaryColor-strong;
+    background-color: v.$secondaryColor;
+    border:none;
 }
 
 .btnCodigo {
