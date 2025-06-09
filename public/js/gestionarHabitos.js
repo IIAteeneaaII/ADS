@@ -31,30 +31,34 @@ async function mostrarHabitos(categoria) {
         console.error('No se pudieron obtener los hábitos activos del usuario', err);
     }
 
-    HABITOS[categoria].forEach(habito => {
+    HABITOS[categoria].forEach((habito, index) => {
         const nombreNormalizado = habito.nombre.trim().toLowerCase();
         if (nombresActivos.includes(nombreNormalizado)) return;
 
-        const wrapper = document.createElement('div');
-        wrapper.className = 'caja';
+        setTimeout(() => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'caja fade-in';
 
-        const option = document.createElement('div');
-        option.className = 'option-1';
-        option.innerHTML = `
+            const option = document.createElement('div');
+            option.className = 'option-1';
+            option.innerHTML = `
             <img src="${habito.img}" alt="${habito.nombre}" />
             <span>${habito.nombre}</span>
-        `;
+            `;
 
-        const boton = document.createElement('button');
-        boton.className = 'plus-button';
-        boton.textContent = '+';
-        boton.onclick = (e) => {
-            e.stopPropagation();
-            location.href = habito.link;
-        };
+            const boton = document.createElement('button');
+            boton.className = 'plus-button';
+            boton.textContent = '+';
+            boton.onclick = (e) => {
+                e.stopPropagation();
+                location.href = habito.link;
+            };
 
-        wrapper.appendChild(option);
-        wrapper.appendChild(boton);
-        contenedor.appendChild(wrapper);
+            wrapper.appendChild(option);
+            wrapper.appendChild(boton);
+            contenedor.appendChild(wrapper);
+        }, index * 150); 
     });
+
 }
+window.mostrarHabitos = mostrarHabitos;

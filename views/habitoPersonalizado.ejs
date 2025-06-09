@@ -64,23 +64,23 @@
 
                 <!-- <input type="number" class="form-control me-2" id="goal" name="fieldValues[value]" value="<%= habit ? habit.fieldValues?.value : 1 %>" min="1"> -->
                 <div class="custom-select2">
-                  <div id="sliderValueDisplay" class="fw-bold text-center mb-2 d-none"></div>
-<% const unidades = ['min', 'km', 'hrs', 'repeticiones', 'ejercicios', 'pasos', 'paginas', 'rutinas', 'vasos', 'saltos', 'pesos', 'canciones']; %>
-<% const unidadActual = habit ? habit.fieldValues.unit : 'min'; %>
-<% const etiquetas = {
-  min: 'minutos', km: 'kilometros', hrs: 'horas',
-  repeticiones: 'repeticiones', ejercicios: 'ejercicios', pasos: 'pasos',
-  paginas: 'paginas', rutinas: 'rutinas', vasos: 'vasos',
-  saltos: 'saltos', pesos: 'pesos', canciones: 'canciones'
-}; %>
+                  <div id="sliderValueDisplay" class="sliderValueD fw-bold text-center mb-2 d-none"></div>
+                <% const unidades = ['min', 'km', 'hrs', 'repeticiones', 'ejercicios', 'pasos', 'paginas', 'rutinas', 'vasos', 'saltos', 'pesos', 'canciones']; %>
+                <% const unidadActual = habit ? habit.fieldValues.unit : 'min'; %>
+                <% const etiquetas = {
+                  min: 'minutos', km: 'kilometros', hrs: 'horas',
+                  repeticiones: 'repeticiones', ejercicios: 'ejercicios', pasos: 'pasos',
+                  paginas: 'paginas', rutinas: 'rutinas', vasos: 'vasos',
+                  saltos: 'saltos', pesos: 'pesos', canciones: 'canciones'
+                }; %>
 
-<select class="form-control form-select ms-2" id="unitSelect" name="fieldValues[unit]">
-  <% unidades.forEach(unidad => { %>
-    <option value="<%= unidad %>" <%= unidad === unidadActual ? 'selected' : '' %>>
-      <%= etiquetas[unidad] %>
-    </option>
-  <% }) %>
-</select>
+                <select class="form-control form-select ms-2" id="unitSelect" name="fieldValues[unit]">
+                  <% unidades.forEach(unidad => { %>
+                    <option value="<%= unidad %>" <%= unidad === unidadActual ? 'selected' : '' %>>
+                      <%= etiquetas[unidad] %>
+                    </option>
+                  <% }) %>
+                </select>
                 </div>
 
                 <!-- <input type="hidden" name="fieldValues[unit]" value="min"> -->
@@ -402,9 +402,9 @@
               max: max,
               tooltipFormat: () => ''
             });
-let current = parseInt(hiddenSliderInput.value) || min;
-if (current < min) current = min;
-if (current > max) current = max;
+            let current = parseInt(hiddenSliderInput.value) || min;
+            if (current < min) current = min;
+            if (current > max) current = max;
 
             slider1.setValue(current + 1);
             setTimeout(() => slider1.setValue(current), 10);

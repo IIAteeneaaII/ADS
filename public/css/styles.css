@@ -881,6 +881,18 @@ input:checked + .slider:before {
   color: #1f2421;
 }
 
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInMoveUp 0.4s ease forwards;
+}
+
+@keyframes fadeInMoveUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .card_gestionar {
   background-color: #bfddfe;
   border-radius: 1rem;
@@ -2157,6 +2169,14 @@ h1.actualizar {
   gap: 1rem;
 }
 
+.sliderValueD {
+  color: white;
+  margin-left: 0.5rem;
+  background: #60a9fa;
+  margin-right: -7px;
+  border-radius: 0.5rem;
+}
+
 .btn-outline-info {
   background-color: #ebfcff;
   margin-left: 0.5rem;
@@ -2308,11 +2328,6 @@ h1.actualizar {
 .day-box.checked i {
   font-size: 18px;
   margin-top: 4px;
-}
-
-.day-box.hoy {
-  border: 2px solid #000000;
-  border-radius: 8px;
 }
 
 .message-box {

@@ -246,6 +246,7 @@ function updateInputDisplay() {
       formattedValue = `${value}`;
     }
       display.textContent = formattedValue;
+      display.classList.remove('d-none');
     }
   }
   updateSliderValueDisplay(hiddenSliderInput.value);

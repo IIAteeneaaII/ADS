@@ -30,11 +30,13 @@
         <span id="linearSliderValue">1</span>
       </div>
 
-      <div id="sliderValueDisplay" class="fw-bold text-center mb-2"></div>
-      <select class="form-control form-select ms-2" id="unitSelect" name="fieldValues[unit]">
-        <%- include('unitSelect') %>
-      </select>
-    </div>
+<div class="custom-select2">
+  <div id="sliderValueDisplay" class="sliderValueD fw-bold text-center mb-2 d-none"></div>
+  <select class="form-control form-select ms-2" id="unitSelect" name="fieldValues[unit]">
+    <%- include('unitSelect') %>
+  </select>
+</div>
+
   </div>
 
   <div class="mt-4 mb-4 d-flex flex-column align-items-center text-center">

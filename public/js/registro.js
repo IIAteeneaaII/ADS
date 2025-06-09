@@ -146,29 +146,24 @@ const btnCodigo = document.getElementById('btnCodigo');
 const emailInput = document.getElementById('email');
 const codigoError = document.getElementById('codigo-error');
 
+let emailValidoMostrado = false;
+
 emailInput.addEventListener('input', () => {
   const email = emailInput.value.trim();
   const esValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  if (esValido) {
-    if (btnCodigo.style.display === 'none') {
-      btnCodigo.style.display = 'block';
-      btnCodigo.style.opacity = 0;
-      requestAnimationFrame(() => {
-        btnCodigo.style.opacity = 1;
-      });
-    }
-  } else {
+  if (esValido && !emailValidoMostrado) {
+    emailValidoMostrado = true;
+
+    // Mostrar el botón solo una vez cuando el correo es válido por primera vez
+    btnCodigo.style.display = 'block';
     btnCodigo.style.opacity = 0;
-    btnCodigo.addEventListener(
-      'transitionend',
-      () => {
-        btnCodigo.style.display = 'none';
-      },
-      { once: true }
-    );
+    requestAnimationFrame(() => {
+      btnCodigo.style.opacity = 1;
+    });
   }
 });
+
 
 
 function startResendTimer(seconds = 30) {
