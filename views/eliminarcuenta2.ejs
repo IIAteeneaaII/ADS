@@ -40,12 +40,13 @@
       <input type="hidden" id="email" name="email">
 
       <!-- Campo para la contraseña con toggle -->
-      <div class="mb-3 password-container">
+      <div class="mb-3">
         <label for="contrasena" class="form-label">Contraseña:</label>
-        <div class = "position-relative input-with-eye-container">
-          <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" required>
-          <i id="togglePassword" class="fa-solid fa-eye" data-visible="false" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></i>
+        <div class = "password-conter">
+          <input type="password" class="form-control pe-5" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" required>
+          <i id="togglePassword" class="fa-solid fa-eye" data-visible="false"></i>
         </div>
+        <div class="error-message" id="errorMsg">Este campo es obligatorio</div>
       </div>
       
       <div class="separator my-3"></div>
@@ -94,14 +95,7 @@
       if (!email || !password) {
         // Mostrar mensaje debajo del campo contraseña
         if (!password) {
-          const inputDiv = document.querySelector('.password-container .position-relative');
-          const msg = document.createElement('div');
-          msg.id = 'password-error-msg';
-          msg.style.color = '#2582eb';
-          msg.style.fontSize = '0.95em';
-          msg.style.marginTop = '0.25rem';
-          msg.textContent = 'Este campo es obligatorio';
-          inputDiv.appendChild(msg);
+          document.getElementById('errorMsg').style.display = "block";
         }
         return;
       }

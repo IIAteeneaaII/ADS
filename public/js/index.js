@@ -10,16 +10,7 @@ validator
       rule: 'email',
       errorMessage: 'Ingresa un correo válido',
     },
-  ])
-  .addField('#contrasena', [
-    {
-      rule: 'required',
-      errorMessage: 'Este campo es obligatorio',
-    },
-  ])
-  .onSuccess((event) => {
-    event.target.submit();
-  });
+  ]);
 
 const shark = document.querySelector(".shark-random");
 const card = document.querySelector(".login-card");
@@ -71,11 +62,24 @@ if (!shark || !card) {
   setInterval(moveShark, 10);
 }
 // Mostrar/ocultar contraseña principal
-document.getElementById("togglePassword").addEventListener("click", function () {
-  const input = document.getElementById("contrasena");
-  const isVisible = this.dataset.visible === "true";
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("contrasena");
+const errorMsg = document.getElementById("errorMsg");
+const form = document.getElementById("formLogin");
 
-  input.type = isVisible ? "password" : "text";
-  this.className = isVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
-  this.dataset.visible = (!isVisible).toString();
+togglePassword.addEventListener("click", () => {
+  const isVisible = togglePassword.getAttribute("data-visible") === "true";
+  passwordInput.type = isVisible ? "password" : "text";
+  togglePassword.classList.toggle("fa-eye");
+  togglePassword.classList.toggle("fa-eye-slash");
+  togglePassword.setAttribute("data-visible", !isVisible);
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault(); // evita el envío del formulario
+  if (passwordInput.value.trim() === "") {
+    errorMsg.style.display = "block";
+  } else{
+    event.target.submit();
+  }
 });
