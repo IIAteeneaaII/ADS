@@ -16,6 +16,24 @@
     width: 100%;
 }
 
+.my-habits-c{
+    background-color: v.$mainColor-low !important;
+    padding: 10px !important;
+    min-height: 50px !important;
+    height: 55px !important;
+    max-height: 100px !important;
+}
+.arrow-icon {
+    font-size: 2rem !important;
+    cursor: pointer;
+    border-radius: 8px;
+    &:hover {
+        transform: scale(1.2);
+        color: v.$secondaryColor-strong;
+    }
+}
+
+
 .habitos {
     display: flex;
     flex-direction: column;
@@ -50,7 +68,7 @@
 
 .card_gestionar {
     background-color: v.$secondaryColor;
-    border-radius: 1rem;
+    border-radius: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;

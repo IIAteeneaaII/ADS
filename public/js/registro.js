@@ -123,47 +123,20 @@ if (!shark || !card) {
 
   setInterval(moveShark, 10);
 }
-// Mostrar/ocultar contraseña principal
-document.getElementById("togglePassword").addEventListener("click", function () {
-  const input = document.getElementById("password");
-  const isVisible = this.dataset.visible === "true";
-
-  input.type = isVisible ? "password" : "text";
-  this.className = isVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
-  this.dataset.visible = (!isVisible).toString();
-});
-// Mostrar/ocultar contraseña de confirmación
-document.getElementById("togglePassword2").addEventListener("click", function () {
-  const input = document.getElementById("confirmarContrasena");
-  const isVisible = this.dataset.visible === "true";
-
-  input.type = isVisible ? "password" : "text";
-  this.className = isVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
-  this.dataset.visible = (!isVisible).toString();
-});
 
 const btnCodigo = document.getElementById('btnCodigo');
 const emailInput = document.getElementById('email');
 const codigoError = document.getElementById('codigo-error');
 
-let emailValidoMostrado = false;
-
-emailInput.addEventListener('input', () => {
-  const email = emailInput.value.trim();
-  const esValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  if (esValido && !emailValidoMostrado) {
-    emailValidoMostrado = true;
-
-    // Mostrar el botón solo una vez cuando el correo es válido por primera vez
-    btnCodigo.style.display = 'block';
-    btnCodigo.style.opacity = 0;
-    requestAnimationFrame(() => {
-      btnCodigo.style.opacity = 1;
-    });
-  }
-});
-
+if (btnCodigo && emailInput) {
+  emailInput.addEventListener('input', () => {
+    const email = emailInput.value.trim();
+    const esValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    btnCodigo.disabled = !esValido;
+  });
+} else {
+  console.error("btnCodigo o emailInput no están disponibles en el DOM.");
+}
 
 
 function startResendTimer(seconds = 30) {

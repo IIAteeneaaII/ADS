@@ -39,7 +39,20 @@
                                 <input type="email" class="form-control form-reg" id="email" name="email"
                                     placeholder="tucorreo@gmail.com" />
                             </div>
-
+                            <!-- Código de verificación -->
+                            <div class="mb-3">
+                                <div class="d-flex gap-2 flex-column flex-md-row">
+                                    <button type="button" id="btnCodigo" class="btnCodigo btn-outline-primary btn-sm mt-md-0" disabled>
+                                        Enviar código
+                                    </button>
+                                    <label for="codigo" class="form-label">Código de verificación:</label>
+                                    <div class="w-100">
+                                        <input type="text" class="form-control form-reg" id="codigo" name="codigo"
+                                            placeholder="Ingresa el código" />
+                                    </div>
+                                    <div id="codigo-error" class="invalid-feedback d-block"></div>
+                                </div>
+                            </div>
                             <!-- Contraseña -->
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña:</label>
@@ -59,22 +72,6 @@
                                     <!-- <i id="togglePassword2" class="fa-solid fa-eye" data-visible="false"></i> -->
                                 </div>
                             </div>
-
-                            <!-- Código de verificación -->
-                            <div class="mb-3">
-                                <label for="codigo" class="form-label">Código de verificación:</label>
-                                <div class="d-flex gap-2 flex-column flex-md-row">
-                                    <div class="w-100">
-                                        <input type="text" class="form-control form-reg" id="codigo" name="codigo"
-                                            placeholder="Ingresa el código" />
-                                    </div>
-                                    <button type="button" id="btnCodigo"
-                                        class="btnCodigo btn-outline-primary btn-sm mt-md-0"
-                                        style="display: none;">Enviar código</button>
-                                </div>
-                                <div id="codigo-error" class="invalid-feedback d-block"></div>
-                            </div>
-
 
                             <!-- Términos -->
                             <div class="form-check">

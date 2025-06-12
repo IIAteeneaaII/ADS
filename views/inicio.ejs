@@ -8,7 +8,6 @@
     <title>Inicio</title>
 </head>
 
-
 <body>
   <!-- Overlay oscuro -->
   <div id="overlay" class="overlay"></div>
@@ -30,15 +29,17 @@
               </span>
               <% } %>
           </i>
-          <div class="iconos">
-            <i class="fa-solid fa-bolt" onclick="location.href='/racha';" title="Racha"></i>
+          <div class="gif">
+            <i onclick="location.href='/racha';" title="Racha">
+              <img src="/img/fire.gif" alt="Fuego" class="fire-racha" style="width: 40px; height: 40px;" />
+            </i>
           </div>
         </div>
       </div>
 
       <!-- Contenido principal -->
       <div class="container-md">
-        <h1>Hola, <span id="nombreUsuario">
+        <h1>Hola, <span class="nombreUsuario" id="nombreUsuario">
             <%= userName %>
           </span> </h1>
 

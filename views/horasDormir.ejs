@@ -17,14 +17,12 @@
 
 <div class="fondo-animado">
     <div id="contenedor-burbujas"></div>
-    <div class="container py-4">
-
+    <div class="container-md">
         <%- include('partials/habitInfo', {
             habit: habit,
             iconPath: '/img/gestorhabitos/dormir.png', 
             editPath: '/gestionarhorasdormir' 
         }) %>
-
     </div>
 </div>
     <%- include('partials/editHabitScript') %>

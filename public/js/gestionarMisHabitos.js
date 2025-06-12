@@ -22,26 +22,42 @@ function renderHabits(habits) {
     container.innerHTML = '';
 
     if (habits.length === 0) {
-        container.innerHTML = '<p class="text-muted">No tienes hábitos registrados.</p>';
+        container.innerHTML = '<h5 class="mt-5 mb-5 text-center">No tienes hábitos registrados.</h5>';
         return;
     }
 
     habits.forEach(habito => {
         const habitContainer = document.createElement('div');
-        habitContainer.className = 'd-flex align-items-center mb-3';
+        habitContainer.className = 'd-flex align-items-center mb-3 px-2';
 
         const habitIcon = document.createElement('img');
         habitIcon.src = habito.icon || '/img/default-icon.png';
         habitIcon.alt = 'icono';
-        habitIcon.style.width = '40px';
-        habitIcon.style.height = '40px';
-        habitIcon.style.marginRight = '10px';
+        habitIcon.className = 'habit-icon';
 
         const habitCard = document.createElement('div');
-        habitCard.className = 'card_gestionar';
-        // habitCard.style.font-size = '';
+        habitCard.className = 'habit-card my-habits-c w-100';
 
-        habitCard.addEventListener('click', () => {
+        const cardContent = document.createElement('div');
+        cardContent.className = 'd-flex justify-content-between align-items-center w-100';
+
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'habit-info';
+        infoDiv.innerHTML = `<span class="fw-bold">${habito.name}</span>`;
+
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'd-flex align-items-center justify-content-end gap-2 w-auto';
+
+        const valueSpan = document.createElement('span');
+        valueSpan.className = 'habit-value-badge';
+        valueSpan.textContent = `${habito.fieldValues?.value ?? ''} ${habito.fieldValues?.unit ?? ''}`;
+
+        const arrowSpan = document.createElement('span');
+        arrowSpan.innerHTML = '›';
+        arrowSpan.classList.add('arrow-icon');
+
+
+        arrowSpan.addEventListener('click', () => {
             const nombre = habito.name.toLowerCase();
 
             if (nombre.includes('correr')) {
@@ -68,13 +84,10 @@ function renderHabits(habits) {
                 window.location.href = `/ordenarespacio/${habito.id}`;
             } else if (nombre.includes('saltar')) {
                 window.location.href = `/SaltarCuerda/${habito.id}`;
-            } else if (habito.icon?.includes('personalizado')) {
-                window.location.href = `/perso/${habito.id}`;
-            } else if (habito.icon?.includes('bienestar')) {
-                window.location.href = `/perso/${habito.id}`;
-            } else if (habito.icon?.includes('mental')) {
-                window.location.href = `/perso/${habito.id}`;
-            } else if (habito.icon?.includes('movimiento')) {
+            } else if (habito.icon?.includes('personalizado') ||
+                habito.icon?.includes('bienestar') ||
+                habito.icon?.includes('mental') ||
+                habito.icon?.includes('movimiento')) {
                 window.location.href = `/perso/${habito.id}`;
             } else {
                 Swal.fire({
@@ -85,28 +98,11 @@ function renderHabits(habits) {
             }
         });
 
-        const cardContent = document.createElement('div');
-        cardContent.className = 'w-100 d-flex justify-content-between align-items-center';
+        actionsDiv.appendChild(valueSpan);
+        actionsDiv.appendChild(arrowSpan);
 
-        cardContent.innerHTML = `
-            <div class="d-flex align-items-center">
-                <span class="fw-bold nameHabit">${habito.name}</span>
-            </div>
-            <div class="d-flex align-items-center">
-                <span style="
-                    text-align: center;
-                    background-color: white;
-                    padding: 3px;
-                    border-radius: 10px;
-                    font-weight: 600;
-                    margin-right: 12px;
-                    font-size: 0.8rem;
-                ">
-                    ${habito.fieldValues?.value ?? ''} ${habito.fieldValues?.unit ?? ''}
-                </span>
-                <span style="font-size: 1.5rem;">›</span>
-            </div>
-        `;
+        cardContent.appendChild(infoDiv);
+        cardContent.appendChild(actionsDiv);
 
         habitCard.appendChild(cardContent);
         habitContainer.appendChild(habitIcon);
