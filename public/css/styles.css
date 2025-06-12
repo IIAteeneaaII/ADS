@@ -2638,6 +2638,10 @@ h1.actualizar {
   animation: fadeInUp 0.5s ease forwards;
 }
 
+.cont-bienvenida {
+  overflow-y: hidden !important;
+}
+
 .user-image {
   width: 250px;
   height: 250px;
