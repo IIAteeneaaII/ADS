@@ -124,6 +124,12 @@ exports.recoverPassword = async (req, res) => {
   await userRepo.createResetCode(email, code);
   await sendRecoveryEmail(email, code);
 
+    res.cookie('reset_stage', 'code_sent', {
+  httpOnly: true,
+  signed: true,
+  maxAge: 10 * 60 * 1000
+  });
+
   res.status(200).json({ message: 'Código de verificación enviado' });
 };
 
@@ -159,6 +165,12 @@ exports.validateResetCode = async (req, res) => {
     return res.status(400).json({ message: 'Código Invalido o expirado' });
   }
 
+    res.cookie('reset_stage', 'code_verified', {
+    httpOnly: true,
+    signed: true,
+    maxAge: 10 * 60 * 1000
+  });
+  
   res.status(200).json({ message: 'Code is valid' });
 };
 
@@ -180,6 +192,7 @@ exports.resetPassword = async (req, res) => {
   // Opcional: eliminar todos los códigos previos de ese email
   await userRepo.deleteResetCodesByEmail(user.email);
 
+  res.clearCookie('reset_stage');
   res.status(200).json({ message: 'Contraseña Actualizada correctamente' });
 };
 
