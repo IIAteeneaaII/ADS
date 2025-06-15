@@ -129,7 +129,9 @@ async function cargarHabitos() {
       contenedorGrafica.innerHTML = "";
     } else {
         contenedorGrafica.innerHTML = `
-    <h5 class="text-center">Hábitos completados</h5>
+    <div class="habitos_titulo" class="fw-bold" >
+      <h2>Hábitos completados</h2>
+    </div>
     <div class="grafica-layout">
       <div class="grafica-container">
         <canvas id="graficaProgreso" width="150" height="150"></canvas>
@@ -249,7 +251,10 @@ async function cargarHabitos() {
     }
   } catch (error) {
     console.error("Error cargando hábitos:", error);
-    seccionHabitos.innerHTML = "<p>Error al cargar los hábitos.</p>";
+    seccionHabitos.innerHTML = `
+        <img src="/img/sharki/triste.png" class="img-fluid mb-3" style="max-width: 300px;">
+        <p class="fw-bold">Ocurrió un error, inténtalo más tarde.</p>
+      `;
   }
 }
 
