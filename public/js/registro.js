@@ -175,16 +175,55 @@ btnCodigo.addEventListener('click', async () => {
 
   codigoError.style.display = 'none';
   startResendTimer();
+
   try {
-      const res = await fetch('/api/auth/auth-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await res.json();
-
-    } catch (error) {
-      console.log('No funca')
+  // Muestra loading inmediatamente
+  Swal.fire({
+    title: 'Enviando código...',
+    text: 'Por favor espera un momento.',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    showConfirmButton: false,
+    didOpen: () => {
+      Swal.showLoading();
     }
+  });
+
+  const res = await fetch('/api/auth/auth-email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  });
+
+  const data = await res.json();
+
+  // Cierra el modal de carga
+  Swal.close();
+
+  if (res.ok) {
+    Swal.fire({
+      title: 'Éxito',
+      imageUrl: '/img/sharki/feliz.png',
+      imageWidth: 250,
+      text: 'Código enviado al correo electrónico',
+      confirmButtonText: 'Aceptar',
+      customClass: { confirmButton: 'btn btn-primary' },
+    });
+  } else {
+    throw new Error(data.message || 'Error al enviar el código');
+  }
+
+} catch (error) {
+  Swal.close(); // por si falla durante el loading
+  Swal.fire({
+    title: 'Error',
+    imageUrl: '/img/sharki/lupa.png',
+    imageWidth: 250,
+    text: 'No se pudo enviar el código. Intenta nuevamente más tarde.',
+    confirmButtonText: 'Aceptar',
+    customClass: { confirmButton: 'btn btn-primary' },
+  });
+  console.error('Error enviando el código:', error);
+}
+
 });

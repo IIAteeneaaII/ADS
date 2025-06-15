@@ -14,14 +14,13 @@
 
         <div class="wrapp">
 
-          <main>
             <h2 class="text-center mb-4">Recuperar Contraseña</h2>
             <form id="formContrasena" autocomplete="off">
-              <div class="mb-3">
+              <div class="mb-3 reg-input">
                 <label for="correo" class="form-label">Ingresa tu correo:
                   <%- include('partials/helpButton', { mensaje: 'Debes ingresar un <strong>correo electrónico</strong> que haya sido registrado en la app previamente.', tipo: 'warning'}) %>
                 </label>
-                <input type="email" class="form-control" id="correo" name="correo" placeholder="tucorreo@gmail.com" />
+                <input type="email" class="form-control  input-correo" id="correo" name="correo" placeholder="tucorreo@gmail.com" />
               </div>
 
         <p class="small text-end">
@@ -36,9 +35,8 @@
             </form>
 
             <p class="text-end mt-3">
-              ¿Ya tienes cuenta? <a class="link" href="/">Inicia sesión</a>
+              ¿Recordaste tu contraseña? <a class="link" href="/registro">Registrarse</a>
             </p>
-          </main>
         </div>
       </div>
 <%- include('partials/modalInfo') %>

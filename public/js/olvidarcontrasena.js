@@ -43,8 +43,8 @@ validator
 
         // Mostrar mensaje de éxito y redirigir
       Swal.fire({
-          title: '¡Código enviado!',
-          text: 'Se ha enviado un código a tu correo para recuperar la cuenta.',
+          title: 'Enviado',
+          text: 'Código enviado al correo electrónico.',
           imageUrl: '../img/sharki/feliz.png',
           imageWidth: 250,
           confirmButtonText: 'Aceptar',
@@ -59,7 +59,7 @@ validator
         console.error(err);
         Swal.fire({
           title: "Error",
-          text: "Hubo un error al comunicarse con el servidor.",
+          text: "Fallo en la conexión con el servidor - Intenta nuevamente.",
           imageUrl: "/img/sharki/lupa.png",
           imageWidth: 250,
           confirmButtonText: "Aceptar",

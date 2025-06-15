@@ -85,7 +85,33 @@ main {
 .btn-outline-primary:disabled{
     background-color: v.$gray;
     color: v.$black;
+    cursor:default;
 }
+
+.input-correo {
+    max-width: 400px;
+    margin: 0 auto;   
+}
+    .reg-input {
+    max-width: 262px; 
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    label {
+        text-align: left;
+        width: 100%;
+    } 
+
+    .form-control {
+        width: 100%;
+    }
+
+    .just-validate-error-label {
+        text-align: left;
+        color: #dc3545;
+    }
+}
+
 .btnCodigo {
     margin: 1rem 0;
     font-size: 1rem;

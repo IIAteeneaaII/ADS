@@ -15,14 +15,15 @@
           <main>
             <h2 class="text-center mb-4">Ingresar Código</h2>
             <form id="formCodigo" autocomplete="off">
-              <div class="mb-3">
+              <div class="mb-3 reg-input">
                 <label for="codigo" class="form-label mb-3">Código de verificación:
                   <%- include('partials/helpButton', { mensaje: 'El codigo de verificación tiene una duración de 10 minutos !Tomalo con calma¡', tipo: 'warning'}) %>
                 </label>
-                <input type="text" class="form-control" id="codigo" placeholder="######"/>
+                <input type="text" class="form-control" id="codigo" placeholder="######" maxlength="6" inputmode="numeric"/>
+                <div id="codigoError" class="just-validate-error-label mt-1" style="display: none;"></div>
               </div>
 
-              <div class="d-grid gap-2">
+              <div class="d-grid gap-2 reg-input">
                 <button type="submit" class="btn btn-primary">Continuar</button>
               </div>
             </form>

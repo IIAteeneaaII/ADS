@@ -22,7 +22,7 @@ exports.register = async (req, res) => {
 
     const exists = await userRepo.findByEmail(email);
     if (exists){
-      setFlashMessage(res, 'El usuario ya existe', 'error');
+      setFlashMessage(res, 'Correo ya registrado', 'error');
       return res.redirect('/Registro');
     }
 
@@ -37,12 +37,12 @@ exports.register = async (req, res) => {
     createOrUpdateJob(user.id, 'afternoon', 13);
     createOrUpdateJob(user.id, 'night', 21);
 
-    setFlashMessage(res, '¡Registro exitoso! Ya puedes iniciar sesión.', 'success');
+    setFlashMessage(res, 'Registro Exitoso', 'success');
     await userRepo.deleteResetCodesByEmail(email);
     res.redirect('/');
   } catch (err) {
     console.error(err);
-    setFlashMessage(res, 'Hubo un error en el servidor. Intenta más tarde', 'error');
+    setFlashMessage(res, 'Fallo en la conexión con el servidor - Intenta nuevamente', 'error');
     res.redirect('/Registro');
   }
 };
@@ -79,7 +79,7 @@ exports.login = async (req, res) => {
     res.redirect('/Inicio');
   } catch (err) {
     console.error(err);
-    setFlashMessage(res, 'Hubo un error en el servidor. Intenta más tarde', 'error');
+    setFlashMessage(res, 'Fallo en la conexión con el servidor - Intenta nuevamente', 'error');
     res.redirect('/');
   }
 };

@@ -164,7 +164,7 @@ footer {
 }
 
 .just-validate-error-label {
-  font-size: small;
+  font-size: 0.75rem;
   color: #2582eb !important;
   margin-top: 0.5rem;
 }
@@ -254,6 +254,30 @@ main h2 {
 .btn-outline-primary:disabled {
   background-color: #adb5bd;
   color: #1f2421;
+  cursor: default;
+}
+
+.input-correo {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.reg-input {
+  max-width: 262px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.reg-input label {
+  text-align: left;
+  width: 100%;
+}
+.reg-input .form-control {
+  width: 100%;
+}
+.reg-input .just-validate-error-label {
+  text-align: left;
+  color: #dc3545;
 }
 
 .btnCodigo {
