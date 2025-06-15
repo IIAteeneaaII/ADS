@@ -26,9 +26,10 @@ function renderHabits(habits) {
         return;
     }
 
-    habits.forEach(habito => {
-        const habitContainer = document.createElement('div');
-        habitContainer.className = 'd-flex align-items-center mb-3 px-2';
+    habits.forEach((habito, index) => {
+        setTimeout(()=>{
+                    const habitContainer = document.createElement('div');
+        habitContainer.className = 'd-flex align-items-center mb-3 px-2 fade-in';
 
         const habitIcon = document.createElement('img');
         habitIcon.src = habito.icon || '/img/default-icon.png';
@@ -46,16 +47,18 @@ function renderHabits(habits) {
         infoDiv.innerHTML = `<span class="fw-bold">${habito.name}</span>`;
 
         const actionsDiv = document.createElement('div');
-        actionsDiv.className = 'd-flex align-items-center justify-content-end gap-2 w-auto';
+        actionsDiv.className = 'd-flex align-items-center justify-content-end gap-1 w-auto';
 
         const valueSpan = document.createElement('span');
         valueSpan.className = 'habit-value-badge';
         valueSpan.textContent = `${habito.fieldValues?.value ?? ''} ${habito.fieldValues?.unit ?? ''}`;
 
         const arrowSpan = document.createElement('span');
-        arrowSpan.innerHTML = '›';
+        arrowSpan.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 4L10 8L6 12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>`;
         arrowSpan.classList.add('arrow-icon');
-
 
         arrowSpan.addEventListener('click', () => {
             const nombre = habito.name.toLowerCase();
@@ -108,5 +111,6 @@ function renderHabits(habits) {
         habitContainer.appendChild(habitIcon);
         habitContainer.appendChild(habitCard);
         container.appendChild(habitContainer);
+        }, index * 250)
     });
 }

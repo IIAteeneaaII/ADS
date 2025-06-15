@@ -20,7 +20,7 @@
             <input type="hidden" id="habitId" value="<%= habit ? habit.id : '' %>">
 
             <div class="mb-3">
-              <label for="name" class="form-label">Nombre del hábito
+              <label for="name" class="form-label">Nombre del hábito:
                 <%- include('partials/helpButton', {
                   mensaje: 'Asignar un <strong>nombre</strong> al hábito te ayuda a identificarlo fácilmente, hacer seguimiento de tu progreso y mantener una intención clara. Un buen nombre puede motivarte y recordarte por qué comenzaste.'
                   + '<ul>' + '<li>Evita repetir el nombre del hábito</li>' + '</ul>' , tipo: 'info' }) %>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="description" class="form-label">Descripción
+              <label for="description" class="form-label">Descripción:
                 <%- include('partials/helpButton', {
                   mensaje: 'La <strong>descripción</strong> sirve para explicar más sobre el hábito.' , tipo: 'info' })
                   %>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Indica tu meta
+              <label class="form-label">Indica tu meta.
                 <%- include('partials/helpButton', {
                   mensaje: 'Mediante tu <strong>meta</strong> podras establecer tus objetivos en un hábito.' ,
                   tipo: 'info' }) %>
@@ -88,7 +88,7 @@
             </div>
 
             <div class="mt-4 mb-4 d-flex flex-column align-items-center text-center">
-              <label for="startDate" class="form-label">Fecha de inicio
+              <label for="startDate" class="form-label">Fecha de inicio:
                 <%- include('partials/helpButton', {
                   mensaje: 'Selecciona una <strong>fecha de inicio</strong> del cual partira el hábito.' , tipo: 'info'
                   }) %>
@@ -108,7 +108,7 @@
 
             <div class="mb-3">
               <input type="hidden" name="frequency[type]" value="weekly">
-              <label class="form-label">Días de la semana
+              <label class="form-label">Días de la semana:
                 <%- include('partials/helpButton', {
                   mensaje: 'Los <strong>días de la semana</strong> son los días en los que se tienen planeado realizar el hábito a cualquier hora del día.'
                   , tipo: 'info' }) %>
@@ -143,7 +143,7 @@
             </div>
 
             <div class="mt-3 mb-3 d-flex flex-column align-items-center text-center">
-              <label class="form-label" for="reminder">Selecciona un icono
+              <label class="form-label" for="reminder">Selecciona un icono:
                 <%- include('partials/helpButton', {
                   mensaje: 'Los <strong>iconos</strong> ayudarán al usuario a reconocer el tipo de hábito  <strong> Selecciona un icono</strong>) .'
                   , tipo: 'info' }) %>

@@ -16,9 +16,9 @@
 <div class="recuadro typing">
     <div class="grid mb-4">
         <div class="titulo-info">
-            <div class="w-100 texto-principal d-flex align-items-center" id="descripcionToggle">
-                <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
-                <h2 class="mb-0 clickable-subrayado">Descripción</h2>
+            <div class="w-100 texto-principal d-flex align-items-center">
+                <i class="fa-solid fa-book-open-reader iconos-habitos toggle-descripcion"></i>
+                <h2 class="mb-0 clickable-subrayado toggle-descripcion">Descripción</h2>
                 <div class="grupo-iconos ms-auto" data-habit-id="<%= habit.id %>">
                     <i class="fas fa-edit iconos-habitos"  onclick="location.href='<%= editPath %>/<%= habit.id %>';"></i>
                     <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')" ></i>

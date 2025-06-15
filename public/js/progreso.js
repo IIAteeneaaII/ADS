@@ -155,10 +155,9 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = 
             unit: unidad
         };
     });
-    console.log('Datos Grafica', datosGrafica);
+    // console.log('Datos Grafica', datosGrafica);
 
     const canvas = document.getElementById(canvasId);
-    
     const hayDatos = datosGrafica.some(d => d.y > 0); 
     const imgVacia = document.getElementById(canvasId === 'graficaSemana' ? 'imgSemanaVacia' : 'imgMesVacia'); 
 
@@ -269,7 +268,7 @@ function renderizarCalendario(completados) {
 
     // Mostrar nombre del mes
     const nombreMeses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     tituloMes.textContent = `${nombreMeses[mes]} ${año}`;
 
     // Crear set de fechas completadas para acceso rápido
@@ -327,13 +326,13 @@ setInterval(crearBurbuja, 600);
 
 //Despliegue de descripcion
 document.addEventListener('DOMContentLoaded', function () {
-    const toggle = document.getElementById('descripcionToggle');
     const collapseElement = document.getElementById('infoCollapse');
     const collapseInstance = new bootstrap.Collapse(collapseElement, {
-      toggle: false // no lo abra automáticamente
+    toggle: false
     });
-
-    toggle.addEventListener('click', function () {
-      collapseInstance.toggle();
+    document.querySelectorAll('.toggle-descripcion').forEach(el => {
+        el.addEventListener('click', () => {
+        collapseInstance.toggle();
+        });
     });
-  });
+});

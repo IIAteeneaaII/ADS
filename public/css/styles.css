@@ -745,8 +745,8 @@ html {
 .habit-value-badge {
   text-align: center;
   background-color: #ffffff;
-  padding: 6px;
-  border-radius: 10px;
+  padding: 4px;
+  border-radius: 6px;
   font-weight: 600;
   margin-right: 0px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
@@ -916,20 +916,25 @@ input:checked + .slider:before {
 
 .my-habits-c {
   background-color: #93c5fd !important;
-  padding: 10px !important;
+  padding: 6px !important;
   min-height: 50px !important;
   height: 55px !important;
   max-height: 100px !important;
 }
 
 .arrow-icon {
-  font-size: 2rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 .arrow-icon:hover {
   transform: scale(1.2);
-  color: #2582eb;
+}
+.arrow-icon svg {
+  pointer-events: none;
 }
 
 .habitos {
@@ -984,11 +989,12 @@ input:checked + .slider:before {
 .option {
   border: 0.2rem solid #bfddfe;
   background-color: #bfddfe;
-  padding: 12px;
+  padding: 5px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
