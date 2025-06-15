@@ -17,8 +17,18 @@ validator
 
     const correo = document.getElementById("correo").value.trim();
 
+    Swal.fire({
+      title: 'Enviando código...',
+      text: 'Por favor espera un momento.',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
     // Enviar solicitud al servidor
-    fetch('http://localhost:3000/api/auth/recover-password', {
+    fetch('/api/auth/recover-password', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
