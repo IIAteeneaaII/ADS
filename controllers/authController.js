@@ -198,6 +198,7 @@ exports.resetPassword = async (req, res) => {
 
 exports.logout = async (req, res) => {
   res.clearCookie('token');
+  console.log('LOGOUT=================')
   res.redirect('/');
 };
 

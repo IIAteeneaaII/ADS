@@ -266,5 +266,8 @@ document.getElementById("confirmarLogout").addEventListener("click", () => {
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
   });
   localStorage.removeItem("token");
+
+  localStorage.setItem("showLogoutModal", 1)
+  
   window.location.href = "/";
 });
