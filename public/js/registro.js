@@ -123,52 +123,20 @@ if (!shark || !card) {
 
   setInterval(moveShark, 10);
 }
-// Mostrar/ocultar contraseña principal
-document.getElementById("togglePassword").addEventListener("click", function () {
-  const input = document.getElementById("password");
-  const isVisible = this.dataset.visible === "true";
-
-  input.type = isVisible ? "password" : "text";
-  this.className = isVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
-  this.dataset.visible = (!isVisible).toString();
-});
-// Mostrar/ocultar contraseña de confirmación
-document.getElementById("togglePassword2").addEventListener("click", function () {
-  const input = document.getElementById("confirmarContrasena");
-  const isVisible = this.dataset.visible === "true";
-
-  input.type = isVisible ? "password" : "text";
-  this.className = isVisible ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
-  this.dataset.visible = (!isVisible).toString();
-});
 
 const btnCodigo = document.getElementById('btnCodigo');
 const emailInput = document.getElementById('email');
 const codigoError = document.getElementById('codigo-error');
 
-emailInput.addEventListener('input', () => {
-  const email = emailInput.value.trim();
-  const esValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  if (esValido) {
-    if (btnCodigo.style.display === 'none') {
-      btnCodigo.style.display = 'block';
-      btnCodigo.style.opacity = 0;
-      requestAnimationFrame(() => {
-        btnCodigo.style.opacity = 1;
-      });
-    }
-  } else {
-    btnCodigo.style.opacity = 0;
-    btnCodigo.addEventListener(
-      'transitionend',
-      () => {
-        btnCodigo.style.display = 'none';
-      },
-      { once: true }
-    );
-  }
-});
+if (btnCodigo && emailInput) {
+  emailInput.addEventListener('input', () => {
+    const email = emailInput.value.trim();
+    const esValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    btnCodigo.disabled = !esValido;
+  });
+} else {
+  console.error("btnCodigo o emailInput no están disponibles en el DOM.");
+}
 
 
 function startResendTimer(seconds = 30) {
@@ -207,16 +175,55 @@ btnCodigo.addEventListener('click', async () => {
 
   codigoError.style.display = 'none';
   startResendTimer();
+
   try {
-      const res = await fetch('/api/auth/auth-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await res.json();
-
-    } catch (error) {
-      console.log('No funca')
+  // Muestra loading inmediatamente
+  Swal.fire({
+    title: 'Enviando código...',
+    text: 'Por favor espera un momento.',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    showConfirmButton: false,
+    didOpen: () => {
+      Swal.showLoading();
     }
+  });
+
+  const res = await fetch('/api/auth/auth-email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  });
+
+  const data = await res.json();
+
+  // Cierra el modal de carga
+  Swal.close();
+
+  if (res.ok) {
+    Swal.fire({
+      title: 'Éxito',
+      imageUrl: '/img/sharki/feliz.png',
+      imageWidth: 250,
+      text: 'Código enviado al correo electrónico',
+      confirmButtonText: 'Aceptar',
+      customClass: { confirmButton: 'btn btn-primary' },
+    });
+  } else {
+    throw new Error(data.message || 'Error al enviar el código');
+  }
+
+} catch (error) {
+  Swal.close(); // por si falla durante el loading
+  Swal.fire({
+    title: 'Error',
+    imageUrl: '/img/sharki/lupa.png',
+    imageWidth: 250,
+    text: 'No se pudo enviar el código. Intenta nuevamente más tarde.',
+    confirmButtonText: 'Aceptar',
+    customClass: { confirmButton: 'btn btn-primary' },
+  });
+  console.error('Error enviando el código:', error);
+}
+
 });

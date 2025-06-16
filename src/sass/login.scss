@@ -56,9 +56,9 @@ main {
     box-shadow: 10px 4px 20px rgba(0, 0, 0, 0.1);
 
     h1 {
-        font-size: xx-large;
+        font-size: 2rem;
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 1.2rem;
         font-weight: bold;
         color: v.$mainColor-low;
     }
@@ -82,20 +82,47 @@ main {
     border:none;
 }
 
+.btn-outline-primary:disabled{
+    background-color: v.$gray;
+    color: v.$black;
+    cursor:default;
+}
+
+.input-correo {
+    max-width: 400px;
+    margin: 0 auto;   
+}
+    .reg-input {
+    max-width: 262px; 
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    label {
+        text-align: left;
+        width: 100%;
+    } 
+
+    .form-control {
+        width: 100%;
+    }
+
+    .just-validate-error-label {
+        text-align: left;
+        color: #dc3545;
+    }
+}
+
 .btnCodigo {
-    margin-top: 1rem;
-    opacity: 0;
-    transform: translateY(-10px);
+    margin: 1rem 0;
+    font-size: 1rem;
+    transform: translateY(0);
     transition: opacity 0.4s ease, transform 0.4s ease;
     border-radius: 0.5rem;
-}
-
-.btnCodigo.show {
-    opacity: 1;
-    transform: translateY(0);
     pointer-events: auto;
+    background-color: v.$mainColor-low;
+    cursor: pointer;
+    color: v.$white;
 }
-
 
 .container {
     max-width: 350px;
@@ -182,4 +209,35 @@ input.check {
 .input-with-eye-container-max {
     max-height: 60px;
     margin-bottom: 25px;
+}
+
+//input contraseña
+
+.password-conter {
+    position: relative;
+    width: 100%;
+    margin-bottom: 5px;
+    background-color: v.$white !important;
+    border-radius: 0.5rem;
+    color: v.$black !important;
+}
+.password-conter input {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    font-size: 16px;
+    accent-color: v.$mainColor-low !important;
+}
+.password-conter i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 1rem;
+}
+.error-message {
+    color: #2582eb;
+    font-size: 13px;
+    display: none;
 }

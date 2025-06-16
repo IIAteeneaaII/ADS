@@ -4,6 +4,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const button = document.getElementById('calendarButton');
             const dateDisplay = document.getElementById('selectedDateText');
 
+            const bellButton = document.getElementById('toggleReminder');
+            const bellIcon = document.getElementById('bellIcon');
+            const reminderInput = document.getElementById('reminderInput');
+
+            if (bellButton) {
+              bellButton.addEventListener('click', () => {
+                const isActive = reminderInput.value === 'yes';
+                if (isActive) {
+                  bellIcon.classList.remove('fa-bell');
+                  bellIcon.classList.add('fa-bell-slash');
+                  reminderInput.value = 'no';
+                } else {
+                  bellIcon.classList.remove('fa-bell-slash');
+                  bellIcon.classList.add('fa-bell');
+                  reminderInput.value = 'yes';
+                }
+              });
+            }
+
             const picker = new Pikaday({
               field: input,
               format: 'YYYY-MM-DD',
@@ -47,14 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const data = {
-              name: formData.get('name'),
+              name: "<%= habitName %>",
               description: formData.get('description'),
               frequency: {
                 type: formData.get('frequency[type]'),
                 days: formData.getAll('frequency[days][]')
               },
-              icon: `/img/tiposHabitos/${formData.get('icon')}`,
-              startDate: startDateISO,
+              icon: "<%= iconPath %>",
+              startDate: new Date(formData.get('startDate')).toISOString(),
               fieldValues: {
                 unit: formData.get('fieldValues[unit]'),
                 value: formData.get('fieldValues[value]'),
@@ -105,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.toggle('dia_selected');
         });
     });
-
 
 </script>
 
@@ -246,6 +264,7 @@ function updateInputDisplay() {
       formattedValue = `${value}`;
     }
       display.textContent = formattedValue;
+      display.classList.remove('d-none');
     }
   }
   updateSliderValueDisplay(hiddenSliderInput.value);

@@ -32,6 +32,9 @@
     animation: fadeInUp 0.5s ease forwards;
 }
 
+.cont-bienvenida{
+  overflow-y: hidden !important; // bloquea el scroll interno
+}
 .user-image {
     width: 250px;
     height: 250px;

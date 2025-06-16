@@ -1,30 +1,28 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- partials/habitLayout.ejs -->
-<div class="top-bar typing">
-    <a href="/GestionarMisHabitos" class="back-arrow">
-        <i class="fas fa-chevron-left"></i>
-    </a>
-    <div class="titulo-habito" id="tabs">
-        <img src="<%= iconPath %>" alt="<%= habit.name %>">
-        <h1><%= habit.name %></h1>
+<div class="top-bar-habits typing">
+    <div class="titulo-habito">
+        <a href="/GestionarMisHabitos" class="back-arrow">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <h1 class="titulo-habito-texto fw-bold"><%= habit.name %></h1>
+        <img class="habit-icon" src="<%= iconPath %>" alt="<%= habit.name %>">
     </div>
 </div>
 
 <div class="separator my-2"></div>
 
 <div class="recuadro typing">
-    <div class="grupo-iconos" data-habit-id="<%= habit.id %>">
-            <i class="fas fa-edit iconos-habitos" style="cursor: pointer;" onclick="location.href='<%= editPath %>/<%= habit.id %>';"></i>
-            <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')" style="cursor: pointer;"></i>
-    </div>
     <div class="grid mb-4">
         <div class="titulo-info">
-            <div class="w-100 texto-principal d-flex align-items-center justify-content-center"
-                id="descripcionToggle"
-                style="cursor: pointer;">
-                <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
-                <h2 class="mb-0 clickable-subrayado">Descripción</h2>
+            <div class="w-100 texto-principal d-flex align-items-center">
+                <i class="fa-solid fa-book-open-reader iconos-habitos toggle-descripcion"></i>
+                <h2 class="mb-0 clickable-subrayado toggle-descripcion">Descripción</h2>
+                <div class="grupo-iconos ms-auto" data-habit-id="<%= habit.id %>">
+                    <i class="fas fa-edit iconos-habitos"  onclick="location.href='<%= editPath %>/<%= habit.id %>';"></i>
+                    <i class="fas fa-trash-alt iconos-habitos" onclick="confirmarEliminacion('<%= habit.name %>', '<%= habit.id %>')" ></i>
+                </div>
             </div>
         </div>
         <div id="infoCollapse" class="collapse show mt-2">
@@ -32,17 +30,6 @@
             <p><%= habit.description %></p>
             </div>
         </div>
-    </div>
-
-
-    <div class="text-center mb-4">
-        
-        <button id="btn-graficas" class="btn btn-primary me-2 btn-graficas">
-            <i class="fas fa-chart-bar"></i>
-        </button>
-        <button id="btn-calendario" class="btn btn-secondary btn-calendario">
-            <i class="fas fa-calendar-alt"></i>
-        </button>
     </div>
 
     <%- include('graficasCalendario') %>

@@ -155,10 +155,9 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = 
             unit: unidad
         };
     });
-    console.log('Datos Grafica', datosGrafica);
+    // console.log('Datos Grafica', datosGrafica);
 
     const canvas = document.getElementById(canvasId);
-    
     const hayDatos = datosGrafica.some(d => d.y > 0); 
     const imgVacia = document.getElementById(canvasId === 'graficaSemana' ? 'imgSemanaVacia' : 'imgMesVacia'); 
 
@@ -183,7 +182,7 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = 
         type: 'bar',
         data: {
             datasets: [{
-                label: `Duración (${unidad})`,
+                label: `Meta (${unidad})`,
                 data: datosGrafica,
                 backgroundColor: '#21c0d780',
                 borderColor: '#21c0d7',
@@ -199,7 +198,7 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = 
                     rotation: -90, // rotar texto de abajo hacia arriba
                     font: { weight: 'bold' },
                     color: '#000',
-                    formatter: value => value.y > 0 ? value.y : null
+                    formatter: value => value.y > 0 ? value.y.toString().split('').join(' ') : null
                 },
                 tooltip: {
                     callbacks: {
@@ -209,7 +208,12 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = 
                 legend: { display: false },
                 title: {
                     display: true,
-                    text: 'Actividad del hábito'
+                    text: 'Actividad del hábito',
+                    color: '#173454',
+                    font: { size: 14, weight: 'bold'},
+                    padding:{
+                        bottom:20
+                    }
                 }
             },
             scales: {
@@ -219,14 +223,23 @@ function mostrarGrafica(canvasId, datos, dias, unidad, frecuencia, desdeFecha = 
                         maxRotation: 0,
                         minRotation: 0
                     },
-                    title: { display: true, text: 'Día de la semana' }
+                    title: { display: true, text: 'Día de la semana',
+                        color: '#173454',
+                        font: { size: 14, weight: 'bold'},
+                        padding:{
+                            top:20
+                        }
+                    }
                 },
                 y: {
                     beginAtZero: true,
                     ticks: {
                         callback: val => (val === 0 || val === maxY ? val : '')
                     },
-                    title: { display: true, text: `Duración (${unidad})` }
+                    title: { display: true, text: `Meta (${unidad})`, 
+                        color: '#173454',
+                        font: { size: 14, weight: 'bold'}
+                    }
                 }
             }
         },
@@ -255,7 +268,7 @@ function renderizarCalendario(completados) {
 
     // Mostrar nombre del mes
     const nombreMeses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     tituloMes.textContent = `${nombreMeses[mes]} ${año}`;
 
     // Crear set de fechas completadas para acceso rápido
@@ -308,18 +321,18 @@ function crearBurbuja() {
 }
 
 // Crear burbujas periódicamente
-setInterval(crearBurbuja, 100);
+setInterval(crearBurbuja, 600);
 
 
 //Despliegue de descripcion
 document.addEventListener('DOMContentLoaded', function () {
-    const toggle = document.getElementById('descripcionToggle');
     const collapseElement = document.getElementById('infoCollapse');
     const collapseInstance = new bootstrap.Collapse(collapseElement, {
-      toggle: false // no lo abra automáticamente
+    toggle: false
     });
-
-    toggle.addEventListener('click', function () {
-      collapseInstance.toggle();
+    document.querySelectorAll('.toggle-descripcion').forEach(el => {
+        el.addEventListener('click', () => {
+        collapseInstance.toggle();
+        });
     });
-  });
+});

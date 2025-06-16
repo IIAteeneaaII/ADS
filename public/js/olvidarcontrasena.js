@@ -17,8 +17,18 @@ validator
 
     const correo = document.getElementById("correo").value.trim();
 
+    Swal.fire({
+      title: 'Enviando código...',
+      text: 'Por favor espera un momento.',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
     // Enviar solicitud al servidor
-    fetch('http://localhost:3000/api/auth/recover-password', {
+    fetch('/api/auth/recover-password', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,8 +53,8 @@ validator
 
         // Mostrar mensaje de éxito y redirigir
       Swal.fire({
-          title: '¡Código enviado!',
-          text: 'Se ha enviado un código a tu correo para recuperar la cuenta.',
+          title: 'Enviado',
+          text: 'Código enviado al correo electrónico.',
           imageUrl: '../img/sharki/feliz.png',
           imageWidth: 250,
           confirmButtonText: 'Aceptar',
@@ -59,7 +69,7 @@ validator
         console.error(err);
         Swal.fire({
           title: "Error",
-          text: "Hubo un error al comunicarse con el servidor.",
+          text: "Fallo en la conexión con el servidor - Intenta nuevamente.",
           imageUrl: "/img/sharki/lupa.png",
           imageWidth: 250,
           confirmButtonText: "Aceptar",

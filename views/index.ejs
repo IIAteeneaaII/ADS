@@ -38,10 +38,11 @@
 
               <div class="mb-3">
                 <label for="contrasena" class="form-label">Contraseña:</label>
-                <div class="position-relative input-with-eye-container">
+                <div class="password-conter">
                   <input type="password" class="form-control pe-5" id="contrasena" name="password" placeholder="Ingresa tu contraseña">
-                  <i id="togglePassword" class="fa-solid fa-eye" data-visible="false" style="cursor: pointer; position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></i>
+                  <i id="togglePassword" class="fa-solid fa-eye" data-visible="false"></i>
                 </div>
+                <div class="error-message" id="errorMsg">Este campo es obligatorio</div>
               </div>
 
               <div class="d-grid gap-2">

@@ -222,6 +222,9 @@ html {
     flex-direction: row;
     justify-content: center;
     gap: 10px;
+    i {
+        transition: transform 0.2s ease;
+    }
 }
 
 .iconos {
@@ -240,7 +243,6 @@ html {
     i {
         display: inline-block;
         position: relative;
-
         transition: transform 0.2s ease;
     }
 
@@ -248,7 +250,16 @@ html {
         transform: scale(1.1);
     }
 }
+.gif{
+    border-radius: 0.2rem;
+    cursor: pointer;
+    box-shadow: 0 0 1px v.$black;
+    background-color: v.$white;
+}
 
+.nombreUsuario{
+    color: v.$mainColor-strong;
+}
 .top-bar-menu {
     background-color: v.$secondaryColor;
     padding: 0.75rem;
@@ -295,7 +306,7 @@ html {
     text-align: center;
     p{
         text-align: center;
-        padding: 0 4rem;
+        padding: 0 1rem;
     }
 }
 
@@ -387,14 +398,13 @@ html {
 .habit-value-badge {
     text-align: center;
     background-color: v.$white;
-    padding: 6px;
-    border-radius: 10px;
+    padding: 4px;
+    border-radius: 6px;
     font-weight: 600;
     margin-right: 0px;
     // font-size: 0.8rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
-
 .switch {
     position: relative;
     display: inline-block;

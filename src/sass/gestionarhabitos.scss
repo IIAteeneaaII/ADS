@@ -16,6 +16,28 @@
     width: 100%;
 }
 
+.my-habits-c{
+    background-color: v.$mainColor-low !important;
+    padding: 6px !important;
+    min-height: 50px !important;
+    height: 55px !important;
+    max-height: 100px !important;
+}
+.arrow-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 6px;
+    &:hover {
+        transform: scale(1.2);
+    }
+    svg {
+    pointer-events: none;
+    }
+}
+
 .habitos {
     display: flex;
     flex-direction: column;
@@ -34,9 +56,23 @@
     color: v.$black;
 }
 
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInMoveUp 0.4s ease forwards;
+}
+
+@keyframes fadeInMoveUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 .card_gestionar {
     background-color: v.$secondaryColor;
-    border-radius: 1rem;
+    border-radius: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,11 +93,12 @@
 .option {
     border: 0.2rem solid v.$secondaryColor;
     background-color: v.$secondaryColor;
-    padding: 12px;
+    padding: 5px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
 

@@ -12,13 +12,8 @@
     <!--SCSS EN ELIMINARCUENTA2.SCSS-->
 </head>
 <body>
-    <div class="container mt-5 pt-2">
-        <div class="top-bar"> 
-            <a href="/inicio" class="back-arrow">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-            <h1 class="fw-bold">¿Quiénes somos?</h1>
-        </div>
+    <div class="container">
+    <%- include('partials/topBar', { title: '¿Quiénes somos?' }) %>
         <div class="contenedor-scroll">
             <div class="indice-item" onclick="toggleContenido(1)">
                 <div class="item-body d-flex align-items-center gap-2">
