@@ -2310,6 +2310,11 @@ h1.actualizar {
   margin-top: 4px;
 }
 
+.day-box.hoy {
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+
 .message-box {
   margin-top: 20px;
   font-size: 16px;
