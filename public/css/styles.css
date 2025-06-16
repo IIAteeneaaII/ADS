@@ -2190,6 +2190,10 @@ h1.actualizar {
   font-size: 18px;
 }
 
+.linear-container {
+  width: 170px;
+}
+
 #linearSlider {
   -webkit-appearance: none;
   width: 180px; /* ajusta el ancho según lo necesites */

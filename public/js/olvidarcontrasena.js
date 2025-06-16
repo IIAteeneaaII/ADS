@@ -54,7 +54,7 @@ validator
         // Mostrar mensaje de éxito y redirigir
       Swal.fire({
           title: 'Enviado',
-          text: 'Código enviado al correo electrónico.',
+          text: 'Código enviado exitosamente',
           imageUrl: '../img/sharki/feliz.png',
           imageWidth: 250,
           confirmButtonText: 'Aceptar',

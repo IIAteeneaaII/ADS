@@ -22,7 +22,7 @@ function renderHabits(habits) {
     container.innerHTML = '';
 
     if (habits.length === 0) {
-        container.innerHTML = '<h5 class="mt-5 mb-5 text-center">No tienes hábitos registrados.</h5>';
+        container.innerHTML = '<h5 class="mt-5 mb-5 text-center">No hay hábitos establecidos por el momento.</h5>';
         return;
     }
 

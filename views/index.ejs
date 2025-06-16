@@ -79,6 +79,29 @@
         emailInput.value = savedEmail;
       }
 
+      const showLogoutModal = localStorage.getItem("showLogoutModal");
+      if (showLogoutModal) {
+        Swal.fire({
+          title: 'Sesión cerrada',
+          imageUrl: '/img/sharki/enojado.png',
+          text: 'Has cerrado sesión exitosamente.',
+          confirmButtonText: 'Entendido',
+          imageWidth: 250,
+          showConfirmButton: true,
+          customClass: {
+              popup: 'swal-fullscreen animate-popup',
+              confirmButton: 'btn-primary mt-4'
+          },
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          backdrop: true,
+          focusConfirm: false
+        });
+
+        // Remover para que no se muestre otra vez
+        localStorage.removeItem("showLogoutModal");
+      }
+
       // Guardar el correo al enviar el formulario
       form.addEventListener("submit", (e) => {
         const email = emailInput.value;

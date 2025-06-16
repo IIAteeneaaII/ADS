@@ -57,7 +57,7 @@
       </div>
 
       <div class="text-center pt-2">
-        <button type="submit" class="btn btn-primary">Guardar horarios</button>
+        <button type="button" class="btn btn-primary" id="btn-guardar">Guardar horarios</button>
       </div>
     </form>
   </div>
@@ -69,16 +69,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
   <script>
-$(document).ready(function () {
-  $('.select2').select2({
-    placeholder: "Seleccione una hora",
-    minimumResultsForSearch: Infinity,
-    language: {
-      noResults: function () {
-        return "No se encontraron resultados";
+  $(document).ready(function () {
+    $('.select2').select2({
+      placeholder: "Seleccione una hora",
+      minimumResultsForSearch: Infinity,
+      language: {
+        noResults: function () {
+          return "No se encontraron resultados";
+        }
       }
-    }
+    });
   });
+
+  document.getElementById('btn-guardar').addEventListener('click', function() {
+    Swal.fire({
+        title: '¡Horarios actualizados!',
+        text: 'Los cambios se guardaron correctamente.',
+        imageUrl: '/img/sharki/feliz.png',
+        imageWidth: 250,
+        confirmButtonText: 'Aceptar',
+        customClass: { confirmButton: 'btn btn-primary' },
+        buttonsStyling: false
+    }).then(() => {
+      e.target.submit();
+    });
 });
   </script>
 </body>

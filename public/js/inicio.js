@@ -124,7 +124,7 @@ async function cargarHabitos() {
     if (habitos.length === 0) {
       seccionHabitos.innerHTML = `
         <img src="/img/sharki/sinHabitos.png" alt="Sin hábitos" class="img-fluid mb-3" style="max-width: 300px;">
-        <p>No hay hábitos establecidos por el momento. Presiona “Crear nuevo hábito”.</p>
+        <p class="text-center">No hay hábitos establecidos por el momento. Presiona “Crear nuevo hábito”.</p>
       `;
       contenedorGrafica.innerHTML = "";
     } else {
@@ -187,7 +187,7 @@ async function cargarHabitos() {
 
           Swal.fire({
             title: "Cargando...",
-            text: "Guardando el estado del hábito en la nube",
+            text: "Guardando el estado del hábito en el servidor",
             allowOutsideClick: false,
             didOpen: () => Swal.showLoading(),
           });
@@ -223,8 +223,8 @@ async function cargarHabitos() {
                 Swal.fire({
                   icon: "success",
                   title: "¡Éxito!",
-                  text: "El hábito se actualizó correctamente",
-                  timer: 1500,
+                  text: "El estado del hábito se actualizó correctamente",
+                  timer: 1800,
                   showConfirmButton: false,
                 });
               }
@@ -266,5 +266,8 @@ document.getElementById("confirmarLogout").addEventListener("click", () => {
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
   });
   localStorage.removeItem("token");
+
+  localStorage.setItem("showLogoutModal", 1)
+  
   window.location.href = "/";
 });

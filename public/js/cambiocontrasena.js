@@ -57,8 +57,8 @@ if (form) {
         }
 
       Swal.fire({
-        title: "¡Contraseña cambiada!",
-        text: "Tu nueva contraseña ha sido registrada. Inicia sesión.",
+        title: "Éxito",
+        text: "Datos guardados con éxito",
         imageUrl: "/img/sharki/feliz.png",
         imageWidth: 250,
         confirmButtonText: "Aceptar",

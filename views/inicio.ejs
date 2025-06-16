@@ -73,7 +73,7 @@
   <!-- Modal de cierre de sesión -->
   <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <form class="modal-content"> <!-- sin action ni method para evitar submit -->
+      <div class="modal-content"> <!-- sin action ni method para evitar submit -->
         <div class="modal-header">
           <h5 class="modal-title" id="logoutModalLabel">¿Deseas cerrar sesión?</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
@@ -86,7 +86,7 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <button type="button" id="confirmarLogout" class="btn btn-primary">Cerrar sesión</button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 
@@ -97,9 +97,9 @@
   <script src="/js/flashMessage.js"></script>
   <script src="/js/inicio.js"></script>
   <script>
-    document.getElementById('confirmarLogout').addEventListener('click', () => {
-      window.location.href = '/';
-    });
+    // document.getElementById('confirmarLogout').addEventListener('click', () => {
+    //   window.location.href = '/';
+    // });
   </script>
 </body>
 
