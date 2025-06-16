@@ -26,21 +26,26 @@ async function obtenerFechasUnicasDeHabitos() {
 }
 
 function calcularRacha(registros) {
-  // Ordena y filtra solo los días cumplidos
-  const fechasCumplidas = new Set(
-    registros
-      .filter(r => r.cumplido)
-      .map(r => new Date(r.dia).toISOString().split('T')[0])
-  );
+  // Ordena los registros de más reciente a más antiguo
+  registros.sort((a, b) => new Date(b.dia) - new Date(a.dia));
 
   let racha = 0;
-  let fecha = new Date();
-  fecha.setHours(0, 0, 0, 0);
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
 
-  // Cuenta hacia atrás mientras haya días consecutivos cumplidos
-  while (fechasCumplidas.has(fecha.toISOString().split('T')[0])) {
-    racha++;
-    fecha.setDate(fecha.getDate() - 1);
+  for (let i = 0; i < registros.length; i++) {
+    const fecha = new Date(registros[i].dia);
+    fecha.setHours(0, 0, 0, 0);
+
+    const esHoy = fecha.getTime() === hoy.getTime();
+
+    if (registros[i].cumplido) {
+      racha++;
+    } else if (!esHoy) {
+      // Solo interrumpimos si el día no es hoy y está marcado como no cumplido
+      break;
+    }
+    // Si es hoy y no cumplido, no sumamos pero tampoco cortamos
   }
 
   return racha;
@@ -61,9 +66,12 @@ function animarContador(valorFinal, elemento, velocidad = 50) {
 
 function obtenerSemanaActual() {
   const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
   const diaSemana = hoy.getDay(); // 0 (domingo) a 6 (sábado)
+  
   const lunes = new Date(hoy);
-  lunes.setDate(hoy.getDate() - ((diaSemana + 6) % 7)); // ajusta para que inicie en lunes
+  const diasDesdeLunes = (diaSemana + 6) % 7; // convierte domingo (0) en 6, lunes (1) en 0...
+  lunes.setDate(hoy.getDate() - diasDesdeLunes);
 
   const dias = [];
   const nombres = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];
@@ -71,11 +79,13 @@ function obtenerSemanaActual() {
   for (let i = 0; i < 7; i++) {
     const fecha = new Date(lunes);
     fecha.setDate(lunes.getDate() + i);
+    fecha.setHours(0, 0, 0, 0);
     dias.push({
       fecha: fecha.toISOString().split('T')[0],
       nombre: nombres[i]
     });
   }
+
   return dias;
 }
 
@@ -89,17 +99,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   animarContador(rachaActual, streakElement);
 
-  // Mostrar mensaje de felicitación
   messageElement.innerText = rachaActual > 0
     ? `¡Felicidades por cumplir tus hábitos durante ${rachaActual} día${rachaActual !== 1 ? 's' : ''} seguidos!`
     : `¡Aún estás a tiempo de empezar tu racha hoy!`;
 
-  // Mostrar la semana actual de lunes a domingo
+  // Días de la semana
   const semana = obtenerSemanaActual();
-  const hoyStr = new Date().toISOString().split('T')[0];
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  const hoyStr = hoy.toISOString().split('T')[0];
 
   semana.forEach(dia => {
-    const cumplido = registros.find(r =>
+    const cumplido = registros.some(r =>
       new Date(r.dia).toISOString().split('T')[0] === dia.fecha && r.cumplido
     );
 
@@ -107,7 +118,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     div.classList.add('day-box');
     if (cumplido) div.classList.add('checked');
     if (dia.fecha === hoyStr) div.classList.add('hoy');
-    
+
     div.innerHTML = `${dia.nombre} ${cumplido ? '<i class="fas fa-check"></i>' : ''}`;
     daysRow.appendChild(div);
   });

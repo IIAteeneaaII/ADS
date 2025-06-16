@@ -351,23 +351,21 @@ exports.getUniqueTrackingDatesByUserId = async (userId) => {
   const groupedByDate = new Map();
 
   logs.forEach(log => {
-    const key = log.date.toISOString().split('T')[0]; // Fecha en formato YYYY-MM-DD
-
+    const key = log.date.toISOString().split('T')[0]; // YYYY-MM-DD
     if (!groupedByDate.has(key)) {
       groupedByDate.set(key, []);
     }
-
     groupedByDate.get(key).push(log.status);
   });
 
   const resultado = [];
 
   groupedByDate.forEach((statuses, date) => {
-    const todosCompletados = statuses.every(status => status === 'completed');
+    const algunoCompletado = statuses.some(status => status === 'completed');
 
     resultado.push({
       date: new Date(date),
-      status: todosCompletados ? 'completed' : 'pending'
+      status: algunoCompletado ? 'completed' : 'pending'
     });
   });
 
@@ -375,6 +373,7 @@ exports.getUniqueTrackingDatesByUserId = async (userId) => {
 
   return resultado;
 };
+
 
 // lo de los días de racha
 exports.getLast7DaysHabitLogs = async (userId) => {
