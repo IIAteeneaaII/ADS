@@ -57,7 +57,7 @@
                   <input type="hidden" id="sliderHidden" name="" value="<%= habit ? habit.fieldValues.value : 30 %>">
                 </div>
 
-                <div id="linear-slider-container" class="d-none">
+                <div id="linear-slider-container" class="d-none linear-container">
                   <input type="range" id="linearSlider" min="1" max="100" value="1" />
                   <span id="linearSliderValue">1</span>
                 </div>
@@ -305,8 +305,8 @@
             }
             const redirectId = id || result.habit.id;
             mostrarAlerta({
-              title: '¡Hábito registrado!',
-              text: 'Tu hábito fue guardado correctamente.',
+              title: '¡Mucha Suerte!',
+              text: 'Hábito registrado correctamente',
               imageUrl: '/img/sharki/feliz.png',
               redirectUrl: `/perso/${redirectId}`,
               btnText: 'Aceptar'

@@ -7,7 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
     validator.addField('#name', [
       {
         rule: 'required',
-        errorMessage: 'El nombre es obligatorio',
+        errorMessage: 'Campos obligatorios incompletos',
+      },
+      {
+        rule: 'customRegexp',
+        value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s.,()_\-°"'/&@¡!¿?#%:;]+$/,
+        errorMessage: 'Caracteres no válidos detectados',
       },
     ]);
   }
@@ -18,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     validator.addField('#iconInput', [
       {
         rule: 'required',
-        errorMessage: 'Selecciona un icono',
+        errorMessage: 'Campos obligatorios incompletos',
       },
     ]);
   }
@@ -27,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
   validator.addField('#description', [
     {
       rule: 'required',
-      errorMessage: 'La descripción es obligatoria',
+      errorMessage: 'Campos obligatorios incompletos',
     },
   ]);
 
@@ -37,13 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (goalInput && goalInput.offsetParent !== null) {
     validator.addField('#goal', [
-      { rule: 'required', errorMessage: 'La meta es obligatoria' },
+      { rule: 'required', errorMessage: 'Campos obligatorios incompletos' },
       { rule: 'number', errorMessage: 'Debe ser un número válido' },
       { rule: 'minNumber', value: 1, errorMessage: 'Debe ser mayor o igual a 1' },
     ]);
   } else if (sliderInput && sliderInput.name === 'fieldValues[value]') {
     validator.addField('#sliderHidden', [
-      { rule: 'required', errorMessage: 'La meta es obligatoria' },
+      { rule: 'required', errorMessage: 'Campos obligatorios incompletos' },
       { rule: 'number', errorMessage: 'Debe ser un número válido' },
       { rule: 'minNumber', value: 1, errorMessage: 'Debe ser mayor o igual a 1' },
     ]);
@@ -53,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
   validator.addField('#unitSelect', [
     {
       rule: 'required',
-      errorMessage: 'Selecciona una unidad de medida',
+      errorMessage: 'Campos obligatorios incompletos',
     },
   ]);
 
@@ -61,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
   validator.addField('#startDate', [
     {
       rule: 'required',
-      errorMessage: 'La fecha de inicio es obligatoria',
+      errorMessage: 'Campos obligatorios incompletos',
     },
   ]);
 
@@ -69,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
   validator.addField('#reminderInput', [
     {
       rule: 'required',
-      errorMessage: 'Selecciona una opción de notificación',
+      errorMessage: 'Campos obligatorios incompletos',
     },
   ]);
 
@@ -80,10 +85,24 @@ document.addEventListener('DOMContentLoaded', function () {
         const checkboxes = document.querySelectorAll('[name="frequency[days][]"]');
         return Array.from(checkboxes).some(cb => cb.checked);
       },
-      errorMessage: 'Selecciona al menos un día de la semana',
+      errorMessage: 'Campos obligatorios incompletos',
     },
   ]);
+  // Revalidar fecha de inicio cuando se seleccione
+  const fechaInput = document.querySelector('#startDate');
+  if (fechaInput) {
+      fechaInput.addEventListener('change', () => {
+        validator.revalidateField('#startDate');
+      });
+    }
 
+    // Revalidar días de la semana cuando se seleccione o deseleccione alguno
+    const diasCheckboxes = document.querySelectorAll('[name="frequency[days][]"]');
+    diasCheckboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      validator.revalidateField('[name="frequency[days][]"]');
+    });
+  });
   // Evento al validar correctamente
   validator.onSuccess(function (event) {
     event.preventDefault();

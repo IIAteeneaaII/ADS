@@ -41,10 +41,10 @@ exports.createCustomHabit = async (req, res) => {
       fieldValues
     });
 
-    res.status(201).json({ message: 'Custom habit created', habit: newHabit });
+    res.status(201).json({ message: 'Hábito creado con éxito', habit: newHabit });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server error creating custom habit' });
+    res.status(500).json({ message: 'Error al crear el hábito' });
   }
 };
 
