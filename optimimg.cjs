@@ -2,8 +2,8 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const inputDir = './src/img/';
-const outputDir = './public/img/';
+const inputDir = './src/img/sharki';
+const outputDir = './public/img/sharki';
 
 //Create output directory
 if (!fs.existsSync(outputDir)) {
