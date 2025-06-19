@@ -2,7 +2,7 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const inputDir = './src/img/sharki';
+const inputDir = './src/img/aaaa';
 const outputDir = './public/img/sharki';
 
 //Create output directory
