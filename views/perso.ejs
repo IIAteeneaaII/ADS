@@ -48,12 +48,11 @@
           <div class="separator my-2"></div>
 
           <div class="recuadro typing">
-
                 <div class="grid mb-4">
                   <div class="titulo-info">
                     <div class="w-100 texto-principal d-flex align-items-center justify-content-center" id="descripcionToggle">
-                      <i class="fa-solid fa-book-open-reader iconos-habitos"></i>
-                      <h2 class="mb-0 clickable-subrayado">Descripción</h2>
+                      <i class="fa-solid fa-book-open-reader iconos-habitos toggle-descripcion"></i>
+                      <h2 class="mb-0 clickable-subrayado toggle-descripcion">Descripción</h2>
                       <% if (habit) { %>
                         <div class="grupo-iconos ms-auto" data-habit-id="<%= habit.id %>">
                           <i class="fas fa-edit iconos-habitos"
@@ -70,9 +69,7 @@
                     </div>
                   </div>
                 </div>
-
-                <div id="seccion-graficas" class="seccion-graficas">
-                  <div>
+                  <div class="seccion-graficas">
                     <h2 class="text-center mb-3">Estadisticas
                       <%- include('partials/helpButton', {
                         mensaje: 'Las <strong>gráficas</strong> muestran tu progreso semanal del habito.' , tipo: 'info'
@@ -89,6 +86,8 @@
                       </button>
                     </div>
                   </div>
+
+                <div id="seccion-graficas" class="seccion-graficas">
                   <div class="text-center mb-3">
                     <!-- <button id="btn-semana" class="btn btn-primary me-2">Última<br>semana</button>
         <button id="btn-mes" class="btn btn-secondary">Último<br>mes</button> -->

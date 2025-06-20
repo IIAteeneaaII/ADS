@@ -32,53 +32,33 @@ app.use(express.static('./public'));
 
 app.get('/', (req, res) => {
     const { error } = req.query;
-    res.render('index', { error });
+    res.render('Index', { error });
 });
 app.get('/Registro', (req, res) => {
     const { error } = req.query;
-    res.render('registro', { error });
+    res.render('Registro', { error });
 });
 
 app.get('/Bienvenida', authMiddleware, (req, res) => {
-    res.render('bienvenida');
+    res.render('Bienvenida');
 });
 
 app.get('/OlvidarContrasena', (req, res) => {
-    res.render('olvidarContrasena');
+    res.render('OlvidarContrasena');
 });
 
 app.get('/ingresarcodigo', (req, res) => {
-    res.render('ingresarcodigo');
+    res.render('Ingresarcodigo');
 });
 
 app.get('/cambiocontrasena', (req, res) => {
-    res.render('cambiocontrasena');
+    res.render('Cambiocontrasena');
 });
 
 app.get('/calendario_emociones', authMiddleware, renderCalendar);
 
 app.get('/racha', authMiddleware, (req, res) => {
-    res.render('racha');
-});
-
-app.get('/Preferencias', authMiddleware, (req, res) => {
-    res.render('preferencias', {
-        tituloPagina: 'Selecciona tus intereses',
-        tituloPrincipal: 'Preferencias',
-        mensajeIntro: 'Para personalizar tus recomendaciones de manera óptima, ¡cuéntanos un poco sobre tus gustos e intereses!',
-        rutaOmitir: '/inicio',
-        intereses: interesesPreferencias
-    });
-});
-
-app.get('/Actividades', authMiddleware, (req, res) => {
-    res.render('preferencias', {
-        tituloPagina: 'Tus preferencias favoritas',
-        tituloPrincipal: '¿Qué preferencias disfrutas?',
-        mensajeIntro: 'Selecciona las preferencias que más te identifican.',
-        rutaOmitir: null,
-        intereses: interesesActividades
-    });
+    res.render('Racha');
 });
 
 app.get('/Inicio', authMiddleware, async (req, res) => {
@@ -101,7 +81,7 @@ app.get('/Inicio', authMiddleware, async (req, res) => {
 
   const unreadNotifications = await countUnreadNotifications(req.user.id) || 0;
 
-  res.render('inicio', {
+  res.render('Inicio', {
     userName: user.userName,
     profilePic: user.profilePic,
     unreadNotifications
@@ -110,14 +90,14 @@ app.get('/Inicio', authMiddleware, async (req, res) => {
 
 app.get('/EstadoDeAnimo', authMiddleware, (req, res) => {
     user=req.user;
-    res.render('estadodeAnimo',{user});
+    res.render('EstadodeAnimo',{user});
 });
 app.get('/GuiadeUsuario', authMiddleware, (req, res) => {
-    res.render('guiadeUsuario');
+    res.render('GuiadeUsuario');
 });
 
 app.get('/TerminosyCondiciones', (req, res) => {
-    res.render('terminosyCondiciones');
+    res.render('TerminosyCondiciones');
 });
 
 app.get('/Notificaciones', authMiddleware, async (req, res) => {
@@ -128,61 +108,53 @@ app.get('/Notificaciones', authMiddleware, async (req, res) => {
     ...n,
     icon: getHabitIcon(n.title)
     }));
-    res.render('notificaciones', {
+    res.render('Notificaciones', {
         notifications, notificationsIcon
     });
 });
 
 app.get('/GestionarMisHabitos', authMiddleware, (req, res) => {
-    res.render('gestionarMisHabitos');
+    res.render('GestionarMisHabitos');
 });
 
 app.get('/MovimientoCorporal', authMiddleware, (req, res) => {
-    res.render('movimientoCorporal');
+    res.render('MovimientoCorporal');
 });
 
 app.get('/Mental', authMiddleware, (req, res) => {
-    res.render('mental');
+    res.render('Mental');
 });
 
 app.get('/Bienestar', authMiddleware, (req, res) => {
-    res.render('bienestar');
-});
-
-app.get('/Estadisticas', authMiddleware, (req, res) => {
-    res.render('estadisticas');
-});
-
-app.get('/Estadisticas2', authMiddleware, (req, res) => {
-    res.render('estadisticas2');
+    res.render('Bienestar');
 });
 
 app.get('/EliminarCuenta', authMiddleware, (req, res) => {
-    res.render('eliminarCuenta');
+    res.render('EliminarCuenta');
 });
 
 app.get('/EliminarCuenta1', authMiddleware, (req, res) => {
-    res.render('eliminarCuenta1');
+    res.render('EliminarCuenta1');
 });
 
 app.get('/EliminarCuenta2', authMiddleware, (req, res) => {
-    res.render('eliminarCuenta2');
+    res.render('EliminarCuenta2');
 });
 
 app.get('/Privacidad', authMiddleware, (req, res) => {
-    res.render('privacidad');
+    res.render('Privacidad');
 });
 
 app.get('/FaltaDeTiempo', authMiddleware, (req, res) => {
-    res.render('faltadetiempo');
+    res.render('Faltadetiempo');
 });
 
 app.get('/UsoFinit', authMiddleware, (req, res) => {
-    res.render('usofinit');
+    res.render('Usofinit');
 });
 
 app.get('/personalizado', authMiddleware, (req, res) => {
-    res.render('habitoPersonalizado',{ habit: null });
+    res.render('HabitoPersonalizado',{ habit: null });
 });
 
 app.get('/actualizarPerfil', authMiddleware, async (req, res) => {
@@ -193,7 +165,7 @@ app.get('/actualizarPerfil', authMiddleware, async (req, res) => {
         if (!user) {
             return res.redirect('/login');
         }
-        res.render('actualizarPerfil', { user });
+        res.render('ActualizarPerfil', { user });
     } catch (err) {
         console.error('Error al cargar el perfil:', err);
         res.status(500).send('Error al cargar el perfil');
@@ -201,16 +173,16 @@ app.get('/actualizarPerfil', authMiddleware, async (req, res) => {
 });
 
 app.get('/quienesSomos', authMiddleware, (req, res) => {
-    res.render('quienesSomos');  //
+    res.render('QuienesSomos');  //
 });
 
 app.get('/GestionarHabitos', authMiddleware, (req, res) => {
-    res.render('gestionarHabitos');
+    res.render('GestionarHabitos');
 });
 
 // CREAR hábito personalizado
 app.get('/personalizado', authMiddleware, (req, res) => {
-    res.render('habitoPersonalizado', { habit: null }); // crear
+    res.render('HabitoPersonalizado', { habit: null }); // crear
 });
 
 // EDITAR hábito personalizado
@@ -227,7 +199,7 @@ app.get('/habitoPersonalizado/:id/editar', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('habitoPersonalizado', { habit }); // editar
+        res.render('HabitoPersonalizado', { habit }); // editar
     } catch (error) {
         console.error('Error al cargar hábito personalizado para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -256,7 +228,7 @@ app.get('/perso/:id', authMiddleware, async (req, res) => {
             (log) => log.status.toLowerCase() === 'completed'
         );
 
-        res.render('perso', { 
+        res.render('Perso', { 
             habit: {
                 ...habit,
                 completedDays: completedLogs.length
@@ -270,7 +242,7 @@ app.get('/perso/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito correr
 app.get('/GestionarCorrer', authMiddleware, (req, res) => {
-  res.render('gestionarcorrer', { habit: null });
+  res.render('Gestionarcorrer', { habit: null });
 });
 
 //Editar hábito
@@ -289,7 +261,7 @@ app.get('/GestionarCorrer/:id', authMiddleware, async (req, res) => {
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
 
-        res.render('gestionarcorrer', { habit });
+        res.render('Gestionarcorrer', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -312,7 +284,7 @@ app.get('/Correr/:id', authMiddleware, async (req, res) => {
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
 
-        res.render('correr', { habit });
+        res.render('Correr', { habit });
     } catch (error) {
         console.error('Error al cargar el hábito:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -321,7 +293,7 @@ app.get('/Correr/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito bicicleta
 app.get('/gestionarbicicleta', authMiddleware, (req, res) => {
-  res.render('gestionarbicicleta', { habit: null });
+  res.render('Gestionarbicicleta', { habit: null });
 });
 
 //Editar hábito
@@ -340,7 +312,7 @@ app.get('/gestionarbicicleta/:id', authMiddleware, async (req, res) => {
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
 
-        res.render('gestionarbicicleta', { habit });
+        res.render('Gestionarbicicleta', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -362,7 +334,7 @@ app.get('/bicicleta/:id', authMiddleware, async (req, res) => {
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
 
-        res.render('bicicleta', { habit });
+        res.render('Bicicleta', { habit });
     } catch (error) {
         console.error('Error al cargar el hábito:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -370,7 +342,7 @@ app.get('/bicicleta/:id', authMiddleware, async (req, res) => {
 });
 // Crear nuevo hábito CuidadoPiel
 app.get('/gestionarcuidadopiel', authMiddleware, (req, res) => {
-  res.render('gestionarcuidadopiel', { habit: null });
+  res.render('Gestionarcuidadopiel', { habit: null });
 });
 
 // Editar hábito
@@ -387,7 +359,7 @@ app.get('/gestionarcuidadopiel/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('gestionarcuidadopiel', { habit });
+        res.render('Gestionarcuidadopiel', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -417,7 +389,7 @@ app.get('/CuidadoPiel/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito DesintoxicacionDigital
 app.get('/gestionarDesintoxicacionDigital', authMiddleware, (req, res) => {
-  res.render('gestionarDesintoxicacionDigital', { habit: null });
+  res.render('GestionarDesintoxicacionDigital', { habit: null });
 });
 
 // Editar hábito
@@ -434,7 +406,7 @@ app.get('/gestionarDesintoxicacionDigital/:id', authMiddleware, async (req, res)
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('gestionarDesintoxicacionDigital', { habit });
+        res.render('GestionarDesintoxicacionDigital', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -454,7 +426,7 @@ app.get('/desintoxicacionDigital/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('desintoxicacionDigital', { habit });
+        res.render('DesintoxicacionDigital', { habit });
     } catch (error) {
         console.error('Error al cargar el hábito:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -464,7 +436,7 @@ app.get('/desintoxicacionDigital/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito Estiramientos
 app.get('/gestionarestiramientos', authMiddleware, (req, res) => {
-  res.render('gestionarestiramientos', { habit: null });
+  res.render('Gestionarestiramientos', { habit: null });
 });
 
 // Editar hábito
@@ -481,7 +453,7 @@ app.get('/gestionarestiramientos/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('gestionarestiramientos', { habit });
+        res.render('Gestionarestiramientos', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -511,7 +483,7 @@ app.get('/Estiramientos/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito Hidratacion
 app.get('/gestionarhidratacion', authMiddleware, (req, res) => {
-  res.render('gestionarhidratacion', { habit: null });
+  res.render('Gestionarhidratacion', { habit: null });
 });
 
 // Editar hábito
@@ -528,7 +500,7 @@ app.get('/gestionarhidratacion/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('gestionarhidratacion', { habit });
+        res.render('Gestionarhidratacion', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -558,7 +530,7 @@ app.get('/Hidratacion/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito horasdormir
 app.get('/gestionarhorasdormir', authMiddleware, (req, res) => {
-  res.render('gestionarhorasdormir', { habit: null });
+  res.render('Gestionarhorasdormir', { habit: null });
 });
 
 // Editar hábito
@@ -575,7 +547,7 @@ app.get('/gestionarhorasdormir/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('gestionarhorasdormir', { habit });
+        res.render('Gestionarhorasdormir', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -595,7 +567,7 @@ app.get('/horasdormir/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('horasdormir', { habit });
+        res.render('Horasdormir', { habit });
     } catch (error) {
         console.error('Error al cargar el hábito:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -605,7 +577,7 @@ app.get('/horasdormir/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito Lectura
 app.get('/gestionarlectura', authMiddleware, (req, res) => {
-  res.render('gestionarlectura', { habit: null });
+  res.render('Gestionarlectura', { habit: null });
 });
 
 // Editar hábito
@@ -622,7 +594,7 @@ app.get('/gestionarlectura/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('gestionarlectura', { habit });
+        res.render('Gestionarlectura', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -652,7 +624,7 @@ app.get('/Lectura/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito Meditacion
 app.get('/gestionarmeditacion', authMiddleware, (req, res) => {
-  res.render('gestionarmeditacion', { habit: null });
+  res.render('Gestionarmeditacion', { habit: null });
 });
 
 // Editar hábito
@@ -669,7 +641,7 @@ app.get('/gestionarmeditacion/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('gestionarmeditacion', { habit });
+        res.render('Gestionarmeditacion', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -699,7 +671,7 @@ app.get('/Meditacion/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito MusicaRelajante
 app.get('/gestionarmusicarelajante', authMiddleware, (req, res) => {
-  res.render('gestionarmusicarelajante', { habit: null });
+  res.render('Gestionarmusicarelajante', { habit: null });
 });
 
 // Editar hábito
@@ -716,7 +688,7 @@ app.get('/gestionarmusicarelajante/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('gestionarmusicarelajante', { habit });
+        res.render('Gestionarmusicarelajante', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -746,7 +718,7 @@ app.get('/MusicaRelajante/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito ordenarespacio
 app.get('/gestionarordenarespacio', authMiddleware, (req, res) => {
-  res.render('gestionarordenarespacio', { habit: null });
+  res.render('Gestionarordenarespacio', { habit: null });
 });
 
 // Editar hábito
@@ -763,7 +735,7 @@ app.get('/gestionarordenarespacio/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('gestionarordenarespacio', { habit });
+        res.render('Gestionarordenarespacio', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -783,7 +755,7 @@ app.get('/ordenarespacio/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('ordenarespacio', { habit });
+        res.render('Ordenarespacio', { habit });
     } catch (error) {
         console.error('Error al cargar el hábito:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -793,7 +765,7 @@ app.get('/ordenarespacio/:id', authMiddleware, async (req, res) => {
 
 // Crear nuevo hábito SaltarCuerda
 app.get('/gestionarsaltarcuerda', authMiddleware, (req, res) => {
-  res.render('gestionarsaltarcuerda', { habit: null });
+  res.render('Gestionarsaltarcuerda', { habit: null });
 });
 
 // Editar hábito
@@ -810,7 +782,7 @@ app.get('/gestionarsaltarcuerda/:id', authMiddleware, async (req, res) => {
         });
 
         if (!habit) return res.status(404).send('Hábito no encontrado');
-        res.render('gestionarsaltarcuerda', { habit });
+        res.render('Gestionarsaltarcuerda', { habit });
     } catch (error) {
         console.error('Error al cargar hábito para editar:', error);
         res.status(500).send('Error al cargar el hábito');
@@ -839,7 +811,7 @@ app.get('/SaltarCuerda/:id', authMiddleware, async (req, res) => {
 
 app.get('/ConfigurarNotificaciones', authMiddleware, async (req, res) => {
     const { afternoonHour, morningHour, nightHour } = await getNotificationsTime(req.user.id);
-    res.render('configNotis', {
+    res.render('ConfigNotis', {
         afternoonHour,
         morningHour,
         nightHour
