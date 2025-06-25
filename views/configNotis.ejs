@@ -10,7 +10,12 @@
 <body>
   <div class="container py-4">
     <!-- Título principal -->
-    <%- include('partials/topBar', { title: 'Configurar horarios de notificaciones' }) %>
+     <div class="top-bar">
+      <a href="inicio" class="back-arrow">
+          <i class="fas fa-chevron-left"></i>
+      </a>
+      <h1 class="fw-bold">Configurar horarios de notificaciones</h1>
+    </div>
     <div class="separator my-2"></div>
     <div class="infoHoraNoti">
       <h5>Los horarios seleccionados para cada hora, son el momento en que se te recordará que tienes un hábito por cumplir.
@@ -57,7 +62,7 @@
       </div>
 
       <div class="text-center pt-2">
-        <button type="button" class="btn btn-primary" id="btn-guardar">Guardar horarios</button>
+        <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar horarios</button>
       </div>
     </form>
   </div>
@@ -79,10 +84,11 @@
         }
       }
     });
-  });
 
-  document.getElementById('btn-guardar').addEventListener('click', function() {
-    Swal.fire({
+    // Evento submit del formulario
+    $('#actualizarHorariosForm').on('submit', function(e) {
+      e.preventDefault();
+      Swal.fire({
         title: '¡Horarios actualizados!',
         text: 'Los cambios se guardaron correctamente.',
         imageUrl: '/img/sharki/feliz.png',
@@ -90,10 +96,11 @@
         confirmButtonText: 'Aceptar',
         customClass: { confirmButton: 'btn btn-primary' },
         buttonsStyling: false
-    }).then(() => {
-      e.target.submit();
+      }).then(() => {
+        this.submit();
+      });
     });
-});
+  });
   </script>
 </body>
 </html>
