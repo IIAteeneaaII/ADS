@@ -9,7 +9,12 @@
 <body>
   <div class="container ">
     <!-- Título principal -->
-    <%- include('partials/topBar', { title: 'Mi perfil' }) %>
+    <div class="top-bar">
+      <a href="inicio" class="back-arrow">
+          <i class="fas fa-chevron-left"></i>
+      </a>
+      <h1 class="fw-bold">Mi perfil</h1>
+    </div>
     <div class="separator my-2"></div>
 
     <!-- Sección del perfil -->
